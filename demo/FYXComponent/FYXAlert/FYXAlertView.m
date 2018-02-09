@@ -203,9 +203,9 @@ CGFloat nativeScale(void) {
     [self addSubview:_richTextView];
 
     _cancelBtn = [[UIButton alloc]init];
-    _cancelBtn.frame = CGRectMake(VIEW_CENTER_X(self) - 15 * displayScale, VIEW_HEIGHT(_richTextView) + 20 * displayScale + VIEW_Y(_richTextView), 15 * displayScale, 15 * displayScale);
+    _cancelBtn.frame = CGRectMake(VIEW_CENTER_X(_richTextView) + 8 * displayScale, VIEW_HEIGHT(_richTextView) + 20 * displayScale + VIEW_Y(_richTextView), 30 * displayScale, 30 * displayScale);
     [_cancelBtn addTarget:self action:@selector(hiddenClick:) forControlEvents:UIControlEventTouchUpInside];
-    [_cancelBtn setTitle:@"cancel" forState:UIControlStateNormal];
+    [_cancelBtn setBackgroundImage:[UIImage imageNamed:@"close.png"] forState:UIControlStateNormal];
     [self addSubview:_cancelBtn];
 }
 
@@ -225,8 +225,8 @@ CGFloat nativeScale(void) {
 
     _cancelBtn.frame    = CGRectMake(VIEW_CENTER_X(self) - 15 * displayScale,
                                      VIEW_HEIGHT(_richTextView) + 20 * displayScale + VIEW_Y(_richTextView),
-                                     15 * displayScale,
-                                     15 * displayScale);
+                                     30 * displayScale,
+                                     30 * displayScale);
 }
 
 // 点击背景隐藏

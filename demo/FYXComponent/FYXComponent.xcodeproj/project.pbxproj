@@ -16,6 +16,7 @@
 		2F89B4B5202D29A800DC6105 /* FYXComponentTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 2F89B4B4202D29A800DC6105 /* FYXComponentTests.m */; };
 		2F89B4C0202D29A800DC6105 /* FYXComponentUITests.m in Sources */ = {isa = PBXBuildFile; fileRef = 2F89B4BF202D29A800DC6105 /* FYXComponentUITests.m */; };
 		2F89B4D0202D29E400DC6105 /* FYXAlertView.m in Sources */ = {isa = PBXBuildFile; fileRef = 2F89B4CF202D29E400DC6105 /* FYXAlertView.m */; };
+		2F89B4D2202D894100DC6105 /* close.png in Resources */ = {isa = PBXBuildFile; fileRef = 2F89B4D1202D894100DC6105 /* close.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -54,6 +55,7 @@
 		2F89B4C1202D29A800DC6105 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		2F89B4CE202D29E400DC6105 /* FYXAlertView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FYXAlertView.h; sourceTree = "<group>"; };
 		2F89B4CF202D29E400DC6105 /* FYXAlertView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FYXAlertView.m; sourceTree = "<group>"; };
+		2F89B4D1202D894100DC6105 /* close.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = close.png; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -141,6 +143,7 @@
 			children = (
 				2F89B4CE202D29E400DC6105 /* FYXAlertView.h */,
 				2F89B4CF202D29E400DC6105 /* FYXAlertView.m */,
+				2F89B4D1202D894100DC6105 /* close.png */,
 			);
 			path = FYXAlert;
 			sourceTree = "<group>";
@@ -253,6 +256,7 @@
 			files = (
 				2F89B4A8202D29A700DC6105 /* LaunchScreen.storyboard in Resources */,
 				2F89B4A5202D29A700DC6105 /* Assets.xcassets in Resources */,
+				2F89B4D2202D894100DC6105 /* close.png in Resources */,
 				2F89B4A3202D29A700DC6105 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
