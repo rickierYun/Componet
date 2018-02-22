@@ -8,7 +8,15 @@
 #import "FYXAlertView.h"
 ```
 遵循协议 FYXAlertViewDelegate 
-声明 FYXAlertView
+声明 FYXAlertView。
+
+各个弹窗的使用可以声明不同的view，利用不同的view的set函数来构建不同弹窗效果
+```objective-c
+    FYXAlertView *alertView;
+    FYXAlertView *alertMsgView;
+    FYXAlertView *alertRichView;
+    FYXAlertView *alertImageView;
+```
 
 ### 普通弹窗使用
 
@@ -33,3 +41,7 @@
 ```
 
 
+### 带图片提示弹窗
+```objective-c
+[alertImageView setImageAlertView:@"机器学习是近年来\n渐趋热门的一个领域" contentFont:17 contentColor:[UIColor blackColor] imageName:nil];
+```
