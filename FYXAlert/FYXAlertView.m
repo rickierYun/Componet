@@ -37,11 +37,12 @@ CGFloat nativeScale(void) {
 
 @implementation FYXAlertView
 {
-    UIButton   * _backGroundBtn;      // 灰色背景按钮
-    UILabel    * _alertTitle;         // 提示文字
-    UILabel    * _msgLabel;           // 提示内容
-    UIView     * _msgAlertView;       // 文字弹窗view
-    UITextView * _richTextView;       // 富文本显示框
+    UIButton    * _backGroundBtn;      // 灰色背景按钮
+    UILabel     * _alertTitle;         // 提示文字
+    UILabel     * _msgLabel;           // 提示内容
+    UIView      * _msgAlertView;       // 文字弹窗view
+    UITextView  * _richTextView;       // 富文本显示框
+    UIImageView * _alertTitleImage;    // 提示图片
 }
 
 - (id)initWithFrame: (CGRect)frame {
@@ -209,6 +210,7 @@ CGFloat nativeScale(void) {
     [self addSubview:_cancelBtn];
 }
 
+
 // 设置富文本内容
 - (void)setRichTextView: (NSString*)textContent textFont:(NSInteger)textFont {
     [self createRichTextAlertView];
@@ -229,6 +231,51 @@ CGFloat nativeScale(void) {
                                      30 * displayScale);
 }
 
+#pragma -mark 图片的提示框
+- (void)createImageAlertView {
+    UIView *_alertView = [[UIView alloc]init];
+    _alertView.frame = CGRectMake(VIEW_CENTER_X(self) - 100 * displayScale,VIEW_CENTER_Y(self) - 100 * displayScale, 200 * displayScale, 200 * displayScale);
+    _alertView.backgroundColor = [UIColor whiteColor];
+    _alertView.layer.cornerRadius = 8;
+    [self addSubview:_alertView];
+    
+    _alertTitleImage = [[UIImageView alloc]init];
+    NSLog(@"%f",VIEW_CENTER_X(_alertView));
+    NSLog(@"%f", _alertView.frame.origin.x);
+    _alertTitleImage.frame = CGRectMake(VIEW_WIDTH(_alertView) / 2 - 25 * displayScale, 18 * displayScale, 50 * displayScale, 50 * displayScale);
+    _alertTitleImage.image = [UIImage imageNamed:@"sure.png"];
+    [_alertView addSubview:_alertTitleImage];
+
+    _msgLabel = [[UILabel alloc]init];
+    NSLog(@"%f",VIEW_HEIGHT(_alertTitleImage));
+    _msgLabel.frame = CGRectMake(15, VIEW_Y(_alertTitleImage) + VIEW_HEIGHT(_alertTitleImage), VIEW_WIDTH(_alertView) - 30 * displayScale, 70 * displayScale);
+    _msgLabel.numberOfLines = 0;
+    _msgLabel.textAlignment = NSTextAlignmentCenter;
+    _msgLabel.textColor     = [UIColor blackColor];
+    [_alertView addSubview:_msgLabel];
+
+    _cancelBtn = [[UIButton alloc]init];
+    _cancelBtn.frame = CGRectMake(0, VIEW_HEIGHT(_msgLabel) + 20 * displayScale + VIEW_Y(_msgLabel), VIEW_WIDTH(_alertView) , 40 * displayScale);
+    [_cancelBtn addTarget:self action:@selector(hiddenClick:) forControlEvents:UIControlEventTouchUpInside];
+    [_cancelBtn setTitle:@"sure" forState:UIControlStateNormal];
+    [_cancelBtn setTitleColor:[UIColor blueColor] forState:UIControlStateNormal];
+    [_alertView addSubview:_cancelBtn];
+}
+
+// 设置图片弹窗
+- (void)setImageAlertView: (NSString *)content contentFont: (NSInteger)contentFont contentColor: (UIColor *)contentColor imageName: (NSString *)imageName {
+    [self createImageAlertView];
+    _msgLabel.text = content;
+    _msgLabel.textColor = contentColor;
+    [_msgLabel setFont:[UIFont systemFontOfSize:contentFont * displayScale]];
+
+    if (imageName != nil) {
+        _alertTitleImage.image = [UIImage imageNamed:imageName];
+    }
+
+}
+
+#pragma -mark action
 // 点击背景隐藏
 - (void)hiddenClick: (UIButton *)sender {
     self.hidden = YES;

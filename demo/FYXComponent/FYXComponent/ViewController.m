@@ -13,6 +13,7 @@
     FYXAlertView *alertView;
     FYXAlertView *alertMsgView;
     FYXAlertView *alertRichView;
+    FYXAlertView *alertImageView;
 }
 @end
 
@@ -35,6 +36,10 @@
     alertRichView.delegate = self;
     alertRichView.hidden = YES;
 
+    alertImageView = [[FYXAlertView alloc]initWithFrame:CGRectMake(0, 0,[[UIScreen mainScreen] bounds].size.width , [[UIScreen mainScreen] bounds].size.height)];
+    [self.view addSubview:alertImageView];
+    alertImageView.hidden = YES;
+
     UIButton *alertBtn = [[UIButton alloc]init];
     alertBtn.frame = CGRectMake(0, 100, 100, 30);
     [alertBtn setTitle:@"普通弹窗" forState:UIControlStateNormal];
@@ -56,13 +61,21 @@
     [alertRichBtn setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
     [self.view addSubview:alertRichBtn];
 
+    UIButton *alertImageBtn = [[UIButton alloc]init];
+    alertImageBtn.frame = CGRectMake(0, 400, 100, 30);
+    [alertImageBtn setTitle:@"图片弹窗" forState:UIControlStateNormal];
+    [alertImageBtn addTarget:self action:@selector(alertImageClick:) forControlEvents:UIControlEventTouchUpInside];
+    [alertImageBtn setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
+    [self.view addSubview:alertImageBtn];
+
     // Do any additional setup after loading the view, typically from a nib.
 }
 
 - (void)alertClick: (UIButton *)sender {
-    alertView.hidden = NO;
-    alertMsgView.hidden = YES;
-    alertRichView.hidden = YES;
+    alertView.hidden        = NO;
+    alertMsgView.hidden     = YES;
+    alertRichView.hidden    = YES;
+    alertImageView.hidden   = YES;
     // 弹窗
     [alertView setAlertTitle:@"this create success" titleFont:17];
     [alertView.cancelBtn setTitle:@"cancel" forState:UIControlStateNormal];
@@ -72,9 +85,10 @@
 }
 
 - (void)alertMsgClick: (UIButton *)sender {
-    alertView.hidden = YES;
-    alertMsgView.hidden = NO;
-    alertRichView.hidden = YES;
+    alertView.hidden        = YES;
+    alertMsgView.hidden     = NO;
+    alertRichView.hidden    = YES;
+    alertImageView.hidden   = YES;
     // 文字弹窗
     [alertMsgView setMsgAlertView:@"提示" titleFont:19 alertMsg:@"机器学习是近年来渐趋热门的一个领域，同时Python 语言经过一段时间的发展也已逐渐成为主流的编程语言之一。本书结合了机器学习和Python 语言两个热门的领域，通过利用两种核心的机器学习算法来将Python 语言在数据分析方面的优势发挥到极 致。 全书共有10 章。第 1 章讲解了Python 机器学习的生态系统，剩余9 章介绍了众多与机器学习相关的算法，包括各类分类算法、数据可视化技术、推荐引擎等，主要包括机器学习在公寓、机票、IPO 市场、新闻源、内容推机器学习是近年来渐趋热门的一个领域，同时Python 语言经过一段时间的发展也已逐渐成为主流的编程语言之一。本书结合了机器学习和Python 语言两个热门的领域，通过利用两种核心的机器学习算法来将Python 语言在数据分析方面的优势发挥到极 致。 全书共有10 章。第 1 章讲解了Python 机器学习的生态系统，剩余9 章介绍了众多与机器学习相关的算法，包括各类分类算法、数据可视化技术、推荐引擎等，主要包括机器学习在公寓、机票、IPO 市场、新闻源、内容推" msgFont:11];
     [alertMsgView.cancelBtn setTitle:@"cancel" forState:UIControlStateNormal];
@@ -83,12 +97,21 @@
 }
 
 - (void)alertRichClick: (UIButton *)sender {
-    alertView.hidden = YES;
-    alertMsgView.hidden = YES;
-    alertRichView.hidden = NO;
+    alertView.hidden        = YES;
+    alertMsgView.hidden     = YES;
+    alertRichView.hidden    = NO;
+    alertImageView.hidden   = YES;
     // 富文本弹窗
     [alertRichView setRichTextView:@"机器学习是近年来渐趋热门的一个领域，同时Python 语言经过一段时间的发展也已逐渐成为主流的编程语言之一。本书结合了机器学习和Python 语言两个热门的领域，通过利用两种核心的机器学习算法来将Python 语言在数据分析方面的优势发挥到极 致。 全书共有10 章。第 1 章讲解了Python 机器学习的生态系统，剩余9 章介绍了众多与机器学习相关的算法，包括各类分类算法、数据可视化技术、推荐引擎等，主要包括机器学习在公寓、机票、IPO 市场、新闻源、内容推机器学习是近年来渐趋热门的一个领域，同时Python 语言经过一段时间的发展也已逐渐成为主流的编程语言之一。本书结合了机器学习和Python 语言两个热门的领域，通过利用两种核心的机器学习算法来将Python 语言在数据分析方面的优势发挥到极 致。 全书共有10 章。第 1 章讲解了Python 机器学习的生态系统，剩余9 章介绍了众多与机器学习相关的算法，包括各类分类算法、数据可视化技术、推荐引擎等，主要包括机器学习在公寓、机票、IPO 市场、新闻源、内容推" textFont:11];
     [alertRichView setRichTextViewFrame:200 height:300];
+}
+
+- (void)alertImageClick: (UIButton *)sender {
+    alertView.hidden        = YES;
+    alertMsgView.hidden     = YES;
+    alertRichView.hidden    = YES;
+    alertImageView.hidden   = NO;
+    [alertImageView setImageAlertView:@"机器学习是近年来\n渐趋热门的一个领域" contentFont:17 contentColor:[UIColor blackColor] imageName:nil];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -97,7 +120,7 @@
 }
 
 - (void)sureDidClick:(FYXAlertView *)alertView {
-    alertView.hidden = YES;
+
 }
 
 @end
