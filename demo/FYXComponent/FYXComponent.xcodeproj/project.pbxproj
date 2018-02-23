@@ -18,6 +18,10 @@
 		2F89B4C0202D29A800DC6105 /* FYXComponentUITests.m in Sources */ = {isa = PBXBuildFile; fileRef = 2F89B4BF202D29A800DC6105 /* FYXComponentUITests.m */; };
 		2F89B4D0202D29E400DC6105 /* FYXAlertView.m in Sources */ = {isa = PBXBuildFile; fileRef = 2F89B4CF202D29E400DC6105 /* FYXAlertView.m */; };
 		2F89B4D2202D894100DC6105 /* close.png in Resources */ = {isa = PBXBuildFile; fileRef = 2F89B4D1202D894100DC6105 /* close.png */; };
+		2FB274E1203FBB4600E985F9 /* FYXToast.m in Sources */ = {isa = PBXBuildFile; fileRef = 2FB274E0203FBB4600E985F9 /* FYXToast.m */; };
+		2FB274E8203FE51500E985F9 /* FYXButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 2FB274E7203FE51500E985F9 /* FYXButton.m */; };
+		2FB274EA203FF8E000E985F9 /* success.png in Resources */ = {isa = PBXBuildFile; fileRef = 2FB274E9203FF8E000E985F9 /* success.png */; };
+		2FB274EE203FF98000E985F9 /* FYXTextField.m in Sources */ = {isa = PBXBuildFile; fileRef = 2FB274ED203FF98000E985F9 /* FYXTextField.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -58,6 +62,13 @@
 		2F89B4CE202D29E400DC6105 /* FYXAlertView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FYXAlertView.h; sourceTree = "<group>"; };
 		2F89B4CF202D29E400DC6105 /* FYXAlertView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FYXAlertView.m; sourceTree = "<group>"; };
 		2F89B4D1202D894100DC6105 /* close.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = close.png; sourceTree = "<group>"; };
+		2FB274DF203FBB4600E985F9 /* FYXToast.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FYXToast.h; sourceTree = "<group>"; };
+		2FB274E0203FBB4600E985F9 /* FYXToast.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FYXToast.m; sourceTree = "<group>"; };
+		2FB274E6203FE51500E985F9 /* FYXButton.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FYXButton.h; sourceTree = "<group>"; };
+		2FB274E7203FE51500E985F9 /* FYXButton.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FYXButton.m; sourceTree = "<group>"; };
+		2FB274E9203FF8E000E985F9 /* success.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = success.png; sourceTree = "<group>"; };
+		2FB274EC203FF98000E985F9 /* FYXTextField.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FYXTextField.h; sourceTree = "<group>"; };
+		2FB274ED203FF98000E985F9 /* FYXTextField.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FYXTextField.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -85,16 +96,11 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		2F86FE76203E540D00994707 /* FYXTextView */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = FYXTextView;
-			sourceTree = "<group>";
-		};
 		2F86FE77203E543100994707 /* FYXButton */ = {
 			isa = PBXGroup;
 			children = (
+				2FB274E6203FE51500E985F9 /* FYXButton.h */,
+				2FB274E7203FE51500E985F9 /* FYXButton.m */,
 			);
 			path = FYXButton;
 			sourceTree = "<group>";
@@ -102,8 +108,9 @@
 		2F89B48F202D29A700DC6105 = {
 			isa = PBXGroup;
 			children = (
+				2FB274EB203FF90200E985F9 /* FYXTextfield */,
+				2FB274DB203FB8AE00E985F9 /* FYXToast */,
 				2F86FE77203E543100994707 /* FYXButton */,
-				2F86FE76203E540D00994707 /* FYXTextView */,
 				2F89B4CD202D29B300DC6105 /* FYXAlert */,
 				2F89B49A202D29A700DC6105 /* FYXComponent */,
 				2F89B4B3202D29A800DC6105 /* FYXComponentTests */,
@@ -165,6 +172,25 @@
 				2F89B4D1202D894100DC6105 /* close.png */,
 			);
 			path = FYXAlert;
+			sourceTree = "<group>";
+		};
+		2FB274DB203FB8AE00E985F9 /* FYXToast */ = {
+			isa = PBXGroup;
+			children = (
+				2FB274DF203FBB4600E985F9 /* FYXToast.h */,
+				2FB274E0203FBB4600E985F9 /* FYXToast.m */,
+				2FB274E9203FF8E000E985F9 /* success.png */,
+			);
+			path = FYXToast;
+			sourceTree = "<group>";
+		};
+		2FB274EB203FF90200E985F9 /* FYXTextfield */ = {
+			isa = PBXGroup;
+			children = (
+				2FB274EC203FF98000E985F9 /* FYXTextField.h */,
+				2FB274ED203FF98000E985F9 /* FYXTextField.m */,
+			);
+			path = FYXTextfield;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -278,6 +304,7 @@
 				2F89B4A5202D29A700DC6105 /* Assets.xcassets in Resources */,
 				2F89B4D2202D894100DC6105 /* close.png in Resources */,
 				2F89B4A3202D29A700DC6105 /* Main.storyboard in Resources */,
+				2FB274EA203FF8E000E985F9 /* success.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -303,9 +330,12 @@
 			buildActionMask = 2147483647;
 			files = (
 				2F89B4A0202D29A700DC6105 /* ViewController.m in Sources */,
+				2FB274E8203FE51500E985F9 /* FYXButton.m in Sources */,
+				2FB274EE203FF98000E985F9 /* FYXTextField.m in Sources */,
 				2F89B4AB202D29A700DC6105 /* main.m in Sources */,
 				2F89B49D202D29A700DC6105 /* AppDelegate.m in Sources */,
 				2F89B4D0202D29E400DC6105 /* FYXAlertView.m in Sources */,
+				2FB274E1203FBB4600E985F9 /* FYXToast.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

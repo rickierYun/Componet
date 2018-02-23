@@ -17,14 +17,15 @@
 
 @optional
 
-- (void)sureDidClick: (FYXAlertView *)alertView;    // 确定按钮点击事件
-
+- (void)sureDidClick: (FYXAlertView *)alertView;        // 确定按钮点击事件
+- (void)otherBtnDidClick: (FYXAlertView *)alertView;    // 其他按钮点击事件
 @end
 
 @interface FYXAlertView : UIView
 
 @property (nonatomic, strong) UIButton * sureBtn;
 @property (nonatomic, strong) UIButton * cancelBtn;
+@property (nonatomic, strong) UIButton * middleBtn;
 @property (nonatomic, assign) id<FYXAlertViewDelegate>delegate;
 
 
@@ -40,5 +41,7 @@
 - (void)setImageAlertView: (NSString *)content
               contentFont: (NSInteger)contentFont
              contentColor: (UIColor *)contentColor
-                imageName: (NSString *)imageName;                                   // 图片提示框
+                imageName: (NSString *)imageName;                                    // 图片提示框
+
+- (void)setMoreBtnAlertView: (NSString *)content contentFont: (NSInteger)contentFont;// 设置多个按钮提示
 @end
