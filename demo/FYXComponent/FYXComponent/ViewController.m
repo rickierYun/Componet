@@ -11,6 +11,7 @@
 #import "FYXToast.h"
 #import "FYXButton.h"
 #import "FYXTextField.h"
+#import "FYXCalendar.h"
 
 @interface ViewController ()<FYXAlertViewDelegate>
 {
@@ -96,6 +97,14 @@
     [textField setPlaceholder:@"请登录"];
     [self.view addSubview:textField];
 
+    FYXButton *calendarBtn = [[FYXButton alloc]initWithFrame:CGRectMake(0, 700, 100, 30)];
+    calendarBtn.layer.shadowOffset  = CGSizeMake(1, 7);
+    calendarBtn.layer.shadowOpacity = 0.4;
+    calendarBtn.layer.shadowColor   = [UIColor colorWithRed:20.0 / 255 green:206.0 / 255 blue:1 alpha:1.0f].CGColor;
+    [calendarBtn setTitle:@"日历" forState:UIControlStateNormal];
+    [calendarBtn addTarget:self action:@selector(calendarClick:) forControlEvents:UIControlEventTouchUpInside];
+    [self.view addSubview:calendarBtn];
+
     // Do any additional setup after loading the view, typically from a nib.
 }
 
@@ -160,6 +169,10 @@
 //    [FYXToast showWithText:@"您目前的取送车订单有绑定的保养预约服务，是否同时取消保养预约？"];
 }
 
+- (void)calendarClick: (UIButton *)sender {
+    FYXCalendar *fyxCalendar = [[FYXCalendar alloc]initWithFrame:CGRectMake(0, 30, self.view.frame.size.width, self.view.frame.size.height)];
+    [self.view addSubview:fyxCalendar];
+}
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.

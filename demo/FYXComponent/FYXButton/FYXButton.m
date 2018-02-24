@@ -32,6 +32,7 @@
 + (UIImage*) BgImageFromColorswithFrame: (CGRect)frame
 
 {
+    // 渐变色值范围
     NSMutableArray *colorArray = [@[[UIColor colorWithRed:20.0 / 255 green:206.0 / 255 blue:1 alpha:1.0f],
                                     [UIColor colorWithRed:11.0 / 255 green:171.0 / 255 blue:254.0 / 255 alpha:1.0f]] mutableCopy];
 

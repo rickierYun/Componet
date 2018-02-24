@@ -18,8 +18,8 @@
     
 }
 
-+ (void)showWithText:(NSString *)text_;
-+ (void)showWithText:(NSString *)text_ duration:(CGFloat)duration_;
-+ (void)showWithTextImage:(NSString *)text_ imageName:(NSString *)imageName;
-+ (void)showwithTextImage:(NSString *)text_ imageName:(NSString *)imageName duration:(CGFloat)duration_;
++ (void)showWithText:(NSString *)text_;                                                                 // 只需添加文字
++ (void)showWithText:(NSString *)text_ duration:(CGFloat)duration_;                                     // 可以添加文字和持续时间
++ (void)showWithTextImage:(NSString *)text_ imageName:(NSString *)imageName;                            // 只需添加文字和图片名称
++ (void)showwithTextImage:(NSString *)text_ imageName:(NSString *)imageName duration:(CGFloat)duration_;// 可以添加文字、图片名称和持续时间
 @end
