@@ -58,34 +58,34 @@
     [self.view addSubview:alertBtn];
 
     UIButton *alertMsgBtn = [[UIButton alloc]init];
-    alertMsgBtn.frame = CGRectMake(0, 200, 100, 30);
+    alertMsgBtn.frame = CGRectMake(0, 150, 100, 30);
     [alertMsgBtn setTitle:@"文字弹窗" forState:UIControlStateNormal];
     [alertMsgBtn addTarget:self action:@selector(alertMsgClick:) forControlEvents:UIControlEventTouchUpInside];
     [alertMsgBtn setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
     [self.view addSubview:alertMsgBtn];
 
     UIButton *alertRichBtn = [[UIButton alloc]init];
-    alertRichBtn.frame = CGRectMake(0, 300, 100, 30);
+    alertRichBtn.frame = CGRectMake(0, 200, 100, 30);
     [alertRichBtn setTitle:@"富文本弹窗" forState:UIControlStateNormal];
     [alertRichBtn addTarget:self action:@selector(alertRichClick:) forControlEvents:UIControlEventTouchUpInside];
     [alertRichBtn setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
     [self.view addSubview:alertRichBtn];
 
     UIButton *alertImageBtn = [[UIButton alloc]init];
-    alertImageBtn.frame = CGRectMake(0, 400, 100, 30);
+    alertImageBtn.frame = CGRectMake(0, 250, 100, 30);
     [alertImageBtn setTitle:@"图片弹窗" forState:UIControlStateNormal];
     [alertImageBtn addTarget:self action:@selector(alertImageClick:) forControlEvents:UIControlEventTouchUpInside];
     [alertImageBtn setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
     [self.view addSubview:alertImageBtn];
 
     UIButton *alertMoreBtn = [[UIButton alloc]init];
-    alertMoreBtn.frame = CGRectMake(0, 500, 100, 30);
+    alertMoreBtn.frame = CGRectMake(0, 300, 100, 30);
     [alertMoreBtn setTitle:@"多按钮弹窗" forState:UIControlStateNormal];
     [alertMoreBtn addTarget:self action:@selector(alertMoreBtnClick:) forControlEvents:UIControlEventTouchUpInside];
     [alertMoreBtn setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
     [self.view addSubview:alertMoreBtn];
 
-    FYXButton *toastBtn = [[FYXButton alloc]initWithFrame:CGRectMake(0, 600, 100, 30)];
+    FYXButton *toastBtn = [[FYXButton alloc]initWithFrame:CGRectMake(0, 350, 100, 30)];
     toastBtn.layer.shadowOffset  = CGSizeMake(1, 7);
     toastBtn.layer.shadowOpacity = 0.4;
     toastBtn.layer.shadowColor   = [UIColor colorWithRed:20.0 / 255 green:206.0 / 255 blue:1 alpha:1.0f].CGColor;
@@ -93,11 +93,11 @@
     [toastBtn addTarget:self action:@selector(toastBtnClick:) forControlEvents:UIControlEventTouchUpInside];
     [self.view addSubview:toastBtn];
 
-    FYXTextField *textField = [[FYXTextField alloc]initWithFrame:CGRectMake(300, 100, 100, 30)];
+    FYXTextField *textField = [[FYXTextField alloc]initWithFrame:CGRectMake(200, 100, 100, 30)];
     [textField setPlaceholder:@"请登录"];
     [self.view addSubview:textField];
 
-    FYXButton *calendarBtn = [[FYXButton alloc]initWithFrame:CGRectMake(0, 550, 100, 30)];
+    FYXButton *calendarBtn = [[FYXButton alloc]initWithFrame:CGRectMake(0, 400, 100, 30)];
     calendarBtn.layer.shadowOffset  = CGSizeMake(1, 7);
     calendarBtn.layer.shadowOpacity = 0.4;
     calendarBtn.layer.shadowColor   = [UIColor colorWithRed:20.0 / 255 green:206.0 / 255 blue:1 alpha:1.0f].CGColor;
