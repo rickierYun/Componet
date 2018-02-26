@@ -97,7 +97,7 @@
     [textField setPlaceholder:@"请登录"];
     [self.view addSubview:textField];
 
-    FYXButton *calendarBtn = [[FYXButton alloc]initWithFrame:CGRectMake(0, 700, 100, 30)];
+    FYXButton *calendarBtn = [[FYXButton alloc]initWithFrame:CGRectMake(0, 550, 100, 30)];
     calendarBtn.layer.shadowOffset  = CGSizeMake(1, 7);
     calendarBtn.layer.shadowOpacity = 0.4;
     calendarBtn.layer.shadowColor   = [UIColor colorWithRed:20.0 / 255 green:206.0 / 255 blue:1 alpha:1.0f].CGColor;
