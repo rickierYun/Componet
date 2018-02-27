@@ -7,6 +7,7 @@
 //
 
 #import "FYXCalendar.h"
+#import "FYXCalendarDataModel.h"
 
 #define normalColor [UIColor colorWithRed:20.0 / 255 green:206.0 / 255 blue:1 alpha:1.0f]
 #define weekColor [UIColor colorWithRed:1 green:197.0 / 255 blue:20.0 / 255 alpha:1.0f]
@@ -47,6 +48,7 @@ CGFloat nativScale(void) {
 
 @implementation FYXCalendar {
     NSIndexPath *selectTimeIndex;
+    NSString    *selectDay;
 }
 
 - (id)initWithFrame:(CGRect)frame {
@@ -54,7 +56,13 @@ CGFloat nativScale(void) {
     if (self) {
         self.backgroundColor = [UIColor whiteColor];
 
-        _calendar = [[FSCalendar alloc]initWithFrame:CGRectMake(36, 0, self.frame.size.width - 72, 200)];
+        timeData  = [NSMutableArray array];
+        selectDay = @"";
+
+        self.timeDetailColor = [UIColor lightGrayColor];
+        self.timeDetailSelectColor = normalColor;
+
+        FSCalendar *_calendar = [[FSCalendar alloc]initWithFrame:CGRectMake(36, 0, self.frame.size.width - 72, 180)];
         _calendar.dataSource = self;
         _calendar.delegate   = self;
         _calendar.scope      = FSCalendarScopeWeek;
@@ -72,8 +80,9 @@ CGFloat nativScale(void) {
         _calendar.appearance.headerTitleColor = [UIColor blackColor]; // 年份时间
         _calendar.appearance.headerDateFormat = @"yyyy年MM月";         // 设置年份格式
         [self addSubview:_calendar];
+        self.calendar = _calendar;
         _gregorianCalendar = [NSCalendar calendarWithIdentifier:NSCalendarIdentifierGregorian];
-        NSLog(@"%f", _calendar.calendarWeekdayView.frame.size.height);
+        
         UIButton *previousButton = [UIButton buttonWithType:UIButtonTypeCustom];
         previousButton.frame = CGRectMake(0, 0, 95, 34);
         previousButton.backgroundColor = [UIColor whiteColor];
@@ -136,6 +145,7 @@ CGFloat nativScale(void) {
         afternoonBtn.layer.cornerRadius = 5;
         afternoonBtn.layer.borderColor = normalColor.CGColor;
         afternoonBtn.layer.borderWidth = 1;
+        [afternoonBtn addTarget:self action:@selector(afternoonClick:) forControlEvents:UIControlEventTouchUpInside];
         [self addSubview:afternoonBtn];
         self.afternoonBtn = afternoonBtn;
 
@@ -146,6 +156,7 @@ CGFloat nativScale(void) {
         morningBtn.backgroundColor = normalColor;
         morningBtn.titleLabel.font = [UIFont systemFontOfSize:16];
         morningBtn.layer.cornerRadius = 5;
+        [morningBtn addTarget:self action:@selector(morningClick:) forControlEvents:UIControlEventTouchUpInside];
         [self addSubview:morningBtn];
         self.morningBtn = morningBtn;
 
@@ -160,14 +171,23 @@ CGFloat nativScale(void) {
 
         UICollectionViewFlowLayout *flowLayout = [[UICollectionViewFlowLayout alloc] init];
         [flowLayout setScrollDirection:UICollectionViewScrollDirectionVertical];
-        UICollectionView *collectView = [[UICollectionView alloc]initWithFrame:CGRectMake(VIEW_X(_calendar), VIEW_Y_Bottom(morningBtn) + 18, VIEW_WIDTH(_calendar), 224 * displayScale) collectionViewLayout:flowLayout];
+        double collectionHeigt;
+        
+        if (VIEW_HEIGHT(self) - VIEW_HEIGHT(_calendar) -30 * displayScale >= 224 * displayScale) {
+            collectionHeigt = 224 * displayScale;
+        }else {
+            collectionHeigt = VIEW_HEIGHT(self) - VIEW_HEIGHT(_calendar) -30 * displayScale;
+        }
+        UICollectionView *collectView = [[UICollectionView alloc]initWithFrame:CGRectMake(VIEW_X(_calendar), VIEW_Y_Bottom(morningBtn) + 18, VIEW_WIDTH(_calendar), collectionHeigt)collectionViewLayout:flowLayout];
+
         collectView.dataSource = self;
         collectView.delegate = self;
         collectView.backgroundColor = [UIColor whiteColor];
         [collectView registerClass:[CollectionCell class] forCellWithReuseIdentifier:@"cell"];
         [self addSubview:collectView];
         self.collectView = collectView;
-        
+
+
     }
     return self;
 }
@@ -177,6 +197,12 @@ CGFloat nativScale(void) {
         return @"今天";
     }
     return nil;
+}
+
+- (void)calendar:(FSCalendar *)calendar didSelectDate:(NSDate *)date atMonthPosition:(FSCalendarMonthPosition)monthPosition {
+    NSDateFormatter *dateFormatter = [[NSDateFormatter alloc]init];
+    dateFormatter.dateFormat = @"yyyy-MM-dd";
+    selectDay = [dateFormatter stringFromDate:date];
 }
 
 - (void)previousClicked:(id)sender {
@@ -203,35 +229,71 @@ CGFloat nativScale(void) {
     [_calendar setCurrentPage:nextWeek animated:YES];
 }
 
+#pragma -mark CollectionViewDelegate
 - (NSInteger)numberOfSectionsInCollectionView:(UICollectionView *)collectionView {
     return 1;
 }
 
 - (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section {
-    return 20;
+    return [timeData count];
 }
 
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath {
     CollectionCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"cell" forIndexPath:indexPath];
     cell.timeBtn.tag = indexPath.row;
-//    [cell.timeBtn addTarget:self action:@selector(timeSelect:) forControlEvents:UIControlEventTouchUpInside];
+    cell.timeBtn.layer.borderColor = self.timeDetailColor.CGColor;
+    [cell.timeBtn setTitleColor:self.timeDetailColor forState:UIControlStateNormal];
+    FYXCalendarDataModel *model = timeData[indexPath.row];
+    [cell.timeBtn setTitle:model.timeStr forState:UIControlStateNormal];
+    cell.timeBtn.enabled = model.timeStatus;
+    if ([self.delegate respondsToSelector:@selector(calendar:collectionView:willDisplayCell:cellForItemAtIndexPath:)]) {
+        [self.delegate calendar:self collectionView:collectionView willDisplayCell:cell cellForItemAtIndexPath:indexPath];
+    }
+    if (model.timeStatus == 1) {
+        cell.timeBtn.layer.borderColor = [UIColor colorWithRed:152.0 / 255
+                                                         green:152.0 / 255
+                                                          blue:152.0 / 255
+                                                         alpha:0.4].CGColor;
+        [cell.timeBtn setTitleColor:[UIColor colorWithRed:152.0 / 255
+                                                    green:152.0 / 255
+                                                     blue:152.0 / 255
+                                                    alpha:0.4] forState:UIControlStateNormal];
+
+        [cell.timeBtn setBackgroundImage:[UIImage imageNamed:model.timeUnenabledPic] forState:UIControlStateNormal];
+    }
+
     return cell;
 }
 
 - (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout sizeForItemAtIndexPath:(NSIndexPath *)indexPath {
+    NSLog(@"%f", VIEW_HEIGHT(self));
+    NSLog(@"%f", VIEW_HEIGHT(self.collectView));
+    if (VIEW_HEIGHT(self.collectView) < 128) {
+        return CGSizeMake((VIEW_WIDTH(_calendar) - 12 * 3) / 4, 0);
+    }if (VIEW_HEIGHT(self.collectView) >= 224 * displayScale) {
+        return CGSizeMake((VIEW_WIDTH(_calendar) - 12 * 3) / 4, ((224 * displayScale) - 12 * 3) / 4);
+    }
     return CGSizeMake((VIEW_WIDTH(_calendar) - 12 * 3) / 4, (VIEW_HEIGHT(self.collectView) - 12 * 3) / 4);
 }
 
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
     if (indexPath != selectTimeIndex) {
         CollectionCell *cell = (CollectionCell *)[collectionView cellForItemAtIndexPath:indexPath];
-        cell.timeBtn.layer.borderColor = normalColor.CGColor;
-        [cell.timeBtn setTitleColor:normalColor forState:UIControlStateNormal];
+        cell.timeBtn.layer.borderColor = self.timeDetailSelectColor.CGColor;
+        [cell.timeBtn setTitleColor:self.timeDetailSelectColor forState:UIControlStateNormal];
 
         CollectionCell *lastcell = (CollectionCell *)[collectionView cellForItemAtIndexPath:selectTimeIndex];
-        lastcell.timeBtn.layer.borderColor = [UIColor lightGrayColor].CGColor;
-        [lastcell.timeBtn setTitleColor:[UIColor lightGrayColor] forState:UIControlStateNormal];
+        lastcell.timeBtn.layer.borderColor = self.timeDetailColor.CGColor;
+        [lastcell.timeBtn setTitleColor:self.timeDetailColor forState:UIControlStateNormal];
         selectTimeIndex = indexPath;
+        if ([selectDay isEqual:@""]) {
+            selectDay = @"no day select";
+        }
+        selectDay = [NSString stringWithFormat:@"%@ %@",selectDay,cell.timeBtn.titleLabel.text];
+
+        if ([self.delegate respondsToSelector:@selector(calendar:selectTime: )]) {
+            [self.delegate calendar:self selectTime:selectDay];
+        }
     }
     
 }
@@ -240,17 +302,32 @@ CGFloat nativScale(void) {
     return YES;
 }
 
-- (void)timeSelect: (UIButton *)sender {
+#pragma -mark 时间选择按钮点击事件
+- (void)afternoonClick: (UIButton *)sender {
+    self.morningBtn.layer.borderColor = normalColor.CGColor;
+    self.morningBtn.layer.borderWidth = 1;
+    self.morningBtn.backgroundColor = [UIColor whiteColor];
+    [self.morningBtn setTitleColor:normalColor forState:UIControlStateNormal];
     sender.layer.borderColor = normalColor.CGColor;
-    [sender setTintColor:normalColor];
-//
-//    CollectionCell *cell = [self.collectView ]
-//    for (NSInteger i = 0; i < 16; i++) {
-//        if (i == sender.tag) {
-//            continue;
-//        }
-//
-//    }
+    sender.backgroundColor = normalColor;
+    [sender setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
+    timeData = self.afternoonData;
+    [self.collectView reloadData];
+}
+
+- (void)morningClick: (UIButton *)sender {
+    self.afternoonBtn.layer.borderColor = normalColor.CGColor;
+    self.afternoonBtn.backgroundColor = [UIColor whiteColor];
+    [self.afternoonBtn setTitleColor:normalColor forState:UIControlStateNormal];
+    sender.layer.borderColor = normalColor.CGColor;
+    sender.backgroundColor = normalColor;
+    [sender setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
+    timeData = self.morningData;
+    [self.collectView reloadData];
+}
+
+- (void)setCalendarData {
+    [self morningClick:_morningBtn];
 }
 @end
 
@@ -266,7 +343,6 @@ CGFloat nativScale(void) {
         [_timeBtn setTitleColor:[UIColor lightGrayColor] forState:UIControlStateNormal];
         _timeBtn.frame = CGRectMake(0, 0, frame.size.width, frame.size.height);
         _timeBtn.enabled = NO;
-//        self.backgroundColor = normalColor;
         [self addSubview:_timeBtn];
     }
     return self;

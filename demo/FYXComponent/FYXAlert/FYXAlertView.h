@@ -16,9 +16,14 @@
 @protocol FYXAlertViewDelegate <NSObject>
 
 @optional
-
-- (void)sureDidClick: (FYXAlertView *)alertView;        // 确定按钮点击事件
-- (void)otherBtnDidClick: (FYXAlertView *)alertView;    // 其他按钮点击事件
+/**
+ *确定按钮点击事件
+ */
+- (void)sureDidClick: (FYXAlertView *)alertView;
+/**
+ *其他按钮点击事件
+ */
+- (void)otherBtnDidClick: (FYXAlertView *)alertView;
 @end
 
 @interface FYXAlertView : UIView
@@ -29,19 +34,38 @@
 @property (nonatomic, assign) id<FYXAlertViewDelegate>delegate;
 
 
+/**
+ *普通弹框
+ */
 - (void)setAlertTitle: (NSString *)alertTitle titleFont:(NSInteger) titleFont;      // 普通弹框
+/**
+ *设置文字弹窗大小
+ */
 - (void)setMsgAlertFrame: (NSInteger)alertHeight AlertWidth:(NSInteger)alertWidth;  // 设置文字弹窗大小
+/**
+ *设置富文本
+ */
 - (void)setRichTextView: (NSString*)textContent textFont:(NSInteger)textFont;       // 设置富文本
+/**
+ *设置富文本大小
+ */
 - (void)setRichTextViewFrame: (NSInteger)width height:(NSInteger)height;            // 设置富文本大小
+/**
+ *文字弹框
+ */
 - (void)setMsgAlertView: (NSString *)alertTitle 
               titleFont: (NSInteger) titleFont
                alertMsg: (NSString *)msg
                 msgFont: (NSInteger)msgFont;                                         // 文字弹框
-
+/**
+ *图片提示框
+ */
 - (void)setImageAlertView: (NSString *)content
               contentFont: (NSInteger)contentFont
              contentColor: (UIColor *)contentColor
                 imageName: (NSString *)imageName;                                    // 图片提示框
-
+/**
+ *设置多个按钮提示
+ */
 - (void)setMoreBtnAlertView: (NSString *)content contentFont: (NSInteger)contentFont;// 设置多个按钮提示
 @end

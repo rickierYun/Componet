@@ -18,6 +18,8 @@
 		2F89B4C0202D29A800DC6105 /* FYXComponentUITests.m in Sources */ = {isa = PBXBuildFile; fileRef = 2F89B4BF202D29A800DC6105 /* FYXComponentUITests.m */; };
 		2F89B4D0202D29E400DC6105 /* FYXAlertView.m in Sources */ = {isa = PBXBuildFile; fileRef = 2F89B4CF202D29E400DC6105 /* FYXAlertView.m */; };
 		2F89B4D2202D894100DC6105 /* close.png in Resources */ = {isa = PBXBuildFile; fileRef = 2F89B4D1202D894100DC6105 /* close.png */; };
+		2FA595B82045445E001B2D95 /* next.png in Resources */ = {isa = PBXBuildFile; fileRef = 2FA595B72045445E001B2D95 /* next.png */; };
+		2FA595BA204544FD001B2D95 /* prev.png in Resources */ = {isa = PBXBuildFile; fileRef = 2FA595B9204544FD001B2D95 /* prev.png */; };
 		2FB274E1203FBB4600E985F9 /* FYXToast.m in Sources */ = {isa = PBXBuildFile; fileRef = 2FB274E0203FBB4600E985F9 /* FYXToast.m */; };
 		2FB274E8203FE51500E985F9 /* FYXButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 2FB274E7203FE51500E985F9 /* FYXButton.m */; };
 		2FB274EA203FF8E000E985F9 /* success.png in Resources */ = {isa = PBXBuildFile; fileRef = 2FB274E9203FF8E000E985F9 /* success.png */; };
@@ -40,8 +42,7 @@
 		2FB27521204139BF00E985F9 /* Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 2FB27510204139BF00E985F9 /* Info.plist */; };
 		2FB27522204139BF00E985F9 /* FSCalendarAppearance.m in Sources */ = {isa = PBXBuildFile; fileRef = 2FB27511204139BF00E985F9 /* FSCalendarAppearance.m */; };
 		2FB27525204139DD00E985F9 /* FYXCalendar.m in Sources */ = {isa = PBXBuildFile; fileRef = 2FB27524204139DD00E985F9 /* FYXCalendar.m */; };
-		2FB275282043AF9B00E985F9 /* prev.png in Resources */ = {isa = PBXBuildFile; fileRef = 2FB275262043AF9A00E985F9 /* prev.png */; };
-		2FB275292043AF9B00E985F9 /* next.png in Resources */ = {isa = PBXBuildFile; fileRef = 2FB275272043AF9A00E985F9 /* next.png */; };
+		2FB2752C2044EE1F00E985F9 /* FYXCalendarDataModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 2FB2752B2044EE1F00E985F9 /* FYXCalendarDataModel.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -82,6 +83,8 @@
 		2F89B4CE202D29E400DC6105 /* FYXAlertView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FYXAlertView.h; sourceTree = "<group>"; };
 		2F89B4CF202D29E400DC6105 /* FYXAlertView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FYXAlertView.m; sourceTree = "<group>"; };
 		2F89B4D1202D894100DC6105 /* close.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = close.png; sourceTree = "<group>"; };
+		2FA595B72045445E001B2D95 /* next.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = next.png; sourceTree = "<group>"; };
+		2FA595B9204544FD001B2D95 /* prev.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = prev.png; sourceTree = "<group>"; };
 		2FB274DF203FBB4600E985F9 /* FYXToast.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FYXToast.h; sourceTree = "<group>"; };
 		2FB274E0203FBB4600E985F9 /* FYXToast.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FYXToast.m; sourceTree = "<group>"; };
 		2FB274E6203FE51500E985F9 /* FYXButton.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FYXButton.h; sourceTree = "<group>"; };
@@ -124,8 +127,8 @@
 		2FB27511204139BF00E985F9 /* FSCalendarAppearance.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FSCalendarAppearance.m; sourceTree = "<group>"; };
 		2FB27523204139DD00E985F9 /* FYXCalendar.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FYXCalendar.h; sourceTree = "<group>"; };
 		2FB27524204139DD00E985F9 /* FYXCalendar.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FYXCalendar.m; sourceTree = "<group>"; };
-		2FB275262043AF9A00E985F9 /* prev.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = prev.png; sourceTree = "<group>"; };
-		2FB275272043AF9A00E985F9 /* next.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = next.png; sourceTree = "<group>"; };
+		2FB2752A2044EE1F00E985F9 /* FYXCalendarDataModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FYXCalendarDataModel.h; sourceTree = "<group>"; };
+		2FB2752B2044EE1F00E985F9 /* FYXCalendarDataModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FYXCalendarDataModel.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -257,8 +260,10 @@
 				2FB274F0204139BF00E985F9 /* FSCalendar */,
 				2FB27523204139DD00E985F9 /* FYXCalendar.h */,
 				2FB27524204139DD00E985F9 /* FYXCalendar.m */,
-				2FB275262043AF9A00E985F9 /* prev.png */,
-				2FB275272043AF9A00E985F9 /* next.png */,
+				2FA595B72045445E001B2D95 /* next.png */,
+				2FA595B9204544FD001B2D95 /* prev.png */,
+				2FB2752A2044EE1F00E985F9 /* FYXCalendarDataModel.h */,
+				2FB2752B2044EE1F00E985F9 /* FYXCalendarDataModel.m */,
 			);
 			path = FYXCalendar;
 			sourceTree = "<group>";
@@ -411,10 +416,10 @@
 			files = (
 				2F89B4A8202D29A700DC6105 /* LaunchScreen.storyboard in Resources */,
 				2F86FE79203E6BA600994707 /* sure.png in Resources */,
-				2FB275292043AF9B00E985F9 /* next.png in Resources */,
 				2F89B4A5202D29A700DC6105 /* Assets.xcassets in Resources */,
 				2F89B4D2202D894100DC6105 /* close.png in Resources */,
-				2FB275282043AF9B00E985F9 /* prev.png in Resources */,
+				2FA595B82045445E001B2D95 /* next.png in Resources */,
+				2FA595BA204544FD001B2D95 /* prev.png in Resources */,
 				2F89B4A3202D29A700DC6105 /* Main.storyboard in Resources */,
 				2FB274EA203FF8E000E985F9 /* success.png in Resources */,
 				2FB27521204139BF00E985F9 /* Info.plist in Resources */,
@@ -464,6 +469,7 @@
 				2FB27515204139BF00E985F9 /* FSCalendarCell.m in Sources */,
 				2FB274E1203FBB4600E985F9 /* FYXToast.m in Sources */,
 				2FB27516204139BF00E985F9 /* FSCalendarStickyHeader.m in Sources */,
+				2FB2752C2044EE1F00E985F9 /* FYXCalendarDataModel.m in Sources */,
 				2FB27520204139BF00E985F9 /* FSCalendarTransitionCoordinator.m in Sources */,
 				2FB27512204139BF00E985F9 /* FSCalendarCollectionView.m in Sources */,
 			);
