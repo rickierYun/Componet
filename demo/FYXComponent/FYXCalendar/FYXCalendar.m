@@ -68,9 +68,9 @@ CGFloat nativScale(void) {
         _calendar.scope      = FSCalendarScopeWeek;
         _calendar.backgroundColor = [UIColor whiteColor];
         _calendar.appearance.headerMinimumDissolvedAlpha = 0;
-        _calendar.appearance.todayColor = [UIColor whiteColor]; // 今天选中的颜色
-        _calendar.appearance.selectionColor = [UIColor whiteColor]; // 选中的颜色
-        _calendar.appearance.titleTodayColor =  todayTitleColor; // 今天的字体颜色
+        _calendar.appearance.todayColor = [UIColor whiteColor];       // 今天选中的颜色
+        _calendar.appearance.selectionColor = [UIColor whiteColor];   // 选中的颜色
+        _calendar.appearance.titleTodayColor =  todayTitleColor;      // 今天的字体颜色
         _calendar.appearance.satAndSunColor = weekColor;              // 周六周日的颜色
         _calendar.appearance.titleSelectionColor = normalColor;       // 选中后字体颜色
         _calendar.appearance.weekdayTextColor = [UIColor blackColor]; // 周末字体颜色
@@ -192,6 +192,7 @@ CGFloat nativScale(void) {
     return self;
 }
 
+#pragma -mark FSCalendarDelegate
 - (NSString *)calendar:(FSCalendar *)calendar titleForDate:(NSDate *)date {
     if ([self.gregorianCalendar isDateInToday:date]) {
         return @"今天";
@@ -203,8 +204,10 @@ CGFloat nativScale(void) {
     NSDateFormatter *dateFormatter = [[NSDateFormatter alloc]init];
     dateFormatter.dateFormat = @"yyyy-MM-dd";
     selectDay = [dateFormatter stringFromDate:date];
+    [self.collectView reloadData];
 }
 
+#pragma -mark 日期调整点击事件
 - (void)previousClicked:(id)sender {
     NSDate *currentMonth = self.calendar.currentPage;
     NSDate *previousMonth = [self.gregorianCalendar dateByAddingUnit:NSCalendarUnitMonth value:-1 toDate:currentMonth options:0];
@@ -266,8 +269,6 @@ CGFloat nativScale(void) {
 }
 
 - (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout sizeForItemAtIndexPath:(NSIndexPath *)indexPath {
-    NSLog(@"%f", VIEW_HEIGHT(self));
-    NSLog(@"%f", VIEW_HEIGHT(self.collectView));
     if (VIEW_HEIGHT(self.collectView) < 128) {
         return CGSizeMake((VIEW_WIDTH(_calendar) - 12 * 3) / 4, 0);
     }if (VIEW_HEIGHT(self.collectView) >= 224 * displayScale) {
