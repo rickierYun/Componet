@@ -81,7 +81,7 @@ CGFloat nativeScale(void) {
 // 创建弹窗
 - (void)createAlertView {
     UIView *_alertView = [[UIView alloc]init];
-    _alertView.frame = CGRectMake(VIEW_CENTER_X(self) - 100, 160 * displayScale, 200 * displayScale, 100 * displayScale);
+    _alertView.frame = CGRectMake(VIEW_CENTER_X(self) - 100 * displayScale, 160 * displayScale, 200 * displayScale, 100 * displayScale);
     _alertView.backgroundColor = [UIColor whiteColor];
     _alertView.layer.cornerRadius = 8;
     [self addSubview:_alertView];
@@ -136,7 +136,7 @@ CGFloat nativeScale(void) {
 - (void)createMsgAlert {
     _msgAlertView = [[UIView alloc]init];
 
-    _msgAlertView.frame = CGRectMake(VIEW_CENTER_X(self) - 100,
+    _msgAlertView.frame = CGRectMake(VIEW_CENTER_X(self) - 100 * displayScale,
                                      160 * displayScale,
                                      200 * displayScale,
                                      300 * displayScale);
@@ -190,7 +190,7 @@ CGFloat nativeScale(void) {
 
 // 设置文本弹窗的高度
 - (void)setMsgAlertFrame: (NSInteger)alertHeight AlertWidth:(NSInteger)alertWidth {
-    _msgAlertView.frame = CGRectMake(VIEW_CENTER_X(self) - alertWidth / 2,
+    _msgAlertView.frame = CGRectMake(VIEW_CENTER_X(self) - alertWidth / 2 * displayScale,
                                      160 * displayScale,
                                      alertWidth * displayScale,
                                      alertHeight * displayScale);
@@ -213,7 +213,7 @@ CGFloat nativeScale(void) {
 #pragma -mark 富文本显示框
 - (void)createRichTextAlertView {
     _richTextView = [[UITextView alloc]init];
-    _richTextView.frame = CGRectMake(VIEW_CENTER_X(self) - 100, 160 * displayScale, 200 * displayScale, 300 * displayScale);
+    _richTextView.frame = CGRectMake(VIEW_CENTER_X(self) - 100 * displayScale, 160 * displayScale, 200 * displayScale, 300 * displayScale);
     _richTextView.textColor = [UIColor blackColor];
     _richTextView.textAlignment = NSTextAlignmentLeft;
     _richTextView.backgroundColor = [UIColor whiteColor];
@@ -242,7 +242,7 @@ CGFloat nativeScale(void) {
 
 // 设置富文本高度
 - (void)setRichTextViewFrame: (NSInteger)width height:(NSInteger)height {
-    _richTextView.frame = CGRectMake(VIEW_CENTER_X(self) - width / 2,
+    _richTextView.frame = CGRectMake(VIEW_CENTER_X(self) - width / 2 * displayScale,
                                      160 * displayScale,
                                      width * displayScale,
                                      height * displayScale);

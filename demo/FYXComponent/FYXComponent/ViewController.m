@@ -28,28 +28,6 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    alertView = [[FYXAlertView alloc]initWithFrame:CGRectMake(0, 0,[[UIScreen mainScreen] bounds].size.width , [[UIScreen mainScreen] bounds].size.height)];
-    [self.view addSubview:alertView];
-    alertView.delegate = self;
-    alertView.hidden = YES;
-
-    alertMsgView = [[FYXAlertView alloc]initWithFrame:CGRectMake(0, 0,[[UIScreen mainScreen] bounds].size.width , [[UIScreen mainScreen] bounds].size.height)];
-    [self.view addSubview:alertMsgView];
-    alertMsgView.delegate = self;
-    alertMsgView.hidden = YES;
-
-    alertRichView = [[FYXAlertView alloc]initWithFrame:CGRectMake(0, 0,[[UIScreen mainScreen] bounds].size.width , [[UIScreen mainScreen] bounds].size.height)];
-    [self.view addSubview:alertRichView];
-    alertRichView.delegate = self;
-    alertRichView.hidden = YES;
-
-    alertImageView = [[FYXAlertView alloc]initWithFrame:CGRectMake(0, 0,[[UIScreen mainScreen] bounds].size.width , [[UIScreen mainScreen] bounds].size.height)];
-    [self.view addSubview:alertImageView];
-    alertImageView.hidden = YES;
-
-    alertMoreBtnView = [[FYXAlertView alloc]initWithFrame:CGRectMake(0, 0,[[UIScreen mainScreen] bounds].size.width , [[UIScreen mainScreen] bounds].size.height)];
-    [self.view addSubview:alertMoreBtnView];
-    alertMoreBtnView.hidden = YES;
 
     UIButton *alertBtn = [[UIButton alloc]init];
     alertBtn.frame = CGRectMake(0, 100, 100, 30);
@@ -94,10 +72,6 @@
     [toastBtn addTarget:self action:@selector(toastBtnClick:) forControlEvents:UIControlEventTouchUpInside];
     [self.view addSubview:toastBtn];
 
-    FYXTextField *textField = [[FYXTextField alloc]initWithFrame:CGRectMake(200, 100, 100, 30)];
-    [textField setPlaceholder:@"请登录"];
-    [self.view addSubview:textField];
-
     FYXButton *calendarBtn = [[FYXButton alloc]initWithFrame:CGRectMake(0, 400, 100, 30)];
     calendarBtn.layer.shadowOffset  = CGSizeMake(1, 7);
     calendarBtn.layer.shadowOpacity = 0.4;
@@ -105,6 +79,33 @@
     [calendarBtn setTitle:@"日历" forState:UIControlStateNormal];
     [calendarBtn addTarget:self action:@selector(calendarClick:) forControlEvents:UIControlEventTouchUpInside];
     [self.view addSubview:calendarBtn];
+
+    FYXTextField *textField = [[FYXTextField alloc]initWithFrame:CGRectMake(200, 100, 100, 30)];
+    [textField setPlaceholder:@"请登录"];
+    [self.view addSubview:textField];
+
+    alertView = [[FYXAlertView alloc]initWithFrame:CGRectMake(0, 0,[[UIScreen mainScreen] bounds].size.width , [[UIScreen mainScreen] bounds].size.height)];
+    [self.view addSubview:alertView];
+    alertView.delegate = self;
+    alertView.hidden = YES;
+
+    alertMsgView = [[FYXAlertView alloc]initWithFrame:CGRectMake(0, 0,[[UIScreen mainScreen] bounds].size.width , [[UIScreen mainScreen] bounds].size.height)];
+    [self.view addSubview:alertMsgView];
+    alertMsgView.delegate = self;
+    alertMsgView.hidden = YES;
+
+    alertRichView = [[FYXAlertView alloc]initWithFrame:CGRectMake(0, 0,[[UIScreen mainScreen] bounds].size.width , [[UIScreen mainScreen] bounds].size.height)];
+    [self.view addSubview:alertRichView];
+    alertRichView.delegate = self;
+    alertRichView.hidden = YES;
+
+    alertImageView = [[FYXAlertView alloc]initWithFrame:CGRectMake(0, 0,[[UIScreen mainScreen] bounds].size.width , [[UIScreen mainScreen] bounds].size.height)];
+    [self.view addSubview:alertImageView];
+    alertImageView.hidden = YES;
+
+    alertMoreBtnView = [[FYXAlertView alloc]initWithFrame:CGRectMake(0, 0,[[UIScreen mainScreen] bounds].size.width , [[UIScreen mainScreen] bounds].size.height)];
+    [self.view addSubview:alertMoreBtnView];
+    alertMoreBtnView.hidden = YES;
 
     // Do any additional setup after loading the view, typically from a nib.
 }
