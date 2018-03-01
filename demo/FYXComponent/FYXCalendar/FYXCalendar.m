@@ -79,6 +79,8 @@ CGFloat nativScale(void) {
         _calendar.appearance.borderSelectionColor = normalColor;      // 选中的边角颜色
         _calendar.appearance.headerTitleColor = [UIColor blackColor]; // 年份时间
         _calendar.appearance.headerDateFormat = @"yyyy年MM月";         // 设置年份格式
+
+//        _calendar.appearance.caseOptions = FSCalendarCaseOptionsHeaderUsesUpperCase;
         [self addSubview:_calendar];
         self.calendar = _calendar;
         _gregorianCalendar = [NSCalendar calendarWithIdentifier:NSCalendarIdentifierGregorian];

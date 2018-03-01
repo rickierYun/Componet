@@ -319,19 +319,18 @@ typedef NS_ENUM(NSUInteger, FSCalendarOrientation) {
             _scopeHandle.frame = CGRectMake(0, _contentView.fs_bottom, self.fs_width, scopeHandleHeight);
         } else {
             _contentView.frame = self.bounds;
-
         }
 //        _contentView.backgroundColor = [UIColor lightGrayColor];
         CGFloat headerHeight = self.preferredHeaderHeight;
         CGFloat weekdayHeight = self.preferredWeekdayHeight;
         CGFloat rowHeight = self.preferredRowHeight;
-        CGFloat padding = 5;
+        CGFloat padding = 12 ;
         if (self.scrollDirection == UICollectionViewScrollDirectionHorizontal) {
             rowHeight = FSCalendarFloor(rowHeight*2)*0.5; // Round to nearest multiple of 0.5. e.g. (16.8->16.5),(16.2->16.0)
         }
         
         self.calendarHeaderView.frame = CGRectMake(0, 0, self.fs_width, headerHeight);
-        self.calendarWeekdayView.frame = CGRectMake(0, self.calendarHeaderView.fs_bottom + WEEKHIGHTINCREASE, self.contentView.fs_width, weekdayHeight );
+        self.calendarWeekdayView.frame = CGRectMake(0, self.calendarHeaderView.fs_bottom + WEEKHIGHTINCREASE, self.contentView.fs_width , weekdayHeight  );
 
         _deliver.frame = CGRectMake(self.calendarHeaderView.fs_left, self.calendarHeaderView.fs_top , self.calendarHeaderView.fs_width, headerHeight+weekdayHeight);
         _deliver.hidden = self.calendarHeaderView.hidden;
@@ -353,7 +352,7 @@ typedef NS_ENUM(NSUInteger, FSCalendarOrientation) {
                 case FSCalendarScopeWeek: {
                     CGFloat contentHeight = rowHeight + padding*2;
                     _daysContainer.frame = CGRectMake(0, headerHeight+weekdayHeight, self.fs_width, contentHeight);
-                    _collectionView.frame = CGRectMake(0, WEEKHIGHTINCREASE, _daysContainer.fs_width , contentHeight);
+                    _collectionView.frame = CGRectMake(0, WEEKHIGHTINCREASE, _daysContainer.fs_width , contentHeight );
                     break;
                 }
             }
@@ -368,6 +367,8 @@ typedef NS_ENUM(NSUInteger, FSCalendarOrientation) {
         _topBorder.frame = CGRectMake(0, -1, self.fs_width, 1);
         _bottomBorder.frame = CGRectMake(0, self.fs_height, self.fs_width, 1);
         _scopeHandle.fs_bottom = _bottomBorder.fs_top;
+        [_contentView setFs_height:_contentView.fs_height + 50];
+
         
     }
     
@@ -420,7 +421,7 @@ typedef NS_ENUM(NSUInteger, FSCalendarOrientation) {
             }
             case FSCalendarScopeWeek: {
                 CGFloat height = weekdayHeight + headerHeight + rowHeight + paddings;
-                height += _scopeHandle.fs_height + WEEKHIGHTINCREASE;
+                height += _scopeHandle.fs_height + WEEKHIGHTINCREASE + 10;
                 return CGSizeMake(size.width, height);
             }
         }
