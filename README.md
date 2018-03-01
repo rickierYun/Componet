@@ -2,7 +2,7 @@
 下载源码。将源码导入工程。
 ## 弹窗
 
-![image](https://github.com/rickierYun/Componet/blob/master/image/alert.png)
+![<img width="270" height="480" src="https://github.com/rickierYun/Componet/blob/master/image/alert.png](https://github.com/rickierYun/Componet/blob/master/image/alert.png)
 
 导入头文件
 
