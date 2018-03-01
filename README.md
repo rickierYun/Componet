@@ -2,10 +2,7 @@
 下载源码。将源码导入工程。
 ## 弹窗
 
-![<img width="270" height="480" src="https://github.com/rickierYun/Componet/blob/master/image/alert.png](https://github.com/rickierYun/Componet/blob/master/image/alert.png)
-
 导入头文件
-
 
 ```objective-c
 #import "FYXAlertView.h"
@@ -24,6 +21,8 @@
 所有弹窗的按钮样式可以在外自定义
 ### 普通弹窗使用
 
+![<img width="270" height="480" src="https://github.com/rickierYun/Componet/blob/master/image/alert.png](https://github.com/rickierYun/Componet/blob/master/image/alert.png)
+
 ```objective-c
 [alertView setAlertTitle:@"this create success" titleFont:17];
 [alertView.cancelBtn setTitle:@"cancel" forState:UIControlStateNormal];
@@ -34,6 +33,9 @@
 
 普通弹窗可以修改提示文字。
 ### 文字弹窗使用 
+
+![<img width="270" height="480" src="https://github.com/rickierYun/Componet/blob/master/image/alertMsg.png](https://github.com/rickierYun/Componet/blob/master/image/alertMsg.png)
+
 ```objective-c
 [alertView setMsgAlertView:@"提示" titleFont:19 alertMsg:@"机器学习是近年来渐趋热门的一个领域，同时Python 语言经过一段时间的发展也已逐渐成为主流的编程语言之一。本书结合了机器学习和Python 语言两个热门的领域，通过利用两种核心的机器学习算法来将Python 语言在数据分析方面的优势发挥到极 致。 全书共有10 章。第 1 章讲解了Python 机器学习的生态系统，剩余9 章介绍了众多与机器学习相关的算法，包括各类分类算法、数据可视化技术、推荐引擎等，主要包括机器学习在公寓、机票、IPO 市场、新闻源、内容推机器学习是近年来渐趋热门的一个领域，同时Python 语言经过一段时间的发展也已逐渐成为主流的编程语言之一。本书结合了机器学习和Python 语言两个热门的领域，通过利用两种核心的机器学习算法来将Python 语言在数据分析方面的优势发挥到极 致。 全书共有10 章。第 1 章讲解了Python 机器学习的生态系统，剩余9 章介绍了众多与机器学习相关的算法，包括各类分类算法、数据可视化技术、推荐引擎等，主要包括机器学习在公寓、机票、IPO 市场、新闻源、内容推" msgFont:11];
 [alertView.cancelBtn setTitle:@"cancel" forState:UIControlStateNormal];
@@ -43,6 +45,9 @@
 
 文字弹窗提供提示文字修改函数和修改弹窗大小函数。
 ### 富文本弹窗
+
+![<img width="270" height="480" src="https://github.com/rickierYun/Componet/blob/master/image/alertRich.png](https://github.com/rickierYun/Componet/blob/master/image/alertRich.png)
+
 ```objective-c
 [alertView setRichTextView:@"机器学习是近年来渐趋热门的一个领域，同时Python 语言经过一段时间的发展也已逐渐成为主流的编程语言之一。本书结合了机器学习和Python 语言两个热门的领域，通过利用两种核心的机器学习算法来将Python 语言在数据分析方面的优势发挥到极 致。 全书共有10 章。第 1 章讲解了Python 机器学习的生态系统，剩余9 章介绍了众多与机器学习相关的算法，包括各类分类算法、数据可视化技术、推荐引擎等，主要包括机器学习在公寓、机票、IPO 市场、新闻源、内容推机器学习是近年来渐趋热门的一个领域，同时Python 语言经过一段时间的发展也已逐渐成为主流的编程语言之一。本书结合了机器学习和Python 语言两个热门的领域，通过利用两种核心的机器学习算法来将Python 语言在数据分析方面的优势发挥到极 致。 全书共有10 章。第 1 章讲解了Python 机器学习的生态系统，剩余9 章介绍了众多与机器学习相关的算法，包括各类分类算法、数据可视化技术、推荐引擎等，主要包括机器学习在公寓、机票、IPO 市场、新闻源、内容推" textFont:11];
 [alertView setRichTextViewFrame:200 height:300];
@@ -50,12 +55,18 @@
 富文本弹窗提供文字修改函数和修改弹窗大小函数。
 
 ### 带图片提示弹窗
+
+![<img width="270" height="480" src="https://github.com/rickierYun/Componet/blob/master/image/alertImage.png](https://github.com/rickierYun/Componet/blob/master/image/alertImage.png)
+
 ```objective-c
 [alertImageView setImageAlertView:@"机器学习是近年来\n渐趋热门的一个领域" contentFont:17 contentColor:[UIColor blackColor] imageName:nil];
 ```
 
 图片弹窗提供修改图片、文字函数。
 ### 多按钮弹窗
+
+![<img width="270" height="480" src="https://github.com/rickierYun/Componet/blob/master/image/alertMore.png](https://github.com/rickierYun/Componet/blob/master/image/alertMore.png)
+
 ```objective-c
 [alertMoreBtnView setMoreBtnAlertView:@"您目前的取送车订单有绑定的保养预约服务，是否同时取消保养预约？" contentFont:15];
 ```
@@ -63,6 +74,9 @@
 多按钮弹窗提供文字修改弹窗。
 
 ## TOAST
+
+![<img width="270" height="480" src="https://github.com/rickierYun/Componet/blob/master/image/toast.png](https://github.com/rickierYun/Componet/blob/master/image/toast.png)
+
 导入头文件 
 
 ```objective-c
@@ -84,6 +98,7 @@ toast 有两种格式：带图片、不带图片。
 ```
 
 ## 按钮
+
 导入头文件 
 
 ```objective-c
@@ -121,6 +136,8 @@ toast 有两种格式：带图片、不带图片。
 要修改样式可以在声明后更改属性。
 
 ## 日历
+![<img width="270" height="480" src="https://github.com/rickierYun/Componet/blob/master/image/calendar.png](https://github.com/rickierYun/Componet/blob/master/image/calendar.png)
+
 本日历采用FSCalendar制作，关于相关FSCalendar的设置可以参见
 [GitHub]:https://github.com/WenchaoD/FSCalendar
 
