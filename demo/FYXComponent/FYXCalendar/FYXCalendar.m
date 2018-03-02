@@ -68,19 +68,19 @@ CGFloat nativScale(void) {
         _calendar.scope      = FSCalendarScopeWeek;
         _calendar.backgroundColor = [UIColor whiteColor];
         _calendar.appearance.headerMinimumDissolvedAlpha = 0;
-        _calendar.appearance.todayColor = [UIColor whiteColor];       // 今天选中的颜色
-        _calendar.appearance.selectionColor = [UIColor whiteColor];   // 选中的颜色
-        _calendar.appearance.titleTodayColor =  todayTitleColor;      // 今天的字体颜色
-        _calendar.appearance.satAndSunColor = weekColor;              // 周六周日的颜色
-        _calendar.appearance.titleSelectionColor = normalColor;       // 选中后字体颜色
-        _calendar.appearance.weekdayTextColor = [UIColor blackColor]; // 周末字体颜色
-        _calendar.appearance.titleWeekendColor = weekColor;           // 具体周末日期颜色
-        _calendar.appearance.borderRadius = 1;                        // 选中的边角弧度
-        _calendar.appearance.borderSelectionColor = normalColor;      // 选中的边角颜色
-        _calendar.appearance.headerTitleColor = [UIColor blackColor]; // 年份时间
-        _calendar.appearance.headerDateFormat = @"yyyy年MM月";         // 设置年份格式
-
-//        _calendar.appearance.caseOptions = FSCalendarCaseOptionsHeaderUsesUpperCase;
+        _calendar.appearance.todayColor = [UIColor whiteColor];         // 今天选中的颜色
+        _calendar.appearance.selectionColor = [UIColor whiteColor];     // 选中的颜色
+        _calendar.appearance.titleTodayColor =  todayTitleColor;        // 今天的字体颜色
+        _calendar.appearance.satAndSunColor = weekColor;                // 周六周日的颜色
+        _calendar.appearance.titleSelectionColor = [UIColor whiteColor];// 选中后字体颜色
+        _calendar.appearance.weekdayTextColor = [UIColor blackColor];   // 周末字体颜色
+        _calendar.appearance.titleWeekendColor = weekColor;             // 具体周末日期颜色
+        _calendar.appearance.borderRadius = 1;                          // 选中的边角弧度
+        _calendar.appearance.borderSelectionColor = normalColor;        // 选中的边角颜色
+        _calendar.appearance.selectionColor = normalColor;              // 选中的颜色
+        _calendar.appearance.headerTitleColor = [UIColor blackColor];   // 年份时间
+        _calendar.appearance.headerDateFormat = @"yyyy年MM月";           // 设置年份格式
+        _calendar.appearance.caseOptions = FSCalendarCaseOptionsHeaderUsesUpperCase|FSCalendarCaseOptionsWeekdayUsesSingleUpperCase;            // 改变星期显示
         [self addSubview:_calendar];
         self.calendar = _calendar;
         _gregorianCalendar = [NSCalendar calendarWithIdentifier:NSCalendarIdentifierGregorian];
