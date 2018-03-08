@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		2F610350204E226600535AD8 /* FYXSideMenu.m in Sources */ = {isa = PBXBuildFile; fileRef = 2F61034F204E226600535AD8 /* FYXSideMenu.m */; };
+		2F610354204E73FF00535AD8 /* FYXPageFlow.m in Sources */ = {isa = PBXBuildFile; fileRef = 2F610353204E73FF00535AD8 /* FYXPageFlow.m */; };
 		2F86FE79203E6BA600994707 /* sure.png in Resources */ = {isa = PBXBuildFile; fileRef = 2F86FE78203E6BA600994707 /* sure.png */; };
 		2F89B49D202D29A700DC6105 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 2F89B49C202D29A700DC6105 /* AppDelegate.m */; };
 		2F89B4A0202D29A700DC6105 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2F89B49F202D29A700DC6105 /* ViewController.m */; };
@@ -63,6 +65,10 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		2F61034E204E226600535AD8 /* FYXSideMenu.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FYXSideMenu.h; sourceTree = "<group>"; };
+		2F61034F204E226600535AD8 /* FYXSideMenu.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FYXSideMenu.m; sourceTree = "<group>"; };
+		2F610352204E73FF00535AD8 /* FYXPageFlow.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FYXPageFlow.h; sourceTree = "<group>"; };
+		2F610353204E73FF00535AD8 /* FYXPageFlow.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FYXPageFlow.m; sourceTree = "<group>"; };
 		2F86FE78203E6BA600994707 /* sure.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = sure.png; sourceTree = "<group>"; };
 		2F89B498202D29A700DC6105 /* FYXComponent.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = FYXComponent.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		2F89B49B202D29A700DC6105 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
@@ -156,6 +162,24 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		2F61034D204E223000535AD8 /* FYXSideMenu */ = {
+			isa = PBXGroup;
+			children = (
+				2F61034E204E226600535AD8 /* FYXSideMenu.h */,
+				2F61034F204E226600535AD8 /* FYXSideMenu.m */,
+			);
+			path = FYXSideMenu;
+			sourceTree = "<group>";
+		};
+		2F610351204E73A300535AD8 /* FYXPageFlow */ = {
+			isa = PBXGroup;
+			children = (
+				2F610352204E73FF00535AD8 /* FYXPageFlow.h */,
+				2F610353204E73FF00535AD8 /* FYXPageFlow.m */,
+			);
+			path = FYXPageFlow;
+			sourceTree = "<group>";
+		};
 		2F86FE77203E543100994707 /* FYXButton */ = {
 			isa = PBXGroup;
 			children = (
@@ -168,6 +192,8 @@
 		2F89B48F202D29A700DC6105 = {
 			isa = PBXGroup;
 			children = (
+				2F610351204E73A300535AD8 /* FYXPageFlow */,
+				2F61034D204E223000535AD8 /* FYXSideMenu */,
 				2FB274EF2041362800E985F9 /* FYXCalendar */,
 				2FB274EB203FF90200E985F9 /* FYXTextfield */,
 				2FB274DB203FB8AE00E985F9 /* FYXToast */,
@@ -453,6 +479,7 @@
 				2FB27518204139BF00E985F9 /* FSCalendarCollectionViewLayout.m in Sources */,
 				2FB27517204139BF00E985F9 /* FSCalendar.m in Sources */,
 				2FB274EE203FF98000E985F9 /* FYXTextField.m in Sources */,
+				2F610354204E73FF00535AD8 /* FYXPageFlow.m in Sources */,
 				2FB2751E204139BF00E985F9 /* FSCalendarCalculator.m in Sources */,
 				2FB2751F204139BF00E985F9 /* FSCalendarHeaderView.m in Sources */,
 				2FB27514204139BF00E985F9 /* FSCalendarDelegationFactory.m in Sources */,
@@ -466,6 +493,7 @@
 				2FB2751A204139BF00E985F9 /* FSCalendarWeekdayView.m in Sources */,
 				2FB2751B204139BF00E985F9 /* FSCalendarExtensions.m in Sources */,
 				2FB27513204139BF00E985F9 /* FSCalendarDelegationProxy.m in Sources */,
+				2F610350204E226600535AD8 /* FYXSideMenu.m in Sources */,
 				2FB27515204139BF00E985F9 /* FSCalendarCell.m in Sources */,
 				2FB274E1203FBB4600E985F9 /* FYXToast.m in Sources */,
 				2FB27516204139BF00E985F9 /* FSCalendarStickyHeader.m in Sources */,

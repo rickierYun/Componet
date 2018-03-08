@@ -13,6 +13,7 @@
 #import "FYXTextField.h"
 #import "FYXCalendar.h"
 #import "FYXCalendarDataModel.h"
+#import "FYXSideMenu.h"
 
 @interface ViewController ()<FYXAlertViewDelegate,FYXCalendarDelegate>
 {
@@ -21,6 +22,7 @@
     FYXAlertView *alertRichView;
     FYXAlertView *alertImageView;
     FYXAlertView *alertMoreBtnView;
+    FYXSideMenu  *sideMenu;
 }
 @end
 
@@ -107,7 +109,13 @@
     [self.view addSubview:alertMoreBtnView];
     alertMoreBtnView.hidden = YES;
 
-    // Do any additional setup after loading the view, typically from a nib.
+    // 侧边栏
+    sideMenu = [[FYXSideMenu alloc]initWithFrame:self.view.bounds];
+    [sideMenu addgestureView:self.view];
+    sideMenu.hidden = NO;
+    [sideMenu setSideMenuViewWidth:self.view.frame.size.width / 4 * 3];
+    [self.view addSubview:sideMenu];
+
 }
 
 - (void)alertClick: (UIButton *)sender {
@@ -228,9 +236,7 @@
 //    cells.timeBtn.layer.borderColor = [UIColor lightGrayColor].CGColor;
 //    [cells.timeBtn setTitleColor:[UIColor redColor] forState:UIControlStateNormal];
 //    FYXCalendarDataModel *model = timeData[indexPath.row];
-//    if (<#condition#>) {
-//        <#statements#>
-//    }
+
 
 }
 
