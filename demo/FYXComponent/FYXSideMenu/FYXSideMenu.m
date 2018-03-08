@@ -116,6 +116,7 @@
 
         }else {
             self.sideMenuView.frame = CGRectMake(0, 0, self.sideMenuView.frame.size.width, self.sideMenuView.frame.size.height);
+            bezierView.alpha = 0;
         }
     }else {
         if (translation.x <= self.sideMenuView.frame.size.width) {
