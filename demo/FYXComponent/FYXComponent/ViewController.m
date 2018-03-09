@@ -14,8 +14,9 @@
 #import "FYXCalendar.h"
 #import "FYXCalendarDataModel.h"
 #import "FYXSideMenu.h"
+#import "FYXPageFlow.h"
 
-@interface ViewController ()<FYXAlertViewDelegate,FYXCalendarDelegate>
+@interface ViewController ()<FYXAlertViewDelegate,FYXCalendarDelegate, FYXPageFlowDataSource>
 {
     FYXAlertView *alertView;
     FYXAlertView *alertMsgView;
@@ -23,6 +24,7 @@
     FYXAlertView *alertImageView;
     FYXAlertView *alertMoreBtnView;
     FYXSideMenu  *sideMenu;
+    FYXPageFlow  *pageFlow;
 }
 @end
 
@@ -82,9 +84,14 @@
     [calendarBtn addTarget:self action:@selector(calendarClick:) forControlEvents:UIControlEventTouchUpInside];
     [self.view addSubview:calendarBtn];
 
+    FYXButton *pageFlowButton = [[FYXButton alloc]initWithFrame:CGRectMake(200, 200, 100, 30)];
+    [pageFlowButton setTitle:@"卡片" forState:UIControlStateNormal];
+    [self.view addSubview:pageFlowButton];
+
     FYXTextField *textField = [[FYXTextField alloc]initWithFrame:CGRectMake(200, 100, 100, 30)];
     [textField setPlaceholder:@"请登录"];
     [self.view addSubview:textField];
+
 
     alertView = [[FYXAlertView alloc]initWithFrame:CGRectMake(0, 0,[[UIScreen mainScreen] bounds].size.width , [[UIScreen mainScreen] bounds].size.height)];
     [self.view addSubview:alertView];
@@ -116,6 +123,13 @@
     [sideMenu setSideMenuViewWidth:self.view.frame.size.width / 4 * 3];
     [self.view addSubview:sideMenu];
 
+    pageFlow = [[FYXPageFlow alloc]initWithFrame:self.view.bounds];
+    pageFlow.hidden = YES;
+    pageFlow.dataSource = self;
+    // 重新定义cell
+//    [pageFlow.collectionView registerClass:[CollectionCell class]forCellWithReuseIdentifier:@"cell"];
+//    [pageFlow setPageSize:288 height:500 lineSpace:10];
+    [self.view addSubview:pageFlow];
 }
 
 - (void)alertClick: (UIButton *)sender {
@@ -179,6 +193,10 @@
 //    [FYXToast showWithText:@"您目前的取送车订单有绑定的保养预约服务，是否同时取消保养预约？"];
 }
 
+- (void)pageFlowBtnClick: (UIButton *)sender {
+    pageFlow.hidden = NO;
+}
+
 - (void)calendarClick: (UIButton *)sender {
     FYXCalendar *fyxCalendar = [[FYXCalendar alloc]initWithFrame:CGRectMake(0, 30, self.view.frame.size.width, self.view.frame.size.height )];
     fyxCalendar.delegate = self;
@@ -225,6 +243,16 @@
     fyxCalendar.morningData = morningTime;
     [fyxCalendar setCalendarData];
     [self.view addSubview:fyxCalendar];
+}
+- (NSInteger)numberOfPageFlow:(FYXPageFlow *)pageFlow {
+    return 5;
+}
+
+// 自定义cell
+- (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath {
+    CollectionCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"cell" forIndexPath:indexPath];
+//    cell.timeBtn.backgroundColor = [UIColor redColor];
+    return cell;
 }
 
 - (void)calendar:(FYXCalendar *)calendar selectTime:(NSString *)selectTime {

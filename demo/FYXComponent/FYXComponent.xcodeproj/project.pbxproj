@@ -45,6 +45,7 @@
 		2FB27522204139BF00E985F9 /* FSCalendarAppearance.m in Sources */ = {isa = PBXBuildFile; fileRef = 2FB27511204139BF00E985F9 /* FSCalendarAppearance.m */; };
 		2FB27525204139DD00E985F9 /* FYXCalendar.m in Sources */ = {isa = PBXBuildFile; fileRef = 2FB27524204139DD00E985F9 /* FYXCalendar.m */; };
 		2FB2752C2044EE1F00E985F9 /* FYXCalendarDataModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 2FB2752B2044EE1F00E985F9 /* FYXCalendarDataModel.m */; };
+		2FC02EE62051305A00EA5F11 /* FYXPageFlowLayout.m in Sources */ = {isa = PBXBuildFile; fileRef = 2FC02EE52051305A00EA5F11 /* FYXPageFlowLayout.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -135,6 +136,8 @@
 		2FB27524204139DD00E985F9 /* FYXCalendar.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FYXCalendar.m; sourceTree = "<group>"; };
 		2FB2752A2044EE1F00E985F9 /* FYXCalendarDataModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FYXCalendarDataModel.h; sourceTree = "<group>"; };
 		2FB2752B2044EE1F00E985F9 /* FYXCalendarDataModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FYXCalendarDataModel.m; sourceTree = "<group>"; };
+		2FC02EE42051305A00EA5F11 /* FYXPageFlowLayout.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FYXPageFlowLayout.h; sourceTree = "<group>"; };
+		2FC02EE52051305A00EA5F11 /* FYXPageFlowLayout.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FYXPageFlowLayout.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -176,6 +179,8 @@
 			children = (
 				2F610352204E73FF00535AD8 /* FYXPageFlow.h */,
 				2F610353204E73FF00535AD8 /* FYXPageFlow.m */,
+				2FC02EE42051305A00EA5F11 /* FYXPageFlowLayout.h */,
+				2FC02EE52051305A00EA5F11 /* FYXPageFlowLayout.m */,
 			);
 			path = FYXPageFlow;
 			sourceTree = "<group>";
@@ -497,6 +502,7 @@
 				2FB27515204139BF00E985F9 /* FSCalendarCell.m in Sources */,
 				2FB274E1203FBB4600E985F9 /* FYXToast.m in Sources */,
 				2FB27516204139BF00E985F9 /* FSCalendarStickyHeader.m in Sources */,
+				2FC02EE62051305A00EA5F11 /* FYXPageFlowLayout.m in Sources */,
 				2FB2752C2044EE1F00E985F9 /* FYXCalendarDataModel.m in Sources */,
 				2FB27520204139BF00E985F9 /* FSCalendarTransitionCoordinator.m in Sources */,
 				2FB27512204139BF00E985F9 /* FSCalendarCollectionView.m in Sources */,
