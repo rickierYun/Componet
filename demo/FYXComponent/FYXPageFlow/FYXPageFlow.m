@@ -81,7 +81,7 @@ CGFloat nativScales(void) {
 }
 
 - (NSInteger)numberOfSectionsInCollectionView:(UICollectionView *)collectionView {
-    if ([self.dataSource respondsToSelector:@selector(numberOfPageFlow:)]) {
+    if ([self.dataSource respondsToSelector:@selector(numberOfPageFlow:)] && addCell == NO) {
         _sectionCount = [self.dataSource numberOfPageFlow:self];
     }
     _pageControl.numberOfPages = _sectionCount;
@@ -93,22 +93,23 @@ CGFloat nativScales(void) {
 }
 
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath {
+    UICollectionViewCell * cell = [[UICollectionViewCell alloc]init];
     if ([self.dataSource respondsToSelector:@selector(collectionView:cellForItemAtIndexPath:)]) {
-        return [self.dataSource collectionView:collectionView cellForItemAtIndexPath:indexPath];
-    }else {
-        CollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"cell" forIndexPath:indexPath];
+        cell = [self.dataSource collectionView:collectionView cellForItemAtIndexPath:indexPath];
 
-        // 添加新的page动画
-        if (indexPath.section == _sectionCount - 2 && addCell == YES) {
-            cell.layer.transform = CATransform3DMakeScale(0.1, 0.1, 1);
-            [UIView animateWithDuration:0.5 animations:^{
-                cell.layer.transform = CATransform3DMakeScale(1, 1.1, 1);
-            }completion:^(BOOL finished) {
-                addCell = NO;
-            }];
-        }
-        return cell;
+    }else {
+        cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"cell" forIndexPath:indexPath];
     }
+    // 添加新的page动画
+    if (indexPath.section == _sectionCount - 2 && addCell == YES) {
+        cell.layer.transform = CATransform3DMakeScale(0.1, 0.1, 1);
+        [UIView animateWithDuration:0.5 animations:^{
+            cell.layer.transform = CATransform3DMakeScale(1, 1.1, 1);
+        }completion:^(BOOL finished) {
+            addCell = NO;
+        }];
+    }
+    return cell;
 }
 
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
@@ -152,7 +153,7 @@ CGFloat nativScales(void) {
     if (self) {
         UIView *cellView = [[UIView alloc]init];
         cellView.frame = self.bounds;
-        cellView.backgroundColor = [UIColor whiteColor];
+        cellView.backgroundColor = [UIColor orangeColor];
         cellView.layer.cornerRadius = 10;
         cellView.layer.shadowColor = [UIColor lightGrayColor].CGColor;
         cellView.layer.shadowOffset = CGSizeMake(1, 1);

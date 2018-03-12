@@ -11,12 +11,11 @@
 #import "FYXToast.h"
 #import "FYXButton.h"
 #import "FYXTextField.h"
-#import "FYXCalendar.h"
-#import "FYXCalendarDataModel.h"
 #import "FYXSideMenu.h"
-#import "FYXPageFlow.h"
+#import "CalendarViewController.h"
+#import "PageFlowViewController.h"
 
-@interface ViewController ()<FYXAlertViewDelegate,FYXCalendarDelegate, FYXPageFlowDataSource>
+@interface ViewController ()<FYXAlertViewDelegate>
 {
     FYXAlertView *alertView;
     FYXAlertView *alertMsgView;
@@ -24,7 +23,6 @@
     FYXAlertView *alertImageView;
     FYXAlertView *alertMoreBtnView;
     FYXSideMenu  *sideMenu;
-    FYXPageFlow  *pageFlow;
 }
 @end
 
@@ -32,6 +30,7 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    self.view.backgroundColor = [UIColor whiteColor];
 
     UIButton *alertBtn = [[UIButton alloc]init];
     alertBtn.frame = CGRectMake(0, 100, 100, 30);
@@ -86,12 +85,12 @@
 
     FYXButton *pageFlowButton = [[FYXButton alloc]initWithFrame:CGRectMake(200, 200, 100, 30)];
     [pageFlowButton setTitle:@"卡片" forState:UIControlStateNormal];
+    [pageFlowButton addTarget:self action:@selector(pageFlowBtnClick:) forControlEvents:UIControlEventTouchUpInside];
     [self.view addSubview:pageFlowButton];
 
     FYXTextField *textField = [[FYXTextField alloc]initWithFrame:CGRectMake(200, 100, 100, 30)];
     [textField setPlaceholder:@"请登录"];
     [self.view addSubview:textField];
-
 
     alertView = [[FYXAlertView alloc]initWithFrame:CGRectMake(0, 0,[[UIScreen mainScreen] bounds].size.width , [[UIScreen mainScreen] bounds].size.height)];
     [self.view addSubview:alertView];
@@ -119,19 +118,15 @@
     // 侧边栏
     sideMenu = [[FYXSideMenu alloc]initWithFrame:self.view.bounds];
     [sideMenu addgestureView:self.view];
-    sideMenu.hidden = NO;
+    sideMenu.hidden = YES;
     [sideMenu setSideMenuViewWidth:self.view.frame.size.width / 4 * 3];
     [self.view addSubview:sideMenu];
 
-    pageFlow = [[FYXPageFlow alloc]initWithFrame:self.view.bounds];
-    pageFlow.hidden = YES;
-    pageFlow.dataSource = self;
-    // 重新定义cell
-//    [pageFlow.collectionView registerClass:[CollectionCell class]forCellWithReuseIdentifier:@"cell"];
-//    [pageFlow setPageSize:288 height:500 lineSpace:10];
-    [self.view addSubview:pageFlow];
 }
 
+-(void)viewWillAppear:(BOOL)animated {
+    self.navigationController.navigationBar.hidden = YES;
+}
 - (void)alertClick: (UIButton *)sender {
     alertView.hidden        = NO;
     alertMsgView.hidden     = YES;
@@ -194,79 +189,18 @@
 }
 
 - (void)pageFlowBtnClick: (UIButton *)sender {
-    pageFlow.hidden = NO;
+    PageFlowViewController *vc = [[PageFlowViewController alloc]init];
+    [self.navigationController pushViewController:vc animated:YES];
 }
 
 - (void)calendarClick: (UIButton *)sender {
-    FYXCalendar *fyxCalendar = [[FYXCalendar alloc]initWithFrame:CGRectMake(0, 30, self.view.frame.size.width, self.view.frame.size.height )];
-    fyxCalendar.delegate = self;
-//    fyxCalendar.calendar.appearance.borderRadius = 1;
-//    [fyxCalendar.nextWeekBtn setTitle:@"AAA" forState:UIControlStateNormal];
-    NSMutableArray *aftoonTime = [NSMutableArray array];
-    NSMutableArray *morningTime = [NSMutableArray array];
-    int morhour = 8;
-    int afthour = 13;
-
-    for (int i = 0; i < 5; i ++) {
-        for (int j = 0; j < 4; j++) {
-            int minute = j * 15;
-            NSString *minuteStr = @"00";
-            if (minute != 0) {
-                minuteStr = [NSString stringWithFormat:@"%d",minute];
-            }
-
-            NSString *timeMorStr = [NSString stringWithFormat:@"%d:%@",morhour,minuteStr];
-            NSString *timeAftStr = [NSString stringWithFormat:@"%d:%@",afthour,minuteStr];
-            if (i <=12) {
-                FYXCalendarDataModel *morningModel = [[FYXCalendarDataModel alloc]init];
-                morningModel.timeStr = timeMorStr;
-                if (i == 1) {
-                    morningModel.timeStatus = 1;
-                }else {
-                    morningModel.timeStatus = 0;
-                }
-                [morningTime addObject:morningModel];
-            }
-            FYXCalendarDataModel *afModel = [[FYXCalendarDataModel alloc]init];
-            afModel.timeStr = timeAftStr;
-            afModel.timeStatus = 0;
-            [aftoonTime addObject:afModel];
-        }
-        morhour ++;
-        afthour ++;
-    }
-
-    // 改变具体时间颜色
-//    fyxCalendar.timeDetailSelectColor = [UIColor redColor];
-//    fyxCalendar.timeDetailColor = [UIColor blackColor];
-    fyxCalendar.afternoonData = aftoonTime;
-    fyxCalendar.morningData = morningTime;
-    [fyxCalendar setCalendarData];
-    [self.view addSubview:fyxCalendar];
-}
-- (NSInteger)numberOfPageFlow:(FYXPageFlow *)pageFlow {
-    return 5;
+    CalendarViewController *vc = [[CalendarViewController alloc]init];
+    [self.navigationController pushViewController:vc animated:YES];
+ 
 }
 
-// 自定义cell
-- (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath {
-    CollectionCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"cell" forIndexPath:indexPath];
-//    cell.timeBtn.backgroundColor = [UIColor redColor];
-    return cell;
-}
-
-- (void)calendar:(FYXCalendar *)calendar selectTime:(NSString *)selectTime {
-    NSLog(@"%@",selectTime);
-}
-
-- (void)calendar:(FYXCalendar *)calendar collectionView:(UICollectionView *)collectionView willDisplayCell:(UICollectionViewCell *)cell cellForItemAtIndexPath:(NSIndexPath *)indexPath {
-//    CollectionCell *cells = (CollectionCell *)cell;
-//    cells.timeBtn.layer.borderColor = [UIColor lightGrayColor].CGColor;
-//    [cells.timeBtn setTitleColor:[UIColor redColor] forState:UIControlStateNormal];
-//    FYXCalendarDataModel *model = timeData[indexPath.row];
 
 
-}
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
