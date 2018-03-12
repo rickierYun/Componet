@@ -11,6 +11,8 @@
 		2F610354204E73FF00535AD8 /* FYXPageFlow.m in Sources */ = {isa = PBXBuildFile; fileRef = 2F610353204E73FF00535AD8 /* FYXPageFlow.m */; };
 		2F85742920560998003D1518 /* CalendarViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2F85742820560998003D1518 /* CalendarViewController.m */; };
 		2F85742C2056160C003D1518 /* PageFlowViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2F85742B2056160C003D1518 /* PageFlowViewController.m */; };
+		2F85743020561E26003D1518 /* FYXCheckView.m in Sources */ = {isa = PBXBuildFile; fileRef = 2F85742F20561E26003D1518 /* FYXCheckView.m */; };
+		2F8574332056200F003D1518 /* CheckAnimationViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2F8574322056200F003D1518 /* CheckAnimationViewController.m */; };
 		2F86FE79203E6BA600994707 /* sure.png in Resources */ = {isa = PBXBuildFile; fileRef = 2F86FE78203E6BA600994707 /* sure.png */; };
 		2F89B49D202D29A700DC6105 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 2F89B49C202D29A700DC6105 /* AppDelegate.m */; };
 		2F89B4A0202D29A700DC6105 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2F89B49F202D29A700DC6105 /* ViewController.m */; };
@@ -76,6 +78,10 @@
 		2F85742820560998003D1518 /* CalendarViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CalendarViewController.m; sourceTree = "<group>"; };
 		2F85742A2056160C003D1518 /* PageFlowViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PageFlowViewController.h; sourceTree = "<group>"; };
 		2F85742B2056160C003D1518 /* PageFlowViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PageFlowViewController.m; sourceTree = "<group>"; };
+		2F85742E20561E26003D1518 /* FYXCheckView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FYXCheckView.h; sourceTree = "<group>"; };
+		2F85742F20561E26003D1518 /* FYXCheckView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FYXCheckView.m; sourceTree = "<group>"; };
+		2F8574312056200F003D1518 /* CheckAnimationViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CheckAnimationViewController.h; sourceTree = "<group>"; };
+		2F8574322056200F003D1518 /* CheckAnimationViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CheckAnimationViewController.m; sourceTree = "<group>"; };
 		2F86FE78203E6BA600994707 /* sure.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = sure.png; sourceTree = "<group>"; };
 		2F89B498202D29A700DC6105 /* FYXComponent.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = FYXComponent.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		2F89B49B202D29A700DC6105 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
@@ -191,6 +197,22 @@
 			path = FYXPageFlow;
 			sourceTree = "<group>";
 		};
+		2F85742D20561DF4003D1518 /* FYXCheckAnimation */ = {
+			isa = PBXGroup;
+			children = (
+				2F85742E20561E26003D1518 /* FYXCheckView.h */,
+				2F85742F20561E26003D1518 /* FYXCheckView.m */,
+			);
+			path = FYXCheckAnimation;
+			sourceTree = "<group>";
+		};
+		2F85743720564C96003D1518 /* FYXLoadingHud */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = FYXLoadingHud;
+			sourceTree = "<group>";
+		};
 		2F86FE77203E543100994707 /* FYXButton */ = {
 			isa = PBXGroup;
 			children = (
@@ -203,6 +225,8 @@
 		2F89B48F202D29A700DC6105 = {
 			isa = PBXGroup;
 			children = (
+				2F85743720564C96003D1518 /* FYXLoadingHud */,
+				2F85742D20561DF4003D1518 /* FYXCheckAnimation */,
 				2F610351204E73A300535AD8 /* FYXPageFlow */,
 				2F61034D204E223000535AD8 /* FYXSideMenu */,
 				2FB274EF2041362800E985F9 /* FYXCalendar */,
@@ -243,6 +267,8 @@
 				2F85742820560998003D1518 /* CalendarViewController.m */,
 				2F85742A2056160C003D1518 /* PageFlowViewController.h */,
 				2F85742B2056160C003D1518 /* PageFlowViewController.m */,
+				2F8574312056200F003D1518 /* CheckAnimationViewController.h */,
+				2F8574322056200F003D1518 /* CheckAnimationViewController.m */,
 			);
 			path = FYXComponent;
 			sourceTree = "<group>";
@@ -502,6 +528,7 @@
 				2FB27525204139DD00E985F9 /* FYXCalendar.m in Sources */,
 				2FB27522204139BF00E985F9 /* FSCalendarAppearance.m in Sources */,
 				2FB2751D204139BF00E985F9 /* FSCalendarConstants.m in Sources */,
+				2F85743020561E26003D1518 /* FYXCheckView.m in Sources */,
 				2FB2751C204139BF00E985F9 /* FSCalendar+Deprecated.m in Sources */,
 				2F89B4AB202D29A700DC6105 /* main.m in Sources */,
 				2F89B49D202D29A700DC6105 /* AppDelegate.m in Sources */,
@@ -509,6 +536,7 @@
 				2FB2751A204139BF00E985F9 /* FSCalendarWeekdayView.m in Sources */,
 				2FB2751B204139BF00E985F9 /* FSCalendarExtensions.m in Sources */,
 				2FB27513204139BF00E985F9 /* FSCalendarDelegationProxy.m in Sources */,
+				2F8574332056200F003D1518 /* CheckAnimationViewController.m in Sources */,
 				2F610350204E226600535AD8 /* FYXSideMenu.m in Sources */,
 				2FB27515204139BF00E985F9 /* FSCalendarCell.m in Sources */,
 				2FB274E1203FBB4600E985F9 /* FYXToast.m in Sources */,

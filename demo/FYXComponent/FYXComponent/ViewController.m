@@ -14,6 +14,7 @@
 #import "FYXSideMenu.h"
 #import "CalendarViewController.h"
 #import "PageFlowViewController.h"
+#import "CheckAnimationViewController.h"
 
 @interface ViewController ()<FYXAlertViewDelegate>
 {
@@ -87,6 +88,11 @@
     [pageFlowButton setTitle:@"卡片" forState:UIControlStateNormal];
     [pageFlowButton addTarget:self action:@selector(pageFlowBtnClick:) forControlEvents:UIControlEventTouchUpInside];
     [self.view addSubview:pageFlowButton];
+
+    FYXButton *checkAnimationBtn = [[FYXButton alloc]initWithFrame:CGRectMake(200, 300, 100, 30)];
+    [checkAnimationBtn setTitle:@"对勾" forState:UIControlStateNormal];
+    [checkAnimationBtn addTarget:self action:@selector(checkAnimationBtnClick:) forControlEvents:UIControlEventTouchUpInside];
+    [self.view addSubview:checkAnimationBtn];
 
     FYXTextField *textField = [[FYXTextField alloc]initWithFrame:CGRectMake(200, 100, 100, 30)];
     [textField setPlaceholder:@"请登录"];
@@ -199,7 +205,10 @@
  
 }
 
-
+- (void)checkAnimationBtnClick: (UIButton *)sender {
+    CheckAnimationViewController *vc = [[CheckAnimationViewController alloc]init];
+    [self.navigationController pushViewController:vc animated:YES];
+}
 
 
 - (void)didReceiveMemoryWarning {
