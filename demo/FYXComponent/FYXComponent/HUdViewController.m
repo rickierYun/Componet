@@ -1,31 +1,29 @@
 //
-//  CheckAnimationViewController.m
+//  HUdViewController.m
 //  FYXComponent
 //
 //  Created by 欧阳云慧 on 2018/3/12.
 //  Copyright © 2018年 欧阳云慧. All rights reserved.
 //
 
-#import "CheckAnimationViewController.h"
-#import "FYXCheckView.h"
+#import "HUdViewController.h"
+#import "FYXLoadingHud.h"
 
-@interface CheckAnimationViewController ()
+@interface HUdViewController ()
 
 @end
 
-@implementation CheckAnimationViewController
+@implementation HUdViewController
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-
     self.view.backgroundColor = [UIColor whiteColor];
     self.navigationController.navigationBar.hidden = NO;
     self.navigationController.navigationBar.barTintColor = [UIColor whiteColor];
 
-    FYXCheckView *checkView = [[FYXCheckView alloc]initWithFrame:CGRectMake([[UIScreen mainScreen] bounds].size.width / 2, [[UIScreen mainScreen] bounds].size.height / 2, 80, 80)];
-    [self.view addSubview:checkView];
+    [FYXLoadingHud showIn:self.view];
 
-    
+    // Do any additional setup after loading the view.
 }
 
 - (void)didReceiveMemoryWarning {

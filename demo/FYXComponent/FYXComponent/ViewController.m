@@ -15,6 +15,7 @@
 #import "CalendarViewController.h"
 #import "PageFlowViewController.h"
 #import "CheckAnimationViewController.h"
+#import "HUdViewController.h"
 
 @interface ViewController ()<FYXAlertViewDelegate>
 {
@@ -93,6 +94,11 @@
     [checkAnimationBtn setTitle:@"对勾" forState:UIControlStateNormal];
     [checkAnimationBtn addTarget:self action:@selector(checkAnimationBtnClick:) forControlEvents:UIControlEventTouchUpInside];
     [self.view addSubview:checkAnimationBtn];
+
+    FYXButton *HudBtn = [[FYXButton alloc]initWithFrame:CGRectMake(200, 400, 100, 30)];
+    [HudBtn setTitle:@"Hud" forState:UIControlStateNormal];
+    [HudBtn addTarget:self action:@selector(hudBtnClick:) forControlEvents:UIControlEventTouchUpInside];
+    [self.view addSubview:HudBtn];
 
     FYXTextField *textField = [[FYXTextField alloc]initWithFrame:CGRectMake(200, 100, 100, 30)];
     [textField setPlaceholder:@"请登录"];
@@ -210,6 +216,10 @@
     [self.navigationController pushViewController:vc animated:YES];
 }
 
+- (void)hudBtnClick: (UIButton *)sender {
+    HUdViewController *vc = [[HUdViewController alloc]init];
+    [self.navigationController pushViewController:vc animated:YES];
+}
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
