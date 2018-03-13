@@ -7,6 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "FYXPageFlow.h"
 
 @interface PageFlowViewController : UIViewController <FYXPageFlowDataSource>
 {

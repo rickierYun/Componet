@@ -312,4 +312,25 @@ pageFlow.dataSource = self;
 }
 ```
 
+## 侧边栏
+<img width="270" height="480" src="https://github.com/rickierYun/Componet/blob/master/image/SideMenu.gif"/>
 
+### 使用方法
+
+导入头文件
+
+```objective-c
+#import "FYXSideMenu.h"
+```
+
+定义FYXSideMenu view ，将view添加到父类view上
+
+```objective-c
+	sideMenu = [[FYXSideMenu alloc]initWithFrame:self.view.bounds];
+    [sideMenu addgestureView:self.view];
+    sideMenu.hidden = YES;
+    [sideMenu setSideMenuViewWidth:self.view.frame.size.width / 4 * 3];
+    [self.view addSubview:sideMenu];
+```
+
+要往侧边栏上加载子 view，只需要在父view sideMenuView 上添加即可。

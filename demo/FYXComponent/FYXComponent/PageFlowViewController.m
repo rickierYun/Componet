@@ -7,7 +7,6 @@
 //
 
 #import "PageFlowViewController.h"
-#import "FYXPageFlow.h"
 
 @interface PageFlowViewController ()
 
