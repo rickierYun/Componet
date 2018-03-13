@@ -234,3 +234,7 @@ FYXCalendar *fyxCalendar = [[FYXCalendar alloc]initWithFrame:CGRectMake(0, 30, s
 
 tips：如果只选中一项会得到no day select提示。
 
+## checkView
+
+<img width="270" height="480" src="https://github.com/rickierYun/Componet/blob/master/image/checkView.gif"/>
+
