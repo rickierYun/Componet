@@ -7,6 +7,7 @@
 //
 
 #import "PageFlowViewController.h"
+#import "FYXPageFlow.h"
 
 @interface PageFlowViewController ()
 
@@ -23,8 +24,8 @@
     pageFlow = [[FYXPageFlow alloc]initWithFrame:self.view.bounds];
     pageFlow.dataSource = self;
     // 重新定义cell
-    //    [pageFlow.collectionView registerClass:[CollectionCell class]forCellWithReuseIdentifier:@"cell"];
-    //    [pageFlow setPageSize:288 height:500 lineSpace:10];
+//        [pageFlow.collectionView registerClass:[CollectionCell class]forCellWithReuseIdentifier:@"cell"];
+//        [pageFlow setPageSize:288 height:500 lineSpace:10];
     [self.view addSubview:pageFlow];
 }
 
@@ -41,7 +42,7 @@
 // 自定义cell
 //- (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath {
 //    CollectionCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"cell" forIndexPath:indexPath];
-//    //    cell.timeBtn.backgroundColor = [UIColor redColor];
+//    cell.timeBtn.backgroundColor = [UIColor redColor];
 //    return cell;
 //}
 

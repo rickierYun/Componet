@@ -23,6 +23,9 @@
 
     [FYXLoadingHud showIn:self.view];
 
+    [NSTimer scheduledTimerWithTimeInterval:3.0 repeats:NO block:^(NSTimer * _Nonnull timer) {
+        [FYXLoadingHud hideIn:self.view];
+    }];
     // Do any additional setup after loading the view.
 }
 

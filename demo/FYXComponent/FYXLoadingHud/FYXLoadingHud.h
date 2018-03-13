@@ -14,7 +14,13 @@
 
 -(void)hide;
 
+/**
+ * 显示loadingHud
+ */
 +(FYXLoadingHud*)showIn:(UIView*)view;
 
+/**
+ * 隐藏loadingHud
+ */
 +(FYXLoadingHud*)hideIn:(UIView*)view;
 @end

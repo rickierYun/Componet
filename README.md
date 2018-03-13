@@ -238,3 +238,78 @@ tips：如果只选中一项会得到no day select提示。
 
 <img width="270" height="480" src="https://github.com/rickierYun/Componet/blob/master/image/checkView.gif"/>
 
+### 使用方法
+
+#### 1:引入文件，导入头文件
+
+```objective-c
+#import "FYXCheckView.h"
+```
+
+定义一个FYXCheckView，将其添加到父类view中
+
+```objective-c
+    FYXCheckView *checkView = [[FYXCheckView alloc]initWithFrame:CGRectMake([[UIScreen mainScreen] bounds].size.width / 2, [[UIScreen mainScreen] bounds].size.height / 2, 80, 80)];
+    [self.view addSubview:checkView];
+```
+
+#### 2:直接导入复制动画代码到vc上使用
+
+
+## LoadingHUD
+
+<img width="270" height="480" src="https://github.com/rickierYun/Componet/blob/master/image/Hud.gif"/>
+
+### 使用方法
+
+引入源文件，导入头文件
+
+```objective-c
+
+#import "FYXLoadingHud.h"
+[FYXLoadingHud showIn:self.view];
+    [NSTimer scheduledTimerWithTimeInterval:3.0 repeats:NO block:^(NSTimer * _Nonnull timer) {
+        [FYXLoadingHud hideIn:self.view];
+    }];
+```
+
+
+## PageFlow
+
+<img width="270" height="480" src="https://github.com/rickierYun/Componet/blob/master/image/pageFlow.gif"/>
+
+### 使用方法
+
+引入源文件，导入头文件
+
+```objective-c
+#import "FYXPageFlow.h"
+
+pageFlow = [[FYXPageFlow alloc]initWithFrame:self.view.bounds];
+pageFlow.dataSource = self;
+[self.view addSubview:pageFlow];
+```
+遵循FYXPageFlowDataSource协议，利用numberOfPageFlow函数更改page的页数
+
+```objective-c
+- (NSInteger)numberOfPageFlow:(FYXPageFlow *)pageFlow {
+    return 5;
+}
+```
+
+允许自定义cell
+
+```objective-c
+[pageFlow.collectionView registerClass:[CollectionCell class]forCellWithReuseIdentifier:@"cell"];
+[pageFlow setPageSize:288 height:500 lineSpace:10];
+
+
+
+- (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath {
+    CollectionCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"cell" forIndexPath:indexPath];
+    cell.timeBtn.backgroundColor = [UIColor redColor];
+    return cell;
+}
+```
+
+
