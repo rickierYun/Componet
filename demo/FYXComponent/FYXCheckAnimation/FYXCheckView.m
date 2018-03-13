@@ -13,7 +13,7 @@
     self = [super initWithFrame:frame];
     if (self) {
 
-        self.backgroundColor = [UIColor blueColor];
+        self.backgroundColor = [UIColor colorWithRed:20.0 / 255 green:206.0 / 255 blue:1 alpha:1.0f];
         self.layer.cornerRadius = self.frame.size.width / 2;
 
         self.layer.transform = CATransform3DMakeScale(0, 0, 1);
