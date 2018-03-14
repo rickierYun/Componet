@@ -53,7 +53,7 @@ CGFloat nativScales(void) {
         _flowLayout = [[FYXPageFlowLayout alloc] init];
         [_flowLayout setScrollDirection:UICollectionViewScrollDirectionHorizontal];
         _flowLayout.pageCardWidth = VIEW_WIDTH(self) - 60 * displayScale * 2;
-        _flowLayout.pageCardHeight = VIEW_HEIGHT(self) - 260 * displayScale;
+        _flowLayout.pageCardHeight = VIEW_HEIGHT(self) - 300 * displayScale;
         _flowLayout.lineSpace = 30 * displayScale;
         _flowLayout.delegate = self;
 
@@ -100,15 +100,6 @@ CGFloat nativScales(void) {
     }else {
         cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"cell" forIndexPath:indexPath];
     }
-    // 添加新的page动画
-    if (indexPath.section == _sectionCount - 2 && addCell == YES) {
-        cell.layer.transform = CATransform3DMakeScale(0.1, 0.1, 1);
-        [UIView animateWithDuration:0.5 animations:^{
-            cell.layer.transform = CATransform3DMakeScale(1, 1.1, 1);
-        }completion:^(BOOL finished) {
-            addCell = NO;
-        }];
-    }
     return cell;
 }
 
@@ -116,9 +107,15 @@ CGFloat nativScales(void) {
     if (indexPath.section == _sectionCount - 1) {
         _sectionCount ++;
         addCell = YES;
-        [self.collectionView reloadData];
+//        [self.collectionView reloadData];
+        [collectionView performBatchUpdates:^{
+            [self.collectionView insertSections:[[NSIndexSet alloc] initWithIndex: indexPath.section]];
+        } completion:nil];
+//
+
     }
 }
+
 
 - (UIEdgeInsets)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout insetForSectionAtIndex:(NSInteger)section {
     CGFloat width = ((collectionView.frame.size.width - _flowLayout.pageCardWidth)-(_flowLayout.lineSpace*2))/2;

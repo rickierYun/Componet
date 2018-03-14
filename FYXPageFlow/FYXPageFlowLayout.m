@@ -9,7 +9,9 @@
 #import "FYXPageFlowLayout.h"
 
 
-@implementation FYXPageFlowLayout
+@implementation FYXPageFlowLayout {
+    NSMutableArray *insertIndexPathArr;
+}
 
 - (void)prepareLayout{
 
@@ -57,6 +59,57 @@
     return attributes;
 }
 
+- (void)prepareForCollectionViewUpdates:(NSArray<UICollectionViewUpdateItem *> *)updateItems {
+    [super prepareForCollectionViewUpdates:updateItems];
+    insertIndexPathArr = [NSMutableArray array];
+    for (UICollectionViewUpdateItem *item in updateItems) {
+        switch (item.updateAction) {
+            case UICollectionUpdateActionInsert:
+                [insertIndexPathArr addObject:item.indexPathAfterUpdate];
+                break;
+            default:
+                break;
+        }
+    }
+}
+
+
+- (UICollectionViewLayoutAttributes *)initialLayoutAttributesForAppearingItemAtIndexPath:(NSIndexPath *)itemIndexPath {
+    UICollectionViewLayoutAttributes *attributes = [[super layoutAttributesForItemAtIndexPath:itemIndexPath] copy];
+    if ([insertIndexPathArr containsObject:itemIndexPath]) {
+        attributes.alpha = 0;
+    }
+    attributes.transform = CGAffineTransformMakeScale(0, 0);
+
+    return attributes;
+}
+
+- (UICollectionViewLayoutAttributes *)finalLayoutAttributesForDisappearingItemAtIndexPath:(NSIndexPath *)itemIndexPath {
+    UICollectionViewLayoutAttributes *attributes = [[self layoutAttributesForItemAtIndexPath:itemIndexPath] copy];
+    attributes.frame = [self frameWithIndexPath:[NSIndexPath indexPathForRow:itemIndexPath.row inSection:itemIndexPath.section +1] selectIndexPath:itemIndexPath];
+    return attributes;
+
+}
+
+- (CGRect)frameWithIndexPath: (NSIndexPath *)indexPath selectIndexPath: (NSIndexPath *)selectIndexPath {
+    CGFloat left;
+    CGFloat width;
+    if (indexPath.section < selectIndexPath.section) {
+        left = indexPath.section * (self.itemSize.width + self.minimumInteritemSpacing);
+        width = self.itemSize.width;
+    }else if (indexPath.section == selectIndexPath.section) {
+        left = indexPath.section * (self.itemSize.width + self.minimumInteritemSpacing) + self.minimumInteritemSpacing;
+        width = self.itemSize.width * 2;
+    }else {
+        left = (indexPath.section + 1)* (self.itemSize.width) + self.minimumInteritemSpacing;
+        NSLog(@"%f",left);
+        width = self.itemSize.width  ;
+    }
+    CGRect frame = CGRectMake(left, (self.collectionView.frame.size.height - _pageCardHeight ) / 2, width, self.itemSize.height);
+
+    return frame;
+}
+
 - (BOOL)shouldInvalidateLayoutForBoundsChange:(CGRect)newBounds {
     return YES;
 }
@@ -65,13 +118,13 @@
     // 分页以1/3处
     if (proposedContentOffset.x > self.previousOffsetX + self.itemSize.width / 3.0) {
         self.previousOffsetX += _pageCardWidth+_lineSpace ;
-        self.pageNum = self.previousOffsetX/(_pageCardWidth+_lineSpace);
+        self.pageNum = ((int)self.previousOffsetX) / ((int)_pageCardWidth+(int)_lineSpace);
         if ([self.delegate respondsToSelector:@selector(scrollToPageIndex:)]) {
             [self.delegate scrollToPageIndex:self.pageNum];
         }
     } else if (proposedContentOffset.x < self.previousOffsetX  - self.itemSize.width / 3.0) {
         self.previousOffsetX -= _pageCardWidth+_lineSpace;
-        self.pageNum = self.previousOffsetX/(_pageCardWidth+_lineSpace);
+        self.pageNum = ((int)self.previousOffsetX) / ((int)_pageCardWidth+(int)_lineSpace);
         if ([self.delegate respondsToSelector:@selector(scrollToPageIndex:)]) {
             [self.delegate scrollToPageIndex:self.pageNum];
         }
