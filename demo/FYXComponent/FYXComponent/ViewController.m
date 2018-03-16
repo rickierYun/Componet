@@ -24,7 +24,9 @@
     FYXAlertView *alertRichView;
     FYXAlertView *alertImageView;
     FYXAlertView *alertMoreBtnView;
+    FYXAlertView *bubbleView;
     FYXSideMenu  *sideMenu;
+    
 }
 @end
 
@@ -69,6 +71,14 @@
     [alertMoreBtn setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
     [self.view addSubview:alertMoreBtn];
 
+    FYXButton *alertImage2Btn = [[FYXButton alloc]initWithFrame:CGRectMake(0, 450, 100, 30)];
+    alertImage2Btn.layer.shadowOffset  = CGSizeMake(1, 7);
+    alertImage2Btn.layer.shadowOpacity = 0.4;
+    alertImage2Btn.layer.shadowColor   = [UIColor colorWithRed:20.0 / 255 green:206.0 / 255 blue:1 alpha:1.0f].CGColor;
+    [alertImage2Btn setTitle:@"警告弹窗" forState:UIControlStateNormal];
+    [alertImage2Btn addTarget:self action:@selector(alertImage2Click:) forControlEvents:UIControlEventTouchUpInside];
+    [self.view addSubview:alertImage2Btn];
+
     FYXButton *toastBtn = [[FYXButton alloc]initWithFrame:CGRectMake(0, 350, 100, 30)];
     toastBtn.layer.shadowOffset  = CGSizeMake(1, 7);
     toastBtn.layer.shadowOpacity = 0.4;
@@ -100,6 +110,11 @@
     [HudBtn addTarget:self action:@selector(hudBtnClick:) forControlEvents:UIControlEventTouchUpInside];
     [self.view addSubview:HudBtn];
 
+    FYXButton *bubble = [[FYXButton alloc]initWithFrame:CGRectMake(200, 450, 100, 30)];
+    [bubble setTitle:@"气泡" forState:UIControlStateNormal];
+    [bubble addTarget:self action:@selector(bubbleBtnClick:) forControlEvents:UIControlEventTouchUpInside];
+    [self.view addSubview:bubble];
+
     FYXTextField *textField = [[FYXTextField alloc]initWithFrame:CGRectMake(200, 100, 100, 30)];
     [textField setPlaceholder:@"请登录"];
     [self.view addSubview:textField];
@@ -126,6 +141,10 @@
     alertMoreBtnView = [[FYXAlertView alloc]initWithFrame:CGRectMake(0, 0,[[UIScreen mainScreen] bounds].size.width , [[UIScreen mainScreen] bounds].size.height)];
     [self.view addSubview:alertMoreBtnView];
     alertMoreBtnView.hidden = YES;
+
+    bubbleView = [[FYXAlertView alloc]initWithFrame:CGRectMake(0, 0,[[UIScreen mainScreen] bounds].size.width , [[UIScreen mainScreen] bounds].size.height)];
+    bubbleView.hidden = YES;
+    [self.view addSubview:bubbleView];
 
     // 侧边栏
     sideMenu = [[FYXSideMenu alloc]initWithFrame:self.view.bounds];
@@ -160,10 +179,11 @@
     alertImageView.hidden   = YES;
     alertMoreBtnView.hidden = YES;
     // 文字弹窗
-    [alertMsgView setMsgAlertView:@"提示" titleFont:19 alertMsg:@"机器学习是近年来渐趋热门的一个领域，同时Python 语言经过一段时间的发展也已逐渐成为主流的编程语言之一。本书结合了机器学习和Python 语言两个热门的领域，通过利用两种核心的机器学习算法来将Python 语言在数据分析方面的优势发挥到极 致。 全书共有10 章。第 1 章讲解了Python 机器学习的生态系统，剩余9 章介绍了众多与机器学习相关的算法，包括各类分类算法、数据可视化技术、推荐引擎等，主要包括机器学习在公寓、机票、IPO 市场、新闻源、内容推机器学习是近年来渐趋热门的一个领域，同时Python 语言经过一段时间的发展也已逐渐成为主流的编程语言之一。本书结合了机器学习和Python 语言两个热门的领域，通过利用两种核心的机器学习算法来将Python 语言在数据分析方面的优势发挥到极 致。 全书共有10 章。第 1 章讲解了Python 机器学习的生态系统，剩余9 章介绍了众多与机器学习相关的算法，包括各类分类算法、数据可视化技术、推荐引擎等，主要包括机器学习在公寓、机票、IPO 市场、新闻源、内容推" msgFont:11];
+    [alertMsgView setMsgAlertView:@"提示" titleFont:19 alertMsg:@"机器学习是近年来渐趋热门的一个领域，同时Python 语言经过一段时间的发展也已逐渐成为主流的编程语言之一。本书结合了机器学习和Python 语言两个热门的领域，通过利用两种核心的机器学习算法来将Python 语言在数据分析方面的优势发挥到极 致。 全书共有10 章。第 1 章讲解了Python 机器学习的生态系统，剩余9 章介绍了众多与机器学习相关的算法，包括各类分类算法、数据可视化技术、推荐引擎等，主要包括机器学习在公寓、机票、IPO 市场、新闻源、内容推机器学习是近年来渐趋热门的一个领域，同时Python 语言经过一段时间的发展也已逐渐成为主流的编程语言之一。本书结合了机器学习和Python 语言两个热门的领域，通过利用两种核心的机器学习算法来将Python 语言在数据分析方面的优势发挥到极 致。 全书共有10 章。第 1 章讲解了Python 机器学习的生态系统，剩余9 章介绍了众多与机器学习相关的算法，包括各类分类算法、数据可视化技术、推荐引擎等，主要包括机器学习在公寓、机票、IPO 市场、新闻源、内容推" msgFont:11 msgColor: [UIColor colorWithRed:101.0 / 255 green:101.0 / 255 blue:101.0 / 255 alpha:1]];
+    
     [alertMsgView.cancelBtn setTitle:@"cancel" forState:UIControlStateNormal];
     [alertMsgView.cancelBtn setTitleColor:[UIColor lightGrayColor] forState:UIControlStateNormal];
-    [alertMsgView setMsgAlertFrame:200 AlertWidth:200];
+    [alertMsgView setMsgAlertFrame:200 AlertWidth: 295];
 }
 
 - (void)alertRichClick: (UIButton *)sender {
@@ -183,7 +203,18 @@
     alertRichView.hidden    = YES;
     alertImageView.hidden   = NO;
     alertMoreBtnView.hidden = YES;
-    [alertImageView setImageAlertView:@"机器学习是近年来\n渐趋热门的一个领域" contentFont:17 contentColor:[UIColor blackColor] imageName:nil];
+    [alertImageView setImageAlertView:@"机器学习是近年来\n渐趋热门的一个领域" contentFont:17 contentColor:[UIColor blackColor] imageName:@"checkView.png"];
+    [alertImageView.cancelBtn setTitleColor:[UIColor colorWithRed:20.0 / 255 green:206.0 / 255 blue:1 alpha:1.0f] forState:UIControlStateNormal];
+}
+
+- (void)alertImage2Click: (UIButton *)sender {
+    alertView.hidden        = YES;
+    alertMsgView.hidden     = YES;
+    alertRichView.hidden    = YES;
+    alertImageView.hidden   = NO;
+    alertMoreBtnView.hidden = YES;
+    [alertImageView setImageAlertView:@"机器学习是近年来\n渐趋热门的一个领域" contentFont:17 contentColor:[UIColor blackColor] imageName:@"close_red.png"];
+    [alertImageView.cancelBtn setTitleColor:[UIColor colorWithRed:20.0 / 255 green:206.0 / 255 blue:1 alpha:1.0f] forState:UIControlStateNormal];
 }
 
 - (void)alertMoreBtnClick: (UIButton *)sender {
@@ -195,9 +226,13 @@
     [alertMoreBtnView setMoreBtnAlertView:@"您目前的取送车订单有绑定的保养预约服务，是否同时取消保养预约？" contentFont:15];
 }
 
+- (void)bubbleBtnClick: (UIButton *)sender {
+    bubbleView.hidden = NO;
+    [bubbleView setBubbleView:@"已取消预约" font:16 textColor: [UIColor blackColor]];
+}
 - (void)toastBtnClick: (UIButton *)sender {
-    [FYXToast showWithTextImage:@"您目前的取送车订单有绑" imageName:@"success.png"];
-//    [FYXToast showWithText:@"您目前的取送车订单有绑定的保养预约服务，是否同时取消保养预约？"];
+//    [FYXToast showWithTextImage:@"您目前的取送车订单有绑" imageName:@"success.png"];
+    [FYXToast showWithText:@"您目前的取送车订单有绑定的保养预约服务，是否同时取消保养预约？"];
 }
 
 - (void)pageFlowBtnClick: (UIButton *)sender {
@@ -227,7 +262,7 @@
 }
 
 - (void)sureDidClick:(FYXAlertView *)alertView {
-
+    
 }
 
 @end

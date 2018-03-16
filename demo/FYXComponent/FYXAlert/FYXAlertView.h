@@ -56,7 +56,8 @@
 - (void)setMsgAlertView: (NSString *)alertTitle 
               titleFont: (NSInteger) titleFont
                alertMsg: (NSString *)msg
-                msgFont: (NSInteger)msgFont;                                         // 文字弹框
+                msgFont: (NSInteger)msgFont
+               msgColor: (UIColor *)msgColor;                                         // 文字弹框
 /**
  *图片提示框
  */
@@ -68,4 +69,8 @@
  *设置多个按钮提示
  */
 - (void)setMoreBtnAlertView: (NSString *)content contentFont: (NSInteger)contentFont;// 设置多个按钮提示
+/**
+ *气泡弹窗
+ */
+- (void)setBubbleView: (NSString *)text font: (CGFloat)textFont textColor: (UIColor *)textColor;
 @end

@@ -44,6 +44,7 @@ CGFloat nativeScale(void) {
     UITextView  * _richTextView;       // 富文本显示框
     UIImageView * _alertTitleImage;    // 提示图片
     UIView      * _lineBreak1;         // 分割线
+    NSString    * _text;
 }
 
 - (id)initWithFrame: (CGRect)frame {
@@ -178,11 +179,11 @@ CGFloat nativeScale(void) {
 }
 
 // 设置弹窗内容
-- (void)setMsgAlertView: (NSString *)alertTitle titleFont:(NSInteger) titleFont alertMsg:(NSString *)msg msgFont:(NSInteger)msgFont {
+- (void)setMsgAlertView: (NSString *)alertTitle titleFont:(NSInteger) titleFont alertMsg:(NSString *)msg msgFont:(NSInteger)msgFont  msgColor: (UIColor *)msgColor{
     [self createMsgAlert];
     _alertTitle.text = alertTitle;
     _msgLabel.text   = msg;
-
+    _msgLabel.textColor = msgColor;
     [_alertTitle setFont:[UIFont systemFontOfSize:titleFont * displayScale]];
     [_msgLabel setFont:[UIFont systemFontOfSize:msgFont * displayScale]];
 
@@ -195,17 +196,20 @@ CGFloat nativeScale(void) {
                                      alertWidth * displayScale,
                                      alertHeight * displayScale);
 
-    _msgLabel.frame     = CGRectMake(8 * displayScale,
+    _alertTitle.frame   = CGRectMake(0, 12, VIEW_WIDTH(_msgAlertView), 23 * displayScale);
+
+    _msgLabel.frame     = CGRectMake(13 * displayScale,
                                      VIEW_HEIGHT(_alertTitle) + VIEW_Y(_alertTitle),
-                                     VIEW_WIDTH(_msgAlertView) - 16 * displayScale,
-                                     VIEW_HEIGHT(_msgAlertView) - VIEW_HEIGHT(_alertTitle) - 35 * displayScale);
+                                     VIEW_WIDTH(_msgAlertView) - 26 * displayScale,
+                                     VIEW_HEIGHT(_msgAlertView) - VIEW_HEIGHT(_alertTitle) - 60 * displayScale);
 
     _cancelBtn.frame    = CGRectMake(0,
-                                     VIEW_HEIGHT(_alertTitle) + VIEW_Y(_alertTitle) + VIEW_HEIGHT(_msgLabel),
+                                     VIEW_HEIGHT(_alertTitle) + VIEW_Y(_alertTitle) + VIEW_HEIGHT(_msgLabel) + 12 * displayScale,
                                      VIEW_WIDTH(_msgAlertView),
                                      30 * displayScale);
 
     _lineBreak1.frame   = CGRectMake(8 * displayScale, VIEW_Y(_cancelBtn), VIEW_WIDTH(_cancelBtn) - 16, 1);
+
     [_msgAlertView addSubview:_lineBreak1];
 }
 
@@ -256,7 +260,7 @@ CGFloat nativeScale(void) {
 #pragma -mark 图片的提示框
 - (void)createImageAlertView {
     UIView *_alertView = [[UIView alloc]init];
-    _alertView.frame = CGRectMake(VIEW_CENTER_X(self) - 100 * displayScale, 160 * displayScale, 200 * displayScale, 200 * displayScale);
+    _alertView.frame = CGRectMake(40 * displayScale, 160 * displayScale, VIEW_WIDTH(self) - 80 * displayScale, 200 * displayScale);
     _alertView.backgroundColor = [UIColor whiteColor];
     _alertView.layer.cornerRadius = 8;
     [self addSubview:_alertView];
@@ -304,6 +308,7 @@ CGFloat nativeScale(void) {
 
 }
 
+# pragma -mark 三个按钮弹窗
 // 三个按钮弹窗
 - (void)creatMoreBtnAlertView {
     UIView *_alertView = [[UIView alloc]init];
@@ -359,6 +364,35 @@ CGFloat nativeScale(void) {
     [self creatMoreBtnAlertView];
     _msgLabel.text = content;
     [_msgLabel setFont:[UIFont systemFontOfSize:contentFont * displayScale]];
+}
+
+#pragma -mark 气泡弹窗
+- (void)setBubbleView: (NSString *)text font: (CGFloat)textFont textColor: (UIColor *)textColor{
+
+    _text = [text copy];
+    _alertTitle = [[UILabel alloc]init];
+    _msgAlertView = [[UIView alloc]init];
+
+    UIFont *font = [UIFont boldSystemFontOfSize: textFont * displayScale];
+    NSDictionary *attrs = @{NSFontAttributeName : font};
+    CGSize textSize = [text boundingRectWithSize:CGSizeMake(280, MAXFLOAT) options:NSStringDrawingUsesLineFragmentOrigin attributes:attrs context:nil].size;                    // 随字数，字体扩展大小
+
+    _alertTitle.text = _text;
+    _alertTitle.font = font;
+    _alertTitle.textColor = textColor;
+    _alertTitle.frame = CGRectMake(8, 8, textSize.width, textSize.height);
+    _alertTitle.textAlignment = NSTextAlignmentCenter;
+
+    UIImageView *bubbleImageView = [[UIImageView alloc]init];
+    bubbleImageView.image = [UIImage imageNamed:@"bubble.png"];
+    bubbleImageView.frame = CGRectMake(0, 0, textSize.width + 16 * displayScale, textSize.height + 10 * displayScale);
+
+    _msgAlertView.frame = CGRectMake(VIEW_WIDTH(self) - textSize.width - 30 * displayScale, 62 * displayScale, VIEW_WIDTH(bubbleImageView), VIEW_HEIGHT(bubbleImageView) + 5);
+    _msgAlertView.backgroundColor = [UIColor clearColor];
+
+    [_msgAlertView addSubview:bubbleImageView];
+    [bubbleImageView addSubview:_alertTitle];
+    [self addSubview:_msgAlertView];
 }
 
 #pragma -mark action

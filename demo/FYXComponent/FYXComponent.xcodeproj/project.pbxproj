@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		2F2B233C205A64A9005A9C33 /* checkView.png in Resources */ = {isa = PBXBuildFile; fileRef = 2F2B233B205A64A9005A9C33 /* checkView.png */; };
+		2F2B233E205A6D99005A9C33 /* close_red.png in Resources */ = {isa = PBXBuildFile; fileRef = 2F2B233D205A6D99005A9C33 /* close_red.png */; };
+		2F2B2340205A6FB6005A9C33 /* bubble.png in Resources */ = {isa = PBXBuildFile; fileRef = 2F2B233F205A6FB6005A9C33 /* bubble.png */; };
 		2F610350204E226600535AD8 /* FYXSideMenu.m in Sources */ = {isa = PBXBuildFile; fileRef = 2F61034F204E226600535AD8 /* FYXSideMenu.m */; };
 		2F610354204E73FF00535AD8 /* FYXPageFlow.m in Sources */ = {isa = PBXBuildFile; fileRef = 2F610353204E73FF00535AD8 /* FYXPageFlow.m */; };
 		2F85742920560998003D1518 /* CalendarViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2F85742820560998003D1518 /* CalendarViewController.m */; };
@@ -72,6 +75,9 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		2F2B233B205A64A9005A9C33 /* checkView.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = checkView.png; sourceTree = "<group>"; };
+		2F2B233D205A6D99005A9C33 /* close_red.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = close_red.png; sourceTree = "<group>"; };
+		2F2B233F205A6FB6005A9C33 /* bubble.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = bubble.png; sourceTree = "<group>"; };
 		2F61034E204E226600535AD8 /* FYXSideMenu.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FYXSideMenu.h; sourceTree = "<group>"; };
 		2F61034F204E226600535AD8 /* FYXSideMenu.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FYXSideMenu.m; sourceTree = "<group>"; };
 		2F610352204E73FF00535AD8 /* FYXPageFlow.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FYXPageFlow.h; sourceTree = "<group>"; };
@@ -266,6 +272,8 @@
 				2F89B49C202D29A700DC6105 /* AppDelegate.m */,
 				2F89B49E202D29A700DC6105 /* ViewController.h */,
 				2F89B49F202D29A700DC6105 /* ViewController.m */,
+				2F2B233D205A6D99005A9C33 /* close_red.png */,
+				2F2B233B205A64A9005A9C33 /* checkView.png */,
 				2F89B4A1202D29A700DC6105 /* Main.storyboard */,
 				2F89B4A4202D29A700DC6105 /* Assets.xcassets */,
 				2F89B4A6202D29A700DC6105 /* LaunchScreen.storyboard */,
@@ -306,6 +314,7 @@
 			children = (
 				2F89B4CE202D29E400DC6105 /* FYXAlertView.h */,
 				2F89B4CF202D29E400DC6105 /* FYXAlertView.m */,
+				2F2B233F205A6FB6005A9C33 /* bubble.png */,
 				2F86FE78203E6BA600994707 /* sure.png */,
 				2F89B4D1202D894100DC6105 /* close.png */,
 			);
@@ -493,11 +502,14 @@
 			files = (
 				2F89B4A8202D29A700DC6105 /* LaunchScreen.storyboard in Resources */,
 				2F86FE79203E6BA600994707 /* sure.png in Resources */,
+				2F2B233C205A64A9005A9C33 /* checkView.png in Resources */,
 				2F89B4A5202D29A700DC6105 /* Assets.xcassets in Resources */,
 				2F89B4D2202D894100DC6105 /* close.png in Resources */,
 				2FA595B82045445E001B2D95 /* next.png in Resources */,
+				2F2B233E205A6D99005A9C33 /* close_red.png in Resources */,
 				2FA595BA204544FD001B2D95 /* prev.png in Resources */,
 				2F89B4A3202D29A700DC6105 /* Main.storyboard in Resources */,
+				2F2B2340205A6FB6005A9C33 /* bubble.png in Resources */,
 				2FB274EA203FF8E000E985F9 /* success.png in Resources */,
 				2FB27521204139BF00E985F9 /* Info.plist in Resources */,
 			);
