@@ -73,6 +73,24 @@
 
 多按钮弹窗提供文字修改弹窗。
 
+
+### 气泡弹窗
+
+<img width="270" height="480" src="https://github.com/rickierYun/Componet/blob/master/image/bublle.png"/>
+
+```objective-c
+[bubbleView setBubbleView:@"已取消预约" font:16 textColor: [UIColor blackColor]];
+```
+
+### 安全指示灯
+
+<img width="270" height="480" src="https://github.com/rickierYun/Componet/blob/master/image/safeLight.png"/>
+
+```objective-c
+[safelightView setSafeLightView:@"点亮表示指示灯处于启动状态。" suggest:@"具体操作参考用户手册。" title:@"安全指示灯" instruteTitle:@"指示灯说明：" suggestTitle:@"建议：" titleImage:@"safeLight.png"];
+```
+
+
 ## TOAST
 
 <img width="270" height="480" src="https://github.com/rickierYun/Componet/blob/master/image/toast.png"/>

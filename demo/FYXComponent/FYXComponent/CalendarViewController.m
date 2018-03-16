@@ -44,6 +44,7 @@
                 morningModel.timeStr = timeMorStr;
                 if (i == 1) {
                     morningModel.timeStatus = 1;
+                    morningModel.timeUnenabledPic = @"full.png";
                 }else {
                     morningModel.timeStatus = 0;
                 }

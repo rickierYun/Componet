@@ -74,36 +74,36 @@
         lakeShapLayer = [CAShapeLayer layer];
         rainShapLayer = [CAShapeLayer layer];
 
-        lightView = [[UIView alloc]init];
-        lightView.frame = CGRectMake(0, 45, 24, 49);
-        lightView.layer.shouldRasterize = YES;
-        lightView.layer.shadowOpacity = 0.5;
-        lightView.layer.shadowOffset = CGSizeMake(0, 0);
-        lightView.layer.shadowColor = [UIColor whiteColor].CGColor;
-        lightView.hidden = NO;
-
-        [self addSubview:lightView];
-
-        UIImageView *lightBackgroundView = [[UIImageView alloc]init];
-        lightBackgroundView.frame = CGRectMake(0, 0,24, 49);
-        lightBackgroundView.image = [UIImage imageNamed:@"lightView.png"];
-        [lightView addSubview:lightBackgroundView];
-
-        UIImageView *imageView = [[UIImageView alloc]init];
-        imageView.image = [UIImage imageNamed:@"light.png"];
-        imageView.frame = CGRectMake(8, 14, 20, 20);
-        imageView.glowRadius = @(10.0f);
-        imageView.glowOpacity = @(0.5f);
-        imageView.glowColor = [UIColor  colorWithRed:20.0 / 255 green:206.0 / 255 blue:1 alpha:1];
-
-        imageView.glowDuration = @1.0;
-        imageView.hideDuration = @0.5;
-        imageView.glowAnimationDuration = @1.0;
-
-        [imageView createGlowLayer];
-        [imageView insertGlowLayer];
-        [imageView startGlowLoop];
-        [lightView addSubview:imageView];
+//        lightView = [[UIView alloc]init];
+//        lightView.frame = CGRectMake(0, 45, 24, 49);
+//        lightView.layer.shouldRasterize = YES;
+//        lightView.layer.shadowOpacity = 0.5;
+//        lightView.layer.shadowOffset = CGSizeMake(0, 0);
+//        lightView.layer.shadowColor = [UIColor whiteColor].CGColor;
+//        lightView.hidden = NO;
+//
+//        [self addSubview:lightView];
+//
+//        UIImageView *lightBackgroundView = [[UIImageView alloc]init];
+//        lightBackgroundView.frame = CGRectMake(0, 0,24, 49);
+//        lightBackgroundView.image = [UIImage imageNamed:@"lightView.png"];
+//        [lightView addSubview:lightBackgroundView];
+//
+//        UIImageView *imageView = [[UIImageView alloc]init];
+//        imageView.image = [UIImage imageNamed:@"light.png"];
+//        imageView.frame = CGRectMake(8, 14, 20, 20);
+//        imageView.glowRadius = @(10.0f);
+//        imageView.glowOpacity = @(0.5f);
+//        imageView.glowColor = [UIColor  colorWithRed:20.0 / 255 green:206.0 / 255 blue:1 alpha:1];
+//
+//        imageView.glowDuration = @1.0;
+//        imageView.hideDuration = @0.5;
+//        imageView.glowAnimationDuration = @1.0;
+//
+//        [imageView createGlowLayer];
+//        [imageView insertGlowLayer];
+//        [imageView startGlowLoop];
+//        [lightView addSubview:imageView];
 
 
     }
@@ -114,11 +114,12 @@
     self.sideMenuView.frame = CGRectMake(-width, 0, width, self.frame.size.height);
 }
 
-- (void)addgestureView: (UIView *)gestureView {
+- (void)addgestureView: (UIView *)gestureView hideView: (UIView *)hideView {
     // 添加左屏幕边缘的滑动手势
     UIScreenEdgePanGestureRecognizer *leftEdgeGesture = [[UIScreenEdgePanGestureRecognizer alloc]initWithTarget:self action:@selector(leftEdgeGusture:)];
     leftEdgeGesture.edges = UIRectEdgeLeft;
     [gestureView addGestureRecognizer:leftEdgeGesture];
+    lightView = hideView;
 }
 
 - (void)leftEdgeGusture: (UIScreenEdgePanGestureRecognizer *)gesture {
@@ -166,7 +167,7 @@
             [UIView animateWithDuration:0.5 animations:^{
                 self.sideMenuView.frame = CGRectMake(-self.sideMenuView.frame.size.width, 0, self.sideMenuView.frame.size.width, self.sideMenuView.frame.size.height);
             }completion:^(BOOL finished) {
-                self.backgroundView.hidden = YES;
+                self .hidden = YES;
                 bezierView.hidden = YES;
             }];
         }
@@ -177,15 +178,12 @@
         }completion:^(BOOL finished) {
             bezierView.hidden = YES;
             bezierView.alpha = 1;
-            self.backgroundView.hidden = YES;
+            self.hidden = YES;
             lightView.hidden = NO;
         } ];
     }
 }
 
-- (void)hideView: (UIView *)view {
-    view.hidden = YES;
-}
 
 - (void)drawRect {
 

@@ -73,4 +73,13 @@
  *气泡弹窗
  */
 - (void)setBubbleView: (NSString *)text font: (CGFloat)textFont textColor: (UIColor *)textColor;
+/**
+ *故障灯
+ */
+- (void)setSafeLightView: (NSString *)instructText
+                 suggest: (NSString *)suggestText
+                   title: (NSString *)title
+           instruteTitle: (NSString * )instruteTitle
+            suggestTitle: (NSString *)suggestTitle
+              titleImage: (NSString *)titleImage;
 @end

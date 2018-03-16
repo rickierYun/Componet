@@ -26,6 +26,7 @@
     FYXAlertView *alertImageView;
     FYXAlertView *alertMoreBtnView;
     FYXAlertView *bubbleView;
+    FYXAlertView *safelightView;
     FYXSideMenu  *sideMenu;
     UIView       *lightView;
 }
@@ -116,10 +117,15 @@
     [bubble addTarget:self action:@selector(bubbleBtnClick:) forControlEvents:UIControlEventTouchUpInside];
     [self.view addSubview:bubble];
 
+    FYXButton *safeLightBtn = [[FYXButton alloc]initWithFrame:CGRectMake(200, 500, 100, 30)];
+    [safeLightBtn setTitle:@"故障灯" forState:UIControlStateNormal];
+    [safeLightBtn addTarget:self action:@selector(safeLightBtnClick:) forControlEvents:UIControlEventTouchUpInside];
+    [self.view addSubview:safeLightBtn];
+
     FYXTextField *textField = [[FYXTextField alloc]initWithFrame:CGRectMake(200, 100, 100, 30)];
     [textField setPlaceholder:@"请登录"];
     [self.view addSubview:textField];
-
+    
     alertView = [[FYXAlertView alloc]initWithFrame:CGRectMake(0, 0,[[UIScreen mainScreen] bounds].size.width , [[UIScreen mainScreen] bounds].size.height)];
     [self.view addSubview:alertView];
     alertView.delegate = self;
@@ -147,47 +153,49 @@
     bubbleView.hidden = YES;
     [self.view addSubview:bubbleView];
 
+    safelightView = [[FYXAlertView alloc]initWithFrame:CGRectMake(0, 0,[[UIScreen mainScreen] bounds].size.width , [[UIScreen mainScreen] bounds].size.height)];
+    [self.view addSubview:safelightView];
+    safelightView.hidden = YES;
+
+
+    lightView = [[UIView alloc]init];
+    lightView.frame = CGRectMake(0, 45, 24, 49);
+    lightView.layer.shouldRasterize = YES;
+    lightView.layer.shadowOpacity = 0.5;
+    lightView.layer.shadowOffset = CGSizeMake(0, 0);
+    lightView.layer.shadowColor = [UIColor whiteColor].CGColor;
+    lightView.hidden = NO;
+
+    [self.view addSubview:lightView];
+
+    UIImageView *lightBackgroundView = [[UIImageView alloc]init];
+    lightBackgroundView.frame = CGRectMake(0, 0,24, 49);
+    lightBackgroundView.image = [UIImage imageNamed:@"lightView.png"];
+    [lightView addSubview:lightBackgroundView];
+
+    UIImageView *imageView = [[UIImageView alloc]init];
+    imageView.image = [UIImage imageNamed:@"light.png"];
+    imageView.frame = CGRectMake(8, 14, 20, 20);
+    imageView.glowRadius = @(10.0f);
+    imageView.glowOpacity = @(0.5f);
+    imageView.glowColor = [UIColor  colorWithRed:20.0 / 255 green:206.0 / 255 blue:1 alpha:1];
+
+    imageView.glowDuration = @1.0;
+    imageView.hideDuration = @0.5;
+    imageView.glowAnimationDuration = @1.0;
+
+    [imageView createGlowLayer];
+    [imageView insertGlowLayer];
+    [imageView startGlowLoop];
+    [lightView addSubview:imageView];
+
     // 侧边栏
     sideMenu = [[FYXSideMenu alloc]initWithFrame:self.view.bounds];
-    [sideMenu addgestureView:self.view];
+    [sideMenu addgestureView:self.view hideView:lightView];
     sideMenu.backgroundView.hidden = YES;
+    sideMenu.hidden = YES;
     [sideMenu setSideMenuViewWidth:self.view.frame.size.width / 4 * 3];
     [self.view addSubview:sideMenu];
-    
-//    lightView = [[UIView alloc]init];
-//    lightView.frame = CGRectMake(0, 45, 24, 49);
-//    lightView.layer.shouldRasterize = YES;
-////    lightView.layer.cornerRadius = VIEW_WIDTH(lightView) / 2;
-//    lightView.layer.shadowOpacity = 0.5;
-//    lightView.layer.shadowOffset = CGSizeMake(0, 0);
-//    //        lightView.layer.shadowColor =   [UIColor  colorWithRed:20.0 / 255 green:206.0 / 255 blue:1 alpha:1].CGColor;
-//    lightView.layer.shadowColor = [UIColor whiteColor].CGColor;
-//    //        lightView.backgroundColor = [UIColor  colorWithRed:42.0 / 255 green:199.0 / 255 blue:244.0 / 255 alpha:0.6];
-//    lightView.hidden = NO;
-//
-//    [self.view addSubview:lightView];
-//
-//    UIImageView *lightBackgroundView = [[UIImageView alloc]init];
-//    lightBackgroundView.frame = CGRectMake(0, 0,24, 49);
-//    lightBackgroundView.image = [UIImage imageNamed:@"lightView.png"];
-//    [lightView addSubview:lightBackgroundView];
-//
-//    UIImageView *imageView = [[UIImageView alloc]init];
-//    imageView.image = [UIImage imageNamed:@"light.png"];
-//    imageView.frame = CGRectMake(8, 14, 20, 20);
-//    imageView.glowRadius = @(5.0f);
-//    imageView.glowOpacity = @(0.5f);
-//    imageView.glowColor = [UIColor  colorWithRed:20.0 / 255 green:206.0 / 255 blue:1 alpha:1];
-//
-//    imageView.glowDuration = @1.0;
-//    imageView.hideDuration = @0.5;
-//    imageView.glowAnimationDuration = @1.0;
-//
-//    [imageView createGlowLayer];
-//    [imageView insertGlowLayer];
-//    [imageView startGlowLoop];
-//    [lightView addSubview:imageView];
-
 
 }
 
@@ -292,6 +300,10 @@
     [self.navigationController pushViewController:vc animated:YES];
 }
 
+- (void)safeLightBtnClick: (UIButton *)sender {
+    safelightView.hidden = NO;
+    [safelightView setSafeLightView:@"点亮表示指示灯处于启动状态。" suggest:@"具体操作参考用户手册。" title:@"安全指示灯" instruteTitle:@"指示灯说明：" suggestTitle:@"建议：" titleImage:@"safeLight.png"];
+}
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
