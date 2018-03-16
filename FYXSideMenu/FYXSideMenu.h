@@ -22,7 +22,7 @@
 */
 - (void)setSideMenuViewWidth: (CGFloat)width;
 
-- (void)hideView: (UIView *)view;
+- (void)clickDraw;
 @end
 
 
