@@ -205,7 +205,7 @@
     self.sideMenuView.frame = CGRectMake(translationX, 0, self.sideMenuView.frame.size.width, self.sideMenuView.frame.size.height);
     [self drawRect];
     if (translationX >= 0) {
-        self.sideMenuView.frame = CGRectMake(translationX, 0, self.sideMenuView.frame.size.width, self.sideMenuView.frame.size.height);
+        self.sideMenuView.frame = CGRectMake(0, 0, self.sideMenuView.frame.size.width, self.sideMenuView.frame.size.height);
         _link.paused = YES;
     }
 }
