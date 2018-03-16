@@ -7,6 +7,7 @@
 //
 
 #import "FYXSideMenu.h"
+#import "UIView+GlowView.h"
 
 #define VIEW_ORIGIN(aView)       ((aView).frame.origin)
 #define VIEW_X(aView)            ((aView).frame.origin.x)
@@ -19,9 +20,9 @@
 #define VIEW_WIDTH(aView)        ((aView).frame.size.width)
 
 @implementation FYXSideMenu {
-    UIView *backgroundView;     // 灰色背景
     UIView *bezierView;         // 画布view
     UIView *lightView;
+    UIButton *lightBtn;
 
     CGPoint pointA; //A
     CGPoint pointB; //B
@@ -47,12 +48,13 @@
 - (id)initWithFrame:(CGRect)frame {
     self = [super initWithFrame:frame];
     if (self) {
-        backgroundView = [[UIView alloc]init];
+        UIView *backgroundView = [[UIView alloc]init];
         backgroundView.frame = self.bounds;
         backgroundView.backgroundColor = [UIColor blackColor];
         backgroundView.alpha = 0.1;
         backgroundView.hidden = YES;
         [self addSubview:backgroundView];
+        self.backgroundView = backgroundView;
 
         bezierView = [[UIView alloc]init];
         bezierView.frame = self.bounds;
@@ -73,16 +75,37 @@
         rainShapLayer = [CAShapeLayer layer];
 
         lightView = [[UIView alloc]init];
-        lightView.frame = CGRectMake(VIEW_X_Right(sideMenuView) + 15, 48, 15, 15);
+        lightView.frame = CGRectMake(0, 45, 24, 49);
         lightView.layer.shouldRasterize = YES;
-        lightView.layer.cornerRadius = VIEW_WIDTH(lightView) / 2;
         lightView.layer.shadowOpacity = 0.5;
         lightView.layer.shadowOffset = CGSizeMake(0, 0);
-//        lightView.layer.shadowColor =   [UIColor  colorWithRed:20.0 / 255 green:206.0 / 255 blue:1 alpha:1].CGColor;
-        lightView.layer.shadowColor = [UIColor orangeColor].CGColor;
-        lightView.backgroundColor = [UIColor  colorWithRed:42.0 / 255 green:199.0 / 255 blue:244.0 / 255 alpha:0.6];
-        lightView.hidden = YES;
+        lightView.layer.shadowColor = [UIColor whiteColor].CGColor;
+        lightView.hidden = NO;
+
         [self addSubview:lightView];
+
+        UIImageView *lightBackgroundView = [[UIImageView alloc]init];
+        lightBackgroundView.frame = CGRectMake(0, 0,24, 49);
+        lightBackgroundView.image = [UIImage imageNamed:@"lightView.png"];
+        [lightView addSubview:lightBackgroundView];
+
+        UIImageView *imageView = [[UIImageView alloc]init];
+        imageView.image = [UIImage imageNamed:@"light.png"];
+        imageView.frame = CGRectMake(8, 14, 20, 20);
+        imageView.glowRadius = @(10.0f);
+        imageView.glowOpacity = @(0.5f);
+        imageView.glowColor = [UIColor  colorWithRed:20.0 / 255 green:206.0 / 255 blue:1 alpha:1];
+
+        imageView.glowDuration = @1.0;
+        imageView.hideDuration = @0.5;
+        imageView.glowAnimationDuration = @1.0;
+
+        [imageView createGlowLayer];
+        [imageView insertGlowLayer];
+        [imageView startGlowLoop];
+        [lightView addSubview:imageView];
+
+
     }
     return self;
 }
@@ -101,7 +124,7 @@
 - (void)leftEdgeGusture: (UIScreenEdgePanGestureRecognizer *)gesture {
     self.hidden = NO;
 
-    backgroundView.hidden = NO;
+    self.backgroundView.hidden = NO;
 
     CGPoint translation = [gesture translationInView:gesture.view];
 
@@ -109,9 +132,9 @@
         if (translation.x <= self.sideMenuView.frame.size.width) {
             CGFloat x = translation.x - self.sideMenuView.frame.size.width;
             self.sideMenuView.frame = CGRectMake(x, 0, self.sideMenuView.frame.size.width, self.sideMenuView.frame.size.height);
-            lightView.frame = CGRectMake(VIEW_X_Right(self.sideMenuView) + 12, 58, 15, 15);
-//            lightView.hidden = NO;
+            lightView.hidden = YES;
             offsetX = translation.x / 5;
+            bezierView.hidden = NO;
             [self drawRect];
 
         }else {
@@ -124,6 +147,8 @@
                 self.sideMenuView.frame = CGRectMake(0, 0, self.sideMenuView.frame.size.width, self.sideMenuView.frame.size.height);
                 bezierView.alpha = 0;
             }];
+
+
         }
     }
 
@@ -141,7 +166,8 @@
             [UIView animateWithDuration:0.5 animations:^{
                 self.sideMenuView.frame = CGRectMake(-self.sideMenuView.frame.size.width, 0, self.sideMenuView.frame.size.width, self.sideMenuView.frame.size.height);
             }completion:^(BOOL finished) {
-                self.hidden = YES;
+                self.backgroundView.hidden = YES;
+                bezierView.hidden = YES;
             }];
         }
     }else {
@@ -149,10 +175,16 @@
             self.sideMenuView.frame = CGRectMake(-self.sideMenuView.frame.size.width, 0, self.sideMenuView.frame.size.width, self.sideMenuView.frame.size.height);
 
         }completion:^(BOOL finished) {
+            bezierView.hidden = YES;
             bezierView.alpha = 1;
-            self.hidden = YES;
+            self.backgroundView.hidden = YES;
+            lightView.hidden = NO;
         } ];
     }
+}
+
+- (void)hideView: (UIView *)view {
+    view.hidden = YES;
 }
 
 - (void)drawRect {

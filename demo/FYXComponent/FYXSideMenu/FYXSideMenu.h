@@ -11,6 +11,7 @@
 @interface FYXSideMenu : UIView
 
 @property(weak, nonatomic) UIView *sideMenuView;
+@property(weak, nonatomic) UIView *backgroundView;     // 灰色背景
 /**
 * view添加滑动手势
 */
@@ -20,6 +21,8 @@
 * 设置侧边栏view的宽度
 */
 - (void)setSideMenuViewWidth: (CGFloat)width;
+
+- (void)hideView: (UIView *)view;
 @end
 
 

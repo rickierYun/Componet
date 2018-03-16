@@ -16,6 +16,7 @@
 #import "PageFlowViewController.h"
 #import "CheckAnimationViewController.h"
 #import "HUdViewController.h"
+#import "UIView+GlowView.h"
 
 @interface ViewController ()<FYXAlertViewDelegate>
 {
@@ -26,7 +27,7 @@
     FYXAlertView *alertMoreBtnView;
     FYXAlertView *bubbleView;
     FYXSideMenu  *sideMenu;
-    
+    UIView       *lightView;
 }
 @end
 
@@ -149,9 +150,44 @@
     // 侧边栏
     sideMenu = [[FYXSideMenu alloc]initWithFrame:self.view.bounds];
     [sideMenu addgestureView:self.view];
-    sideMenu.hidden = YES;
+    sideMenu.backgroundView.hidden = YES;
     [sideMenu setSideMenuViewWidth:self.view.frame.size.width / 4 * 3];
     [self.view addSubview:sideMenu];
+    
+//    lightView = [[UIView alloc]init];
+//    lightView.frame = CGRectMake(0, 45, 24, 49);
+//    lightView.layer.shouldRasterize = YES;
+////    lightView.layer.cornerRadius = VIEW_WIDTH(lightView) / 2;
+//    lightView.layer.shadowOpacity = 0.5;
+//    lightView.layer.shadowOffset = CGSizeMake(0, 0);
+//    //        lightView.layer.shadowColor =   [UIColor  colorWithRed:20.0 / 255 green:206.0 / 255 blue:1 alpha:1].CGColor;
+//    lightView.layer.shadowColor = [UIColor whiteColor].CGColor;
+//    //        lightView.backgroundColor = [UIColor  colorWithRed:42.0 / 255 green:199.0 / 255 blue:244.0 / 255 alpha:0.6];
+//    lightView.hidden = NO;
+//
+//    [self.view addSubview:lightView];
+//
+//    UIImageView *lightBackgroundView = [[UIImageView alloc]init];
+//    lightBackgroundView.frame = CGRectMake(0, 0,24, 49);
+//    lightBackgroundView.image = [UIImage imageNamed:@"lightView.png"];
+//    [lightView addSubview:lightBackgroundView];
+//
+//    UIImageView *imageView = [[UIImageView alloc]init];
+//    imageView.image = [UIImage imageNamed:@"light.png"];
+//    imageView.frame = CGRectMake(8, 14, 20, 20);
+//    imageView.glowRadius = @(5.0f);
+//    imageView.glowOpacity = @(0.5f);
+//    imageView.glowColor = [UIColor  colorWithRed:20.0 / 255 green:206.0 / 255 blue:1 alpha:1];
+//
+//    imageView.glowDuration = @1.0;
+//    imageView.hideDuration = @0.5;
+//    imageView.glowAnimationDuration = @1.0;
+//
+//    [imageView createGlowLayer];
+//    [imageView insertGlowLayer];
+//    [imageView startGlowLoop];
+//    [lightView addSubview:imageView];
+
 
 }
 
