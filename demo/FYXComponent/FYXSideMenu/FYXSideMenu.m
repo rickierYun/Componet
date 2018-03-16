@@ -133,7 +133,7 @@
             CGFloat x = translation.x - self.sideMenuView.frame.size.width;
             self.sideMenuView.frame = CGRectMake(x, 0, self.sideMenuView.frame.size.width, self.sideMenuView.frame.size.height);
             lightView.hidden = YES;
-            offsetX = translation.x / 5;
+            offsetX = translation.x / 5 ;
             bezierView.hidden = NO;
             [self drawRect];
 
