@@ -28,9 +28,9 @@
 
 @interface FYXAlertView : UIView
 
-@property (nonatomic, strong) UIButton * sureBtn;
-@property (nonatomic, strong) UIButton * cancelBtn;
-@property (nonatomic, strong) UIButton * middleBtn;
+@property (nonatomic, weak) UIButton * sureBtn;
+@property (nonatomic, weak) UIButton * cancelBtn;
+@property (nonatomic, weak) UIButton * middleBtn;
 @property (nonatomic, assign) id<FYXAlertViewDelegate>delegate;
 
 

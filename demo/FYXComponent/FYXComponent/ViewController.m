@@ -204,24 +204,19 @@
 }
 - (void)alertClick: (UIButton *)sender {
     alertView.hidden        = NO;
-    alertMsgView.hidden     = YES;
-    alertRichView.hidden    = YES;
-    alertImageView.hidden   = YES;
-    alertMoreBtnView.hidden = YES;
     // 弹窗
     [alertView setAlertTitle:@"this create success" titleFont:17];
     [alertView.cancelBtn setTitle:@"cancel" forState:UIControlStateNormal];
     [alertView.sureBtn setTitle:@"sure" forState:UIControlStateNormal];
-    [alertView.sureBtn setTitleColor:[UIColor redColor] forState:UIControlStateNormal];
+    [alertView.sureBtn setTitleColor:[UIColor colorWithRed:0 green:122.0 / 255 blue:255.0 / 255 alpha:1] forState:UIControlStateNormal];
     [alertView.cancelBtn setTitleColor:[UIColor lightGrayColor] forState:UIControlStateNormal];
+
 }
 
 - (void)alertMsgClick: (UIButton *)sender {
-    alertView.hidden        = YES;
+
     alertMsgView.hidden     = NO;
-    alertRichView.hidden    = YES;
-    alertImageView.hidden   = YES;
-    alertMoreBtnView.hidden = YES;
+
     // 文字弹窗
     [alertMsgView setMsgAlertView:@"提示" titleFont:19 alertMsg:@"机器学习是近年来渐趋热门的一个领域，同时Python 语言经过一段时间的发展也已逐渐成为主流的编程语言之一。本书结合了机器学习和Python 语言两个热门的领域，通过利用两种核心的机器学习算法来将Python 语言在数据分析方面的优势发挥到极 致。 全书共有10 章。第 1 章讲解了Python 机器学习的生态系统，剩余9 章介绍了众多与机器学习相关的算法，包括各类分类算法、数据可视化技术、推荐引擎等，主要包括机器学习在公寓、机票、IPO 市场、新闻源、内容推机器学习是近年来渐趋热门的一个领域，同时Python 语言经过一段时间的发展也已逐渐成为主流的编程语言之一。本书结合了机器学习和Python 语言两个热门的领域，通过利用两种核心的机器学习算法来将Python 语言在数据分析方面的优势发挥到极 致。 全书共有10 章。第 1 章讲解了Python 机器学习的生态系统，剩余9 章介绍了众多与机器学习相关的算法，包括各类分类算法、数据可视化技术、推荐引擎等，主要包括机器学习在公寓、机票、IPO 市场、新闻源、内容推" msgFont:11 msgColor: [UIColor colorWithRed:101.0 / 255 green:101.0 / 255 blue:101.0 / 255 alpha:1]];
     
@@ -231,43 +226,29 @@
 }
 
 - (void)alertRichClick: (UIButton *)sender {
-    alertView.hidden        = YES;
-    alertMsgView.hidden     = YES;
     alertRichView.hidden    = NO;
-    alertImageView.hidden   = YES;
-    alertMoreBtnView.hidden = YES;
     // 富文本弹窗
     [alertRichView setRichTextView:@"机器学习是近年来渐趋热门的一个领域，同时Python 语言经过一段时间的发展也已逐渐成为主流的编程语言之一。本书结合了机器学习和Python 语言两个热门的领域，通过利用两种核心的机器学习算法来将Python 语言在数据分析方面的优势发挥到极 致。 全书共有10 章。第 1 章讲解了Python 机器学习的生态系统，剩余9 章介绍了众多与机器学习相关的算法，包括各类分类算法、数据可视化技术、推荐引擎等，主要包括机器学习在公寓、机票、IPO 市场、新闻源、内容推机器学习是近年来渐趋热门的一个领域，同时Python 语言经过一段时间的发展也已逐渐成为主流的编程语言之一。本书结合了机器学习和Python 语言两个热门的领域，通过利用两种核心的机器学习算法来将Python 语言在数据分析方面的优势发挥到极 致。 全书共有10 章。第 1 章讲解了Python 机器学习的生态系统，剩余9 章介绍了众多与机器学习相关的算法，包括各类分类算法、数据可视化技术、推荐引擎等，主要包括机器学习在公寓、机票、IPO 市场、新闻源、内容推" textFont:11];
     [alertRichView setRichTextViewFrame:200 height:300];
 }
 
 - (void)alertImageClick: (UIButton *)sender {
-    alertView.hidden        = YES;
-    alertMsgView.hidden     = YES;
-    alertRichView.hidden    = YES;
     alertImageView.hidden   = NO;
-    alertMoreBtnView.hidden = YES;
     [alertImageView setImageAlertView:@"机器学习是近年来\n渐趋热门的一个领域" contentFont:17 contentColor:[UIColor blackColor] imageName:@"checkView.png"];
     [alertImageView.cancelBtn setTitleColor:[UIColor colorWithRed:20.0 / 255 green:206.0 / 255 blue:1 alpha:1.0f] forState:UIControlStateNormal];
 }
 
 - (void)alertImage2Click: (UIButton *)sender {
-    alertView.hidden        = YES;
-    alertMsgView.hidden     = YES;
-    alertRichView.hidden    = YES;
     alertImageView.hidden   = NO;
-    alertMoreBtnView.hidden = YES;
     [alertImageView setImageAlertView:@"机器学习是近年来\n渐趋热门的一个领域" contentFont:17 contentColor:[UIColor blackColor] imageName:@"close_red.png"];
     [alertImageView.cancelBtn setTitleColor:[UIColor colorWithRed:20.0 / 255 green:206.0 / 255 blue:1 alpha:1.0f] forState:UIControlStateNormal];
 }
 
 - (void)alertMoreBtnClick: (UIButton *)sender {
-    alertView.hidden        = YES;
-    alertMsgView.hidden     = YES;
-    alertRichView.hidden    = YES;
-    alertImageView.hidden   = YES;
     alertMoreBtnView.hidden = NO;
     [alertMoreBtnView setMoreBtnAlertView:@"您目前的取送车订单有绑定的保养预约服务，是否同时取消保养预约？" contentFont:15];
+    [alertMoreBtnView.sureBtn setTitleColor:[UIColor lightGrayColor] forState:UIControlStateNormal];
+    [alertMoreBtnView.cancelBtn setTitleColor:[UIColor colorWithRed:0 green:122.0 / 255 blue:255.0 / 255 alpha:1] forState:UIControlStateNormal];
 }
 
 - (void)bubbleBtnClick: (UIButton *)sender {

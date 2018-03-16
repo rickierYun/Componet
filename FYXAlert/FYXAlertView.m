@@ -100,8 +100,8 @@ CGFloat nativeScale(void) {
     [_alertView addSubview:_alertTitle];
 
     // 取消、确定按钮
-    _sureBtn   = [[UIButton alloc]init];
-    _cancelBtn = [[UIButton alloc]init];
+    UIButton *_sureBtn   = [[UIButton alloc]init];
+    UIButton *_cancelBtn = [[UIButton alloc]init];
 
     _sureBtn.frame   = CGRectMake(VIEW_WIDTH(_alertView) / 2, VIEW_HEIGHT(_alertTitle), VIEW_WIDTH(_alertView) / 2, 40 * displayScale);
     _cancelBtn.frame = CGRectMake(0,VIEW_HEIGHT(_alertTitle), VIEW_WIDTH(_alertView) / 2, 40 * displayScale);
@@ -114,6 +114,8 @@ CGFloat nativeScale(void) {
 
     [_alertView addSubview:_sureBtn];
     [_alertView addSubview:_cancelBtn];
+    self.sureBtn = _sureBtn;
+    self.cancelBtn = _cancelBtn;
 
     // 分割线
 
@@ -168,7 +170,7 @@ CGFloat nativeScale(void) {
     _msgLabel.textColor     = [UIColor blackColor];
     [_msgAlertView addSubview:_msgLabel];
 
-    _cancelBtn = [[UIButton alloc]init];
+    UIButton *_cancelBtn = [[UIButton alloc]init];
     _cancelBtn.frame = CGRectMake(0,
                                   VIEW_HEIGHT(_alertTitle) + VIEW_Y(_alertTitle) + VIEW_HEIGHT(_msgLabel),
                                   VIEW_WIDTH(_msgAlertView),
@@ -177,7 +179,7 @@ CGFloat nativeScale(void) {
     _cancelBtn.titleLabel.font = [UIFont systemFontOfSize:17 * displayScale];
     [_cancelBtn addTarget:self action:@selector(hiddenClick:) forControlEvents:UIControlEventTouchUpInside];
     [_msgAlertView addSubview:_cancelBtn];
-
+    self.cancelBtn = _cancelBtn;
     // 分割线
 
 }
@@ -229,7 +231,7 @@ CGFloat nativeScale(void) {
 
     [self addSubview:_richTextView];
 
-    _cancelBtn = [[UIButton alloc]init];
+    UIButton *_cancelBtn = [[UIButton alloc]init];
     _cancelBtn.frame = CGRectMake(VIEW_CENTER_X(_richTextView) + 8 * displayScale,
                                   VIEW_HEIGHT(_richTextView) + 20 * displayScale + VIEW_Y(_richTextView),
                                   30 * displayScale,
@@ -238,6 +240,7 @@ CGFloat nativeScale(void) {
     [_cancelBtn addTarget:self action:@selector(hiddenClick:) forControlEvents:UIControlEventTouchUpInside];
     [_cancelBtn setBackgroundImage:[UIImage imageNamed:@"close.png"] forState:UIControlStateNormal];
     [self addSubview:_cancelBtn];
+    self.cancelBtn = _cancelBtn;
 }
 
 
@@ -284,7 +287,7 @@ CGFloat nativeScale(void) {
     _msgLabel.textColor     = [UIColor blackColor];
     [_alertView addSubview:_msgLabel];
 
-    _cancelBtn = [[UIButton alloc]init];
+    UIButton *_cancelBtn = [[UIButton alloc]init];
     _cancelBtn.frame = CGRectMake(0,
                                   VIEW_HEIGHT(_msgLabel) + 20 * displayScale + VIEW_Y(_msgLabel),
                                   VIEW_WIDTH(_alertView),
@@ -293,7 +296,7 @@ CGFloat nativeScale(void) {
     [_cancelBtn setTitle:@"sure" forState:UIControlStateNormal];
     [_cancelBtn setTitleColor:[UIColor blueColor] forState:UIControlStateNormal];
     [_alertView addSubview:_cancelBtn];
-
+    self.cancelBtn = _cancelBtn;
     // 分割线
     _lineBreak1.frame = CGRectMake(8 * displayScale, VIEW_Y(_cancelBtn), VIEW_WIDTH(_cancelBtn) - 16, 1);
     [_alertView addSubview:_lineBreak1];
@@ -328,27 +331,29 @@ CGFloat nativeScale(void) {
     _msgLabel.numberOfLines = 0;
     [_alertView addSubview:_msgLabel];
 
-    _sureBtn = [[UIButton alloc]init];
+    UIButton *_sureBtn = [[UIButton alloc]init];
     _sureBtn.frame = CGRectMake(0, VIEW_Y(_msgLabel) + VIEW_HEIGHT(_msgLabel) + 8, VIEW_WIDTH(_alertView), 35 * displayScale);
     [_sureBtn setTitle:@"sure" forState:UIControlStateNormal];
     [_sureBtn setTitleColor:[UIColor colorWithRed:0 green:122.0 / 255 blue:255.0 / 255 alpha:1] forState:UIControlStateNormal];
     [_sureBtn addTarget:self action:@selector(sureClick:) forControlEvents:UIControlEventTouchUpInside];
     [_alertView addSubview:_sureBtn];
+    self.sureBtn = _sureBtn;
 
-    _middleBtn = [[UIButton alloc]init];
+    UIButton *_middleBtn = [[UIButton alloc]init];
     _middleBtn.frame = CGRectMake(0, VIEW_Y(_sureBtn) + VIEW_HEIGHT(_sureBtn), VIEW_WIDTH(_sureBtn), VIEW_HEIGHT(_sureBtn));
     [_middleBtn setTitle:@"NO,select Other" forState:UIControlStateNormal];
     [_middleBtn setTitleColor:[UIColor lightGrayColor] forState:UIControlStateNormal];
     [_middleBtn addTarget:self action:@selector(otherClick:) forControlEvents:UIControlEventTouchUpInside];
     [_alertView addSubview:_middleBtn];
+    self.middleBtn = _middleBtn;
 
-    _cancelBtn =  [[UIButton alloc]init];
+    UIButton *_cancelBtn =  [[UIButton alloc]init];
     _cancelBtn.frame = CGRectMake(0, VIEW_Y(_middleBtn) + VIEW_HEIGHT(_middleBtn), VIEW_WIDTH(_sureBtn), VIEW_HEIGHT(_sureBtn));
     [_cancelBtn setTitle:@"think more" forState:UIControlStateNormal];
     [_cancelBtn setTitleColor:[UIColor lightGrayColor] forState:UIControlStateNormal];
     [_cancelBtn addTarget:self action:@selector(hiddenClick:) forControlEvents:UIControlEventTouchUpInside];
     [_alertView addSubview:_cancelBtn];
-
+    self.cancelBtn = _cancelBtn;
     // 分割线
     _lineBreak1.frame = CGRectMake(0, VIEW_Y(_sureBtn), VIEW_WIDTH(_sureBtn), 1);
     [_alertView addSubview:_lineBreak1];
@@ -469,11 +474,12 @@ CGFloat nativeScale(void) {
     [_safeLightView addSubview:suggestTitleLb];
     [_safeLightView addSubview:suggestLb];
 
-    _cancelBtn = [[UIButton alloc]init];
+    UIButton *_cancelBtn = [[UIButton alloc]init];
     _cancelBtn.frame = CGRectMake(VIEW_CENTER_X(self) - 10 * displayScale,VIEW_Y_Bottom(_safeLightView) + 30 * displayScale, 40 * displayScale, 40 * displayScale);
     [_cancelBtn addTarget:self action:@selector(hiddenClick:) forControlEvents:UIControlEventTouchUpInside];
     [_cancelBtn setBackgroundImage:[UIImage imageNamed:@"close.png"] forState:UIControlStateNormal];
     [self addSubview:_cancelBtn];
+    self.cancelBtn = _cancelBtn;
 
 }
 
