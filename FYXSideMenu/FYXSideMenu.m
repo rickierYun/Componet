@@ -211,10 +211,10 @@
         pointK = CGPointMake(VIEW_X_Right(self.sideMenuView) + 13 + offsetX, 75 - offsetX );
         pointC = CGPointMake(VIEW_X_Right(self.sideMenuView) + 27 + offsetX, 65);
 
-        [lake addQuadCurveToPoint:pointB controlPoint:pointF];
+//        [lake addQuadCurveToPoint:pointB controlPoint:pointF];
         [lake addCurveToPoint:pointH controlPoint1:pointJ controlPoint2:pointM];
         [lake addQuadCurveToPoint:pointI controlPoint:pointC];
-        [lake addCurveToPoint:pointD controlPoint1:pointN controlPoint2:pointK];
+        [lake addCurveToPoint:pointE controlPoint1:pointN controlPoint2:pointK];
     }else if (offsetX >= 22 && offsetX < 30) {   // 水滴开始离开
         pointM = CGPointMake(VIEW_X_Right(self.sideMenuView) + 18 + offsetX / 2, 55 - offsetX / 5);
         pointN = CGPointMake(VIEW_X_Right(self.sideMenuView) + 18 + offsetX / 2, 75 + offsetX / 5);
@@ -222,20 +222,20 @@
         pointK = CGPointMake(VIEW_X_Right(self.sideMenuView) + 13 + offsetX, 65 - offsetX / 2);
         pointC = CGPointMake(VIEW_X_Right(self.sideMenuView) + 25 + offsetX + 2, 65);
 
-        [lake addQuadCurveToPoint:pointB controlPoint:pointF];
+//        [lake addQuadCurveToPoint:pointB controlPoint:pointF];
         [lake addCurveToPoint:pointH controlPoint1:pointJ controlPoint2:pointM];
         [lake addQuadCurveToPoint:pointI controlPoint:pointC];
-        [lake addCurveToPoint:pointD controlPoint1:pointN controlPoint2:pointK];
+        [lake addCurveToPoint:pointE controlPoint1:pointN controlPoint2:pointK];
     }else if (offsetX >= 30 && offsetX <= 40){     // 水滴形成，形成丝状
         pointM = CGPointMake(VIEW_X_Right(self.sideMenuView) + 18 + 15, 55 - 6);
         pointN = CGPointMake(VIEW_X_Right(self.sideMenuView) + 18 + 15, 75 + 6);
-        pointJ = CGPointMake(VIEW_X_Right(self.sideMenuView) + 13 + offsetX, 65 + offsetX / 2);
-        pointK = CGPointMake(VIEW_X_Right(self.sideMenuView) + 13 + offsetX, 65 - offsetX / 2);
+        pointJ = CGPointMake(VIEW_X_Right(self.sideMenuView) + 13 + offsetX, 65 + offsetX / 2 );
+        pointK = CGPointMake(VIEW_X_Right(self.sideMenuView) + 13 + offsetX, 65 - offsetX / 2 );
         pointC = CGPointMake(VIEW_X_Right(self.sideMenuView) + 25 + offsetX + 2, 65);
-        [lake addQuadCurveToPoint:pointB controlPoint:pointF];
+//        [lake addQuadCurveToPoint:pointB controlPoint:pointF];
         [lake addCurveToPoint:pointH controlPoint1:pointJ controlPoint2:pointM];
         [lake addQuadCurveToPoint:pointI controlPoint:pointC];
-        [lake addCurveToPoint:pointD controlPoint1:pointN controlPoint2:pointK];
+        [lake addCurveToPoint:pointE controlPoint1:pointN controlPoint2:pointK];
     }else if (offsetX > 40){    // 完全分离
         pointJ = CGPointMake(VIEW_X_Right(self.sideMenuView) + 20 , 65);
         pointC = CGPointMake(VIEW_X_Right(self.sideMenuView) + 29 + offsetX, 65);
@@ -267,10 +267,10 @@
             }
         }
     }else {
-        [lake addQuadCurveToPoint:pointB controlPoint:pointF];
+//        [lake addQuadCurveToPoint:pointB controlPoint:pointF];
         [lake addQuadCurveToPoint:pointH controlPoint:pointM];
         [lake addQuadCurveToPoint:pointI controlPoint:pointC];
-        [lake addQuadCurveToPoint:pointD controlPoint:pointN];
+        [lake addQuadCurveToPoint:pointE controlPoint:pointN];
     }
 
     // 放置画布，避免error log
@@ -283,7 +283,7 @@
         [bezierView.layer addSublayer:rainShapLayer];
     }
 
-    [lake addQuadCurveToPoint:pointE controlPoint:pointG];
+//    [lake addQuadCurveToPoint:pointE controlPoint:pointG];
     [lake addLineToPoint:pointA];
 
     [lake stroke];

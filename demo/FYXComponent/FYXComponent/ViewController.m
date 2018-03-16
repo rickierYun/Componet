@@ -159,7 +159,7 @@
 
 
     lightView = [[UIView alloc]init];
-    lightView.frame = CGRectMake(0, 45, 24, 49);
+    lightView.frame = CGRectMake(0, 44, 24, 48);
     lightView.layer.shouldRasterize = YES;
     lightView.layer.shadowOpacity = 0.5;
     lightView.layer.shadowOffset = CGSizeMake(0, 0);
