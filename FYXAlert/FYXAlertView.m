@@ -25,6 +25,9 @@
 #define VIEW_HEIGHT(aView)       ((aView).frame.size.height)
 #define VIEW_WIDTH(aView)        ((aView).frame.size.width)
 
+#define VIEW_X_Right(aView)      ((aView).frame.origin.x + (aView).frame.size.width)
+#define VIEW_Y_Bottom(aView)     ((aView).frame.origin.y + (aView).frame.size.height)
+
 CGFloat nativeScale(void) {
     static CGFloat scale = 0.0f;
     if (scale == 0.0f) {
@@ -44,6 +47,8 @@ CGFloat nativeScale(void) {
     UITextView  * _richTextView;       // 富文本显示框
     UIImageView * _alertTitleImage;    // 提示图片
     UIView      * _lineBreak1;         // 分割线
+    NSString    * _text;               // 文字载体
+    UIView      * _safeLightView;      // 安全提示灯
 }
 
 - (id)initWithFrame: (CGRect)frame {
@@ -178,11 +183,11 @@ CGFloat nativeScale(void) {
 }
 
 // 设置弹窗内容
-- (void)setMsgAlertView: (NSString *)alertTitle titleFont:(NSInteger) titleFont alertMsg:(NSString *)msg msgFont:(NSInteger)msgFont {
+- (void)setMsgAlertView: (NSString *)alertTitle titleFont:(NSInteger) titleFont alertMsg:(NSString *)msg msgFont:(NSInteger)msgFont  msgColor: (UIColor *)msgColor{
     [self createMsgAlert];
     _alertTitle.text = alertTitle;
     _msgLabel.text   = msg;
-
+    _msgLabel.textColor = msgColor;
     [_alertTitle setFont:[UIFont systemFontOfSize:titleFont * displayScale]];
     [_msgLabel setFont:[UIFont systemFontOfSize:msgFont * displayScale]];
 
@@ -195,17 +200,20 @@ CGFloat nativeScale(void) {
                                      alertWidth * displayScale,
                                      alertHeight * displayScale);
 
-    _msgLabel.frame     = CGRectMake(8 * displayScale,
+    _alertTitle.frame   = CGRectMake(0, 12, VIEW_WIDTH(_msgAlertView), 23 * displayScale);
+
+    _msgLabel.frame     = CGRectMake(13 * displayScale,
                                      VIEW_HEIGHT(_alertTitle) + VIEW_Y(_alertTitle),
-                                     VIEW_WIDTH(_msgAlertView) - 16 * displayScale,
-                                     VIEW_HEIGHT(_msgAlertView) - VIEW_HEIGHT(_alertTitle) - 35 * displayScale);
+                                     VIEW_WIDTH(_msgAlertView) - 26 * displayScale,
+                                     VIEW_HEIGHT(_msgAlertView) - VIEW_HEIGHT(_alertTitle) - 60 * displayScale);
 
     _cancelBtn.frame    = CGRectMake(0,
-                                     VIEW_HEIGHT(_alertTitle) + VIEW_Y(_alertTitle) + VIEW_HEIGHT(_msgLabel),
+                                     VIEW_HEIGHT(_alertTitle) + VIEW_Y(_alertTitle) + VIEW_HEIGHT(_msgLabel) + 12 * displayScale,
                                      VIEW_WIDTH(_msgAlertView),
                                      30 * displayScale);
 
     _lineBreak1.frame   = CGRectMake(8 * displayScale, VIEW_Y(_cancelBtn), VIEW_WIDTH(_cancelBtn) - 16, 1);
+
     [_msgAlertView addSubview:_lineBreak1];
 }
 
@@ -256,7 +264,7 @@ CGFloat nativeScale(void) {
 #pragma -mark 图片的提示框
 - (void)createImageAlertView {
     UIView *_alertView = [[UIView alloc]init];
-    _alertView.frame = CGRectMake(VIEW_CENTER_X(self) - 100 * displayScale, 160 * displayScale, 200 * displayScale, 200 * displayScale);
+    _alertView.frame = CGRectMake(40 * displayScale, 160 * displayScale, VIEW_WIDTH(self) - 80 * displayScale, 200 * displayScale);
     _alertView.backgroundColor = [UIColor whiteColor];
     _alertView.layer.cornerRadius = 8;
     [self addSubview:_alertView];
@@ -304,6 +312,7 @@ CGFloat nativeScale(void) {
 
 }
 
+# pragma -mark 三个按钮弹窗
 // 三个按钮弹窗
 - (void)creatMoreBtnAlertView {
     UIView *_alertView = [[UIView alloc]init];
@@ -359,6 +368,118 @@ CGFloat nativeScale(void) {
     [self creatMoreBtnAlertView];
     _msgLabel.text = content;
     [_msgLabel setFont:[UIFont systemFontOfSize:contentFont * displayScale]];
+}
+
+#pragma -mark 气泡弹窗
+- (void)setBubbleView: (NSString *)text font: (CGFloat)textFont textColor: (UIColor *)textColor{
+
+    _text = [text copy];
+    _alertTitle = [[UILabel alloc]init];
+    _msgAlertView = [[UIView alloc]init];
+
+    UIFont *font = [UIFont systemFontOfSize: textFont * displayScale];
+    NSDictionary *attrs = @{NSFontAttributeName : font};
+    CGSize textSize = [text boundingRectWithSize:CGSizeMake(280, MAXFLOAT) options:NSStringDrawingUsesLineFragmentOrigin attributes:attrs context:nil].size;                    // 随字数，字体扩展大小
+
+    _alertTitle.text = _text;
+    _alertTitle.font = font;
+    _alertTitle.textColor = textColor;
+    _alertTitle.frame = CGRectMake(8, 12, textSize.width, textSize.height);
+    _alertTitle.textAlignment = NSTextAlignmentCenter;
+
+    UIImageView *bubbleImageView = [[UIImageView alloc]init];
+    bubbleImageView.image = [UIImage imageNamed:@"bubble.png"];
+    bubbleImageView.frame = CGRectMake(0, 0, textSize.width + 16 * displayScale, textSize.height + 16 * displayScale);
+
+    _msgAlertView.frame = CGRectMake(VIEW_WIDTH(self) - textSize.width - 30 * displayScale, 62 * displayScale, VIEW_WIDTH(bubbleImageView), VIEW_HEIGHT(bubbleImageView) + 5);
+    _msgAlertView.backgroundColor = [UIColor clearColor];
+    _msgAlertView.autoresizingMask = UIViewAutoresizingFlexibleWidth;
+
+    [_msgAlertView addSubview:bubbleImageView];
+    [bubbleImageView addSubview:_alertTitle];
+    [self addSubview:_msgAlertView];
+}
+
+#pragma -mark 安全提示灯
+- (void)createSafeLightView: (NSString *)instructText suggest: (NSString *)suggestText title: (NSString *)title instruteTitle: (NSString * ) instruteTitle suggestTitle: (NSString *)suggestTitle{
+
+    _alertTitleImage = [[UIImageView alloc]init];
+    _alertTitleImage.frame = CGRectMake(25 * displayScale, 25 * displayScale, 70 * displayScale, 70 * displayScale);
+
+    UIFont *font = [UIFont boldSystemFontOfSize: 18 * displayScale];
+    NSDictionary *attrs = @{NSFontAttributeName : font};
+    CGSize textSize = [title boundingRectWithSize:CGSizeMake(280, MAXFLOAT) options:NSStringDrawingUsesLineFragmentOrigin attributes:attrs context:nil].size;
+
+    _alertTitle = [[UILabel alloc]init];
+    _alertTitle.frame = CGRectMake(VIEW_X_Right(_alertTitleImage) + 20 * displayScale, VIEW_CENTER_Y(_alertTitleImage) - textSize.height / 2, 147 * displayScale, textSize.height);
+    _alertTitle.text = title;
+    _alertTitle.font = font;
+    _alertTitle.numberOfLines = 0;
+    _alertTitle.textColor = [UIColor colorWithRed:50.0 / 255 green:50.0 / 255 blue:50.0 / 255 alpha:1];
+
+    _lineBreak1.frame = CGRectMake(VIEW_X(_alertTitleImage), VIEW_Y_Bottom(_alertTitleImage) + 10 * displayScale, VIEW_WIDTH(_alertTitleImage) + VIEW_WIDTH(_alertTitle) + 20 * displayScale, 1);
+
+    UILabel *instruteTitleLb = [[UILabel alloc]init];
+    textSize = [instruteTitle boundingRectWithSize:CGSizeMake(280, MAXFLOAT) options:NSStringDrawingUsesLineFragmentOrigin attributes:attrs context:nil].size;
+    instruteTitleLb.frame = CGRectMake(VIEW_X(_lineBreak1), VIEW_Y_Bottom(_lineBreak1) + 12 * displayScale, VIEW_WIDTH(_lineBreak1), textSize.height);
+    instruteTitleLb.textColor = [UIColor colorWithRed:50.0 / 255 green:50.0 / 255 blue:50.0 / 255 alpha:1];
+    instruteTitleLb.font = font;
+    instruteTitleLb.text = instruteTitle;
+
+    UILabel *instruteTextLb = [[UILabel alloc]init];
+    font = [UIFont systemFontOfSize: 14 * displayScale];
+    attrs = @{NSFontAttributeName : font};
+    textSize = [instructText boundingRectWithSize:CGSizeMake(280, MAXFLOAT) options:NSStringDrawingUsesLineFragmentOrigin attributes:attrs context:nil].size;
+    instruteTextLb.textColor = [UIColor colorWithRed:50.0 / 255 green:50.0 / 255 blue:50.0 / 255 alpha:0.5];
+    instruteTextLb.numberOfLines = 0;
+    instruteTextLb.font = font;
+    instruteTextLb.text = instructText;
+    instruteTextLb.frame = CGRectMake(VIEW_X(_lineBreak1), VIEW_Y_Bottom(instruteTitleLb) + 12 * displayScale, VIEW_WIDTH(_lineBreak1), textSize.height);
+
+    UILabel *suggestTitleLb = [[UILabel alloc]init];
+    font = [UIFont boldSystemFontOfSize: 16 * displayScale];
+    attrs = @{NSFontAttributeName : font};
+    textSize = [suggestTitle boundingRectWithSize:CGSizeMake(280, MAXFLOAT) options:NSStringDrawingUsesLineFragmentOrigin attributes:attrs context:nil].size;
+    suggestTitleLb.frame = CGRectMake(VIEW_X(_lineBreak1), VIEW_Y_Bottom(instruteTextLb) + 30 * displayScale, VIEW_WIDTH(_lineBreak1), textSize.height);
+    suggestTitleLb.text = suggestTitle;
+    suggestTitleLb.font = font;
+    suggestTitleLb.textColor = [UIColor colorWithRed:50.0 / 255 green:50.0 / 255 blue:50.0 / 255 alpha:1];
+
+    UILabel *suggestLb = [[UILabel alloc]init];
+    font = [UIFont systemFontOfSize: 14 * displayScale];
+    attrs = @{NSFontAttributeName : font};
+    textSize = [suggestText boundingRectWithSize:CGSizeMake(280, MAXFLOAT) options:NSStringDrawingUsesLineFragmentOrigin attributes:attrs context:nil].size;
+    suggestLb.frame = CGRectMake(VIEW_X(_lineBreak1), VIEW_Y_Bottom(suggestTitleLb) + 12 * displayScale, VIEW_WIDTH(_lineBreak1), textSize.height);
+    suggestLb.textColor = [UIColor colorWithRed:50.0 / 255 green:50.0 / 255 blue:50.0 / 255 alpha:0.5];
+    suggestLb.numberOfLines = 0;
+    suggestLb.font = font;
+    suggestLb.text = suggestText;
+
+    _safeLightView = [[UIView alloc]init];
+    _safeLightView.frame = CGRectMake(40 * displayScale, 120 * displayScale, SCREEN_WIDTH - 80 * displayScale, VIEW_HEIGHT(_alertTitleImage) + VIEW_HEIGHT(suggestTitleLb) + VIEW_HEIGHT(suggestLb) + VIEW_HEIGHT(instruteTitleLb) + VIEW_HEIGHT(instruteTextLb) + 130 * displayScale);
+    _safeLightView.backgroundColor = [UIColor whiteColor];
+    _safeLightView.layer.cornerRadius = 8;
+    _safeLightView.autoresizingMask = UIViewAutoresizingFlexibleHeight;
+    [self addSubview:_safeLightView];
+    [_safeLightView addSubview:_alertTitleImage];
+    [_safeLightView addSubview:_alertTitle];
+    [_safeLightView addSubview:_lineBreak1];
+    [_safeLightView addSubview:instruteTitleLb];
+    [_safeLightView addSubview:instruteTextLb];
+    [_safeLightView addSubview:suggestTitleLb];
+    [_safeLightView addSubview:suggestLb];
+
+    _cancelBtn = [[UIButton alloc]init];
+    _cancelBtn.frame = CGRectMake(VIEW_CENTER_X(self) - 10 * displayScale,VIEW_Y_Bottom(_safeLightView) + 30 * displayScale, 40 * displayScale, 40 * displayScale);
+    [_cancelBtn addTarget:self action:@selector(hiddenClick:) forControlEvents:UIControlEventTouchUpInside];
+    [_cancelBtn setBackgroundImage:[UIImage imageNamed:@"close.png"] forState:UIControlStateNormal];
+    [self addSubview:_cancelBtn];
+
+}
+
+- (void)setSafeLightView: (NSString *)instructText suggest: (NSString *)suggestText title: (NSString *)title instruteTitle: (NSString * ) instruteTitle suggestTitle: (NSString *)suggestTitle titleImage: (NSString *)titleImage{
+    [self createSafeLightView:instructText suggest:suggestText title:title instruteTitle:instruteTitle suggestTitle:suggestTitle];
+    _alertTitleImage.image = [UIImage imageNamed:titleImage];
 }
 
 #pragma -mark action
