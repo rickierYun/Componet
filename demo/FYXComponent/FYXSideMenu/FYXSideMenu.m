@@ -43,6 +43,8 @@
     UIBezierPath *rain;
     CAShapeLayer *rainShapLayer;
     CGFloat offsetX;
+    CGFloat translationX;
+    CADisplayLink *_link;
 }
 
 - (id)initWithFrame:(CGRect)frame {
@@ -184,6 +186,29 @@
     }
 }
 
+- (void)clickDraw {
+    self.hidden = NO;
+    self.backgroundView.hidden = NO;
+    bezierView.alpha = 1;
+    bezierView.hidden = NO;
+    lightView.hidden = YES;
+    offsetX = 0;
+    translationX = -self.sideMenuView.frame.size.width;
+    _link = [CADisplayLink displayLinkWithTarget:self selector:@selector(Addistance)];
+    [_link addToRunLoop:[NSRunLoop mainRunLoop] forMode:NSDefaultRunLoopMode];
+    _link.paused = NO;
+}
+
+- (void)Addistance {
+    translationX += 5; // 速度
+    offsetX = (translationX + VIEW_WIDTH(self.sideMenuView)) / 5;
+    self.sideMenuView.frame = CGRectMake(translationX, 0, self.sideMenuView.frame.size.width, self.sideMenuView.frame.size.height);
+    [self drawRect];
+    if (translationX >= 0) {
+        self.sideMenuView.frame = CGRectMake(translationX, 0, self.sideMenuView.frame.size.width, self.sideMenuView.frame.size.height);
+        _link.paused = YES;
+    }
+}
 
 - (void)drawRect {
 

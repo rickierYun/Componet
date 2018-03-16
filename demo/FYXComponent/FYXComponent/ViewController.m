@@ -168,9 +168,10 @@
 
     [self.view addSubview:lightView];
 
-    UIImageView *lightBackgroundView = [[UIImageView alloc]init];
+    UIButton *lightBackgroundView = [[UIButton alloc]init];
     lightBackgroundView.frame = CGRectMake(0, 0,24, 49);
-    lightBackgroundView.image = [UIImage imageNamed:@"lightView.png"];
+    [lightBackgroundView setImage:[UIImage imageNamed:@"lightView.png"] forState:UIControlStateNormal];
+    [lightBackgroundView addTarget:self action:@selector(sideMenuClick:) forControlEvents:UIControlEventTouchUpInside];
     [lightView addSubview:lightBackgroundView];
 
     UIImageView *imageView = [[UIImageView alloc]init];
@@ -290,7 +291,11 @@
     // Dispose of any resources that can be recreated.
 }
 
-- (void)sureDidClick:(FYXAlertView *)alertView {
+- (void)sideMenuClick: (UIButton *)sender {
+    
+    [sideMenu clickDraw];
+}
+- (void)sureDidClick: (FYXAlertView *)alertView {
     
 }
 
