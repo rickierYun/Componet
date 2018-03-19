@@ -21,18 +21,19 @@
         self.textColor          = [UIColor colorWithRed:101.0 / 255 green:101.0 / 255 blue:101.0 / 255 alpha:1.0f];
         self.backgroundColor    = [UIColor whiteColor];
         self.tintColor          = [UIColor lightGrayColor];
-        self.leftView           = [[UIView alloc]initWithFrame:CGRectMake(0, 0, 8, 0)];
+        self.leftView           = [[UIView alloc]initWithFrame:CGRectMake(0, 0, 8, 0)]; //这是光标的起始位置
         self.leftViewMode       = UITextFieldViewModeAlways;
         self.attributedPlaceholder = [[NSAttributedString alloc] initWithString:@"请输入内容" attributes:@{
                                         NSForegroundColorAttributeName: [UIColor lightGrayColor],
                                         NSFontAttributeName           : [UIFont systemFontOfSize:13]
-                                    } ];
+                                    } ];            // 设置placeholder
         self.leftView.userInteractionEnabled = NO;
-        self.contentVerticalAlignment  = UIControlContentVerticalAlignmentCenter;
+        self.contentVerticalAlignment  = UIControlContentVerticalAlignmentCenter;       // 设置内容对其方式
     }
     return self;
 }
 
+// 扩展设置placeholder函数，增加预设值
 - (void)setPlaceholder:(NSString *)placeholder  {
     self.attributedPlaceholder = [[NSAttributedString alloc] initWithString:placeholder attributes:@{
                                   NSForegroundColorAttributeName: [UIColor lightGrayColor],

@@ -41,7 +41,7 @@
  * sectionCount
  */
 @property (nonatomic, assign) NSInteger sectionCount;
-@property (nonatomic, assign) id<FYXPageFlowDataSource>dataSource;
+@property (nonatomic, weak) id<FYXPageFlowDataSource>dataSource;
 
 /**
  *  设置每个卡片的大小和间距

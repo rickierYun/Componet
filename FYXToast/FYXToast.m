@@ -15,9 +15,10 @@
 
         text = [text_ copy];
 
+        // 文字部分
         UIFont *font = [UIFont boldSystemFontOfSize:14];
         NSDictionary *attrs = @{NSFontAttributeName : font};
-        CGSize textSize = [text boundingRectWithSize:CGSizeMake(280, MAXFLOAT) options:NSStringDrawingUsesLineFragmentOrigin attributes:attrs context:nil].size;
+        CGSize textSize = [text boundingRectWithSize:CGSizeMake(280, MAXFLOAT) options:NSStringDrawingUsesLineFragmentOrigin attributes:attrs context:nil].size;                    // 随字数，字体扩展大小
         UILabel *textLabel = [[UILabel alloc]init];
 
         textLabel.backgroundColor = [UIColor clearColor];
@@ -27,17 +28,19 @@
         textLabel.text = text;
         textLabel.numberOfLines = 0;
 
+        // 显示view
         contentView = [[UIButton alloc] init];
         if (imageName != nil) {
-            textLabel.frame = CGRectMake(0, 28, textSize.width + 12, textSize.height + 12);
-            contentView.frame = CGRectMake(0, 0, textLabel.frame.size.width , textLabel.frame.size.height + 30);
+            // 设置图片
+            textLabel.frame = CGRectMake(15, 38, textSize.width + 12, textSize.height + 12);
+            contentView.frame = CGRectMake(0, 0, textLabel.frame.size.width + 30, textLabel.frame.size.height + 45);
 
-            UIImageView *imageView = [[UIImageView alloc]initWithFrame:CGRectMake(contentView.center.x - 10, 8, 20, 20)];
+            UIImageView *imageView = [[UIImageView alloc]initWithFrame:CGRectMake(contentView.center.x - 10, 15, 20, 20)];
             imageView.image = [UIImage imageNamed:imageName];
             [contentView addSubview:imageView];
         }else {
-            textLabel.frame = CGRectMake(0, 0, textSize.width + 12, textSize.height + 12);
-            contentView.frame = CGRectMake(0, 0, textLabel.frame.size.width , textLabel.frame.size.height);
+            textLabel.frame = CGRectMake(15, 15, textSize.width + 12, textSize.height + 12);
+            contentView.frame = CGRectMake(0, 0, textLabel.frame.size.width + 30, textLabel.frame.size.height + 30);
         }
         contentView.layer.cornerRadius = 5.0f;
         contentView.layer.borderWidth = 1.0f;
@@ -47,7 +50,7 @@
                                                        blue:0.2f
                                                       alpha:0.75f];
         [contentView addSubview:textLabel];
-        contentView.autoresizingMask = UIViewAutoresizingFlexibleWidth;
+        contentView.autoresizingMask = UIViewAutoresizingFlexibleWidth;         // 自适应
         [contentView addTarget:self
                         action:@selector(toastTaped:)
               forControlEvents:UIControlEventTouchDown];
@@ -62,6 +65,7 @@
     }
     return self;
 }
+
 - (void)deviceOrientationDidChanged:(NSNotification *)notify_{
     [self hideAnimation];
 }
@@ -96,7 +100,7 @@
 
 - (void)show{
     UIWindow *window = [UIApplication sharedApplication].keyWindow;
-    contentView.center = window.center;
+    contentView.center = window.center;         // 始终中间显示
     [window  addSubview:contentView];
     if (window.subviews.count > 0) {
         [window bringSubviewToFront:contentView];
