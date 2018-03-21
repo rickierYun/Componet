@@ -51,7 +51,7 @@
     [self.layer addSublayer:checkLayer];
 
     CABasicAnimation *checkAnimation = [CABasicAnimation animationWithKeyPath:@"strokeEnd"];
-    checkAnimation.duration = 0.5f;
+    checkAnimation.duration = 0.2f;
     checkAnimation.fromValue = @(0.0f);
     checkAnimation.toValue = @(1.0f);
     [checkAnimation setValue:@"checkAnimation" forKey:@"animationName"];

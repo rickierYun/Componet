@@ -105,15 +105,16 @@ CGFloat nativScales(void) {
 
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
     if (indexPath.section == _sectionCount - 1) {
-        _sectionCount ++;
         addCell = YES;
-//        [self.collectionView reloadData];
+        _sectionCount ++;
         [collectionView performBatchUpdates:^{
+            [self.collectionView.viewForFirstBaselineLayout.layer setSpeed:0.2];
             [self.collectionView insertSections:[[NSIndexSet alloc] initWithIndex: indexPath.section]];
         } completion:nil];
-//
+
 
     }
+
 }
 
 
@@ -141,6 +142,7 @@ CGFloat nativScales(void) {
     _flowLayout.lineSpace = lineSpace;
 
 }
+
 @end
 
 
@@ -156,9 +158,12 @@ CGFloat nativScales(void) {
         cellView.layer.shadowOffset = CGSizeMake(1, 1);
         cellView.layer.shadowOpacity = 0.4;
         [self addSubview:cellView];
+//        self.layer.speed = 0.2;
     }
     return self;
 }
+
+
 
 @end
 

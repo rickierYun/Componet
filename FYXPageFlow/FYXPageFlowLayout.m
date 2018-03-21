@@ -11,6 +11,8 @@
 
 @implementation FYXPageFlowLayout {
     NSMutableArray *insertIndexPathArr;
+    CGFloat left;
+    CGFloat width;
 }
 
 - (void)prepareLayout{
@@ -84,31 +86,33 @@
     return attributes;
 }
 
-- (UICollectionViewLayoutAttributes *)finalLayoutAttributesForDisappearingItemAtIndexPath:(NSIndexPath *)itemIndexPath {
-    UICollectionViewLayoutAttributes *attributes = [[self layoutAttributesForItemAtIndexPath:itemIndexPath] copy];
-    attributes.frame = [self frameWithIndexPath:[NSIndexPath indexPathForRow:itemIndexPath.row inSection:itemIndexPath.section +1] selectIndexPath:itemIndexPath];
-    return attributes;
-
-}
-
-- (CGRect)frameWithIndexPath: (NSIndexPath *)indexPath selectIndexPath: (NSIndexPath *)selectIndexPath {
-    CGFloat left;
-    CGFloat width;
-    if (indexPath.section < selectIndexPath.section) {
-        left = indexPath.section * (self.itemSize.width + self.minimumInteritemSpacing);
-        width = self.itemSize.width;
-    }else if (indexPath.section == selectIndexPath.section) {
-        left = indexPath.section * (self.itemSize.width + self.minimumInteritemSpacing) + self.minimumInteritemSpacing;
-        width = self.itemSize.width * 2;
-    }else {
-        left = (indexPath.section + 1)* (self.itemSize.width) + self.minimumInteritemSpacing;
-        NSLog(@"%f",left);
-        width = self.itemSize.width  ;
-    }
-    CGRect frame = CGRectMake(left, (self.collectionView.frame.size.height - _pageCardHeight ) / 2, width, self.itemSize.height);
-
-    return frame;
-}
+//- (UICollectionViewLayoutAttributes *)finalLayoutAttributesForDisappearingItemAtIndexPath:(NSIndexPath *)itemIndexPath {
+//    UICollectionViewLayoutAttributes *attributes = [[super layoutAttributesForItemAtIndexPath:itemIndexPath] copy];
+//    attributes.frame = [self frameWithIndexPath:[NSIndexPath indexPathForRow:itemIndexPath.row inSection:itemIndexPath.section +1] selectIndexPath:itemIndexPath];
+//    return attributes;
+//
+//} 
+//
+//- (CGRect)frameWithIndexPath: (NSIndexPath *)indexPath selectIndexPath: (NSIndexPath *)selectIndexPath {
+//
+//    NSLog(@"%ld",selectIndexPath.section);
+//    NSLog(@"%ld",indexPath.section);
+//    if (indexPath.section < selectIndexPath.section) {
+//        left = indexPath.section * (self.itemSize.width + self.minimumInteritemSpacing);
+//        width = self.itemSize.width;
+//    }else if (indexPath.section == selectIndexPath.section) {
+//        left = indexPath.section * (self.itemSize.width + self.minimumInteritemSpacing) + self.minimumInteritemSpacing;
+//        width = self.itemSize.width * 2;
+//    }else {
+//
+//        left = (indexPath.section + 1)* (self.itemSize.width) + self.minimumInteritemSpacing;
+//        NSLog(@"%f",left);
+//        width = self.itemSize.width  ;
+//    }
+//    CGRect frame = CGRectMake(left, (self.collectionView.frame.size.height - _pageCardHeight ) / 2 + 18, width, self.itemSize.height);
+//
+//    return frame;
+//}
 
 - (BOOL)shouldInvalidateLayoutForBoundsChange:(CGRect)newBounds {
     return YES;
