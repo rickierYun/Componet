@@ -103,6 +103,12 @@
          firstString: (NSString *)firstString
         secondString: (NSString *)secondString
          thirdString: (NSString *)thirdString;
-
+/**
+ *顶部弹窗
+ */
 - (void)setTopAlert: (NSString *)title titleFont: (CGFloat )titleFont;
+/**
+ *设置顶部弹窗高度
+ */
+- (void)tTopAlertHight: (CGFloat)height;
 @end
