@@ -33,6 +33,8 @@
 @property (nonatomic, strong) NSMutableArray *morningData;          /**< 上午数据 */
 @property (nonatomic, strong) UIColor  *timeDetailSelectColor;      /**< 具体时间选中颜色 */
 @property (nonatomic, strong) UIColor  *timeDetailColor;            /**< 具体时间颜色 */
+@property (nonatomic, strong) UIColor  *timeBtnSelectColor;         /**< 上下午选择时间 */
+@property (nonatomic, strong) NSDate   *minimumDate;                /**< 最小选择时间 */
 @property (nonatomic, weak) id <FYXCalendarDelegate>delegate;
 @property (nonatomic, weak) FSCalendar *calendar;                   /**< 日历 */
 @property (nonatomic, weak) UICollectionView *collectView;          /**< 具体时间 */

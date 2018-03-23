@@ -42,7 +42,6 @@ CGFloat nativeScale(void) {
 {
     UIButton    * _backGroundBtn;      // 灰色背景按钮
     UILabel     * _alertTitle;         // 提示文字
-    UILabel     * _msgLabel;           // 提示内容
     UIView      * _msgAlertView;       // 文字弹窗view
     UITextView  * _richTextView;       // 富文本显示框
     UIImageView * _alertTitleImage;    // 提示图片
@@ -158,7 +157,7 @@ CGFloat nativeScale(void) {
     _alertTitle.textColor     = [UIColor blackColor];
     [_msgAlertView addSubview:_alertTitle];
 
-    _msgLabel = [[UILabel alloc]init];
+    UILabel *_msgLabel = [[UILabel alloc]init];
     _msgLabel.frame = CGRectMake(8 * displayScale,
                                  VIEW_HEIGHT(_alertTitle) + VIEW_Y(_alertTitle),
                                  VIEW_WIDTH(_msgAlertView) - 16 * displayScale,
@@ -169,6 +168,7 @@ CGFloat nativeScale(void) {
     _msgLabel.textAlignment = NSTextAlignmentLeft;
     _msgLabel.textColor     = [UIColor blackColor];
     [_msgAlertView addSubview:_msgLabel];
+    self.msgLabel = _msgLabel;
 
     UIButton *_cancelBtn = [[UIButton alloc]init];
     _cancelBtn.frame = CGRectMake(0,
@@ -277,7 +277,7 @@ CGFloat nativeScale(void) {
     _alertTitleImage.image = [UIImage imageNamed:@"sure.png"];
     [_alertView addSubview:_alertTitleImage];
 
-    _msgLabel = [[UILabel alloc]init];
+    UILabel *_msgLabel = [[UILabel alloc]init];
     _msgLabel.frame = CGRectMake(15,
                                  VIEW_Y(_alertTitleImage) + VIEW_HEIGHT(_alertTitleImage),
                                  VIEW_WIDTH(_alertView) - 30 * displayScale,
@@ -286,6 +286,7 @@ CGFloat nativeScale(void) {
     _msgLabel.textAlignment = NSTextAlignmentCenter;
     _msgLabel.textColor     = [UIColor blackColor];
     [_alertView addSubview:_msgLabel];
+    self.msgLabel = _msgLabel;
 
     UIButton *_cancelBtn = [[UIButton alloc]init];
     _cancelBtn.frame = CGRectMake(0,
@@ -324,12 +325,13 @@ CGFloat nativeScale(void) {
     _alertView.layer.cornerRadius = 8;
     [self addSubview:_alertView];
 
-    _msgLabel = [[UILabel alloc]init];
+    UILabel *_msgLabel = [[UILabel alloc]init];
     _msgLabel.frame = CGRectMake(15 , 18 * displayScale, VIEW_WIDTH(_alertView) - 30, 72 * displayScale);
     _msgLabel.textAlignment = NSTextAlignmentLeft;
     _msgLabel.textColor     = [UIColor blackColor];
     _msgLabel.numberOfLines = 0;
     [_alertView addSubview:_msgLabel];
+    self.msgLabel = _msgLabel;
 
     UIButton *_sureBtn = [[UIButton alloc]init];
     _sureBtn.frame = CGRectMake(0, VIEW_Y(_msgLabel) + VIEW_HEIGHT(_msgLabel) + 8, VIEW_WIDTH(_alertView), 35 * displayScale);

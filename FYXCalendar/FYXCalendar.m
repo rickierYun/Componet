@@ -145,7 +145,7 @@ CGFloat nativScale(void) {
         afternoonBtn.backgroundColor = [UIColor whiteColor];
         afternoonBtn.titleLabel.font = [UIFont systemFontOfSize:14];
         afternoonBtn.layer.cornerRadius = 5;
-        afternoonBtn.layer.borderColor = normalColor.CGColor;
+        afternoonBtn.layer.borderColor = self.timeBtnSelectColor == nil ? normalColor.CGColor : self.timeBtnSelectColor.CGColor;
         afternoonBtn.layer.borderWidth = 1;
         [afternoonBtn addTarget:self action:@selector(afternoonClick:) forControlEvents:UIControlEventTouchUpInside];
         [self addSubview:afternoonBtn];
@@ -155,7 +155,7 @@ CGFloat nativScale(void) {
         morningBtn.frame = CGRectMake(VIEW_CENTER_X(_calendar) - 68, VIEW_Y_Bottom(_calendar) - 15, 68 , 30);
         [morningBtn setTitle:@"上午" forState:UIControlStateNormal];
         [morningBtn setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
-        morningBtn.backgroundColor = normalColor;
+        morningBtn.backgroundColor = self.timeBtnSelectColor == nil ? normalColor : self.timeBtnSelectColor;
         morningBtn.titleLabel.font = [UIFont systemFontOfSize:16];
         morningBtn.layer.cornerRadius = 5;
         [morningBtn addTarget:self action:@selector(morningClick:) forControlEvents:UIControlEventTouchUpInside];
@@ -209,6 +209,10 @@ CGFloat nativScale(void) {
     [self.collectView reloadData];
 }
 
+- (NSDate *)minimumDateForCalendar:(FSCalendar *)calendar {
+    return _minimumDate;
+}
+
 #pragma -mark 日期调整点击事件
 - (void)previousClicked:(id)sender {
     NSDate *currentMonth = self.calendar.currentPage;
@@ -219,6 +223,7 @@ CGFloat nativScale(void) {
 - (void)nextClicked:(id)sender {
     NSDate *currentMonth = self.calendar.currentPage;
     NSDate *nextMonth = [self.gregorianCalendar dateByAddingUnit:NSCalendarUnitMonth value:1 toDate:currentMonth options:0];
+    NSLog(@"%@",currentMonth);
     [_calendar setCurrentPage:nextMonth animated:YES];
 }
 
@@ -307,23 +312,23 @@ CGFloat nativScale(void) {
 
 #pragma -mark 时间选择按钮点击事件
 - (void)afternoonClick: (UIButton *)sender {
-    self.morningBtn.layer.borderColor = normalColor.CGColor;
+    self.morningBtn.layer.borderColor = self.timeBtnSelectColor == nil ? normalColor.CGColor : self.timeBtnSelectColor.CGColor;
     self.morningBtn.layer.borderWidth = 1;
     self.morningBtn.backgroundColor = [UIColor whiteColor];
-    [self.morningBtn setTitleColor:normalColor forState:UIControlStateNormal];
-    sender.layer.borderColor = normalColor.CGColor;
-    sender.backgroundColor = normalColor;
+    [self.morningBtn setTitleColor: self.timeBtnSelectColor == nil ? normalColor : self.timeBtnSelectColor forState:UIControlStateNormal];
+    sender.layer.borderColor = self.timeBtnSelectColor == nil ? normalColor.CGColor : self.timeBtnSelectColor.CGColor;
+    sender.backgroundColor = self.timeBtnSelectColor == nil ? normalColor : self.timeBtnSelectColor;
     [sender setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
     timeData = self.afternoonData;
     [self.collectView reloadData];
 }
 
 - (void)morningClick: (UIButton *)sender {
-    self.afternoonBtn.layer.borderColor = normalColor.CGColor;
+    self.afternoonBtn.layer.borderColor = self.timeBtnSelectColor == nil ? normalColor.CGColor : self.timeBtnSelectColor.CGColor;
     self.afternoonBtn.backgroundColor = [UIColor whiteColor];
-    [self.afternoonBtn setTitleColor:normalColor forState:UIControlStateNormal];
-    sender.layer.borderColor = normalColor.CGColor;
-    sender.backgroundColor = normalColor;
+    [self.afternoonBtn setTitleColor:self.timeBtnSelectColor == nil ? normalColor : self.timeBtnSelectColor forState:UIControlStateNormal];
+    sender.layer.borderColor = self.timeBtnSelectColor == nil ? normalColor.CGColor : self.timeBtnSelectColor.CGColor;
+    sender.backgroundColor = self.timeBtnSelectColor == nil ? normalColor : self.timeBtnSelectColor;
     [sender setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
     timeData = self.morningData;
     [self.collectView reloadData];

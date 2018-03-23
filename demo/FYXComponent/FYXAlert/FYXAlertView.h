@@ -31,6 +31,7 @@
 @property (nonatomic, weak) UIButton * sureBtn;
 @property (nonatomic, weak) UIButton * cancelBtn;
 @property (nonatomic, weak) UIButton * middleBtn;
+@property (nonatomic, weak) UILabel  * msgLabel;           // 提示内容
 @property (nonatomic, weak) id<FYXAlertViewDelegate>delegate;
 
 

@@ -18,6 +18,7 @@
 #import "HUdViewController.h"
 #import "UIView+GlowView.h"
 
+
 @interface ViewController ()<FYXAlertViewDelegate>
 {
     FYXAlertView *alertView;
@@ -88,6 +89,23 @@
     [toastBtn setTitle:@"toast弹窗" forState:UIControlStateNormal];
     [toastBtn addTarget:self action:@selector(toastBtnClick:) forControlEvents:UIControlEventTouchUpInside];
     [self.view addSubview:toastBtn];
+
+    FYXButton *toastPicBtn = [[FYXButton alloc]initWithFrame:CGRectMake(0, 500, 150, 30)];
+    toastPicBtn.layer.shadowOffset  = CGSizeMake(1, 7);
+    toastPicBtn.layer.shadowOpacity = 0.4;
+    toastPicBtn.layer.shadowColor   = [UIColor colorWithRed:20.0 / 255 green:206.0 / 255 blue:1 alpha:1.0f].CGColor;
+    [toastPicBtn setTitle:@"带图片toast弹窗" forState:UIControlStateNormal];
+    [toastPicBtn addTarget:self action:@selector(toastPicBtnClick:) forControlEvents:UIControlEventTouchUpInside];
+    [self.view addSubview:toastPicBtn];
+
+    FYXButton *alertMsgBtn2 = [[FYXButton alloc]initWithFrame:CGRectMake(0, 500, 150, 30)];
+    alertMsgBtn2.layer.shadowOffset  = CGSizeMake(1, 7);
+    alertMsgBtn2.layer.shadowOpacity = 0.4;
+    alertMsgBtn2.layer.shadowColor   = [UIColor colorWithRed:20.0 / 255 green:206.0 / 255 blue:1 alpha:1.0f].CGColor;
+    [alertMsgBtn2 setTitle:@"多字体颜色弹窗" forState:UIControlStateNormal];
+    [alertMsgBtn2 addTarget:self action:@selector(alertMsg2Click:) forControlEvents:UIControlEventTouchUpInside];
+    [self.view addSubview:alertMsgBtn2];
+
 
     FYXButton *calendarBtn = [[FYXButton alloc]initWithFrame:CGRectMake(0, 400, 100, 30)];
     calendarBtn.layer.shadowOffset  = CGSizeMake(1, 7);
@@ -256,9 +274,15 @@
     bubbleView.hidden = NO;
     [bubbleView setBubbleView:@"已取消预约" font:16 textColor: [UIColor blackColor]];
 }
+
 - (void)toastBtnClick: (UIButton *)sender {
 //    [FYXToast showWithTextImage:@"您目前的取送车订单有绑" imageName:@"success.png"];
     [FYXToast showWithText:@"您目前的取送车订单有绑定的保养预约服务，是否同时取消保养预约？"];
+}
+
+- (void)toastPicBtnClick: (UIButton *)sender {
+    [FYXToast showWithTextImage:@"您目前的取送车订单有绑" imageName:@"success.png"];
+//    [FYXToast showWithText:@"您目前的取送车订单有绑定的保养预约服务，是否同时取消保养预约？"];
 }
 
 - (void)pageFlowBtnClick: (UIButton *)sender {
@@ -290,6 +314,28 @@
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
+
+- (void)alertMsg2Click: (UIButton *)sender {
+
+    alertMsgView.hidden     = NO;
+
+    // 文字弹窗
+    [alertMsgView setMsgAlertView:@"取车计费方式" titleFont:19 alertMsg:@"" msgFont:11 msgColor: [UIColor colorWithRed:101.0 / 255 green:101.0 / 255 blue:101.0 / 255 alpha:1]];
+
+    [alertMsgView.cancelBtn setTitle:@"cancel" forState:UIControlStateNormal];
+    [alertMsgView.cancelBtn setTitleColor:[UIColor lightGrayColor] forState:UIControlStateNormal];
+    [alertMsgView setMsgAlertFrame:200 AlertWidth: 295];
+    NSMutableAttributedString *text = [[NSMutableAttributedString alloc]initWithString:@" 1、服务时间 07:00-20:59\n  \n 2、 收费规则:起步价39元（10公里内），10公里后，每公里加收10元，不足5公里按5公里计算。\n*注：以上计费方式"];
+    [text addAttribute:NSForegroundColorAttributeName value:[UIColor colorWithRed:50.0 / 255 green:50.0 / 255 blue:50.0 / 255 alpha:1] range:NSMakeRange(0, 68)];
+    [text addAttribute:NSForegroundColorAttributeName value:[UIColor colorWithRed:101.0 / 255 green:101.0 / 255 blue:101.0 / 255 alpha:1] range:NSMakeRange(68, 11)];
+    [text addAttribute:NSFontAttributeName value:[UIFont systemFontOfSize:5] range:NSMakeRange(68, 1)];
+    [text addAttribute:NSFontAttributeName value:[UIFont systemFontOfSize:16] range:NSMakeRange(0, 68)];
+    [text addAttribute:NSFontAttributeName value:[UIFont systemFontOfSize:12] range:NSMakeRange(69, 11)];
+    alertMsgView.msgLabel.attributedText = text;
+    [alertMsgView.cancelBtn setTitleColor:[UIColor colorWithRed:20.0 / 255 green:206.0 / 255 blue:1 alpha:1.0f] forState:UIControlStateNormal];
+
+}
+
 
 - (void)sideMenuClick: (UIButton *)sender {
     

@@ -7,6 +7,7 @@
 //
 
 #import "CalendarViewController.h"
+#import "FYXButton.h"
 
 @interface CalendarViewController ()
 
@@ -60,11 +61,19 @@
     }
 
     // 改变具体时间颜色
-    //    fyxCalendar.timeDetailSelectColor = [UIColor redColor];
-    //    fyxCalendar.timeDetailColor = [UIColor blackColor];
+        fyxCalendar.timeDetailSelectColor = [UIColor redColor];
+        fyxCalendar.timeDetailColor = [UIColor blackColor];
+
     fyxCalendar.afternoonData = aftoonTime;
     fyxCalendar.morningData = morningTime;
+
+    [fyxCalendar.calendar selectDate:[NSDate date]];
+    fyxCalendar.minimumDate = [NSDate date];
+    fyxCalendar.timeBtnSelectColor = [UIColor getMainGradientColor:fyxCalendar.afternoonBtn.frame];
     [fyxCalendar setCalendarData];
+    [fyxCalendar.calendar reloadData];
+
+
     [self.view addSubview:fyxCalendar];
 }
 
