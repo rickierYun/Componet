@@ -649,6 +649,10 @@ CGFloat nativeScale(void) {
     [self addSubview:_msgAlertView];
 }
 
+- (void)tTopAlertHight: (CGFloat)height{
+     _msgAlertView.frame = CGRectMake(0, height *displayScale, VIEW_WIDTH(_msgAlertView), VIEW_HEIGHT(_msgAlertView));
+}
+
 #pragma -mark action
 // 点击背景隐藏
 - (void)hiddenClick: (UIButton *)sender {
