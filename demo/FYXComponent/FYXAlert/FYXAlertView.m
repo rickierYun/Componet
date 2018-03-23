@@ -42,12 +42,19 @@ CGFloat nativeScale(void) {
 {
     UIButton    * _backGroundBtn;      // 灰色背景按钮
     UILabel     * _alertTitle;         // 提示文字
+    UILabel     * _subtitle;           // 副标题
+    UILabel     * _cardNumb;           // 卡券账号
+    UILabel     * _cardPw;             // 卡券密码
     UIView      * _msgAlertView;       // 文字弹窗view
     UITextView  * _richTextView;       // 富文本显示框
     UIImageView * _alertTitleImage;    // 提示图片
     UIView      * _lineBreak1;         // 分割线
     NSString    * _text;               // 文字载体
     UIView      * _safeLightView;      // 安全提示灯
+    UILabel     * _btnLabel1;
+    UILabel     * _btnLabel2;
+    UILabel     * _btnLabel3;
+    UILabel     * _prompt;
 }
 
 - (id)initWithFrame: (CGRect)frame {
@@ -85,13 +92,13 @@ CGFloat nativeScale(void) {
 // 创建弹窗
 - (void)createAlertView {
     UIView *_alertView = [[UIView alloc]init];
-    _alertView.frame = CGRectMake(VIEW_CENTER_X(self) - 100 * displayScale, 160 * displayScale, 200 * displayScale, 100 * displayScale);
+    _alertView.frame = CGRectMake(55 * displayScale, 200 * displayScale, VIEW_WIDTH(self)  - 110 *displayScale, 135 * displayScale);
     _alertView.backgroundColor = [UIColor whiteColor];
     _alertView.layer.cornerRadius = 8;
     [self addSubview:_alertView];
 
     _alertTitle = [[UILabel alloc]init];
-    _alertTitle.frame = CGRectMake(0, 5, VIEW_WIDTH(_alertView), 60 * displayScale);
+    _alertTitle.frame = CGRectMake(0, 5, VIEW_WIDTH(_alertView), VIEW_HEIGHT(_alertView) * 2 / 3);
     _alertTitle.numberOfLines = 2;
     _alertTitle.lineBreakMode = NSLineBreakByCharWrapping;
     _alertTitle.textAlignment = NSTextAlignmentCenter;
@@ -102,8 +109,8 @@ CGFloat nativeScale(void) {
     UIButton *_sureBtn   = [[UIButton alloc]init];
     UIButton *_cancelBtn = [[UIButton alloc]init];
 
-    _sureBtn.frame   = CGRectMake(VIEW_WIDTH(_alertView) / 2, VIEW_HEIGHT(_alertTitle), VIEW_WIDTH(_alertView) / 2, 40 * displayScale);
-    _cancelBtn.frame = CGRectMake(0,VIEW_HEIGHT(_alertTitle), VIEW_WIDTH(_alertView) / 2, 40 * displayScale);
+    _sureBtn.frame   = CGRectMake(VIEW_WIDTH(_alertView) / 2, VIEW_HEIGHT(_alertTitle), VIEW_WIDTH(_alertView) / 2, VIEW_HEIGHT(_alertView) * 1 / 3);
+    _cancelBtn.frame = CGRectMake(0,VIEW_HEIGHT(_alertTitle), VIEW_WIDTH(_alertView) / 2, VIEW_HEIGHT(_alertView) * 1 / 3);
 
     _sureBtn.titleLabel.font   = [UIFont systemFontOfSize:17 * displayScale];
     _cancelBtn.titleLabel.font = [UIFont systemFontOfSize:17 * displayScale];
@@ -157,22 +164,21 @@ CGFloat nativeScale(void) {
     _alertTitle.textColor     = [UIColor blackColor];
     [_msgAlertView addSubview:_alertTitle];
 
-    UILabel *_msgLabel = [[UILabel alloc]init];
-    _msgLabel.frame = CGRectMake(8 * displayScale,
-                                 VIEW_HEIGHT(_alertTitle) + VIEW_Y(_alertTitle),
+    _richTextView = [[UITextView alloc]init];
+    _richTextView.frame = CGRectMake(8 * displayScale,
+                                 VIEW_Y_Bottom(_alertTitle) + 5 * displayScale,
                                  VIEW_WIDTH(_msgAlertView) - 16 * displayScale,
                                  VIEW_HEIGHT(_msgAlertView) - VIEW_HEIGHT(_alertTitle) - 40 * displayScale);
      
-    _msgLabel.numberOfLines = 0;
-    _msgLabel.lineBreakMode = NSLineBreakByCharWrapping;
-    _msgLabel.textAlignment = NSTextAlignmentLeft;
-    _msgLabel.textColor     = [UIColor blackColor];
-    [_msgAlertView addSubview:_msgLabel];
-    self.msgLabel = _msgLabel;
+//    _richTextView.numberOfLines = 0;
+//    _richTextView.lineBreakMode = NSLineBreakByCharWrapping;
+    _richTextView.textAlignment = NSTextAlignmentLeft;
+    _richTextView.textColor     = [UIColor blackColor];
+    [_msgAlertView addSubview:_richTextView];
 
     UIButton *_cancelBtn = [[UIButton alloc]init];
     _cancelBtn.frame = CGRectMake(0,
-                                  VIEW_HEIGHT(_alertTitle) + VIEW_Y(_alertTitle) + VIEW_HEIGHT(_msgLabel),
+                                  VIEW_HEIGHT(_alertTitle) + VIEW_Y(_alertTitle) + VIEW_HEIGHT(_richTextView),
                                   VIEW_WIDTH(_msgAlertView),
                                   35 * displayScale);
 
@@ -188,10 +194,10 @@ CGFloat nativeScale(void) {
 - (void)setMsgAlertView: (NSString *)alertTitle titleFont:(NSInteger) titleFont alertMsg:(NSString *)msg msgFont:(NSInteger)msgFont  msgColor: (UIColor *)msgColor{
     [self createMsgAlert];
     _alertTitle.text = alertTitle;
-    _msgLabel.text   = msg;
-    _msgLabel.textColor = msgColor;
+    _richTextView.text   = msg;
+    _richTextView.textColor = msgColor;
     [_alertTitle setFont:[UIFont systemFontOfSize:titleFont * displayScale]];
-    [_msgLabel setFont:[UIFont systemFontOfSize:msgFont * displayScale]];
+    [_richTextView setFont:[UIFont systemFontOfSize:msgFont * displayScale]];
 
 }
 
@@ -204,13 +210,13 @@ CGFloat nativeScale(void) {
 
     _alertTitle.frame   = CGRectMake(0, 12, VIEW_WIDTH(_msgAlertView), 23 * displayScale);
 
-    _msgLabel.frame     = CGRectMake(13 * displayScale,
-                                     VIEW_HEIGHT(_alertTitle) + VIEW_Y(_alertTitle),
+    _richTextView.frame     = CGRectMake(13 * displayScale,
+                                     VIEW_HEIGHT(_alertTitle) + VIEW_Y(_alertTitle) + 5 * displayScale,
                                      VIEW_WIDTH(_msgAlertView) - 26 * displayScale,
                                      VIEW_HEIGHT(_msgAlertView) - VIEW_HEIGHT(_alertTitle) - 60 * displayScale);
 
     _cancelBtn.frame    = CGRectMake(0,
-                                     VIEW_HEIGHT(_alertTitle) + VIEW_Y(_alertTitle) + VIEW_HEIGHT(_msgLabel) + 12 * displayScale,
+                                     VIEW_HEIGHT(_alertTitle) + VIEW_Y(_alertTitle) + VIEW_HEIGHT(_richTextView) + 12 * displayScale,
                                      VIEW_WIDTH(_msgAlertView),
                                      30 * displayScale);
 
@@ -320,7 +326,7 @@ CGFloat nativeScale(void) {
 // 三个按钮弹窗
 - (void)creatMoreBtnAlertView {
     UIView *_alertView = [[UIView alloc]init];
-    _alertView.frame = CGRectMake(VIEW_CENTER_X(self) - 100 * displayScale, 160 * displayScale, 200 * displayScale, 200 * displayScale);
+    _alertView.frame = CGRectMake(55 * displayScale, 160 * displayScale, VIEW_WIDTH(self) - 110 * displayScale, 200 * displayScale);
     _alertView.backgroundColor = [UIColor whiteColor];
     _alertView.layer.cornerRadius = 8;
     [self addSubview:_alertView];
@@ -490,6 +496,136 @@ CGFloat nativeScale(void) {
     _alertTitleImage.image = [UIImage imageNamed:titleImage];
 }
 
+#pragma -mark 卡券弹窗
+- (void)createCardAlert {
+    _alertTitle = [[UILabel alloc]init];
+    _alertTitle.frame = CGRectMake(0, 12 * displayScale, VIEW_WIDTH(self) - 80 * displayScale, 18 * displayScale);
+    _alertTitle.textAlignment = NSTextAlignmentCenter;
+
+    _lineBreak1.frame = CGRectMake(5, VIEW_Y_Bottom(_alertTitle) + 10 * displayScale, VIEW_WIDTH(self) - 100 * displayScale, 1);
+
+    _subtitle = [[UILabel alloc]init];
+    _subtitle.frame = CGRectMake(0, VIEW_Y_Bottom(_lineBreak1) + 20 * displayScale, VIEW_WIDTH(self) - 80 * displayScale, 16 * displayScale);
+    _subtitle.textAlignment= NSTextAlignmentCenter;
+
+    UIView *msgBackView = [[UIView alloc]init];
+    msgBackView.frame = CGRectMake(26 * displayScale, VIEW_Y_Bottom(_subtitle) + 15 * displayScale, VIEW_WIDTH(self) - 122 *displayScale, 60 * displayScale);
+    msgBackView.backgroundColor = [UIColor colorWithRed:216.0 / 255 green:216.0 / 255 blue:216.0 / 255 alpha:1];
+
+    _cardNumb = [[UILabel alloc]init];
+    _cardNumb.frame = CGRectMake(0, 13 * displayScale, VIEW_WIDTH(msgBackView), 14 * displayScale);
+    _cardNumb.textAlignment = NSTextAlignmentCenter;
+
+    _cardPw = [[UILabel alloc]init];
+    _cardPw.frame = CGRectMake(0, VIEW_Y_Bottom(_cardNumb) + 6 * displayScale, VIEW_WIDTH(msgBackView), 14 * displayScale);
+    _cardPw.textAlignment = NSTextAlignmentCenter;
+
+    [msgBackView addSubview:_cardNumb];
+    [msgBackView addSubview:_cardPw];
+
+    _prompt = [[UILabel alloc]init];
+    _prompt.frame = CGRectMake(0, VIEW_Y_Bottom(msgBackView) + 5 * displayScale, VIEW_WIDTH(self) - 80 * displayScale, 14 * displayScale);
+    _prompt.textAlignment = NSTextAlignmentCenter;
+
+    UIButton *_sureBtn = [[UIButton alloc]init];
+    _sureBtn.frame = CGRectMake(28 * displayScale, VIEW_Y_Bottom(_prompt) + 26 * displayScale, 50 * displayScale, 50 * displayScale);
+    self.sureBtn = _sureBtn;
+
+    _btnLabel1 = [[UILabel alloc]init];
+    _btnLabel1.frame = CGRectMake(VIEW_X(_sureBtn) - 5 * displayScale, VIEW_Y_Bottom(_sureBtn) + 10 * displayScale, 60 * displayScale, 20 * displayScale);
+
+    UIButton *_middelBtn = [[UIButton alloc]init];
+    _middelBtn.frame = CGRectMake(VIEW_CENTER_X(_prompt) - 25 * displayScale, VIEW_Y(_sureBtn), VIEW_WIDTH(_sureBtn), VIEW_HEIGHT(_sureBtn));
+    self.middleBtn = _middelBtn;
+
+    _btnLabel2 = [[UILabel alloc]init];
+    _btnLabel2.frame = CGRectMake(VIEW_X(_middelBtn) - 10 * displayScale, VIEW_Y(_btnLabel1), VIEW_WIDTH(_btnLabel1) + 15 * displayScale, VIEW_HEIGHT(_btnLabel1));
+
+    UIButton *_otherBtn = [[UIButton alloc]init];
+    _otherBtn.frame = CGRectMake(VIEW_WIDTH(self) - 158 * displayScale , VIEW_Y(_sureBtn), VIEW_WIDTH(_sureBtn), VIEW_HEIGHT(_sureBtn));
+    self.otherBtn = _otherBtn;
+
+    _btnLabel3 = [[UILabel alloc]init];
+    _btnLabel3.frame = CGRectMake(VIEW_X(_otherBtn) - 5 * displayScale, VIEW_Y(_btnLabel1), VIEW_WIDTH(_btnLabel1), VIEW_HEIGHT(_btnLabel1));
+
+    _alertTitleImage = [[UIImageView alloc]init];
+    _alertTitleImage.frame = CGRectMake(40 * displayScale, 152 * displayScale, VIEW_WIDTH(self) - 80 * displayScale, 280 * displayScale);
+    _alertTitleImage.image = [UIImage imageNamed:@"card.png"];
+
+    [self addSubview:_alertTitleImage];
+    [_alertTitleImage addSubview:_alertTitle];
+    [_alertTitleImage addSubview:_lineBreak1];
+    [_alertTitleImage addSubview:_subtitle];
+    [_alertTitleImage addSubview:msgBackView];
+    [_alertTitleImage addSubview:_prompt];
+    [_alertTitleImage addSubview:_sureBtn];
+    [_alertTitleImage addSubview:self.middleBtn];
+    [_alertTitleImage addSubview:self.otherBtn];
+    [_alertTitleImage addSubview:_btnLabel1];
+    [_alertTitleImage addSubview:_btnLabel2];
+    [_alertTitleImage addSubview:_btnLabel3];
+
+    UIButton *_cancelBtn = [[UIButton alloc]init];
+    _cancelBtn.frame = CGRectMake(VIEW_CENTER_X(self) - 20 * displayScale, VIEW_Y_Bottom(_alertTitleImage) + 30 * displayScale , 40 * displayScale, 40 * displayScale);
+    [_cancelBtn setImage:[UIImage imageNamed:@"close.png"] forState:UIControlStateNormal];
+    [_cancelBtn addTarget:self action:@selector(hiddenClick:) forControlEvents:UIControlEventTouchUpInside];
+    [self addSubview:_cancelBtn];
+}
+
+- (void)setCardAlert: (NSString *)title
+            subtitle: (NSString *)subtitle
+            cardNumb: (NSString *)cardNumb
+              cardPw: (NSString *)cardPw
+              prompt: (NSString *)prompt
+          firstImage: (NSString *)firstImage
+         secondImage: (NSString *)secondImage
+          thirdImage: (NSString *)thirdImage
+         firstString: (NSString *)firstString
+        secondString: (NSString *)secondString
+         thirdString: (NSString *)thirdString{
+    [self createCardAlert];
+    _alertTitle.text = title;
+    _alertTitle.font = [UIFont systemFontOfSize:18 * displayScale];
+    _alertTitle.textColor = [UIColor colorWithRed:50.0 / 255 green:50.0 / 255 blue:50.0 / 255 alpha:1];
+
+    _subtitle.text = subtitle;
+    _subtitle.font = [UIFont systemFontOfSize:16 * displayScale];
+    _subtitle.textColor = [UIColor colorWithRed:50.0 / 255 green:50.0 / 255 blue:50.0 / 255 alpha:1];
+
+    _cardNumb.text = cardNumb;
+    _cardNumb.font = [UIFont systemFontOfSize:14 * displayScale];
+    _cardNumb.textColor = [UIColor colorWithRed:50.0 / 255 green:50.0 / 255 blue:50.0 / 255 alpha:1];
+
+    _cardPw.text = cardPw;
+    _cardPw.font = [UIFont systemFontOfSize:14 * displayScale];
+    _cardPw.textColor = [UIColor colorWithRed:50.0 / 255 green:50.0 / 255 blue:50.0 / 255 alpha:1];
+
+    _prompt.text = prompt;
+    _prompt.font = [UIFont systemFontOfSize:12 * displayScale];
+    _prompt.textColor = [UIColor colorWithRed:152.0 / 255 green:152.0 / 255 blue:152.0 / 255 alpha:1];
+
+    [self.sureBtn setImage:[UIImage imageNamed:firstImage] forState:UIControlStateNormal];
+    [self.middleBtn setImage:[UIImage imageNamed:secondImage] forState:UIControlStateNormal];
+    [self.otherBtn setImage:[UIImage imageNamed:thirdImage] forState:UIControlStateNormal];
+
+    _btnLabel1.text = firstString;
+    _btnLabel2.text = secondString;
+    _btnLabel3.text = thirdString;
+
+    _btnLabel1.font = [UIFont systemFontOfSize:14 * displayScale];
+    _btnLabel2.font = _btnLabel1.font;
+    _btnLabel3.font = _btnLabel1.font;
+
+    _btnLabel1.textColor = [UIColor colorWithRed:50.0 / 255 green:50.0 / 255 blue:50.0 / 255 alpha:1];
+    _btnLabel2.textColor = _btnLabel1.textColor;
+    _btnLabel3.textColor = _btnLabel1.textColor;
+
+    [self.sureBtn addTarget:self action:@selector(sureClick:) forControlEvents:UIControlEventTouchUpInside];
+    [self.middleBtn addTarget:self action:@selector(copyClick:) forControlEvents:UIControlEventTouchUpInside];
+    [self.otherBtn addTarget:self action:@selector(otherClick:) forControlEvents:UIControlEventTouchUpInside];
+}
+
+
 #pragma -mark action
 // 点击背景隐藏
 - (void)hiddenClick: (UIButton *)sender {
@@ -508,6 +644,12 @@ CGFloat nativeScale(void) {
 - (void)otherClick: (UIButton *)sender {
     if ([self.delegate respondsToSelector:@selector(otherBtnDidClick:)]) {
         [self.delegate otherBtnDidClick:self];
+    }
+}
+
+- (void)copyClick: (UIButton *)sender {
+    if ([self.delegate respondsToSelector:@selector(copyDidClick:)]) {
+        [self.delegate copyDidClick:self];
     }
 }
 @end

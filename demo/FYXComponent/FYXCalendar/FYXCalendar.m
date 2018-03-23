@@ -269,8 +269,9 @@ CGFloat nativScale(void) {
                                                      blue:152.0 / 255
                                                     alpha:0.4] forState:UIControlStateNormal];
 
-        [cell.timeBtn setBackgroundImage:[UIImage imageNamed:model.timeUnenabledPic] forState:UIControlStateNormal];
+
     }
+    [cell.timeBtn setBackgroundImage:[UIImage imageNamed:model.timeUnenabledPic] forState:UIControlStateNormal];
 
     return cell;
 }

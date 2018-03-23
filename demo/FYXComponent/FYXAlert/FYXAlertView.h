@@ -20,6 +20,11 @@
  *确定按钮点击事件
  */
 - (void)sureDidClick: (FYXAlertView *)alertView;
+
+/**
+ *取消点击事件
+ */
+- (void)copyDidClick: (FYXAlertView *)alertView;
 /**
  *其他按钮点击事件
  */
@@ -31,6 +36,7 @@
 @property (nonatomic, weak) UIButton * sureBtn;
 @property (nonatomic, weak) UIButton * cancelBtn;
 @property (nonatomic, weak) UIButton * middleBtn;
+@property (nonatomic, weak) UIButton * otherBtn;
 @property (nonatomic, weak) UILabel  * msgLabel;           // 提示内容
 @property (nonatomic, weak) id<FYXAlertViewDelegate>delegate;
 
@@ -83,4 +89,18 @@
            instruteTitle: (NSString * )instruteTitle
             suggestTitle: (NSString *)suggestTitle
               titleImage: (NSString *)titleImage;
+/**
+ *优惠券
+ */
+- (void)setCardAlert: (NSString *)title
+            subtitle: (NSString *)subtitle
+            cardNumb: (NSString *)cardNumb
+              cardPw: (NSString *)cardPw
+              prompt: (NSString *)prompt
+          firstImage: (NSString *)firstImage
+         secondImage: (NSString *)secondImage
+          thirdImage: (NSString *)thirdImage
+         firstString: (NSString *)firstString
+        secondString: (NSString *)secondString
+         thirdString: (NSString *)thirdString;
 @end

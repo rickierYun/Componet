@@ -17,7 +17,7 @@
 #import "CheckAnimationViewController.h"
 #import "HUdViewController.h"
 #import "UIView+GlowView.h"
-
+#import "VinViewController.h"
 
 @interface ViewController ()<FYXAlertViewDelegate>
 {
@@ -28,6 +28,7 @@
     FYXAlertView *alertMoreBtnView;
     FYXAlertView *bubbleView;
     FYXAlertView *safelightView;
+    FYXAlertView *cardAlerView;
     FYXSideMenu  *sideMenu;
     UIView       *lightView;
 }
@@ -90,7 +91,7 @@
     [toastBtn addTarget:self action:@selector(toastBtnClick:) forControlEvents:UIControlEventTouchUpInside];
     [self.view addSubview:toastBtn];
 
-    FYXButton *toastPicBtn = [[FYXButton alloc]initWithFrame:CGRectMake(0, 500, 150, 30)];
+    FYXButton *toastPicBtn = [[FYXButton alloc]initWithFrame:CGRectMake(0, 550, 150, 30)];
     toastPicBtn.layer.shadowOffset  = CGSizeMake(1, 7);
     toastPicBtn.layer.shadowOpacity = 0.4;
     toastPicBtn.layer.shadowColor   = [UIColor colorWithRed:20.0 / 255 green:206.0 / 255 blue:1 alpha:1.0f].CGColor;
@@ -106,6 +107,13 @@
     [alertMsgBtn2 addTarget:self action:@selector(alertMsg2Click:) forControlEvents:UIControlEventTouchUpInside];
     [self.view addSubview:alertMsgBtn2];
 
+    FYXButton *cardBtn = [[FYXButton alloc]initWithFrame:CGRectMake(0, 600, 150, 30)];
+    cardBtn.layer.shadowOffset  = CGSizeMake(1, 7);
+    cardBtn.layer.shadowOpacity = 0.4;
+    cardBtn.layer.shadowColor   = [UIColor colorWithRed:20.0 / 255 green:206.0 / 255 blue:1 alpha:1.0f].CGColor;
+    [cardBtn setTitle:@"优惠券" forState:UIControlStateNormal];
+    [cardBtn addTarget:self action:@selector(cardBtnClick:) forControlEvents:UIControlEventTouchUpInside];
+    [self.view addSubview:cardBtn];
 
     FYXButton *calendarBtn = [[FYXButton alloc]initWithFrame:CGRectMake(0, 400, 100, 30)];
     calendarBtn.layer.shadowOffset  = CGSizeMake(1, 7);
@@ -143,6 +151,11 @@
     FYXTextField *textField = [[FYXTextField alloc]initWithFrame:CGRectMake(200, 100, 100, 30)];
     [textField setPlaceholder:@"请登录"];
     [self.view addSubview:textField];
+
+    FYXButton *vinBtn = [[FYXButton alloc]initWithFrame:CGRectMake(200, 600, 100, 30)];
+    [vinBtn setTitle:@"车架号" forState:UIControlStateNormal];
+    [vinBtn addTarget:self action:@selector(vinBtnClick:) forControlEvents:UIControlEventTouchUpInside];
+    [self.view addSubview:vinBtn];
     
     alertView = [[FYXAlertView alloc]initWithFrame:CGRectMake(0, 0,[[UIScreen mainScreen] bounds].size.width , [[UIScreen mainScreen] bounds].size.height)];
     [self.view addSubview:alertView];
@@ -174,6 +187,10 @@
     safelightView = [[FYXAlertView alloc]initWithFrame:CGRectMake(0, 0,[[UIScreen mainScreen] bounds].size.width , [[UIScreen mainScreen] bounds].size.height)];
     [self.view addSubview:safelightView];
     safelightView.hidden = YES;
+
+    cardAlerView = [[FYXAlertView alloc]initWithFrame:CGRectMake(0, 0,[[UIScreen mainScreen] bounds].size.width , [[UIScreen mainScreen] bounds].size.height)];
+    [self.view addSubview:cardAlerView];
+    cardAlerView.hidden = YES;
 
 
     lightView = [[UIView alloc]init];
@@ -336,7 +353,15 @@
 
 }
 
+- (void)cardBtnClick: (UIButton *)sender {
+    cardAlerView.hidden = NO;
+    [cardAlerView setCardAlert:@"旅行大礼包" subtitle:@"我是副标题一行字" cardNumb:@"券码：aaaa" cardPw:@"密码：77777" prompt:@"如果密码一同复制，用/分隔" firstImage:@"call.png" secondImage:@"copy.png" thirdImage:@"link.png" firstString:@"客服热线" secondString:@"复制兑换码" thirdString:@"使用链接"];
+}
 
+- (void)vinBtnClick: (UIButton *)sender {
+    VinViewController *vc = [[VinViewController alloc]init];
+    [self.navigationController pushViewController:vc animated:YES];
+}
 - (void)sideMenuClick: (UIButton *)sender {
     
     [sideMenu clickDraw];
@@ -344,5 +369,6 @@
 - (void)sureDidClick: (FYXAlertView *)alertView {
     
 }
+
 
 @end

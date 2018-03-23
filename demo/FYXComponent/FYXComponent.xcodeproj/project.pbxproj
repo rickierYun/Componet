@@ -8,7 +8,6 @@
 
 /* Begin PBXBuildFile section */
 		2F17563B205B981900FAD966 /* safeLight.png in Resources */ = {isa = PBXBuildFile; fileRef = 2F17563A205B981900FAD966 /* safeLight.png */; };
-		2F17563D205B986C00FAD966 /* close.png in Resources */ = {isa = PBXBuildFile; fileRef = 2F17563C205B986C00FAD966 /* close.png */; };
 		2F17563F205B9ECE00FAD966 /* full.png in Resources */ = {isa = PBXBuildFile; fileRef = 2F17563E205B9ECE00FAD966 /* full.png */; };
 		2F2B233C205A64A9005A9C33 /* checkView.png in Resources */ = {isa = PBXBuildFile; fileRef = 2F2B233B205A64A9005A9C33 /* checkView.png */; };
 		2F2B233E205A6D99005A9C33 /* close_red.png in Resources */ = {isa = PBXBuildFile; fileRef = 2F2B233D205A6D99005A9C33 /* close_red.png */; };
@@ -16,6 +15,16 @@
 		2F2B234A205B599E005A9C33 /* lightView.png in Resources */ = {isa = PBXBuildFile; fileRef = 2F2B2349205B599E005A9C33 /* lightView.png */; };
 		2F2B234C205B5E03005A9C33 /* light.png in Resources */ = {isa = PBXBuildFile; fileRef = 2F2B234B205B5E02005A9C33 /* light.png */; };
 		2F39573920622ACF00D6137F /* bubble.png in Resources */ = {isa = PBXBuildFile; fileRef = 2F39573820622ACF00D6137F /* bubble.png */; };
+		2F39573B2064A71B00D6137F /* close.png in Resources */ = {isa = PBXBuildFile; fileRef = 2F39573A2064A71B00D6137F /* close.png */; };
+		2F39573D2064AC9500D6137F /* card.png in Resources */ = {isa = PBXBuildFile; fileRef = 2F39573C2064AC9500D6137F /* card.png */; };
+		2F39573F2064B86200D6137F /* idle.png in Resources */ = {isa = PBXBuildFile; fileRef = 2F39573E2064B86100D6137F /* idle.png */; };
+		2F3957412064E3F500D6137F /* copy.png in Resources */ = {isa = PBXBuildFile; fileRef = 2F3957402064E3F500D6137F /* copy.png */; };
+		2F3957432064E3FA00D6137F /* link.png in Resources */ = {isa = PBXBuildFile; fileRef = 2F3957422064E3FA00D6137F /* link.png */; };
+		2F3957452064E40000D6137F /* call.png in Resources */ = {isa = PBXBuildFile; fileRef = 2F3957442064E3FF00D6137F /* call.png */; };
+		2F3957482064EF4C00D6137F /* VinView.m in Sources */ = {isa = PBXBuildFile; fileRef = 2F3957472064EF4C00D6137F /* VinView.m */; };
+		2F39574A2064F18C00D6137F /* vin.png in Resources */ = {isa = PBXBuildFile; fileRef = 2F3957492064F18B00D6137F /* vin.png */; };
+		2F39574D2064F5C500D6137F /* VinViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2F39574C2064F5C500D6137F /* VinViewController.m */; };
+		2F39574F2064FFD800D6137F /* success.png in Resources */ = {isa = PBXBuildFile; fileRef = 2F39574E2064FFD800D6137F /* success.png */; };
 		2F610350204E226600535AD8 /* FYXSideMenu.m in Sources */ = {isa = PBXBuildFile; fileRef = 2F61034F204E226600535AD8 /* FYXSideMenu.m */; };
 		2F610354204E73FF00535AD8 /* FYXPageFlow.m in Sources */ = {isa = PBXBuildFile; fileRef = 2F610353204E73FF00535AD8 /* FYXPageFlow.m */; };
 		2F85742920560998003D1518 /* CalendarViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2F85742820560998003D1518 /* CalendarViewController.m */; };
@@ -38,7 +47,6 @@
 		2FA595BA204544FD001B2D95 /* prev.png in Resources */ = {isa = PBXBuildFile; fileRef = 2FA595B9204544FD001B2D95 /* prev.png */; };
 		2FB274E1203FBB4600E985F9 /* FYXToast.m in Sources */ = {isa = PBXBuildFile; fileRef = 2FB274E0203FBB4600E985F9 /* FYXToast.m */; };
 		2FB274E8203FE51500E985F9 /* FYXButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 2FB274E7203FE51500E985F9 /* FYXButton.m */; };
-		2FB274EA203FF8E000E985F9 /* success.png in Resources */ = {isa = PBXBuildFile; fileRef = 2FB274E9203FF8E000E985F9 /* success.png */; };
 		2FB274EE203FF98000E985F9 /* FYXTextField.m in Sources */ = {isa = PBXBuildFile; fileRef = 2FB274ED203FF98000E985F9 /* FYXTextField.m */; };
 		2FB27512204139BF00E985F9 /* FSCalendarCollectionView.m in Sources */ = {isa = PBXBuildFile; fileRef = 2FB274F1204139BF00E985F9 /* FSCalendarCollectionView.m */; };
 		2FB27513204139BF00E985F9 /* FSCalendarDelegationProxy.m in Sources */ = {isa = PBXBuildFile; fileRef = 2FB274F5204139BF00E985F9 /* FSCalendarDelegationProxy.m */; };
@@ -81,7 +89,6 @@
 
 /* Begin PBXFileReference section */
 		2F17563A205B981900FAD966 /* safeLight.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = safeLight.png; sourceTree = "<group>"; };
-		2F17563C205B986C00FAD966 /* close.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = close.png; sourceTree = "<group>"; };
 		2F17563E205B9ECE00FAD966 /* full.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = full.png; sourceTree = "<group>"; };
 		2F2B233B205A64A9005A9C33 /* checkView.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = checkView.png; sourceTree = "<group>"; };
 		2F2B233D205A6D99005A9C33 /* close_red.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = close_red.png; sourceTree = "<group>"; };
@@ -90,6 +97,18 @@
 		2F2B2349205B599E005A9C33 /* lightView.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = lightView.png; sourceTree = "<group>"; };
 		2F2B234B205B5E02005A9C33 /* light.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = light.png; sourceTree = "<group>"; };
 		2F39573820622ACF00D6137F /* bubble.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = bubble.png; sourceTree = "<group>"; };
+		2F39573A2064A71B00D6137F /* close.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = close.png; sourceTree = "<group>"; };
+		2F39573C2064AC9500D6137F /* card.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = card.png; sourceTree = "<group>"; };
+		2F39573E2064B86100D6137F /* idle.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = idle.png; sourceTree = "<group>"; };
+		2F3957402064E3F500D6137F /* copy.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = copy.png; sourceTree = "<group>"; };
+		2F3957422064E3FA00D6137F /* link.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = link.png; sourceTree = "<group>"; };
+		2F3957442064E3FF00D6137F /* call.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = call.png; sourceTree = "<group>"; };
+		2F3957462064EF4C00D6137F /* VinView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = VinView.h; sourceTree = "<group>"; };
+		2F3957472064EF4C00D6137F /* VinView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = VinView.m; sourceTree = "<group>"; };
+		2F3957492064F18B00D6137F /* vin.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = vin.png; sourceTree = "<group>"; };
+		2F39574B2064F5C500D6137F /* VinViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = VinViewController.h; sourceTree = "<group>"; };
+		2F39574C2064F5C500D6137F /* VinViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = VinViewController.m; sourceTree = "<group>"; };
+		2F39574E2064FFD800D6137F /* success.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = success.png; sourceTree = "<group>"; };
 		2F61034E204E226600535AD8 /* FYXSideMenu.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FYXSideMenu.h; sourceTree = "<group>"; };
 		2F61034F204E226600535AD8 /* FYXSideMenu.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FYXSideMenu.m; sourceTree = "<group>"; };
 		2F610352204E73FF00535AD8 /* FYXPageFlow.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FYXPageFlow.h; sourceTree = "<group>"; };
@@ -131,7 +150,6 @@
 		2FB274E0203FBB4600E985F9 /* FYXToast.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FYXToast.m; sourceTree = "<group>"; };
 		2FB274E6203FE51500E985F9 /* FYXButton.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FYXButton.h; sourceTree = "<group>"; };
 		2FB274E7203FE51500E985F9 /* FYXButton.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FYXButton.m; sourceTree = "<group>"; };
-		2FB274E9203FF8E000E985F9 /* success.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = success.png; sourceTree = "<group>"; };
 		2FB274EC203FF98000E985F9 /* FYXTextField.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FYXTextField.h; sourceTree = "<group>"; };
 		2FB274ED203FF98000E985F9 /* FYXTextField.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FYXTextField.m; sourceTree = "<group>"; };
 		2FB274F1204139BF00E985F9 /* FSCalendarCollectionView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FSCalendarCollectionView.m; sourceTree = "<group>"; };
@@ -286,10 +304,15 @@
 				2F89B49C202D29A700DC6105 /* AppDelegate.m */,
 				2F89B49E202D29A700DC6105 /* ViewController.h */,
 				2F89B49F202D29A700DC6105 /* ViewController.m */,
+				2F3957442064E3FF00D6137F /* call.png */,
+				2F3957422064E3FA00D6137F /* link.png */,
 				2F17563A205B981900FAD966 /* safeLight.png */,
 				2F17563E205B9ECE00FAD966 /* full.png */,
+				2F39573E2064B86100D6137F /* idle.png */,
+				2F3957492064F18B00D6137F /* vin.png */,
 				2F2B233D205A6D99005A9C33 /* close_red.png */,
 				2F2B2349205B599E005A9C33 /* lightView.png */,
+				2F3957402064E3F500D6137F /* copy.png */,
 				2F2B233B205A64A9005A9C33 /* checkView.png */,
 				2F89B4A1202D29A700DC6105 /* Main.storyboard */,
 				2F89B4A4202D29A700DC6105 /* Assets.xcassets */,
@@ -304,6 +327,10 @@
 				2F8574322056200F003D1518 /* CheckAnimationViewController.m */,
 				2F85743B20567BCC003D1518 /* HUdViewController.h */,
 				2F85743C20567BCC003D1518 /* HUdViewController.m */,
+				2F3957462064EF4C00D6137F /* VinView.h */,
+				2F3957472064EF4C00D6137F /* VinView.m */,
+				2F39574B2064F5C500D6137F /* VinViewController.h */,
+				2F39574C2064F5C500D6137F /* VinViewController.m */,
 			);
 			path = FYXComponent;
 			sourceTree = "<group>";
@@ -333,7 +360,8 @@
 				2F89B4CF202D29E400DC6105 /* FYXAlertView.m */,
 				2F39573820622ACF00D6137F /* bubble.png */,
 				2F86FE78203E6BA600994707 /* sure.png */,
-				2F17563C205B986C00FAD966 /* close.png */,
+				2F39573C2064AC9500D6137F /* card.png */,
+				2F39573A2064A71B00D6137F /* close.png */,
 			);
 			path = FYXAlert;
 			sourceTree = "<group>";
@@ -343,7 +371,7 @@
 			children = (
 				2FB274DF203FBB4600E985F9 /* FYXToast.h */,
 				2FB274E0203FBB4600E985F9 /* FYXToast.m */,
-				2FB274E9203FF8E000E985F9 /* success.png */,
+				2F39574E2064FFD800D6137F /* success.png */,
 			);
 			path = FYXToast;
 			sourceTree = "<group>";
@@ -518,20 +546,26 @@
 			buildActionMask = 2147483647;
 			files = (
 				2F89B4A8202D29A700DC6105 /* LaunchScreen.storyboard in Resources */,
+				2F39573F2064B86200D6137F /* idle.png in Resources */,
+				2F39573D2064AC9500D6137F /* card.png in Resources */,
 				2F86FE79203E6BA600994707 /* sure.png in Resources */,
 				2F2B233C205A64A9005A9C33 /* checkView.png in Resources */,
+				2F3957412064E3F500D6137F /* copy.png in Resources */,
 				2F39573920622ACF00D6137F /* bubble.png in Resources */,
 				2F89B4A5202D29A700DC6105 /* Assets.xcassets in Resources */,
-				2F17563D205B986C00FAD966 /* close.png in Resources */,
+				2F39573B2064A71B00D6137F /* close.png in Resources */,
 				2FA595B82045445E001B2D95 /* next.png in Resources */,
+				2F39574A2064F18C00D6137F /* vin.png in Resources */,
 				2F2B233E205A6D99005A9C33 /* close_red.png in Resources */,
 				2F17563F205B9ECE00FAD966 /* full.png in Resources */,
 				2FA595BA204544FD001B2D95 /* prev.png in Resources */,
+				2F3957432064E3FA00D6137F /* link.png in Resources */,
+				2F3957452064E40000D6137F /* call.png in Resources */,
 				2F89B4A3202D29A700DC6105 /* Main.storyboard in Resources */,
 				2F2B234C205B5E03005A9C33 /* light.png in Resources */,
 				2F2B234A205B599E005A9C33 /* lightView.png in Resources */,
-				2FB274EA203FF8E000E985F9 /* success.png in Resources */,
 				2F17563B205B981900FAD966 /* safeLight.png in Resources */,
+				2F39574F2064FFD800D6137F /* success.png in Resources */,
 				2FB27521204139BF00E985F9 /* Info.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -577,10 +611,12 @@
 				2F89B4AB202D29A700DC6105 /* main.m in Sources */,
 				2F89B49D202D29A700DC6105 /* AppDelegate.m in Sources */,
 				2F89B4D0202D29E400DC6105 /* FYXAlertView.m in Sources */,
+				2F3957482064EF4C00D6137F /* VinView.m in Sources */,
 				2F85743A20564D1D003D1518 /* FYXLoadingHud.m in Sources */,
 				2FB2751A204139BF00E985F9 /* FSCalendarWeekdayView.m in Sources */,
 				2FB2751B204139BF00E985F9 /* FSCalendarExtensions.m in Sources */,
 				2F2B2348205B52D6005A9C33 /* UIView+GlowView.m in Sources */,
+				2F39574D2064F5C500D6137F /* VinViewController.m in Sources */,
 				2FB27513204139BF00E985F9 /* FSCalendarDelegationProxy.m in Sources */,
 				2F8574332056200F003D1518 /* CheckAnimationViewController.m in Sources */,
 				2F610350204E226600535AD8 /* FYXSideMenu.m in Sources */,
