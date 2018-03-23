@@ -29,6 +29,7 @@
     FYXAlertView *bubbleView;
     FYXAlertView *safelightView;
     FYXAlertView *cardAlerView;
+    FYXAlertView *topAlertView;
     FYXSideMenu  *sideMenu;
     UIView       *lightView;
 }
@@ -156,7 +157,12 @@
     [vinBtn setTitle:@"车架号" forState:UIControlStateNormal];
     [vinBtn addTarget:self action:@selector(vinBtnClick:) forControlEvents:UIControlEventTouchUpInside];
     [self.view addSubview:vinBtn];
-    
+
+    FYXButton *topBtn = [[FYXButton alloc]initWithFrame:CGRectMake(200, 650, 100, 30)];
+    [topBtn setTitle:@"上部弹窗" forState:UIControlStateNormal];
+    [topBtn addTarget:self action:@selector(topBtnClick:) forControlEvents:UIControlEventTouchUpInside];
+    [self.view addSubview:topBtn];
+
     alertView = [[FYXAlertView alloc]initWithFrame:CGRectMake(0, 0,[[UIScreen mainScreen] bounds].size.width , [[UIScreen mainScreen] bounds].size.height)];
     [self.view addSubview:alertView];
     alertView.delegate = self;
@@ -179,6 +185,10 @@
     alertMoreBtnView = [[FYXAlertView alloc]initWithFrame:CGRectMake(0, 0,[[UIScreen mainScreen] bounds].size.width , [[UIScreen mainScreen] bounds].size.height)];
     [self.view addSubview:alertMoreBtnView];
     alertMoreBtnView.hidden = YES;
+
+    topAlertView = [[FYXAlertView alloc]initWithFrame:CGRectMake(0, 0,[[UIScreen mainScreen] bounds].size.width , [[UIScreen mainScreen] bounds].size.height)];
+    [self.view addSubview:topAlertView];
+    topAlertView.hidden = YES;
 
     bubbleView = [[FYXAlertView alloc]initWithFrame:CGRectMake(0, 0,[[UIScreen mainScreen] bounds].size.width , [[UIScreen mainScreen] bounds].size.height)];
     bubbleView.hidden = YES;
@@ -361,6 +371,11 @@
 - (void)vinBtnClick: (UIButton *)sender {
     VinViewController *vc = [[VinViewController alloc]init];
     [self.navigationController pushViewController:vc animated:YES];
+}
+
+- (void)topBtnClick: (UIButton *)sender {
+    topAlertView.hidden = NO;
+    [topAlertView setTopAlert:@"系统提示" titleFont:15];
 }
 - (void)sideMenuClick: (UIButton *)sender {
     

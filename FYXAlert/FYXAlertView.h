@@ -103,4 +103,6 @@
          firstString: (NSString *)firstString
         secondString: (NSString *)secondString
          thirdString: (NSString *)thirdString;
+
+- (void)setTopAlert: (NSString *)title titleFont: (CGFloat )titleFont;
 @end

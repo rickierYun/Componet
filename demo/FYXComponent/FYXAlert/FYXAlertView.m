@@ -625,6 +625,29 @@ CGFloat nativeScale(void) {
     [self.otherBtn addTarget:self action:@selector(otherClick:) forControlEvents:UIControlEventTouchUpInside];
 }
 
+- (void)setTopAlert: (NSString *)title titleFont: (CGFloat )titleFont{
+    _backGroundBtn.backgroundColor = [UIColor clearColor];
+    UIFont *font = [UIFont boldSystemFontOfSize: titleFont * displayScale];
+    NSDictionary *attrs = @{NSFontAttributeName : font};
+    CGSize textSize = [title boundingRectWithSize:CGSizeMake(280, MAXFLOAT) options:NSStringDrawingUsesLineFragmentOrigin attributes:attrs context:nil].size;
+    _alertTitle = [[UILabel alloc]init];
+    _alertTitle.frame = CGRectMake(8 * displayScale, 8 * displayScale, VIEW_WIDTH(self) - 50 * displayScale, textSize.height);
+    _alertTitle.text = title;
+    _alertTitle.textColor = [UIColor whiteColor];
+    _msgAlertView = [[UIView alloc]init];
+    _msgAlertView.frame = CGRectMake(0, 30 *displayScale, VIEW_WIDTH(self), textSize.height + 20 * displayScale);
+    _msgAlertView.backgroundColor = [UIColor blackColor];
+    _msgAlertView.alpha = 0.4;
+    [_msgAlertView addSubview:_alertTitle];
+
+    UIButton *cancel = [[UIButton alloc]init];
+    cancel.frame = CGRectMake(VIEW_WIDTH(self) - 40 * displayScale, VIEW_CENTER_Y(_alertTitle) - 10 * displayScale, 20 * displayScale, 20 * displayScale);
+    [cancel setImage:[UIImage imageNamed:@"close.png"] forState:UIControlStateNormal];
+    [cancel addTarget:self action:@selector(hiddenClick:) forControlEvents:UIControlEventTouchUpInside];
+    [_msgAlertView addSubview:cancel];
+
+    [self addSubview:_msgAlertView];
+}
 
 #pragma -mark action
 // 点击背景隐藏
