@@ -352,3 +352,6 @@ pageFlow.dataSource = self;
 ```
 
 要往侧边栏上加载子 view，只需要在父view sideMenuView 上添加即可。
+
+### 车架号
+<img width="270" height="480" src="https://github.com/rickierYun/Componet/blob/master/image/vin.gif"/>
