@@ -18,6 +18,7 @@
 #import "HUdViewController.h"
 #import "UIView+GlowView.h"
 #import "VinViewController.h"
+#import <EventKit/EventKit.h>
 
 @interface ViewController ()<FYXAlertViewDelegate>
 {
@@ -39,6 +40,7 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+
     self.view.backgroundColor = [UIColor whiteColor];
 
     UIButton *alertBtn = [[UIButton alloc]init];

@@ -91,8 +91,10 @@ CGFloat nativScale(void) {
         EKEventStore *store = [[EKEventStore alloc] init];
         [store requestAccessToEntityType:EKEntityTypeEvent completion:^(BOOL granted, NSError * _Nullable error) {
             if(granted) {
-                NSDate *startDate = _calendar.minimumDate; // 开始日期
-                NSDate *endDate = _calendar.maximumDate; // 截止日期
+                NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
+                dateFormatter.dateFormat = @"yyyy-MM-dd";
+                NSDate *startDate = [dateFormatter dateFromString:@"2016-02-03"]; // 开始日期
+                NSDate *endDate = [dateFormatter dateFromString:@"2118-04-10"]; // 截止日期
                 NSPredicate *fetchCalendarEvents = [store predicateForEventsWithStartDate:startDate endDate:endDate calendars:nil];
                 NSArray<EKEvent *> *eventList = [store eventsMatchingPredicate:fetchCalendarEvents];
                 NSArray<EKEvent *> *events = [eventList filteredArrayUsingPredicate:[NSPredicate predicateWithBlock:^BOOL(EKEvent * _Nullable event, NSDictionary<NSString *,id> * _Nullable bindings) {
@@ -243,16 +245,11 @@ CGFloat nativScale(void) {
 - (NSArray<EKEvent *> *)eventsForDate:(NSDate *)date
 {
 
-//    NSUserDefaults * def = [NSUserDefaults standardUserDefaults];
-//    [def objectForKey:@"fysEvents"];
-//    if (def != nil) {
-//        self.events = (NSArray<EKEvent *> *)def;
-//    }
+
     NSArray<EKEvent *> *filteredEvents = [self.events filteredArrayUsingPredicate:[NSPredicate predicateWithBlock:^BOOL(EKEvent * _Nullable evaluatedObject, NSDictionary<NSString *,id> * _Nullable bindings) {
         return [evaluatedObject.occurrenceDate isEqualToDate:date];
     }]];
-//    [def setObject:self.events forKey:@"fysEvents"];
-//    [def synchronize];
+
     return filteredEvents;
 
 

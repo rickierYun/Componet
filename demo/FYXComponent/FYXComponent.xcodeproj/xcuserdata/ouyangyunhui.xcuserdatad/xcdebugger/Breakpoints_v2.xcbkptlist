@@ -120,12 +120,12 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "FYXAlert/FYXAlertView.m"
-            timestampString = "543575870.205066"
+            timestampString = "543577949.756846"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "710"
-            endingLineNumber = "710"
-            landmarkName = "-copyClick:"
+            startingLineNumber = "704"
+            endingLineNumber = "704"
+            landmarkName = "-otherClick:"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
