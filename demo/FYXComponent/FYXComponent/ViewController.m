@@ -378,6 +378,7 @@
 - (void)topBtnClick: (UIButton *)sender {
     topAlertView.hidden = NO;
     [topAlertView setTopAlert:@"收费规则:起步价39元（10公里内），10公里后，每公里加收10元，不足5公里按5公里计算。adadda" titleFont:15];
+    [topAlertView setOtherBtnframe:NSMakeRange(10, 7)];
 }
 - (void)sideMenuClick: (UIButton *)sender {
     

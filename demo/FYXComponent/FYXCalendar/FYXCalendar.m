@@ -9,6 +9,7 @@
 #import "FYXCalendar.h"
 #import "FYXCalendarDataModel.h"
 
+
 #define normalColor [UIColor colorWithRed:20.0 / 255 green:206.0 / 255 blue:1 alpha:1.0f]
 #define weekColor [UIColor colorWithRed:1 green:197.0 / 255 blue:20.0 / 255 alpha:1.0f]
 #define todayTitleColor [UIColor colorWithRed:150.0 / 255 green:150.0 / 255 blue:150.0 / 255 alpha:1.0f]
@@ -81,10 +82,27 @@ CGFloat nativScale(void) {
         _calendar.appearance.headerTitleColor = [UIColor blackColor];   // 年份时间
         _calendar.appearance.headerDateFormat = @"yyyy年MM月";           // 设置年份格式
         _calendar.appearance.caseOptions = FSCalendarCaseOptionsHeaderUsesUpperCase|FSCalendarCaseOptionsWeekdayUsesSingleUpperCase;            // 改变星期显示
+
         [self addSubview:_calendar];
         self.calendar = _calendar;
         _gregorianCalendar = [NSCalendar calendarWithIdentifier:NSCalendarIdentifierGregorian];
-        
+
+        __weak typeof(self) weakSelf = self;
+        EKEventStore *store = [[EKEventStore alloc] init];
+        [store requestAccessToEntityType:EKEntityTypeEvent completion:^(BOOL granted, NSError * _Nullable error) {
+            if(granted) {
+                NSDate *startDate = _calendar.minimumDate; // 开始日期
+                NSDate *endDate = _calendar.maximumDate; // 截止日期
+                NSPredicate *fetchCalendarEvents = [store predicateForEventsWithStartDate:startDate endDate:endDate calendars:nil];
+                NSArray<EKEvent *> *eventList = [store eventsMatchingPredicate:fetchCalendarEvents];
+                NSArray<EKEvent *> *events = [eventList filteredArrayUsingPredicate:[NSPredicate predicateWithBlock:^BOOL(EKEvent * _Nullable event, NSDictionary<NSString *,id> * _Nullable bindings) {
+                    return event.calendar.subscribed;
+                }]];
+                weakSelf.events = events;
+            }
+        }];
+
+
         UIButton *previousButton = [UIButton buttonWithType:UIButtonTypeCustom];
         previousButton.frame = CGRectMake(0, 0, 95, 34);
         previousButton.backgroundColor = [UIColor whiteColor];
@@ -196,9 +214,14 @@ CGFloat nativScale(void) {
 
 #pragma -mark FSCalendarDelegate
 - (NSString *)calendar:(FSCalendar *)calendar titleForDate:(NSDate *)date {
+    EKEvent *event = [self eventsForDate:date].firstObject;
+    if (event) {
+        return event.title; // 春分、秋分、儿童节、植树节、国庆节、圣诞节...
+    }
     if ([self.gregorianCalendar isDateInToday:date]) {
         return @"今天";
     }
+
     return nil;
 }
 
@@ -206,11 +229,33 @@ CGFloat nativScale(void) {
     NSDateFormatter *dateFormatter = [[NSDateFormatter alloc]init];
     dateFormatter.dateFormat = @"yyyy-MM-dd";
     selectDay = [dateFormatter stringFromDate:date];
+    if ([self eventsForDate:date].firstObject) {
+        selectDay = [self eventsForDate:date].firstObject.title;
+    }
     [self.collectView reloadData];
 }
 
 - (NSDate *)minimumDateForCalendar:(FSCalendar *)calendar {
     return _minimumDate;
+}
+
+// 某个日期的所有事件
+- (NSArray<EKEvent *> *)eventsForDate:(NSDate *)date
+{
+
+//    NSUserDefaults * def = [NSUserDefaults standardUserDefaults];
+//    [def objectForKey:@"fysEvents"];
+//    if (def != nil) {
+//        self.events = (NSArray<EKEvent *> *)def;
+//    }
+    NSArray<EKEvent *> *filteredEvents = [self.events filteredArrayUsingPredicate:[NSPredicate predicateWithBlock:^BOOL(EKEvent * _Nullable evaluatedObject, NSDictionary<NSString *,id> * _Nullable bindings) {
+        return [evaluatedObject.occurrenceDate isEqualToDate:date];
+    }]];
+//    [def setObject:self.events forKey:@"fysEvents"];
+//    [def synchronize];
+    return filteredEvents;
+
+
 }
 
 #pragma -mark 日期调整点击事件

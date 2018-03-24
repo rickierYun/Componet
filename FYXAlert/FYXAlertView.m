@@ -7,6 +7,7 @@
 //
 
 #import "FYXAlertView.h"
+#import "UILabel+YBAttributeTextTapAction.h"
 
 #define SCREEN_WIDTH  [[UIScreen mainScreen] bounds].size.width
 #define SCREEN_HEIGHT [[UIScreen mainScreen] bounds].size.height
@@ -116,7 +117,7 @@ CGFloat nativeScale(void) {
     _cancelBtn.titleLabel.font = [UIFont systemFontOfSize:17 * displayScale];
 
     [_sureBtn addTarget:self action:@selector(sureClick:) forControlEvents:UIControlEventTouchUpInside];
-    [_cancelBtn addTarget:self action:@selector(hiddenClick:) forControlEvents:UIControlEventTouchUpInside];
+    [_cancelBtn addTarget:self action:@selector(cancelClick:) forControlEvents:UIControlEventTouchUpInside];
 
     [_alertView addSubview:_sureBtn];
     [_alertView addSubview:_cancelBtn];
@@ -183,7 +184,7 @@ CGFloat nativeScale(void) {
                                   35 * displayScale);
 
     _cancelBtn.titleLabel.font = [UIFont systemFontOfSize:17 * displayScale];
-    [_cancelBtn addTarget:self action:@selector(hiddenClick:) forControlEvents:UIControlEventTouchUpInside];
+    [_cancelBtn addTarget:self action:@selector(cancelClick:) forControlEvents:UIControlEventTouchUpInside];
     [_msgAlertView addSubview:_cancelBtn];
     self.cancelBtn = _cancelBtn;
     // 分割线
@@ -299,7 +300,7 @@ CGFloat nativeScale(void) {
                                   VIEW_HEIGHT(_msgLabel) + 20 * displayScale + VIEW_Y(_msgLabel),
                                   VIEW_WIDTH(_alertView),
                                   40 * displayScale);
-    [_cancelBtn addTarget:self action:@selector(hiddenClick:) forControlEvents:UIControlEventTouchUpInside];
+    [_cancelBtn addTarget:self action:@selector(cancelClick:) forControlEvents:UIControlEventTouchUpInside];
     [_cancelBtn setTitle:@"sure" forState:UIControlStateNormal];
     [_cancelBtn setTitleColor:[UIColor blueColor] forState:UIControlStateNormal];
     [_alertView addSubview:_cancelBtn];
@@ -359,7 +360,7 @@ CGFloat nativeScale(void) {
     _cancelBtn.frame = CGRectMake(0, VIEW_Y(_middleBtn) + VIEW_HEIGHT(_middleBtn), VIEW_WIDTH(_sureBtn), VIEW_HEIGHT(_sureBtn));
     [_cancelBtn setTitle:@"think more" forState:UIControlStateNormal];
     [_cancelBtn setTitleColor:[UIColor lightGrayColor] forState:UIControlStateNormal];
-    [_cancelBtn addTarget:self action:@selector(hiddenClick:) forControlEvents:UIControlEventTouchUpInside];
+    [_cancelBtn addTarget:self action:@selector(cancelClick:) forControlEvents:UIControlEventTouchUpInside];
     [_alertView addSubview:_cancelBtn];
     self.cancelBtn = _cancelBtn;
     // 分割线
@@ -641,9 +642,10 @@ CGFloat nativeScale(void) {
     _alertTitle.numberOfLines = 0;
     _alertTitle.textColor = [UIColor whiteColor];
 
-    UIButton *_otherBtn = [[UIButton alloc]init];
-    _otherBtn.frame = _alertTitle.frame;
-    [_otherBtn addTarget:self action:@selector(otherClick:) forControlEvents:UIControlEventTouchUpInside];
+//    UIButton *_otherBtn = [[UIButton alloc]init];
+//    _otherBtn.frame = _alertTitle.frame;
+//    [_otherBtn addTarget:self action:@selector(otherClick:) forControlEvents:UIControlEventTouchUpInside];
+//    self.otherBtn = _otherBtn;
 
     _msgAlertView = [[UIView alloc]init];
     _msgAlertView.frame = CGRectMake(0, 30 *displayScale, VIEW_WIDTH(self), textSize.height + 20 * displayScale);
@@ -651,8 +653,8 @@ CGFloat nativeScale(void) {
     _msgAlertView.alpha = 0.4;
 
     [_msgAlertView addSubview:_alertTitle];
-    [_msgAlertView addSubview:_otherBtn];
-    self.otherBtn = _otherBtn;
+//    [_msgAlertView addSubview:_otherBtn];
+//    self.otherBtn = _otherBtn;
 
     UIButton *cancel = [[UIButton alloc]init];
     cancel.frame = CGRectMake(VIEW_WIDTH(self) - 40 * displayScale, VIEW_CENTER_Y(_alertTitle) - 10 * displayScale, 20 * displayScale, 20 * displayScale);
@@ -661,6 +663,22 @@ CGFloat nativeScale(void) {
     [_msgAlertView addSubview:cancel];
 
     [self addSubview:_msgAlertView];
+}
+
+- (void)setOtherBtnframe: (NSRange )range{
+    NSMutableAttributedString *content = [[NSMutableAttributedString alloc]initWithString:_alertTitle.text];
+
+    NSString *str = [_alertTitle.text substringWithRange:range];
+    NSRange contentRange = range;
+    [content addAttribute:NSUnderlineStyleAttributeName value:[NSNumber numberWithInteger:NSUnderlineStyleSingle] range:contentRange];
+
+    [_alertTitle yb_addAttributeTapActionWithStrings:@[str] tapClicked:^(NSString *string, NSRange range, NSInteger index) {
+        if ([self.delegate respondsToSelector:@selector(otherBtnDidClick:)]) {
+            [self.delegate otherBtnDidClick:self];
+        }
+    }];
+    _alertTitle.attributedText = content;
+
 }
 
 - (void)tTopAlertHight: (CGFloat)height{
@@ -691,6 +709,12 @@ CGFloat nativeScale(void) {
 - (void)copyClick: (UIButton *)sender {
     if ([self.delegate respondsToSelector:@selector(copyDidClick:)]) {
         [self.delegate copyDidClick:self];
+    }
+}
+
+- (void)cancelClick : (UIButton *)sender {
+    if ([self.delegate respondsToSelector:@selector(cancelBtnDidClick:)]) {
+        [self.delegate cancelBtnDidClick:self];
     }
 }
 @end

@@ -25,6 +25,7 @@
 		2F39574A2064F18C00D6137F /* vin.png in Resources */ = {isa = PBXBuildFile; fileRef = 2F3957492064F18B00D6137F /* vin.png */; };
 		2F39574D2064F5C500D6137F /* VinViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2F39574C2064F5C500D6137F /* VinViewController.m */; };
 		2F39574F2064FFD800D6137F /* success.png in Resources */ = {isa = PBXBuildFile; fileRef = 2F39574E2064FFD800D6137F /* success.png */; };
+		2F408BB020664B35003DC340 /* UILabel+YBAttributeTextTapAction.m in Sources */ = {isa = PBXBuildFile; fileRef = 2F408BAE20664B35003DC340 /* UILabel+YBAttributeTextTapAction.m */; };
 		2F610350204E226600535AD8 /* FYXSideMenu.m in Sources */ = {isa = PBXBuildFile; fileRef = 2F61034F204E226600535AD8 /* FYXSideMenu.m */; };
 		2F610354204E73FF00535AD8 /* FYXPageFlow.m in Sources */ = {isa = PBXBuildFile; fileRef = 2F610353204E73FF00535AD8 /* FYXPageFlow.m */; };
 		2F85742920560998003D1518 /* CalendarViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2F85742820560998003D1518 /* CalendarViewController.m */; };
@@ -68,6 +69,8 @@
 		2FB27525204139DD00E985F9 /* FYXCalendar.m in Sources */ = {isa = PBXBuildFile; fileRef = 2FB27524204139DD00E985F9 /* FYXCalendar.m */; };
 		2FB2752C2044EE1F00E985F9 /* FYXCalendarDataModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 2FB2752B2044EE1F00E985F9 /* FYXCalendarDataModel.m */; };
 		2FC02EE62051305A00EA5F11 /* FYXPageFlowLayout.m in Sources */ = {isa = PBXBuildFile; fileRef = 2FC02EE52051305A00EA5F11 /* FYXPageFlowLayout.m */; };
+		2FE6FDCE2066212500FAA267 /* EventKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2FE6FDCC2066212500FAA267 /* EventKit.framework */; };
+		2FE6FDCF2066212500FAA267 /* EventKitUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2FE6FDCD2066212500FAA267 /* EventKitUI.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -109,6 +112,8 @@
 		2F39574B2064F5C500D6137F /* VinViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = VinViewController.h; sourceTree = "<group>"; };
 		2F39574C2064F5C500D6137F /* VinViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = VinViewController.m; sourceTree = "<group>"; };
 		2F39574E2064FFD800D6137F /* success.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = success.png; sourceTree = "<group>"; };
+		2F408BAE20664B35003DC340 /* UILabel+YBAttributeTextTapAction.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UILabel+YBAttributeTextTapAction.m"; sourceTree = "<group>"; };
+		2F408BAF20664B35003DC340 /* UILabel+YBAttributeTextTapAction.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UILabel+YBAttributeTextTapAction.h"; sourceTree = "<group>"; };
 		2F61034E204E226600535AD8 /* FYXSideMenu.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FYXSideMenu.h; sourceTree = "<group>"; };
 		2F61034F204E226600535AD8 /* FYXSideMenu.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FYXSideMenu.m; sourceTree = "<group>"; };
 		2F610352204E73FF00535AD8 /* FYXPageFlow.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FYXPageFlow.h; sourceTree = "<group>"; };
@@ -191,6 +196,8 @@
 		2FB2752B2044EE1F00E985F9 /* FYXCalendarDataModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FYXCalendarDataModel.m; sourceTree = "<group>"; };
 		2FC02EE42051305A00EA5F11 /* FYXPageFlowLayout.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FYXPageFlowLayout.h; sourceTree = "<group>"; };
 		2FC02EE52051305A00EA5F11 /* FYXPageFlowLayout.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FYXPageFlowLayout.m; sourceTree = "<group>"; };
+		2FE6FDCC2066212500FAA267 /* EventKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = EventKit.framework; path = System/Library/Frameworks/EventKit.framework; sourceTree = SDKROOT; };
+		2FE6FDCD2066212500FAA267 /* EventKitUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = EventKitUI.framework; path = System/Library/Frameworks/EventKitUI.framework; sourceTree = SDKROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -198,6 +205,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				2FE6FDCE2066212500FAA267 /* EventKit.framework in Frameworks */,
+				2FE6FDCF2066212500FAA267 /* EventKitUI.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -284,6 +293,7 @@
 				2F89B4B3202D29A800DC6105 /* FYXComponentTests */,
 				2F89B4BE202D29A800DC6105 /* FYXComponentUITests */,
 				2F89B499202D29A700DC6105 /* Products */,
+				2FE6FDCB2066212400FAA267 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -356,6 +366,8 @@
 		2F89B4CD202D29B300DC6105 /* FYXAlert */ = {
 			isa = PBXGroup;
 			children = (
+				2F408BAF20664B35003DC340 /* UILabel+YBAttributeTextTapAction.h */,
+				2F408BAE20664B35003DC340 /* UILabel+YBAttributeTextTapAction.m */,
 				2F89B4CE202D29E400DC6105 /* FYXAlertView.h */,
 				2F89B4CF202D29E400DC6105 /* FYXAlertView.m */,
 				2F39573820622ACF00D6137F /* bubble.png */,
@@ -437,6 +449,15 @@
 				2FB27511204139BF00E985F9 /* FSCalendarAppearance.m */,
 			);
 			path = FSCalendar;
+			sourceTree = "<group>";
+		};
+		2FE6FDCB2066212400FAA267 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				2FE6FDCC2066212500FAA267 /* EventKit.framework */,
+				2FE6FDCD2066212500FAA267 /* EventKitUI.framework */,
+			);
+			name = Frameworks;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -610,6 +631,7 @@
 				2FB2751C204139BF00E985F9 /* FSCalendar+Deprecated.m in Sources */,
 				2F89B4AB202D29A700DC6105 /* main.m in Sources */,
 				2F89B49D202D29A700DC6105 /* AppDelegate.m in Sources */,
+				2F408BB020664B35003DC340 /* UILabel+YBAttributeTextTapAction.m in Sources */,
 				2F89B4D0202D29E400DC6105 /* FYXAlertView.m in Sources */,
 				2F3957482064EF4C00D6137F /* VinView.m in Sources */,
 				2F85743A20564D1D003D1518 /* FYXLoadingHud.m in Sources */,

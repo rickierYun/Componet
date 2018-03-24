@@ -29,6 +29,7 @@
  *其他按钮点击事件
  */
 - (void)otherBtnDidClick: (FYXAlertView *)alertView;
+- (void)cancelBtnDidClick: (FYXAlertView *)alertView;
 @end
 
 @interface FYXAlertView : UIView
@@ -111,4 +112,8 @@
  *设置顶部弹窗高度
  */
 - (void)tTopAlertHight: (CGFloat)height;
+/**
+ *更改点击范围
+ **/
+- (void)setOtherBtnframe: (NSRange )range;
 @end

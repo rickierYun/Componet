@@ -21,6 +21,8 @@
     self.navigationController.navigationBar.hidden = NO;
     self.navigationController.navigationBar.barTintColor = [UIColor whiteColor];
 
+
+
     FYXCalendar *fyxCalendar = [[FYXCalendar alloc]initWithFrame:CGRectMake(0, 60, self.view.frame.size.width, self.view.frame.size.height )];
     fyxCalendar.delegate = self;
     //    fyxCalendar.calendar.appearance.borderRadius = 1;
@@ -61,6 +63,7 @@
         afthour ++;
     }
 
+    
     // 改变具体时间颜色
         fyxCalendar.timeDetailSelectColor = [UIColor redColor];
         fyxCalendar.timeDetailColor = [UIColor blackColor];
