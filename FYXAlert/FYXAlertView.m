@@ -530,12 +530,14 @@ CGFloat nativeScale(void) {
     UIButton *_sureBtn = [[UIButton alloc]init];
     _sureBtn.frame = CGRectMake(28 * displayScale, VIEW_Y_Bottom(_prompt) + 26 * displayScale, 50 * displayScale, 50 * displayScale);
     self.sureBtn = _sureBtn;
+    [_sureBtn addTarget:self action:@selector(sureClick:) forControlEvents:UIControlEventTouchUpInside];
 
     _btnLabel1 = [[UILabel alloc]init];
     _btnLabel1.frame = CGRectMake(VIEW_X(_sureBtn) - 5 * displayScale, VIEW_Y_Bottom(_sureBtn) + 10 * displayScale, 60 * displayScale, 20 * displayScale);
 
     UIButton *_middelBtn = [[UIButton alloc]init];
     _middelBtn.frame = CGRectMake(VIEW_CENTER_X(_prompt) - 25 * displayScale, VIEW_Y(_sureBtn), VIEW_WIDTH(_sureBtn), VIEW_HEIGHT(_sureBtn));
+    [_middelBtn addTarget:self action:@selector(copyClick:) forControlEvents:UIControlEventTouchUpInside];
     self.middleBtn = _middelBtn;
 
     _btnLabel2 = [[UILabel alloc]init];
@@ -544,29 +546,35 @@ CGFloat nativeScale(void) {
     UIButton *_otherBtn = [[UIButton alloc]init];
     _otherBtn.frame = CGRectMake(VIEW_WIDTH(self) - 158 * displayScale , VIEW_Y(_sureBtn), VIEW_WIDTH(_sureBtn), VIEW_HEIGHT(_sureBtn));
     self.otherBtn = _otherBtn;
+    [_otherBtn addTarget:self action:@selector(otherClick:) forControlEvents:UIControlEventTouchUpInside];
 
     _btnLabel3 = [[UILabel alloc]init];
     _btnLabel3.frame = CGRectMake(VIEW_X(_otherBtn) - 5 * displayScale, VIEW_Y(_btnLabel1), VIEW_WIDTH(_btnLabel1), VIEW_HEIGHT(_btnLabel1));
 
     _alertTitleImage = [[UIImageView alloc]init];
-    _alertTitleImage.frame = CGRectMake(40 * displayScale, 152 * displayScale, VIEW_WIDTH(self) - 80 * displayScale, 280 * displayScale);
     _alertTitleImage.image = [UIImage imageNamed:@"card.png"];
 
-    [self addSubview:_alertTitleImage];
-    [_alertTitleImage addSubview:_alertTitle];
-    [_alertTitleImage addSubview:_lineBreak1];
-    [_alertTitleImage addSubview:_subtitle];
-    [_alertTitleImage addSubview:msgBackView];
-    [_alertTitleImage addSubview:_prompt];
-    [_alertTitleImage addSubview:_sureBtn];
-    [_alertTitleImage addSubview:self.middleBtn];
-    [_alertTitleImage addSubview:self.otherBtn];
-    [_alertTitleImage addSubview:_btnLabel1];
-    [_alertTitleImage addSubview:_btnLabel2];
-    [_alertTitleImage addSubview:_btnLabel3];
+
+    _msgAlertView = [[UIView alloc]init];
+    _msgAlertView.frame = CGRectMake(40 * displayScale, 152 * displayScale, VIEW_WIDTH(self) - 80 * displayScale, 280 * displayScale);
+    _alertTitleImage.frame = CGRectMake(0, 0, VIEW_WIDTH(_msgAlertView), VIEW_HEIGHT(_msgAlertView));
+    [self addSubview:_msgAlertView];
+
+    [_msgAlertView addSubview:_alertTitleImage];
+    [_msgAlertView addSubview:_alertTitle];
+    [_msgAlertView addSubview:_lineBreak1];
+    [_msgAlertView addSubview:_subtitle];
+    [_msgAlertView addSubview:msgBackView];
+    [_msgAlertView addSubview:_prompt];
+    [_msgAlertView addSubview:_sureBtn];
+    [_msgAlertView addSubview:self.middleBtn];
+    [_msgAlertView addSubview:self.otherBtn];
+    [_msgAlertView addSubview:_btnLabel1];
+    [_msgAlertView addSubview:_btnLabel2];
+    [_msgAlertView addSubview:_btnLabel3];
 
     UIButton *_cancelBtn = [[UIButton alloc]init];
-    _cancelBtn.frame = CGRectMake(VIEW_CENTER_X(self) - 20 * displayScale, VIEW_Y_Bottom(_alertTitleImage) + 30 * displayScale , 40 * displayScale, 40 * displayScale);
+    _cancelBtn.frame = CGRectMake(VIEW_CENTER_X(self) - 20 * displayScale, VIEW_Y_Bottom(_msgAlertView) + 30 * displayScale , 40 * displayScale, 40 * displayScale);
     [_cancelBtn setImage:[UIImage imageNamed:@"close.png"] forState:UIControlStateNormal];
     [_cancelBtn addTarget:self action:@selector(hiddenClick:) forControlEvents:UIControlEventTouchUpInside];
     [self addSubview:_cancelBtn];
@@ -620,25 +628,31 @@ CGFloat nativeScale(void) {
     _btnLabel2.textColor = _btnLabel1.textColor;
     _btnLabel3.textColor = _btnLabel1.textColor;
 
-    [self.sureBtn addTarget:self action:@selector(sureClick:) forControlEvents:UIControlEventTouchUpInside];
-    [self.middleBtn addTarget:self action:@selector(copyClick:) forControlEvents:UIControlEventTouchUpInside];
-    [self.otherBtn addTarget:self action:@selector(otherClick:) forControlEvents:UIControlEventTouchUpInside];
 }
 
 - (void)setTopAlert: (NSString *)title titleFont: (CGFloat )titleFont{
     _backGroundBtn.backgroundColor = [UIColor clearColor];
     UIFont *font = [UIFont boldSystemFontOfSize: titleFont * displayScale];
     NSDictionary *attrs = @{NSFontAttributeName : font};
-    CGSize textSize = [title boundingRectWithSize:CGSizeMake(280, MAXFLOAT) options:NSStringDrawingUsesLineFragmentOrigin attributes:attrs context:nil].size;
+    CGSize textSize = [title boundingRectWithSize:CGSizeMake(240, MAXFLOAT) options:NSStringDrawingUsesLineFragmentOrigin attributes:attrs context:nil].size;
     _alertTitle = [[UILabel alloc]init];
     _alertTitle.frame = CGRectMake(8 * displayScale, 8 * displayScale, VIEW_WIDTH(self) - 50 * displayScale, textSize.height);
     _alertTitle.text = title;
+    _alertTitle.numberOfLines = 0;
     _alertTitle.textColor = [UIColor whiteColor];
+
+    UIButton *_otherBtn = [[UIButton alloc]init];
+    _otherBtn.frame = _alertTitle.frame;
+    [_otherBtn addTarget:self action:@selector(otherClick:) forControlEvents:UIControlEventTouchUpInside];
+
     _msgAlertView = [[UIView alloc]init];
     _msgAlertView.frame = CGRectMake(0, 30 *displayScale, VIEW_WIDTH(self), textSize.height + 20 * displayScale);
     _msgAlertView.backgroundColor = [UIColor blackColor];
     _msgAlertView.alpha = 0.4;
+
     [_msgAlertView addSubview:_alertTitle];
+    [_msgAlertView addSubview:_otherBtn];
+    self.otherBtn = _otherBtn;
 
     UIButton *cancel = [[UIButton alloc]init];
     cancel.frame = CGRectMake(VIEW_WIDTH(self) - 40 * displayScale, VIEW_CENTER_Y(_alertTitle) - 10 * displayScale, 20 * displayScale, 20 * displayScale);

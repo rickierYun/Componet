@@ -53,6 +53,7 @@
         UIImageView *vinImage = [[UIImageView alloc]init];
         vinImage.frame = CGRectMake(25 , 43, SCREEN_WIDTH - 50  , 180 );
         vinImage.image = [UIImage imageNamed:@"vin.png"];
+//        self.delegate = self;
         [self addSubview:vinImage];
 
         UILabel *vinLabel = [[UILabel alloc]init];
@@ -73,6 +74,7 @@
         tf1.layer.cornerRadius = 5;
         tf1.layer.borderColor = [UIColor blackColor].CGColor;
         tf1.layer.borderWidth = 1;
+        tf1.delegate = self;
         [self addSubview:tf1];
 
         tf2 = [[UITextField alloc]init];
@@ -82,6 +84,7 @@
         tf2.layer.cornerRadius = 5;
         tf2.layer.borderColor = [UIColor blackColor].CGColor;
         tf2.layer.borderWidth = 1;
+        tf2.delegate = self;
         [self addSubview:tf2];
 
         tf3 = [[UITextField alloc]init];
@@ -91,6 +94,7 @@
         tf3.layer.cornerRadius = 5;
         tf3.layer.borderColor = [UIColor blackColor].CGColor;
         tf3.layer.borderWidth = 1;
+        tf3.delegate = self;
         [self addSubview:tf3];
 
         tf4 = [[UITextField alloc]init];
@@ -100,6 +104,7 @@
         tf4.layer.cornerRadius = 5;
         tf4.layer.borderColor = [UIColor blackColor].CGColor;
         tf4.layer.borderWidth = 1;
+        tf4.delegate = self;
         [self addSubview:tf4];
 
         tf5 = [[UITextField alloc]init];
@@ -109,6 +114,7 @@
         tf5.layer.cornerRadius = 5;
         tf5.layer.borderColor = [UIColor blackColor].CGColor;
         tf5.layer.borderWidth = 1;
+        tf5.delegate = self;
         [self addSubview:tf5];
 
         tf6 = [[UITextField alloc]init];
@@ -118,6 +124,7 @@
         tf6.layer.cornerRadius = 5;
         tf6.layer.borderColor = [UIColor blackColor].CGColor;
         tf6.layer.borderWidth = 1;
+        tf6.delegate = self;
         [self addSubview:tf6];
 
         FYXButton *next = [[FYXButton alloc]initWithFrame:CGRectMake(17, VIEW_Y_Bottom(tf1) + 30, VIEW_WIDTH(self) - 24, 50)];
@@ -133,4 +140,40 @@
         [self.delegate nextClick:vinStr];
     }
 }
+
+
+-(BOOL)textField:(UITextField *)textField shouldChangeCharactersInRange:(NSRange)range replacementString:(NSString *)string {
+    if (textField == tf1) {
+        if ([textField.text length] >= 1) {
+            [tf2 becomeFirstResponder];
+        }
+    }
+    if (textField == tf2) {
+        if ([textField.text length] >= 1) {
+            [tf3 becomeFirstResponder];
+        }
+    }
+    if (textField == tf3) {
+        if ([textField.text length] >= 1) {
+            [tf4 becomeFirstResponder];
+        }
+    }
+    if (textField == tf4) {
+        if ([textField.text length] >= 1) {
+            [tf5 becomeFirstResponder];
+        }
+    }
+    if (textField == tf5) {
+        if ([textField.text length] >= 1) {
+            [tf6 becomeFirstResponder];
+        }
+    }
+    if (textField == tf6) {
+        if ([textField.text length] >= 1) {
+            [tf6 resignFirstResponder];
+        }
+    }
+    return YES;
+}
+
 @end

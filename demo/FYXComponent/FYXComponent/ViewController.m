@@ -163,6 +163,11 @@
     [topBtn addTarget:self action:@selector(topBtnClick:) forControlEvents:UIControlEventTouchUpInside];
     [self.view addSubview:topBtn];
 
+    cardAlerView = [[FYXAlertView alloc]initWithFrame:CGRectMake(0, 0,[[UIScreen mainScreen] bounds].size.width , [[UIScreen mainScreen] bounds].size.height)];
+    cardAlerView.delegate = self;
+    [self.view addSubview:cardAlerView];
+    cardAlerView.hidden = YES;
+
     alertView = [[FYXAlertView alloc]initWithFrame:CGRectMake(0, 0,[[UIScreen mainScreen] bounds].size.width , [[UIScreen mainScreen] bounds].size.height)];
     [self.view addSubview:alertView];
     alertView.delegate = self;
@@ -189,6 +194,7 @@
     topAlertView = [[FYXAlertView alloc]initWithFrame:CGRectMake(0, 0,[[UIScreen mainScreen] bounds].size.width , [[UIScreen mainScreen] bounds].size.height)];
     [self.view addSubview:topAlertView];
     topAlertView.hidden = YES;
+    topAlertView.delegate = self;
 
     bubbleView = [[FYXAlertView alloc]initWithFrame:CGRectMake(0, 0,[[UIScreen mainScreen] bounds].size.width , [[UIScreen mainScreen] bounds].size.height)];
     bubbleView.hidden = YES;
@@ -197,10 +203,6 @@
     safelightView = [[FYXAlertView alloc]initWithFrame:CGRectMake(0, 0,[[UIScreen mainScreen] bounds].size.width , [[UIScreen mainScreen] bounds].size.height)];
     [self.view addSubview:safelightView];
     safelightView.hidden = YES;
-
-    cardAlerView = [[FYXAlertView alloc]initWithFrame:CGRectMake(0, 0,[[UIScreen mainScreen] bounds].size.width , [[UIScreen mainScreen] bounds].size.height)];
-    [self.view addSubview:cardAlerView];
-    cardAlerView.hidden = YES;
 
 
     lightView = [[UIView alloc]init];
@@ -375,15 +377,18 @@
 
 - (void)topBtnClick: (UIButton *)sender {
     topAlertView.hidden = NO;
-    [topAlertView setTopAlert:@"系统提示" titleFont:15];
+    [topAlertView setTopAlert:@"收费规则:起步价39元（10公里内），10公里后，每公里加收10元，不足5公里按5公里计算。adadda" titleFont:15];
 }
 - (void)sideMenuClick: (UIButton *)sender {
     
     [sideMenu clickDraw];
 }
 - (void)sureDidClick: (FYXAlertView *)alertView {
-    
+    NSLog(@"sure");
 }
 
+- (void)otherBtnDidClick:(FYXAlertView *)alertView {
+    NSLog(@"跳转");
+}
 
 @end

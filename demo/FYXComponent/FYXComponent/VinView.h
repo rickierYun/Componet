@@ -18,7 +18,7 @@
 
 @end
 
-@interface VinView : UIView
+@interface VinView : UIView <UITextFieldDelegate>
 
 @property (nonatomic, weak) id<VinViewDelegate>delegate;
 @end
