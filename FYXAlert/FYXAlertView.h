@@ -29,7 +29,14 @@
  *其他按钮点击事件
  */
 - (void)otherBtnDidClick: (FYXAlertView *)alertView;
+/**
+ *取消按钮点击事件
+ */
 - (void)cancelBtnDidClick: (FYXAlertView *)alertView;
+/**
+ *背景取消
+ */
+- (void)hiddenClick: (FYXAlertView *)alertView;
 @end
 
 @interface FYXAlertView : UIView
