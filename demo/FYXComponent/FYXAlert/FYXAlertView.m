@@ -80,7 +80,7 @@ CGFloat nativeScale(void) {
     _backGroundBtn.frame = self.frame;
     [_backGroundBtn setTitle:@"" forState:UIControlStateNormal];
     [_backGroundBtn setBackgroundColor:[UIColor colorWithDisplayP3Red:0 green:0 blue:0 alpha:0.3]];
-    [_backGroundBtn addTarget:self action:@selector(hiddenClick:) forControlEvents:UIControlEventTouchUpInside];
+    [_backGroundBtn addTarget:self action:@selector(cancelClick:) forControlEvents:UIControlEventTouchUpInside];
     [self addSubview: _backGroundBtn];
 
     // 初始一根分割线
@@ -244,7 +244,7 @@ CGFloat nativeScale(void) {
                                   30 * displayScale,
                                   30 * displayScale);
 
-    [_cancelBtn addTarget:self action:@selector(hiddenClick:) forControlEvents:UIControlEventTouchUpInside];
+    [_cancelBtn addTarget:self action:@selector(cancelClick:) forControlEvents:UIControlEventTouchUpInside];
     [_cancelBtn setBackgroundImage:[UIImage imageNamed:@"close.png"] forState:UIControlStateNormal];
     [self addSubview:_cancelBtn];
     self.cancelBtn = _cancelBtn;
@@ -485,7 +485,7 @@ CGFloat nativeScale(void) {
 
     UIButton *_cancelBtn = [[UIButton alloc]init];
     _cancelBtn.frame = CGRectMake(VIEW_CENTER_X(self) - 10 * displayScale,VIEW_Y_Bottom(_safeLightView) + 30 * displayScale, 40 * displayScale, 40 * displayScale);
-    [_cancelBtn addTarget:self action:@selector(hiddenClick:) forControlEvents:UIControlEventTouchUpInside];
+    [_cancelBtn addTarget:self action:@selector(cancelClick:) forControlEvents:UIControlEventTouchUpInside];
     [_cancelBtn setBackgroundImage:[UIImage imageNamed:@"close.png"] forState:UIControlStateNormal];
     [self addSubview:_cancelBtn];
     self.cancelBtn = _cancelBtn;
@@ -577,7 +577,7 @@ CGFloat nativeScale(void) {
     UIButton *_cancelBtn = [[UIButton alloc]init];
     _cancelBtn.frame = CGRectMake(VIEW_CENTER_X(self) - 20 * displayScale, VIEW_Y_Bottom(_msgAlertView) + 30 * displayScale , 40 * displayScale, 40 * displayScale);
     [_cancelBtn setImage:[UIImage imageNamed:@"close.png"] forState:UIControlStateNormal];
-    [_cancelBtn addTarget:self action:@selector(hiddenClick:) forControlEvents:UIControlEventTouchUpInside];
+    [_cancelBtn addTarget:self action:@selector(cancelClick:) forControlEvents:UIControlEventTouchUpInside];
     [self addSubview:_cancelBtn];
 }
 
@@ -659,7 +659,7 @@ CGFloat nativeScale(void) {
     UIButton *cancel = [[UIButton alloc]init];
     cancel.frame = CGRectMake(VIEW_WIDTH(self) - 40 * displayScale, VIEW_CENTER_Y(_alertTitle) - 10 * displayScale, 20 * displayScale, 20 * displayScale);
     [cancel setImage:[UIImage imageNamed:@"close.png"] forState:UIControlStateNormal];
-    [cancel addTarget:self action:@selector(hiddenClick:) forControlEvents:UIControlEventTouchUpInside];
+    [cancel addTarget:self action:@selector(cancelClick:) forControlEvents:UIControlEventTouchUpInside];
     [_msgAlertView addSubview:cancel];
 
     [self addSubview:_msgAlertView];
@@ -688,7 +688,11 @@ CGFloat nativeScale(void) {
 #pragma -mark action
 // 点击背景隐藏
 - (void)hiddenClick: (UIButton *)sender {
-    self.hidden = YES;
+    if ([self.delegate respondsToSelector:@selector(hiddenClick:)]) {
+        [self.delegate hiddenClick:self];
+        self.hidden = YES;
+    }
+
 }
 
 // 弹窗点击确定
