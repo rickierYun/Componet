@@ -690,7 +690,6 @@ CGFloat nativeScale(void) {
 - (void)hiddenClick: (UIButton *)sender {
     if ([self.delegate respondsToSelector:@selector(hiddenClick:)]) {
         [self.delegate hiddenClick:self];
-        self.hidden = YES;
     }
 
 }
