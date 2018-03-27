@@ -80,7 +80,7 @@ CGFloat nativeScale(void) {
     _backGroundBtn.frame = self.frame;
     [_backGroundBtn setTitle:@"" forState:UIControlStateNormal];
     [_backGroundBtn setBackgroundColor:[UIColor colorWithDisplayP3Red:0 green:0 blue:0 alpha:0.3]];
-    [_backGroundBtn addTarget:self action:@selector(cancelClick:) forControlEvents:UIControlEventTouchUpInside];
+    [_backGroundBtn addTarget:self action:@selector(hiddenClick:) forControlEvents:UIControlEventTouchUpInside];
     [self addSubview: _backGroundBtn];
 
     // 初始一根分割线
@@ -637,18 +637,20 @@ CGFloat nativeScale(void) {
     NSDictionary *attrs = @{NSFontAttributeName : font};
     CGSize textSize = [title boundingRectWithSize:CGSizeMake(240, MAXFLOAT) options:NSStringDrawingUsesLineFragmentOrigin attributes:attrs context:nil].size;
     _alertTitle = [[UILabel alloc]init];
-    _alertTitle.frame = CGRectMake(8 * displayScale, 8 * displayScale, VIEW_WIDTH(self) - 50 * displayScale, textSize.height);
+    _alertTitle.frame = CGRectMake(8 * displayScale, 5 * displayScale, VIEW_WIDTH(self) - 50 * displayScale, textSize.height);
     _alertTitle.text = title;
+    NSMutableAttributedString *attributedString2 = [[NSMutableAttributedString alloc]initWithString:title];
+    _alertTitle.attributedText = attributedString2;
     _alertTitle.numberOfLines = 0;
     _alertTitle.textColor = [UIColor whiteColor];
-
+    self.msgLabel = _alertTitle;
 //    UIButton *_otherBtn = [[UIButton alloc]init];
 //    _otherBtn.frame = _alertTitle.frame;
 //    [_otherBtn addTarget:self action:@selector(otherClick:) forControlEvents:UIControlEventTouchUpInside];
 //    self.otherBtn = _otherBtn;
 
     _msgAlertView = [[UIView alloc]init];
-    _msgAlertView.frame = CGRectMake(0, 30 *displayScale, VIEW_WIDTH(self), textSize.height + 20 * displayScale);
+    _msgAlertView.frame = CGRectMake(0, 0, VIEW_WIDTH(self), textSize.height + 10 * displayScale);
     _msgAlertView.backgroundColor = [UIColor blackColor];
     _msgAlertView.alpha = 0.4;
 
@@ -672,12 +674,16 @@ CGFloat nativeScale(void) {
     NSRange contentRange = range;
     [content addAttribute:NSUnderlineStyleAttributeName value:[NSNumber numberWithInteger:NSUnderlineStyleSingle] range:contentRange];
 
+    [content addAttribute:NSFontAttributeName value:_alertTitle.font range:NSMakeRange(0, content.length)];
     [_alertTitle yb_addAttributeTapActionWithStrings:@[str] tapClicked:^(NSString *string, NSRange range, NSInteger index) {
+        NSString *message = [NSString stringWithFormat:@"点击了“%@”字符\nrange: %@\nindex: %ld",string,NSStringFromRange(range),index];
+        NSLog(@"%@",message);
         if ([self.delegate respondsToSelector:@selector(otherBtnDidClick:)]) {
             [self.delegate otherBtnDidClick:self];
         }
     }];
     _alertTitle.attributedText = content;
+    _alertTitle.enabledTapEffect = NO;
 
 }
 
