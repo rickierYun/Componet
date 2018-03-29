@@ -97,6 +97,7 @@ CGFloat nativeScale(void) {
     _alertView.backgroundColor = [UIColor whiteColor];
     _alertView.layer.cornerRadius = 8;
     [self addSubview:_alertView];
+    self.alertView = _alertView;
 
     _alertTitle = [[UILabel alloc]init];
     _alertTitle.frame = CGRectMake(0, 5, VIEW_WIDTH(_alertView), VIEW_HEIGHT(_alertView) * 2 / 3);
@@ -146,6 +147,9 @@ CGFloat nativeScale(void) {
     [_alertTitle setFont: [UIFont systemFontOfSize:( titleFont * displayScale)]];
 }
 
+- (void)setAlertTitleFrame : (CGRect)frame {
+    self.alertView.frame = frame;
+}
 #pragma -mark 文字弹窗
 - (void)createMsgAlert {
     _msgAlertView = [[UIView alloc]init];
@@ -278,7 +282,8 @@ CGFloat nativeScale(void) {
     _alertView.backgroundColor = [UIColor whiteColor];
     _alertView.layer.cornerRadius = 8;
     [self addSubview:_alertView];
-    
+    self.alertView = _alertView;
+
     _alertTitleImage = [[UIImageView alloc]init];
     _alertTitleImage.frame = CGRectMake(VIEW_WIDTH(_alertView) / 2 - 25 * displayScale, 18 * displayScale, 50 * displayScale, 50 * displayScale);
     _alertTitleImage.image = [UIImage imageNamed:@"sure.png"];
@@ -322,6 +327,10 @@ CGFloat nativeScale(void) {
     }
 
 }
+// 设置图片弹窗大小
+- (void)setImageAlertViewFrame: (CGRect)frame {
+    self.alertView.frame = frame;
+}
 
 # pragma -mark 三个按钮弹窗
 // 三个按钮弹窗
@@ -331,6 +340,7 @@ CGFloat nativeScale(void) {
     _alertView.backgroundColor = [UIColor whiteColor];
     _alertView.layer.cornerRadius = 8;
     [self addSubview:_alertView];
+    self.alertView = _alertView;
 
     UILabel *_msgLabel = [[UILabel alloc]init];
     _msgLabel.frame = CGRectMake(15 , 18 * displayScale, VIEW_WIDTH(_alertView) - 30, 72 * displayScale);
@@ -384,6 +394,10 @@ CGFloat nativeScale(void) {
     [_msgLabel setFont:[UIFont systemFontOfSize:contentFont * displayScale]];
 }
 
+// 设置多按钮大小
+- (void)setMoreBtnAlertViewFrame: (CGRect)frame {
+    self.alertView.frame = frame;
+}
 #pragma -mark 气泡弹窗
 - (void)setBubbleView: (NSString *)text font: (CGFloat)textFont textColor: (UIColor *)textColor{
 
@@ -485,6 +499,8 @@ CGFloat nativeScale(void) {
     _safeLightView.layer.cornerRadius = 8;
     _safeLightView.autoresizingMask = UIViewAutoresizingFlexibleHeight;
     [self addSubview:_safeLightView];
+    self.alertView = _safeLightView;
+
     [_safeLightView addSubview:_alertTitleImage];
     [_safeLightView addSubview:_alertTitle];
     [_safeLightView addSubview:_lineBreak1];
@@ -507,6 +523,9 @@ CGFloat nativeScale(void) {
     _alertTitleImage.image = [UIImage imageNamed:titleImage];
 }
 
+- (void)setSafeLightView: (CGRect)frame {
+    self.alertView.frame = frame;
+}
 #pragma -mark 卡券弹窗
 - (void)createCardAlert {
     _alertTitle = [[UILabel alloc]init];

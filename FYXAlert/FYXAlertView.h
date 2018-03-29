@@ -40,7 +40,7 @@
 @end
 
 @interface FYXAlertView : UIView
-
+@property (nonatomic, weak) UIView   * alertView;
 @property (nonatomic, weak) UIButton * sureBtn;
 @property (nonatomic, weak) UIButton * cancelBtn;
 @property (nonatomic, weak) UIButton * middleBtn;
@@ -53,6 +53,10 @@
  *普通弹框
  */
 - (void)setAlertTitle: (NSString *)alertTitle titleFont:(NSInteger) titleFont;      // 普通弹框
+/**
+ *设置普通弹框大小
+ */
+- (void)setAlertTitleFrame : (CGRect)frame;                                         
 /**
  *设置文字弹窗大小
  */
@@ -81,9 +85,17 @@
              contentColor: (UIColor *)contentColor
                 imageName: (NSString *)imageName;                                    // 图片提示框
 /**
+ *图片弹窗大小
+ */
+- (void)setImageAlertViewFrame: (CGRect)frame;
+/**
  *设置多个按钮提示
  */
 - (void)setMoreBtnAlertView: (NSString *)content contentFont: (NSInteger)contentFont;// 设置多个按钮提示
+/**
+ *设置多按钮大小
+ */
+- (void)setMoreBtnAlertViewFrame: (CGRect)frame;
 /**
  *气泡弹窗
  */
@@ -101,6 +113,10 @@
            instruteTitle: (NSString * )instruteTitle
             suggestTitle: (NSString *)suggestTitle
               titleImage: (NSString *)titleImage;
+/**
+ *设置故障灯大小
+ */
+- (void)setSafeLightView: (CGRect)frame;
 /**
  *优惠券
  */
