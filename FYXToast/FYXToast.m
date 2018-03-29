@@ -121,6 +121,25 @@
     [self showAnimation];
 }
 
+- (void)sepecialShow:  (CGRect)frame {
+    UIWindow *window = [UIApplication sharedApplication].keyWindow;
+    UIView *v = [[UIView alloc]init];
+    v.frame = frame;
+    [window addSubview: v];
+
+    NSLog(@"%@",NSStringFromCGPoint(v.center) );
+    contentView.frame = CGRectMake(v.center.x - contentView.frame.size.width / 2, 0, contentView.frame.size.width, contentView.frame.size.height);         // 始终中间显示
+    [v addSubview:contentView];
+    if (window.subviews.count > 0) {
+        [window bringSubviewToFront:v];
+    }
+    window.userInteractionEnabled = NO;
+    [self showAnimation];
+    [self performSelector:@selector(hideAnimation) withObject:nil afterDelay:duration];
+
+
+}
+
 -(void)dismissToast{
     [contentView removeFromSuperview];
 }
@@ -144,5 +163,13 @@
     FYXToast *toast = [[FYXToast alloc] initWithText:text_ imageName:imageName];
     [toast setDuration: duration_];
     [toast show];
+}
++ (void)showWithFrame:(NSString *)text_ frame: (CGRect)frame {
+    [FYXToast showWithFrame:text_ frame:frame duration:DEFAULT_DISPLAY_DURATION];
+}
++ (void)showWithFrame:(NSString *)text_ frame: (CGRect)frame duration:(CGFloat)duration_ {
+    FYXToast *toast = [[FYXToast alloc] initWithText:text_ imageName:nil];
+    [toast setDuration:duration_];
+    [toast sepecialShow:frame];
 }
 @end

@@ -89,6 +89,10 @@
  */
 - (void)setBubbleView: (NSString *)text font: (CGFloat)textFont textColor: (UIColor *)textColor;
 /**
+ *设置气泡弹窗高度
+ */
+- (void)setBubbleViewY: (CGFloat)ViewY;
+/**
  *故障灯
  */
 - (void)setSafeLightView: (NSString *)instructText

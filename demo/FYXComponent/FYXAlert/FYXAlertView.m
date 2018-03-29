@@ -398,12 +398,12 @@ CGFloat nativeScale(void) {
     _alertTitle.text = _text;
     _alertTitle.font = font;
     _alertTitle.textColor = textColor;
-    _alertTitle.frame = CGRectMake(8, 12, textSize.width, textSize.height);
+    _alertTitle.frame = CGRectMake(8, 18, textSize.width, textSize.height);
     _alertTitle.textAlignment = NSTextAlignmentCenter;
 
     UIImageView *bubbleImageView = [[UIImageView alloc]init];
     bubbleImageView.image = [UIImage imageNamed:@"bubble.png"];
-    bubbleImageView.frame = CGRectMake(0, 0, textSize.width + 16 * displayScale, textSize.height + 16 * displayScale);
+    bubbleImageView.frame = CGRectMake(0, 0, textSize.width + 16 * displayScale, textSize.height + 26 * displayScale);
 
     _msgAlertView.frame = CGRectMake(VIEW_WIDTH(self) - textSize.width - 30 * displayScale, 62 * displayScale, VIEW_WIDTH(bubbleImageView), VIEW_HEIGHT(bubbleImageView) + 5);
     _msgAlertView.backgroundColor = [UIColor clearColor];
@@ -412,6 +412,16 @@ CGFloat nativeScale(void) {
     [_msgAlertView addSubview:bubbleImageView];
     [bubbleImageView addSubview:_alertTitle];
     [self addSubview:_msgAlertView];
+
+    UIButton *sureBtn = [[UIButton alloc]init];
+    sureBtn.frame = _msgAlertView.frame;
+    [sureBtn addTarget:self action:@selector(sureClick:) forControlEvents:UIControlEventTouchUpInside];
+    [self addSubview:sureBtn];
+    self.sureBtn = sureBtn;
+}
+
+- (void)setBubbleViewY: (CGFloat)ViewY{
+    _msgAlertView.frame = CGRectMake(VIEW_X(_msgAlertView), ViewY, VIEW_WIDTH(_msgAlertView), VIEW_HEIGHT(_msgAlertView));
 }
 
 #pragma -mark 安全提示灯

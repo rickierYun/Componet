@@ -33,4 +33,8 @@
  *可以添加文字、图片名称和持续时间
  */
 + (void)showwithTextImage:(NSString *)text_ imageName:(NSString *)imageName duration:(CGFloat)duration_;// 可以添加文字、图片名称和持续时间
+
++ (void)showWithFrame:(NSString *)text_ frame: (CGRect)frame;
+
++ (void)showWithFrame:(NSString *)text_ frame: (CGRect)frame duration:(CGFloat)duration_;
 @end

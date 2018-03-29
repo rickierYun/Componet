@@ -7,6 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
+#import <EventKit/EventKit.h>
 #import "FSCalendar.h"
 
 @class FYXCalendar;
@@ -29,6 +30,7 @@
 }
 
 @property (nonatomic, strong) NSCalendar *gregorianCalendar;
+@property (nonatomic, strong) NSArray<EKEvent *> *events;
 @property (nonatomic, strong) NSMutableArray *afternoonData;        /**< 下午数据 */
 @property (nonatomic, strong) NSMutableArray *morningData;          /**< 上午数据 */
 @property (nonatomic, strong) UIColor  *timeDetailSelectColor;      /**< 具体时间选中颜色 */

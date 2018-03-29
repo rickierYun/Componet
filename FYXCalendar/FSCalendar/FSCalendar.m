@@ -793,6 +793,8 @@ typedef NS_ENUM(NSUInteger, FSCalendarOrientation) {
         currentPage = [self.gregorian dateBySettingHour:0 minute:0 second:0 ofDate:currentPage options:0];
         if ([self isPageInRange:currentPage]) {
             [self scrollToPageForDate:currentPage animated:animated];
+        }else {
+            [self scrollToPageForDate:[NSDate date] animated:animated];
         }
     }
 }

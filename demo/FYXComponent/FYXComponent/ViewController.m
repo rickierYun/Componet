@@ -306,7 +306,8 @@
 
 - (void)bubbleBtnClick: (UIButton *)sender {
     bubbleView.hidden = NO;
-    [bubbleView setBubbleView:@"已取消预约" font:16 textColor: [UIColor blackColor]];
+    bubbleView.delegate = self;
+    [bubbleView setBubbleView:@"已取消预约,请在此预约" font:20 textColor:[UIColor blackColor]];
 }
 
 - (void)toastBtnClick: (UIButton *)sender {
