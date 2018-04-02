@@ -160,7 +160,7 @@
     [vinBtn addTarget:self action:@selector(vinBtnClick:) forControlEvents:UIControlEventTouchUpInside];
     [self.view addSubview:vinBtn];
 
-    FYXButton *topBtn = [[FYXButton alloc]initWithFrame:CGRectMake(200, 650, 100, 30)];
+    FYXButton *topBtn = [[FYXButton alloc]initWithFrame:CGRectMake(200, 50, 100, 30)];
     [topBtn setTitle:@"上部弹窗" forState:UIControlStateNormal];
     [topBtn addTarget:self action:@selector(topBtnClick:) forControlEvents:UIControlEventTouchUpInside];
     [self.view addSubview:topBtn];
@@ -196,9 +196,9 @@
     topAlertView = [[FYXAlertView alloc]initWithFrame:CGRectMake(0, 0,[[UIScreen mainScreen] bounds].size.width , [[UIScreen mainScreen] bounds].size.height)];
     [self.view addSubview:topAlertView];
     topAlertView.hidden = YES;
-    [topAlertView setTopAlert:@"如需更" titleFont:14];
+    [topAlertView setTopAlert:@"左滑卡片可取消预约，修改电话，拨打电话安德森收到啊是的的撒打算睡啊是的爱上撒" titleFont:14];
     //    [topAlertView setOtherBtnframe:NSMakeRange(10, 7)];
-    topAlertView.msgLabel.textAlignment = NSTextAlignmentCenter;
+//    topAlertView.msgLabel.textAlignment = NSTextAlignmentRight;
     topAlertView.delegate = self;
 
     bubbleView = [[FYXAlertView alloc]initWithFrame:CGRectMake(0, 0,[[UIScreen mainScreen] bounds].size.width , [[UIScreen mainScreen] bounds].size.height)];

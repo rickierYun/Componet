@@ -664,28 +664,25 @@ CGFloat nativeScale(void) {
     _backGroundBtn.backgroundColor = [UIColor clearColor];
     UIFont *font = [UIFont boldSystemFontOfSize: titleFont * displayScale];
     NSDictionary *attrs = @{NSFontAttributeName : font};
-    CGSize textSize = [title boundingRectWithSize:CGSizeMake(240, MAXFLOAT) options:NSStringDrawingUsesLineFragmentOrigin attributes:attrs context:nil].size;
+    CGSize textSize = [title boundingRectWithSize:CGSizeMake(120, MAXFLOAT) options:NSStringDrawingUsesLineFragmentOrigin attributes:attrs context:nil].size;
     _alertTitle = [[UILabel alloc]init];
-    _alertTitle.frame = CGRectMake(8 * displayScale, 5 * displayScale, VIEW_WIDTH(self) - 50 * displayScale, textSize.height);
+    NSLog(@"%f",textSize.width);
+    NSLog(@"%f",VIEW_WIDTH(self) - 50 * displayScale);
+    _alertTitle.frame = CGRectMake(8 * displayScale, 5 * displayScale, VIEW_WIDTH(self) - 50 * displayScale , textSize.height);
     _alertTitle.text = title;
     NSMutableAttributedString *attributedString2 = [[NSMutableAttributedString alloc]initWithString:title];
     _alertTitle.attributedText = attributedString2;
     _alertTitle.numberOfLines = 0;
+
+    _alertTitle.autoresizingMask = UIViewAutoresizingFlexibleWidth;
     _alertTitle.textColor = [UIColor whiteColor];
     self.msgLabel = _alertTitle;
-//    UIButton *_otherBtn = [[UIButton alloc]init];
-//    _otherBtn.frame = _alertTitle.frame;
-//    [_otherBtn addTarget:self action:@selector(otherClick:) forControlEvents:UIControlEventTouchUpInside];
-//    self.otherBtn = _otherBtn;
 
     _msgAlertView = [[UIView alloc]init];
     _msgAlertView.frame = CGRectMake(0, 0, VIEW_WIDTH(self), textSize.height + 10 * displayScale);
     _msgAlertView.backgroundColor = [UIColor blackColor];
     _msgAlertView.alpha = 0.4;
-
     [_msgAlertView addSubview:_alertTitle];
-//    [_msgAlertView addSubview:_otherBtn];
-//    self.otherBtn = _otherBtn;
 
     UIButton *cancel = [[UIButton alloc]init];
     cancel.frame = CGRectMake(VIEW_WIDTH(self) - 40 * displayScale, VIEW_CENTER_Y(_alertTitle) - 10 * displayScale, 20 * displayScale, 20 * displayScale);
