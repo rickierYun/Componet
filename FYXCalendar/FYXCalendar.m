@@ -82,7 +82,7 @@ CGFloat nativScale(void) {
         _calendar.appearance.headerTitleColor = [UIColor blackColor];   // 年份时间
         _calendar.appearance.headerDateFormat = @"yyyy年MM月";           // 设置年份格式
         _calendar.appearance.caseOptions = FSCalendarCaseOptionsHeaderUsesUpperCase|FSCalendarCaseOptionsWeekdayUsesSingleUpperCase;            // 改变星期显示
-
+        _calendar.appearance.titleFont = [UIFont systemFontOfSize:11 * displayScale];
         [self addSubview:_calendar];
         self.calendar = _calendar;
         _gregorianCalendar = [NSCalendar calendarWithIdentifier:NSCalendarIdentifierGregorian];
@@ -94,7 +94,7 @@ CGFloat nativScale(void) {
                 NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
                 dateFormatter.dateFormat = @"yyyy-MM-dd";
                 NSDate *startDate = [dateFormatter dateFromString:@"2016-02-03"]; // 开始日期
-                NSDate *endDate = [dateFormatter dateFromString:@"2018-04-10"]; // 截止日期
+                NSDate *endDate = [dateFormatter dateFromString:@"2118-04-10"]; // 截止日期
                 NSPredicate *fetchCalendarEvents = [store predicateForEventsWithStartDate:startDate endDate:endDate calendars:nil];
                 NSArray<EKEvent *> *eventList = [store eventsMatchingPredicate:fetchCalendarEvents];
                 NSArray<EKEvent *> *events = [eventList filteredArrayUsingPredicate:[NSPredicate predicateWithBlock:^BOOL(EKEvent * _Nullable event, NSDictionary<NSString *,id> * _Nullable bindings) {
@@ -218,12 +218,14 @@ CGFloat nativScale(void) {
 - (NSString *)calendar:(FSCalendar *)calendar titleForDate:(NSDate *)date {
     EKEvent *event = [self eventsForDate:date].firstObject;
     if (event) {
+        if ([event.title isEqualToString:@"清明节"]) {
+            return @"清明";
+        }
         return event.title; // 春分、秋分、儿童节、植树节、国庆节、圣诞节...
     }
     if ([self.gregorianCalendar isDateInToday:date]) {
         return @"今天";
     }
-
     return nil;
 }
 
@@ -241,6 +243,13 @@ CGFloat nativScale(void) {
     return _minimumDate;
 }
 
+//- (NSString *)calendar:(FSCalendar *)calendar subtitleForDate:(NSDate *)date {
+//    EKEvent *event = [self eventsForDate:date].firstObject;
+//    if (event) {
+//        return event.title; // 春分、秋分、儿童节、植树节、国庆节、圣诞节...
+//    }
+//    return nil;
+//}
 // 某个日期的所有事件
 - (NSArray<EKEvent *> *)eventsForDate:(NSDate *)date
 {
