@@ -20,11 +20,12 @@
     self.navigationController.navigationBar.hidden = NO;
     self.navigationController.navigationBar.barTintColor = [UIColor whiteColor];
 
-    pageFlow = [[FYXPageFlow alloc]initWithFrame:self.view.bounds];
+//    pageFlow = [[FYXPageFlow alloc]initWithFrame:self.view.bounds];
+    pageFlow = [[FYXPageFlow alloc]initWithFrame: CGRectMake(0, self.navigationController.navigationBar.frame.size.height, self.view.frame.size.width, self.view.frame.size.height - self.navigationController.navigationBar.frame.size.height)];
     pageFlow.dataSource = self;
     // 重新定义cell
 //        [pageFlow.collectionView registerClass:[CollectionCell class]forCellWithReuseIdentifier:@"cell"];
-//        [pageFlow setPageSize:288 height:500 lineSpace:10];
+        [pageFlow setPageSize:305 height:495 lineSpace:20];
     [self.view addSubview:pageFlow];
 }
 

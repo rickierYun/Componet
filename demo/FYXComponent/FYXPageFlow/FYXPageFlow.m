@@ -58,9 +58,9 @@ CGFloat nativScales(void) {
         _flowLayout.delegate = self;
 
         double collectionHeigt;
-        collectionHeigt = VIEW_HEIGHT(self) - 200 * displayScale;
+        collectionHeigt = 495 * displayScale;
 
-        UICollectionView *colletionView = [[UICollectionView alloc]initWithFrame:CGRectMake(0, 100 * displayScale, VIEW_WIDTH(self), collectionHeigt) collectionViewLayout:_flowLayout];
+        UICollectionView *colletionView = [[UICollectionView alloc]initWithFrame:CGRectMake(0, 40 * displayScale, VIEW_WIDTH(self), collectionHeigt) collectionViewLayout:_flowLayout];
 
         colletionView.dataSource = self;
         colletionView.delegate = self;
@@ -71,7 +71,7 @@ CGFloat nativScales(void) {
         self.collectionView = colletionView;
 
         _pageControl = [[UIPageControl alloc]init];
-        _pageControl.frame = CGRectMake(0, VIEW_Y_Bottom(self) - 50 * displayScale, VIEW_WIDTH(self), 30 * displayScale);
+        _pageControl.frame = CGRectMake(0, VIEW_HEIGHT(self) - 60 * displayScale, VIEW_WIDTH(self), 30 * displayScale);
         _pageControl.currentPage = 0;
         _pageControl.currentPageIndicatorTintColor = [UIColor colorWithRed:20.0 / 255 green:206.0 / 255 blue:1 alpha:1.0f];
         _pageControl.pageIndicatorTintColor = [UIColor colorWithRed:20.0 / 255 green:206.0 / 255 blue:1 alpha:0.5f];
