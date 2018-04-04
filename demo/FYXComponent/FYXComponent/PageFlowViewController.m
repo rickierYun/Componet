@@ -7,6 +7,7 @@
 //
 
 #import "PageFlowViewController.h"
+#import "FYXCalendar.h"
 
 @interface PageFlowViewController ()
 
@@ -16,6 +17,8 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+
+
     self.view.backgroundColor = [UIColor whiteColor];
     self.navigationController.navigationBar.hidden = NO;
     self.navigationController.navigationBar.barTintColor = [UIColor whiteColor];
@@ -27,6 +30,11 @@
 //        [pageFlow.collectionView registerClass:[CollectionCell class]forCellWithReuseIdentifier:@"cell"];
         [pageFlow setPageSize:305 height:495 lineSpace:20];
     [self.view addSubview:pageFlow];
+    UILabel *lb = [[UILabel alloc]initWithFrame:CGRectMake(60,92, self.view.frame.size.width, 23)];
+    lb.text = @"拉伸的字体";
+    lb.textColor = [UIColor blueColor];
+    lb.font = [UIFont systemFontOfSize:26];
+    [self.view addSubview:lb];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -42,6 +50,7 @@
 // 自定义cell
 //- (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath {
 //    CollectionCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"cell" forIndexPath:indexPath];
+//
 //    cell.timeBtn.backgroundColor = [UIColor redColor];
 //    return cell;
 //}

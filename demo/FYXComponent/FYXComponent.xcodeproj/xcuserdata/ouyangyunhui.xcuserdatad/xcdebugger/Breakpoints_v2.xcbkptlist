@@ -72,11 +72,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "FYXPageFlow/FYXPageFlowLayout.m"
-            timestampString = "544328425.7282619"
+            timestampString = "544508521.366397"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "82"
-            endingLineNumber = "82"
+            startingLineNumber = "87"
+            endingLineNumber = "87"
             landmarkName = "-initialLayoutAttributesForAppearingItemAtIndexPath:"
             landmarkType = "7">
          </BreakpointContent>
@@ -88,11 +88,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "FYXPageFlow/FYXPageFlowLayout.m"
-            timestampString = "544328425.728369"
+            timestampString = "544508521.366881"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "81"
-            endingLineNumber = "81"
+            startingLineNumber = "86"
+            endingLineNumber = "86"
             landmarkName = "-initialLayoutAttributesForAppearingItemAtIndexPath:"
             landmarkType = "7">
          </BreakpointContent>

@@ -47,10 +47,16 @@
         // 同样，超过中心后，越往左、右走，缩放就越大，显示就越小
         CGFloat scaleForDistance = distance / self.itemSize.width;
         // 0.1可调整，值越大，显示就越大
-        CGFloat scaleForCell = 1 + 0.09 * (1 - fabs(scaleForDistance));
-        
+//        CGFloat scaleForCell = 1 + 0.09 * (1 - fabs(scaleForDistance));
+        // 缩放两边大小0.09越大 ，两边越小
+        CGFloat scaleForCell = 1 - fabs(scaleForDistance)*0.09;
+
         //只在Y轴方向做缩放
+//        if (scaleForCell > 1) {
+//            scaleForCell = 1;
+//        }
         attribute.transform3D =  CATransform3DMakeScale(1, scaleForCell, 1);
+        NSLog(@"%f",scaleForCell);
         attribute.zIndex = 1;
 
         //渐变
