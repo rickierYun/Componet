@@ -201,6 +201,7 @@
     //    [topAlertView setOtherBtnframe:NSMakeRange(10, 7)];
 //    topAlertView.msgLabel.textAlignment = NSTextAlignmentRight;
     topAlertView.delegate = self;
+    NSLog(@"这个弹窗的高度 %f", topAlertView.alertView.frame.size.height);
 
     bubbleView = [[FYXAlertView alloc]initWithFrame:CGRectMake(0, 0,[[UIScreen mainScreen] bounds].size.width , [[UIScreen mainScreen] bounds].size.height)];
     bubbleView.hidden = YES;
