@@ -664,7 +664,7 @@ CGFloat nativeScale(void) {
     _backGroundBtn.backgroundColor = [UIColor clearColor];
     UIFont *font = [UIFont boldSystemFontOfSize: titleFont * displayScale];
     NSDictionary *attrs = @{NSFontAttributeName : font};
-    CGSize textSize = [title boundingRectWithSize:CGSizeMake(120, MAXFLOAT) options:NSStringDrawingUsesLineFragmentOrigin attributes:attrs context:nil].size;
+    CGSize textSize = [title boundingRectWithSize:CGSizeMake(110, MAXFLOAT) options:NSStringDrawingUsesLineFragmentOrigin attributes:attrs context:nil].size;
     _alertTitle = [[UILabel alloc]init];
     NSLog(@"%f",textSize.width);
     NSLog(@"%f",VIEW_WIDTH(self) - 50 * displayScale);
@@ -673,7 +673,6 @@ CGFloat nativeScale(void) {
     NSMutableAttributedString *attributedString2 = [[NSMutableAttributedString alloc]initWithString:title];
     _alertTitle.attributedText = attributedString2;
     _alertTitle.numberOfLines = 0;
-    _alertTitle.lineBreakMode = NSLineBreakByWordWrapping;
     _alertTitle.autoresizingMask = UIViewAutoresizingFlexibleWidth;
     _alertTitle.textColor = [UIColor whiteColor];
     self.msgLabel = _alertTitle;
