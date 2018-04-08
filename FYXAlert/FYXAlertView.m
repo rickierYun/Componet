@@ -673,7 +673,7 @@ CGFloat nativeScale(void) {
     NSMutableAttributedString *attributedString2 = [[NSMutableAttributedString alloc]initWithString:title];
     _alertTitle.attributedText = attributedString2;
     _alertTitle.numberOfLines = 0;
-
+    _alertTitle.lineBreakMode = NSLineBreakByWordWrapping;
     _alertTitle.autoresizingMask = UIViewAutoresizingFlexibleWidth;
     _alertTitle.textColor = [UIColor whiteColor];
     self.msgLabel = _alertTitle;
@@ -691,6 +691,7 @@ CGFloat nativeScale(void) {
     [_msgAlertView addSubview:cancel];
 
     [self addSubview:_msgAlertView];
+    self.alertView = _msgAlertView;
 }
 
 - (void)setOtherBtnframe: (NSRange )range{
