@@ -666,34 +666,31 @@ CGFloat nativeScale(void) {
     NSDictionary *attrs = @{NSFontAttributeName : font};
     CGSize maxSize;
     if (VIEW_WIDTH(self) == 320 ) {
-        maxSize = CGSizeMake(112, MAXFLOAT);
+        maxSize = CGSizeMake(240, MAXFLOAT);
 
     }else {
-        maxSize = CGSizeMake(155, MAXFLOAT);
+        maxSize = CGSizeMake(240, MAXFLOAT);
     }
     CGSize textSize = [title boundingRectWithSize:maxSize options:NSStringDrawingUsesLineFragmentOrigin attributes:attrs context:nil].size;
-    NSLog(@"高度%f",textSize.height);
-    NSLog(@"宽度%f",VIEW_WIDTH(self));
+//    NSLog(@"高度%f",textSize.height);
+//    NSLog(@"宽度%f",VIEW_WIDTH(self));
     _alertTitle = [[UILabel alloc]init];
     _msgAlertView = [[UIView alloc]init];
-//    NSLog(@"%f",VIEW_WIDTH(self) - 50 * displayScale);
-    if (textSize.height > 50) {
-        _alertTitle.frame = CGRectMake(8 * displayScale, 2 * displayScale, VIEW_WIDTH(self) - 50 * displayScale , textSize.height);
-        _msgAlertView.frame = CGRectMake(0, 0, VIEW_WIDTH(self), textSize.height + 4 * displayScale);
-    }else if (textSize.height > 42){
-        _alertTitle.frame = CGRectMake(8 * displayScale, 7 * displayScale, VIEW_WIDTH(self) - 50 * displayScale , textSize.height);
-        _msgAlertView.frame = CGRectMake(0, 0, VIEW_WIDTH(self), textSize.height + 14 * displayScale);
-    }else if (textSize.height > 33){
+    _alertTitle.font = font;
+
+    if (VIEW_WIDTH(self) == 320) {
+        if (textSize.height > 42) {
+            _alertTitle.frame = CGRectMake(8 * displayScale, 5 * displayScale, VIEW_WIDTH(self) - 50 * displayScale , textSize.height);
+            _msgAlertView.frame = CGRectMake(0, 0, VIEW_WIDTH(self), textSize.height + 10 * displayScale);
+
+        }else {
+            _alertTitle.frame = CGRectMake(8 * displayScale, 10 * displayScale, VIEW_WIDTH(self) - 50 * displayScale , textSize.height);
+            _msgAlertView.frame = CGRectMake(0, 0, VIEW_WIDTH(self), textSize.height + 22 * displayScale);
+        }
+    }else {
         _alertTitle.frame = CGRectMake(8 * displayScale, 0 * displayScale, VIEW_WIDTH(self) - 50 * displayScale , textSize.height);
         _msgAlertView.frame = CGRectMake(0, 0, VIEW_WIDTH(self), textSize.height + 0 * displayScale);
-    }else {
-        if (VIEW_WIDTH(self) == 320) {
-            _alertTitle.frame = CGRectMake(8 * displayScale, 3 * displayScale, VIEW_WIDTH(self) - 50 * displayScale , textSize.height);
-            _msgAlertView.frame = CGRectMake(0, 0, VIEW_WIDTH(self), textSize.height + 6 * displayScale);
-        }else {
-            _alertTitle.frame = CGRectMake(8 * displayScale, 9 * displayScale, VIEW_WIDTH(self) - 50 * displayScale , textSize.height);
-            _msgAlertView.frame = CGRectMake(0, 0, VIEW_WIDTH(self), textSize.height + 18 * displayScale);
-        }
+
     }
 
     _alertTitle.text = title;
