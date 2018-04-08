@@ -444,9 +444,9 @@ CGFloat nativeScale(void) {
     _alertTitleImage = [[UIImageView alloc]init];
     _alertTitleImage.frame = CGRectMake(25 * displayScale, 25 * displayScale, 70 * displayScale, 70 * displayScale);
 
-    UIFont *font = [UIFont boldSystemFontOfSize: 18 * displayScale];
+    UIFont *font = [UIFont boldSystemFontOfSize: 20 * displayScale];
     NSDictionary *attrs = @{NSFontAttributeName : font};
-    CGSize textSize = [title boundingRectWithSize:CGSizeMake(280, MAXFLOAT) options:NSStringDrawingUsesLineFragmentOrigin attributes:attrs context:nil].size;
+    CGSize textSize = [title boundingRectWithSize:CGSizeMake(140, MAXFLOAT) options:NSStringDrawingUsesLineFragmentOrigin attributes:attrs context:nil].size;
 
     _alertTitle = [[UILabel alloc]init];
     _alertTitle.frame = CGRectMake(VIEW_X_Right(_alertTitleImage) + 20 * displayScale, VIEW_CENTER_Y(_alertTitleImage) - textSize.height / 2, 147 * displayScale, textSize.height);
@@ -458,7 +458,7 @@ CGFloat nativeScale(void) {
     _lineBreak1.frame = CGRectMake(VIEW_X(_alertTitleImage), VIEW_Y_Bottom(_alertTitleImage) + 10 * displayScale, VIEW_WIDTH(_alertTitleImage) + VIEW_WIDTH(_alertTitle) + 20 * displayScale, 1);
 
     UILabel *instruteTitleLb = [[UILabel alloc]init];
-    textSize = [instruteTitle boundingRectWithSize:CGSizeMake(280, MAXFLOAT) options:NSStringDrawingUsesLineFragmentOrigin attributes:attrs context:nil].size;
+    textSize = [instruteTitle boundingRectWithSize:CGSizeMake(140, MAXFLOAT) options:NSStringDrawingUsesLineFragmentOrigin attributes:attrs context:nil].size;
     instruteTitleLb.frame = CGRectMake(VIEW_X(_lineBreak1), VIEW_Y_Bottom(_lineBreak1) + 12 * displayScale, VIEW_WIDTH(_lineBreak1), textSize.height);
     instruteTitleLb.textColor = [UIColor colorWithRed:50.0 / 255 green:50.0 / 255 blue:50.0 / 255 alpha:1];
     instruteTitleLb.font = font;
@@ -467,7 +467,7 @@ CGFloat nativeScale(void) {
     UILabel *instruteTextLb = [[UILabel alloc]init];
     font = [UIFont systemFontOfSize: 14 * displayScale];
     attrs = @{NSFontAttributeName : font};
-    textSize = [instructText boundingRectWithSize:CGSizeMake(280, MAXFLOAT) options:NSStringDrawingUsesLineFragmentOrigin attributes:attrs context:nil].size;
+    textSize = [instructText boundingRectWithSize:CGSizeMake(140, MAXFLOAT) options:NSStringDrawingUsesLineFragmentOrigin attributes:attrs context:nil].size;
     instruteTextLb.textColor = [UIColor colorWithRed:50.0 / 255 green:50.0 / 255 blue:50.0 / 255 alpha:0.5];
     instruteTextLb.numberOfLines = 0;
     instruteTextLb.font = font;
@@ -664,28 +664,25 @@ CGFloat nativeScale(void) {
     _backGroundBtn.backgroundColor = [UIColor clearColor];
     UIFont *font = [UIFont boldSystemFontOfSize: titleFont * displayScale];
     NSDictionary *attrs = @{NSFontAttributeName : font};
-    CGSize textSize = [title boundingRectWithSize:CGSizeMake(240, MAXFLOAT) options:NSStringDrawingUsesLineFragmentOrigin attributes:attrs context:nil].size;
+    CGSize textSize = [title boundingRectWithSize:CGSizeMake(120, MAXFLOAT) options:NSStringDrawingUsesLineFragmentOrigin attributes:attrs context:nil].size;
     _alertTitle = [[UILabel alloc]init];
-    _alertTitle.frame = CGRectMake(8 * displayScale, 5 * displayScale, VIEW_WIDTH(self) - 50 * displayScale, textSize.height);
+    NSLog(@"%f",textSize.width);
+    NSLog(@"%f",VIEW_WIDTH(self) - 50 * displayScale);
+    _alertTitle.frame = CGRectMake(8 * displayScale, 5 * displayScale, VIEW_WIDTH(self) - 50 * displayScale , textSize.height);
     _alertTitle.text = title;
     NSMutableAttributedString *attributedString2 = [[NSMutableAttributedString alloc]initWithString:title];
     _alertTitle.attributedText = attributedString2;
     _alertTitle.numberOfLines = 0;
+
+    _alertTitle.autoresizingMask = UIViewAutoresizingFlexibleWidth;
     _alertTitle.textColor = [UIColor whiteColor];
     self.msgLabel = _alertTitle;
-//    UIButton *_otherBtn = [[UIButton alloc]init];
-//    _otherBtn.frame = _alertTitle.frame;
-//    [_otherBtn addTarget:self action:@selector(otherClick:) forControlEvents:UIControlEventTouchUpInside];
-//    self.otherBtn = _otherBtn;
 
     _msgAlertView = [[UIView alloc]init];
     _msgAlertView.frame = CGRectMake(0, 0, VIEW_WIDTH(self), textSize.height + 10 * displayScale);
     _msgAlertView.backgroundColor = [UIColor blackColor];
     _msgAlertView.alpha = 0.4;
-
     [_msgAlertView addSubview:_alertTitle];
-//    [_msgAlertView addSubview:_otherBtn];
-//    self.otherBtn = _otherBtn;
 
     UIButton *cancel = [[UIButton alloc]init];
     cancel.frame = CGRectMake(VIEW_WIDTH(self) - 40 * displayScale, VIEW_CENTER_Y(_alertTitle) - 10 * displayScale, 20 * displayScale, 20 * displayScale);

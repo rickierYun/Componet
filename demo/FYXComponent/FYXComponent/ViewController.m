@@ -33,6 +33,7 @@
     FYXAlertView *topAlertView;
     FYXSideMenu  *sideMenu;
     UIView       *lightView;
+    UITableView  *tableView;
 }
 @end
 
@@ -196,7 +197,7 @@
     topAlertView = [[FYXAlertView alloc]initWithFrame:CGRectMake(0, 0,[[UIScreen mainScreen] bounds].size.width , [[UIScreen mainScreen] bounds].size.height)];
     [self.view addSubview:topAlertView];
     topAlertView.hidden = YES;
-    [topAlertView setTopAlert:@"左滑卡片可取消预约，修改电话，拨打电话安德森收到啊是的的撒打算睡啊是的爱上撒" titleFont:14];
+    [topAlertView setTopAlert:@"左滑卡片可取消预约，修改电话，拨打电话!" titleFont:14];
     //    [topAlertView setOtherBtnframe:NSMakeRange(10, 7)];
 //    topAlertView.msgLabel.textAlignment = NSTextAlignmentRight;
     topAlertView.delegate = self;
@@ -248,12 +249,30 @@
     sideMenu.backgroundView.hidden = YES;
     sideMenu.hidden = YES;
     [sideMenu setSideMenuViewWidth:self.view.frame.size.width / 4 * 3];
+    tableView = [[UITableView alloc]initWithFrame:CGRectMake(0, 0, sideMenu.sideMenuView.frame.size.width, self.view.frame.size.height)];
+    tableView.delegate = self;
+    tableView.dataSource = self;
+    [tableView registerClass: [UITableViewCell class] forCellReuseIdentifier:@"cell"];
+    [sideMenu.sideMenuView addSubview:tableView];
     [self.view addSubview:sideMenu];
 
 }
 
 -(void)viewWillAppear:(BOOL)animated {
     self.navigationController.navigationBar.hidden = YES;
+}
+
+- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
+    return 1;
+}
+
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
+    return 100;
+}
+
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
+    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"cell"];
+    return cell;
 }
 - (void)alertClick: (UIButton *)sender {
     alertView.hidden        = NO;

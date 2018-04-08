@@ -71,7 +71,7 @@
         self.sideMenuView = sideMenuView;
 
         UIPanGestureRecognizer *backGesture = [[UIPanGestureRecognizer alloc]initWithTarget:self action:@selector(backEdgeGuseture:)];
-        [sideMenuView addGestureRecognizer:backGesture];
+        [backgroundView addGestureRecognizer:backGesture];
 
         lakeShapLayer = [CAShapeLayer layer];
         rainShapLayer = [CAShapeLayer layer];
@@ -160,6 +160,7 @@
 - (void)backEdgeGuseture: (UIPanGestureRecognizer *)gesture {
     CGPoint translation = [gesture translationInView:gesture.view];
 
+
     if (UIGestureRecognizerStateBegan == gesture.state || UIGestureRecognizerStateChanged == gesture.state) {
         if (translation.x >= -self.sideMenuView.frame.size.width && translation.x <=0) {
 
@@ -184,6 +185,7 @@
             lightView.hidden = NO;
         } ];
     }
+
 }
 
 - (void)clickDraw {

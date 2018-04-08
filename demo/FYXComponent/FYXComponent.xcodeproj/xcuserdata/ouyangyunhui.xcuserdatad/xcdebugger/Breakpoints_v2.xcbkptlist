@@ -26,11 +26,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "FYXCalendar/FSCalendar/FSCalendar.m"
-            timestampString = "544010611.645407"
+            timestampString = "544849489.642051"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "1682"
-            endingLineNumber = "1682">
+            startingLineNumber = "1683"
+            endingLineNumber = "1683">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -40,11 +40,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "FYXCalendar/FSCalendar/FSCalendar.m"
-            timestampString = "544010611.645493"
+            timestampString = "544849489.642157"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "1340"
-            endingLineNumber = "1340"
+            startingLineNumber = "1341"
+            endingLineNumber = "1341"
             landmarkName = "-isDateInDifferentPage:"
             landmarkType = "7">
          </BreakpointContent>
@@ -94,6 +94,22 @@
             startingLineNumber = "86"
             endingLineNumber = "86"
             landmarkName = "-initialLayoutAttributesForAppearingItemAtIndexPath:"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "FYXSideMenu/FYXSideMenu.m"
+            timestampString = "544849489.642562"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "161"
+            endingLineNumber = "161"
+            landmarkName = "-backEdgeGuseture:"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
