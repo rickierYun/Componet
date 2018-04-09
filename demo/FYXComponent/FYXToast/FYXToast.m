@@ -145,31 +145,32 @@
 }
 
 #pragma -mark show
-+ (void)showWithText:(NSString *)text_{
-    [FYXToast showWithText:text_ duration:DEFAULT_DISPLAY_DURATION];
++ (void)showWithText:(NSString *)text{
+    [FYXToast showWithText:text duration:DEFAULT_DISPLAY_DURATION];
 }
 
-+ (void)showWithText:(NSString *)text_ duration:(CGFloat)duration_{
-    FYXToast *toast = [[FYXToast alloc] initWithText:text_ imageName:nil];
-    [toast setDuration:duration_];
++ (void)showWithText:(NSString *)text duration:(CGFloat)duration{
+    FYXToast *toast = [[FYXToast alloc] initWithText:text imageName:nil];
+    [toast setDuration:duration];
     [toast show];
 }
 
-+ (void)showWithTextImage:(NSString *)text_ imageName:(NSString *)imageName{
-    [FYXToast showwithTextImage:text_ imageName:imageName duration:DEFAULT_DISPLAY_DURATION];
++ (void)showWithTextImage:(NSString *)text imageName:(NSString *)imageName{
+    [FYXToast showwithTextImage:text imageName:imageName duration:DEFAULT_DISPLAY_DURATION];
 }
 
-+ (void)showwithTextImage:(NSString *)text_ imageName:(NSString *)imageName duration:(CGFloat)duration_{
-    FYXToast *toast = [[FYXToast alloc] initWithText:text_ imageName:imageName];
-    [toast setDuration: duration_];
++ (void)showwithTextImage:(NSString *)text imageName:(NSString *)imageName duration:(CGFloat)duration{
+    FYXToast *toast = [[FYXToast alloc] initWithText:text imageName:imageName];
+    [toast setDuration: duration];
     [toast show];
 }
-+ (void)showWithFrame:(NSString *)text_ frame: (CGRect)frame {
-    [FYXToast showWithFrame:text_ frame:frame duration:DEFAULT_DISPLAY_DURATION];
+
++ (void)showWithFrame:(NSString *)text frame: (CGRect)frame {
+    [FYXToast showWithFrame:text frame:frame duration:DEFAULT_DISPLAY_DURATION];
 }
-+ (void)showWithFrame:(NSString *)text_ frame: (CGRect)frame duration:(CGFloat)duration_ {
-    FYXToast *toast = [[FYXToast alloc] initWithText:text_ imageName:nil];
-    [toast setDuration:duration_];
++ (void)showWithFrame:(NSString *)text frame: (CGRect)frame duration:(CGFloat)duration {
+    FYXToast *toast = [[FYXToast alloc] initWithText:text imageName:nil];
+    [toast setDuration:duration];
     [toast sepecialShow:frame];
 }
 @end

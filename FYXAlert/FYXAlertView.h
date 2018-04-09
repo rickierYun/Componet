@@ -46,6 +46,7 @@
 @property (nonatomic, weak) UIButton * middleBtn;
 @property (nonatomic, weak) UIButton * otherBtn;
 @property (nonatomic, weak) UILabel  * msgLabel;           // 提示内容
+@property (nonatomic, weak) UITextView *richTextView;      // 富文本显示框
 @property (nonatomic, weak) id<FYXAlertViewDelegate>delegate;
 
 

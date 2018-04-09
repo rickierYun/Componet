@@ -47,7 +47,6 @@ CGFloat nativeScale(void) {
     UILabel     * _cardNumb;           // 卡券账号
     UILabel     * _cardPw;             // 卡券密码
     UIView      * _msgAlertView;       // 文字弹窗view
-    UITextView  * _richTextView;       // 富文本显示框
     UIImageView * _alertTitleImage;    // 提示图片
     UIView      * _lineBreak1;         // 分割线
     NSString    * _text;               // 文字载体
@@ -169,7 +168,7 @@ CGFloat nativeScale(void) {
     _alertTitle.textColor     = [UIColor blackColor];
     [_msgAlertView addSubview:_alertTitle];
 
-    _richTextView = [[UITextView alloc]init];
+    UITextView *_richTextView = [[UITextView alloc]init];
     _richTextView.frame = CGRectMake(8 * displayScale,
                                  VIEW_Y_Bottom(_alertTitle) + 5 * displayScale,
                                  VIEW_WIDTH(_msgAlertView) - 16 * displayScale,
@@ -180,6 +179,8 @@ CGFloat nativeScale(void) {
     _richTextView.textAlignment = NSTextAlignmentLeft;
     _richTextView.textColor     = [UIColor blackColor];
     [_msgAlertView addSubview:_richTextView];
+    self.richTextView = _richTextView;
+
 
     UIButton *_cancelBtn = [[UIButton alloc]init];
     _cancelBtn.frame = CGRectMake(0,
@@ -233,7 +234,7 @@ CGFloat nativeScale(void) {
 
 #pragma -mark 富文本显示框
 - (void)createRichTextAlertView {
-    _richTextView = [[UITextView alloc]init];
+    UITextView *_richTextView = [[UITextView alloc]init];
     _richTextView.frame = CGRectMake(VIEW_CENTER_X(self) - 100 * displayScale, 160 * displayScale, 200 * displayScale, 300 * displayScale);
     _richTextView.textColor = [UIColor blackColor];
     _richTextView.textAlignment = NSTextAlignmentLeft;
@@ -241,6 +242,7 @@ CGFloat nativeScale(void) {
     _richTextView.layer.cornerRadius = 8;
 
     [self addSubview:_richTextView];
+    self.richTextView = _richTextView;
 
     UIButton *_cancelBtn = [[UIButton alloc]init];
     _cancelBtn.frame = CGRectMake(VIEW_CENTER_X(_richTextView) + 8 * displayScale,
