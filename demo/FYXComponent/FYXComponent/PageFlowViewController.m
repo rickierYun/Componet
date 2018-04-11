@@ -29,6 +29,8 @@
     // 重新定义cell
 //        [pageFlow.collectionView registerClass:[CollectionCell class]forCellWithReuseIdentifier:@"cell"];
         [pageFlow setPageSize:305 height:495 lineSpace:20];
+    [pageFlow.collectionView selectItemAtIndexPath:[NSIndexPath indexPathForItem:0 inSection:1] animated:YES scrollPosition:UICollectionViewScrollPositionCenteredHorizontally];
+    pageFlow.pageControl.currentPage = 1;
     [self.view addSubview:pageFlow];
     UILabel *lb = [[UILabel alloc]initWithFrame:CGRectMake(60,92, self.view.frame.size.width, 23)];
     lb.text = @"拉伸的字体";
@@ -46,6 +48,7 @@
 - (NSInteger)numberOfPageFlow:(FYXPageFlow *)pageFlow {
     return 5;
 }
+
 
 // 自定义cell
 //- (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath {

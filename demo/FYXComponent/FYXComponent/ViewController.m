@@ -278,7 +278,8 @@
 - (void)alertClick: (UIButton *)sender {
     alertView.hidden        = NO;
     // 弹窗
-    [alertView setAlertTitle:@"this create success" titleFont:17];
+    [alertView setAlertTitle:@"生日保存后不能修改，是否确定保存？" titleFont:17];
+    alertView.msgLabel.textAlignment = NSTextAlignmentLeft;
     [alertView.cancelBtn setTitle:@"cancel" forState:UIControlStateNormal];
     [alertView.sureBtn setTitle:@"sure" forState:UIControlStateNormal];
     [alertView.sureBtn setTitleColor:[UIColor colorWithRed:0 green:122.0 / 255 blue:255.0 / 255 alpha:1] forState:UIControlStateNormal];

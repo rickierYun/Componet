@@ -99,12 +99,13 @@ CGFloat nativeScale(void) {
     self.alertView = _alertView;
 
     _alertTitle = [[UILabel alloc]init];
-    _alertTitle.frame = CGRectMake(0, 5, VIEW_WIDTH(_alertView), VIEW_HEIGHT(_alertView) * 2 / 3);
+    _alertTitle.frame = CGRectMake(20 * displayScale, 5, VIEW_WIDTH(_alertView) - 40 * displayScale, VIEW_HEIGHT(_alertView) * 2 / 3);
     _alertTitle.numberOfLines = 2;
     _alertTitle.lineBreakMode = NSLineBreakByCharWrapping;
     _alertTitle.textAlignment = NSTextAlignmentCenter;
     _alertTitle.textColor     = [UIColor blackColor];
     [_alertView addSubview:_alertTitle];
+    self.msgLabel = _alertTitle;
 
     // 取消、确定按钮
     UIButton *_sureBtn   = [[UIButton alloc]init];
