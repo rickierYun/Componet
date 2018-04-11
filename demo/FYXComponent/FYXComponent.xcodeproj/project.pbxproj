@@ -44,6 +44,7 @@
 		2F89B4B5202D29A800DC6105 /* FYXComponentTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 2F89B4B4202D29A800DC6105 /* FYXComponentTests.m */; };
 		2F89B4C0202D29A800DC6105 /* FYXComponentUITests.m in Sources */ = {isa = PBXBuildFile; fileRef = 2F89B4BF202D29A800DC6105 /* FYXComponentUITests.m */; };
 		2F89B4D0202D29E400DC6105 /* FYXAlertView.m in Sources */ = {isa = PBXBuildFile; fileRef = 2F89B4CF202D29E400DC6105 /* FYXAlertView.m */; };
+		2F92794F207DB3D800E7FF9E /* FYXActionSheet.m in Sources */ = {isa = PBXBuildFile; fileRef = 2F92794E207DB3D800E7FF9E /* FYXActionSheet.m */; };
 		2FA595B82045445E001B2D95 /* next.png in Resources */ = {isa = PBXBuildFile; fileRef = 2FA595B72045445E001B2D95 /* next.png */; };
 		2FA595BA204544FD001B2D95 /* prev.png in Resources */ = {isa = PBXBuildFile; fileRef = 2FA595B9204544FD001B2D95 /* prev.png */; };
 		2FB274E1203FBB4600E985F9 /* FYXToast.m in Sources */ = {isa = PBXBuildFile; fileRef = 2FB274E0203FBB4600E985F9 /* FYXToast.m */; };
@@ -149,6 +150,8 @@
 		2F89B4C1202D29A800DC6105 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		2F89B4CE202D29E400DC6105 /* FYXAlertView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FYXAlertView.h; sourceTree = "<group>"; };
 		2F89B4CF202D29E400DC6105 /* FYXAlertView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FYXAlertView.m; sourceTree = "<group>"; };
+		2F92794D207DB3D800E7FF9E /* FYXActionSheet.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FYXActionSheet.h; sourceTree = "<group>"; };
+		2F92794E207DB3D800E7FF9E /* FYXActionSheet.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FYXActionSheet.m; sourceTree = "<group>"; };
 		2FA595B72045445E001B2D95 /* next.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = next.png; sourceTree = "<group>"; };
 		2FA595B9204544FD001B2D95 /* prev.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = prev.png; sourceTree = "<group>"; };
 		2FB274DF203FBB4600E985F9 /* FYXToast.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FYXToast.h; sourceTree = "<group>"; };
@@ -280,6 +283,7 @@
 		2F89B48F202D29A700DC6105 = {
 			isa = PBXGroup;
 			children = (
+				2F92794C207DB38A00E7FF9E /* FYXActionSheet */,
 				2F85743720564C96003D1518 /* FYXLoadingHud */,
 				2F85742D20561DF4003D1518 /* FYXCheckAnimation */,
 				2F610351204E73A300535AD8 /* FYXPageFlow */,
@@ -376,6 +380,15 @@
 				2F39573A2064A71B00D6137F /* close.png */,
 			);
 			path = FYXAlert;
+			sourceTree = "<group>";
+		};
+		2F92794C207DB38A00E7FF9E /* FYXActionSheet */ = {
+			isa = PBXGroup;
+			children = (
+				2F92794D207DB3D800E7FF9E /* FYXActionSheet.h */,
+				2F92794E207DB3D800E7FF9E /* FYXActionSheet.m */,
+			);
+			path = FYXActionSheet;
 			sourceTree = "<group>";
 		};
 		2FB274DB203FB8AE00E985F9 /* FYXToast */ = {
@@ -635,6 +648,7 @@
 				2F89B4D0202D29E400DC6105 /* FYXAlertView.m in Sources */,
 				2F3957482064EF4C00D6137F /* VinView.m in Sources */,
 				2F85743A20564D1D003D1518 /* FYXLoadingHud.m in Sources */,
+				2F92794F207DB3D800E7FF9E /* FYXActionSheet.m in Sources */,
 				2FB2751A204139BF00E985F9 /* FSCalendarWeekdayView.m in Sources */,
 				2FB2751B204139BF00E985F9 /* FSCalendarExtensions.m in Sources */,
 				2F2B2348205B52D6005A9C33 /* UIView+GlowView.m in Sources */,

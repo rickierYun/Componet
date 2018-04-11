@@ -32,6 +32,7 @@
     FYXAlertView *cardAlerView;
     FYXAlertView *topAlertView;
     FYXSideMenu  *sideMenu;
+    FYXAlertView *actionAlertView;
     UIView       *lightView;
     UITableView  *tableView;
 }
@@ -166,6 +167,11 @@
     [topBtn addTarget:self action:@selector(topBtnClick:) forControlEvents:UIControlEventTouchUpInside];
     [self.view addSubview:topBtn];
 
+    FYXButton *actionSheet = [[FYXButton alloc]initWithFrame:CGRectMake(200, 600, 100, 30)];
+    [actionSheet setTitle:@"actionSheetAlert" forState:UIControlStateNormal];
+    [actionSheet addTarget:self action:@selector(actionSheetClick:) forControlEvents:UIControlEventTouchUpInside];
+    [self.view addSubview:actionSheet];
+
     cardAlerView = [[FYXAlertView alloc]initWithFrame:CGRectMake(0, 0,[[UIScreen mainScreen] bounds].size.width , [[UIScreen mainScreen] bounds].size.height)];
     cardAlerView.delegate = self;
     [self.view addSubview:cardAlerView];
@@ -175,6 +181,10 @@
     [self.view addSubview:alertView];
     alertView.delegate = self;
     alertView.hidden = YES;
+
+    actionAlertView = [[FYXAlertView alloc]initWithFrame:CGRectMake(0, 0,[[UIScreen mainScreen] bounds].size.width , [[UIScreen mainScreen] bounds].size.height)];
+    [self.view addSubview:actionAlertView];
+    actionAlertView.hidden = YES;
 
 //    alertMsgView = [[FYXAlertView alloc]initWithFrame:CGRectMake(0, 0,[[UIScreen mainScreen] bounds].size.width , [[UIScreen mainScreen] bounds].size.height)];
 //    [self.view addSubview:alertMsgView];
@@ -257,6 +267,7 @@
     [sideMenu.sideMenuView addSubview:tableView];
     [self.view addSubview:sideMenu];
 
+  
 }
 
 -(void)viewWillAppear:(BOOL)animated {
@@ -396,6 +407,17 @@
 - (void)cardBtnClick: (UIButton *)sender {
     cardAlerView.hidden = NO;
     [cardAlerView setCardAlert:@"旅行大礼包" subtitle:@"我是副标题一行字" cardNumb:@"券码：aaaa" cardPw:@"密码：77777" prompt:@"如果密码一同复制，用/分隔" firstImage:@"call.png" secondImage:@"copy.png" thirdImage:@"link.png" firstString:@"客服热线" secondString:@"复制兑换码" thirdString:@"使用链接"];
+}
+
+- (void)actionSheetClick: (UIButton *)sender {
+    actionAlertView.hidden = NO;
+    [actionAlertView setActionSheetAlert];
+    [actionAlertView.sureBtn setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
+    [actionAlertView.middleBtn setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
+    [actionAlertView.cancelBtn setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
+    [actionAlertView.sureBtn setTitle:@"只取消取车订单" forState:UIControlStateNormal];
+    [actionAlertView.middleBtn setTitle:@"只取消送车订单" forState:UIControlStateNormal];
+    [actionAlertView.cancelBtn setTitle:@"消取车订单" forState:UIControlStateNormal];
 }
 
 - (void)vinBtnClick: (UIButton *)sender {

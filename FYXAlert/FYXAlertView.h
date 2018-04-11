@@ -144,4 +144,8 @@
  *更改点击范围
  **/
 - (void)setOtherBtnframe: (NSRange )range;
+/**
+ *actionSheetAlert
+ **/
+- (void)setActionSheetAlert;
 @end

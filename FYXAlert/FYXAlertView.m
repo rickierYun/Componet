@@ -741,7 +741,41 @@ CGFloat nativeScale(void) {
 - (void)tTopAlertHight: (CGFloat)height{
      _msgAlertView.frame = CGRectMake(0, height *displayScale, VIEW_WIDTH(_msgAlertView), VIEW_HEIGHT(_msgAlertView));
 }
+#pragma -mark actionsheetAlert
+// actionsheet
+- (void)setActionSheetAlert {
+    UIView *actionSheet = [[UIView alloc]init];
+    actionSheet.frame = CGRectMake(0, VIEW_Y_Bottom(self) - 136 * displayScale, VIEW_WIDTH(self), 136 * displayScale);
+    actionSheet.backgroundColor = [UIColor whiteColor];
 
+    UIButton *_sureBtn = [[UIButton alloc]init];
+    _sureBtn.frame = CGRectMake(0, 0, VIEW_WIDTH(self), 44 * displayScale);
+    _sureBtn.titleLabel.font = [UIFont systemFontOfSize:18 * displayScale];
+    [actionSheet addSubview:_sureBtn];
+    self.sureBtn = _sureBtn;
+
+    UIButton *_middleBtn = [[UIButton alloc]init];
+    _middleBtn.frame = CGRectMake(0, VIEW_Y_Bottom(_sureBtn), VIEW_WIDTH(_sureBtn), 44 * displayScale);
+    [actionSheet addSubview:_middleBtn];
+    self.middleBtn = _middleBtn;
+
+    UIButton *_cancelBtn = [[UIButton alloc]init];
+    _cancelBtn.frame = CGRectMake(0, VIEW_Y_Bottom(_middleBtn), VIEW_WIDTH(_sureBtn), 44 * displayScale);
+    [actionSheet addSubview:_cancelBtn];
+    self.cancelBtn = _cancelBtn;
+
+    _lineBreak1.frame = CGRectMake(0, VIEW_Y_Bottom(_sureBtn), VIEW_WIDTH(self), 1);
+    [actionSheet addSubview:_lineBreak1];
+
+    UIView *lineBreak2 = [[UIView alloc]init];
+    lineBreak2.frame = CGRectMake(0, VIEW_Y_Bottom(_middleBtn), VIEW_WIDTH(self), 1);
+    lineBreak2.backgroundColor = _lineBreak1.backgroundColor;
+    [actionSheet addSubview:lineBreak2];
+
+    [self addSubview:actionSheet];
+    self.alertView = actionSheet;
+
+}
 #pragma -mark action
 // 点击背景隐藏
 - (void)hiddenClick: (UIButton *)sender {
