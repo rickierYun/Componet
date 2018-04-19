@@ -53,7 +53,7 @@ CGFloat nativScales(void) {
         _flowLayout = [[FYXPageFlowLayout alloc] init];
         [_flowLayout setScrollDirection:UICollectionViewScrollDirectionHorizontal];
         _flowLayout.pageCardWidth = VIEW_WIDTH(self) - 60 * displayScale * 2;
-        _flowLayout.pageCardHeight = VIEW_HEIGHT(self) - 300 * displayScale;
+        _flowLayout.pageCardHeight = VIEW_HEIGHT(self) - 10 * displayScale;
         _flowLayout.lineSpace = 30 * displayScale;
         _flowLayout.delegate = self;
 
@@ -120,15 +120,15 @@ CGFloat nativScales(void) {
 
 - (UIEdgeInsets)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout insetForSectionAtIndex:(NSInteger)section {
     CGFloat width = ((collectionView.frame.size.width - _flowLayout.pageCardWidth)-(_flowLayout.lineSpace*2))/2;
-
+    CGFloat height = _flowLayout.pageCardHeight;
     if (section == 0) {
-        return UIEdgeInsetsMake(0, width + _flowLayout.lineSpace, 0, 0);//分别为上、左、下、右
+        return UIEdgeInsetsMake((VIEW_HEIGHT(collectionView) - height) / 2, width + _flowLayout.lineSpace, (VIEW_HEIGHT(collectionView) - height) / 2, 0);//分别为上、左、下、右
     }
     else if(section == (_sectionCount - 1)){
-        return UIEdgeInsetsMake(0, _flowLayout.lineSpace, 0, width + _flowLayout.lineSpace);//分别为上、左、下、右
+        return UIEdgeInsetsMake((VIEW_HEIGHT(collectionView) - height) / 2, _flowLayout.lineSpace, (VIEW_HEIGHT(collectionView) - height) / 2, width + _flowLayout.lineSpace);//分别为上、左、下、右
     }
     else{
-        return UIEdgeInsetsMake(0, _flowLayout.lineSpace, 0, 0);//分别为上、左、下、右
+        return UIEdgeInsetsMake((VIEW_HEIGHT(collectionView) - height) / 2, _flowLayout.lineSpace, (VIEW_HEIGHT(collectionView) - height) / 2, 0);//分别为上、左、下、右
     }
 }
 

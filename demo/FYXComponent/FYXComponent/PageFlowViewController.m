@@ -28,7 +28,9 @@
     pageFlow.dataSource = self;
     // 重新定义cell
 //        [pageFlow.collectionView registerClass:[CollectionCell class]forCellWithReuseIdentifier:@"cell"];
-        [pageFlow setPageSize:305 height:495 lineSpace:20];
+    pageFlow.collectionView.frame = CGRectMake(0, 0, self.view.frame.size.width, self.view.frame.size.height - 33);
+        [pageFlow setPageSize:self.view.frame.size.width - 50 height: self.view.frame.size.height - 105 lineSpace:20];
+
     [pageFlow.collectionView selectItemAtIndexPath:[NSIndexPath indexPathForItem:0 inSection:1] animated:YES scrollPosition:UICollectionViewScrollPositionCenteredHorizontally];
     pageFlow.pageControl.currentPage = 1;
     [self.view addSubview:pageFlow];
