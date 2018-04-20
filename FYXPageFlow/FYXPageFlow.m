@@ -70,12 +70,13 @@ CGFloat nativScales(void) {
         [self addSubview:colletionView];
         self.collectionView = colletionView;
 
-        _pageControl = [[UIPageControl alloc]init];
+        UIPageControl *_pageControl = [[UIPageControl alloc]init];
         _pageControl.frame = CGRectMake(0, VIEW_HEIGHT(self) - 60 * displayScale, VIEW_WIDTH(self), 30 * displayScale);
         _pageControl.currentPage = 0;
         _pageControl.currentPageIndicatorTintColor = [UIColor colorWithRed:20.0 / 255 green:206.0 / 255 blue:1 alpha:1.0f];
         _pageControl.pageIndicatorTintColor = [UIColor colorWithRed:20.0 / 255 green:206.0 / 255 blue:1 alpha:0.5f];
         [self addSubview:_pageControl];
+        self.pageControl = _pageControl;
     }
     return self;
 }
