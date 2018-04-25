@@ -31,6 +31,7 @@
     pageFlow.collectionView.frame = CGRectMake(0, 0, self.view.frame.size.width, self.view.frame.size.height - 33);
         [pageFlow setPageSize:self.view.frame.size.width - 50 height: self.view.frame.size.height - 105 lineSpace:20];
 
+    pageFlow.pageControl.frame = CGRectMake(0, 0, self.view.frame.size.width, 30);
     [pageFlow.collectionView selectItemAtIndexPath:[NSIndexPath indexPathForItem:0 inSection:1] animated:YES scrollPosition:UICollectionViewScrollPositionCenteredHorizontally];
     pageFlow.pageControl.currentPage = 1;
     [self.view addSubview:pageFlow];
