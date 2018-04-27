@@ -71,6 +71,10 @@
     fyxCalendar.afternoonData = aftoonTime;
     fyxCalendar.morningData = morningTime;
 
+//    NSString *string = @"2016-7-16 09:33:22";
+//    NSDateFormatter *format = [[NSDateFormatter alloc] init];
+//    format.dateFormat = @"yyyy-MM-dd HH:mm:ss";
+//    NSDate *data = [format dateFromString:string];
     [fyxCalendar.calendar selectDate:[NSDate date]];
     fyxCalendar.minimumDate = [NSDate date];
     fyxCalendar.timeBtnSelectColor = [UIColor getMainGradientColor:fyxCalendar.afternoonBtn.frame];

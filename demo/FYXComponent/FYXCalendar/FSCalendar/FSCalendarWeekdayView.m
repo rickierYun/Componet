@@ -94,6 +94,7 @@
 {
     BOOL useVeryShortWeekdaySymbols = (self.calendar.appearance.caseOptions & (15<<4) ) == FSCalendarCaseOptionsWeekdayUsesSingleUpperCase;
     NSArray *weekdaySymbols = useVeryShortWeekdaySymbols ? self.calendar.gregorian.veryShortStandaloneWeekdaySymbols : self.calendar.gregorian.shortStandaloneWeekdaySymbols;
+
     BOOL useDefaultWeekdayCase = (self.calendar.appearance.caseOptions & (15<<4) ) == FSCalendarCaseOptionsWeekdayUsesDefaultCase;
     
     for (NSInteger i = 0; i < self.weekdayPointers.count; i++) {
@@ -101,7 +102,7 @@
         UILabel *label = [self.weekdayPointers pointerAtIndex:i];
         // 修改礼拜颜色
         label.font = self.calendar.appearance.weekdayFont;
-        if (i == 0 || i == 6) {
+        if (i == 5 || i == 6) {
             label.textColor = self.calendar.appearance.satAndSunColor;
         }else {
             label.textColor = self.calendar.appearance.weekdayTextColor;
