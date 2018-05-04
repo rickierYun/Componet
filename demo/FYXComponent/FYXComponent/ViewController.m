@@ -377,6 +377,7 @@
 - (void)safeLightBtnClick: (UIButton *)sender {
     safelightView.hidden = NO;
     [safelightView setSafeLightView:@"点亮表示指示灯处于启动状态。" suggest:@"具体操作参考用户手册。" title:@"发动机停机装置&防盗系统指示灯" instruteTitle:@"指示灯说明：" suggestTitle:@"建议：" titleImage:@"safeLight.png"];
+    [safelightView.cancelBtn addTarget:self action:@selector(safeLightBtnClick:) forControlEvents:UIControlEventTouchUpInside];
 }
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
@@ -419,6 +420,9 @@
     [actionAlertView.middleBtn setTitle:@"只取消送车订单" forState:UIControlStateNormal];
     [actionAlertView.cancelBtn setTitle:@"消取车订单" forState:UIControlStateNormal];
 }
+- (void)safeLightHidden: (UIButton *)sender {
+    safelightView.hidden = YES;
+}
 
 - (void)vinBtnClick: (UIButton *)sender {
     VinViewController *vc = [[VinViewController alloc]init];
@@ -435,14 +439,16 @@
 }
 - (void)sureDidClick: (FYXAlertView *)alertView {
     NSLog(@"sure");
+     alertView.hidden = YES;
 }
 
 - (void)otherBtnDidClick:(FYXAlertView *)alertView {
     NSLog(@"跳转");
+     alertView.hidden = YES;
 }
 
 - (void)cancelBtnDidClick:(FYXAlertView *)alertView {
-    topAlertView.hidden = YES;
+    alertView.hidden = YES;
 }
 
 @end
