@@ -1121,6 +1121,10 @@ typedef NS_ENUM(NSUInteger, FSCalendarOrientation) {
 
 - (void)selectDate:(NSDate *)date
 {
+    if ([self compareDate:date withDate:_minimumDate] == -1) {
+        NSLog(@"默认日期小于最小日期");
+        return;
+    }
     [self selectDate:date scrollToDate:YES];
 }
 
@@ -1675,6 +1679,40 @@ typedef NS_ENUM(NSUInteger, FSCalendarOrientation) {
     [self.visibleStickyHeaders makeObjectsPerformSelector:@selector(configureAppearance)];
     [self.calendarHeaderView configureAppearance];
     [self.calendarWeekdayView configureAppearance];
+}
+
+// 日期比较
+-(int)compareDate:(NSDate*)startDate withDate:(NSDate*)endDate{
+
+    int comparisonResult;
+//    NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
+//    [formatter setDateFormat:@"yyyy-MM-dd"];
+//    NSDate *date1 = [[NSDate alloc] init];
+//    NSDate *date2 = [[NSDate alloc] init];
+//    date1 = [formatter date]
+//    date1 = [formatter dateFromString:startDate];
+//    date2 = [formatter dateFromString:endDate];
+    NSComparisonResult result = [startDate compare:endDate];
+    NSLog(@"result==%ld",(long)result);
+    switch (result)
+    {
+            //date02比date01大
+        case NSOrderedAscending:
+            comparisonResult = 1;
+            break;
+            //date02比date01小
+        case NSOrderedDescending:
+            comparisonResult = -1;
+            break;
+            //date02=date01
+        case NSOrderedSame:
+            comparisonResult = 0;
+            break;
+        default:
+//            NSLog(@"erorr dates %@, %@", date1, date2);
+            break;
+    }
+    return comparisonResult;
 }
 
 @end

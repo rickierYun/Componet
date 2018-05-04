@@ -22,31 +22,17 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "FYXCalendar/FSCalendar/FSCalendar.m"
-            timestampString = "546511730.2877589"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "1683"
-            endingLineNumber = "1683">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
             shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "FYXCalendar/FSCalendar/FSCalendar.m"
-            timestampString = "546511730.2880549"
+            timestampString = "547140723.635083"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "1341"
-            endingLineNumber = "1341"
-            landmarkName = "-isDateInDifferentPage:"
-            landmarkType = "7">
+            startingLineNumber = "1345"
+            endingLineNumber = "1345"
+            landmarkName = "FSCalendar"
+            landmarkType = "3">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -136,44 +122,12 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "FYXCalendar/FSCalendar/FSCalendarWeekdayView.m"
-            timestampString = "546511917.395587"
+            timestampString = "546524515.982672"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "73"
             endingLineNumber = "73"
             landmarkName = "-layoutSubviews"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "FYXCalendar/FSCalendar/FSCalendarWeekdayView.m"
-            timestampString = "546511917.395942"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "100"
-            endingLineNumber = "100"
-            landmarkName = "-configureAppearance"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "FYXCalendar/FSCalendar/FSCalendarWeekdayView.m"
-            timestampString = "546511917.396184"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "98"
-            endingLineNumber = "98"
-            landmarkName = "-configureAppearance"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>

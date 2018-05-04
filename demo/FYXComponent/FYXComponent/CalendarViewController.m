@@ -77,6 +77,7 @@
 //    NSDate *data = [format dateFromString:string];
     [fyxCalendar.calendar selectDate:[NSDate date]];
     fyxCalendar.minimumDate = [NSDate date];
+
     fyxCalendar.timeBtnSelectColor = [UIColor getMainGradientColor:fyxCalendar.afternoonBtn.frame];
     [fyxCalendar setCalendarData];
     [fyxCalendar.calendar reloadData];
