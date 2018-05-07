@@ -108,6 +108,14 @@
 /**
  *故障灯
  */
+// 构造故障灯
+- (void)createSafeLightView: (NSString *)instructText
+                    suggest: (NSString *)suggestText
+                      title: (NSString *)title
+              instruteTitle: (NSString * ) instruteTitle
+               suggestTitle: (NSString *)suggestTitle
+                 titleImage: (NSString *)titleImage;
+// 设置故障灯
 - (void)setSafeLightView: (NSString *)instructText
                  suggest: (NSString *)suggestText
                    title: (NSString *)title
