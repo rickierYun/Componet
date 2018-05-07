@@ -23,6 +23,10 @@
 - (void)setSideMenuViewWidth: (CGFloat)width;
 
 - (void)clickDraw;
+/**
+ * 隐藏侧边栏
+ */
+- (void)sideMenuHidden;
 @end
 
 

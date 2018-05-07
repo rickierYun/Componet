@@ -323,4 +323,16 @@
 
 }
 
+// 隐藏侧边栏
+- (void)sideMenuHidden {
+    [UIView animateWithDuration:0.5 animations:^{
+        self.sideMenuView.frame = CGRectMake(-self.sideMenuView.frame.size.width, 0, self.sideMenuView.frame.size.width, self.sideMenuView.frame.size.height);
+
+    }completion:^(BOOL finished) {
+        bezierView.hidden = YES;
+        bezierView.alpha = 1;
+        self.hidden = YES;
+        lightView.hidden = NO;
+    } ];
+}
 @end
