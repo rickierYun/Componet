@@ -57,6 +57,7 @@
     [alertMsgBtn setTitle:@"文字弹窗" forState:UIControlStateNormal];
     [alertMsgBtn addTarget:self action:@selector(alertMsgClick:) forControlEvents:UIControlEventTouchUpInside];
     [alertMsgBtn setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
+
     [self.view addSubview:alertMsgBtn];
 
     UIButton *alertRichBtn = [[UIButton alloc]init];

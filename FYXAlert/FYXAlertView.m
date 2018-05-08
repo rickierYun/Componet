@@ -448,7 +448,6 @@ CGFloat nativeScale(void) {
 #pragma -mark 安全提示灯
 - (void)createSafeLightView: (NSString *)instructText suggest: (NSString *)suggestText title: (NSString *)title instruteTitle: (NSString * ) instruteTitle suggestTitle: (NSString *)suggestTitle titleImage: (NSString *)titleImage{
 
-    _alertTitleImage = [[UIImageView alloc]init];
     _alertTitleImage.frame = CGRectMake(25 * displayScale, 25 * displayScale, 70 * displayScale, 70 * displayScale);
     _alertTitleImage.image = [UIImage imageNamed:titleImage];
 
@@ -456,13 +455,11 @@ CGFloat nativeScale(void) {
     NSDictionary *attrs = @{NSFontAttributeName : font};
     CGSize textSize = [title boundingRectWithSize:CGSizeMake(140, MAXFLOAT) options:NSStringDrawingUsesLineFragmentOrigin attributes:attrs context:nil].size;
 
-    _alertTitle = [[UILabel alloc]init];
     _alertTitle.frame = CGRectMake(VIEW_X_Right(_alertTitleImage) + 20 * displayScale, VIEW_CENTER_Y(_alertTitleImage) - textSize.height / 2, 147 * displayScale, textSize.height);
     _alertTitle.text = title;
     _alertTitle.font = font;
     _alertTitle.numberOfLines = 0;
     _alertTitle.textColor = [UIColor colorWithRed:50.0 / 255 green:50.0 / 255 blue:50.0 / 255 alpha:1];
-
 
     _lineBreak1.frame = CGRectMake(VIEW_X(_alertTitleImage), VIEW_Y_Bottom(_alertTitleImage) + 10 * displayScale, VIEW_WIDTH(_alertTitleImage) + VIEW_WIDTH(_alertTitle) + 20 * displayScale, 1);
 
@@ -543,7 +540,6 @@ CGFloat nativeScale(void) {
     _alertTitle.numberOfLines = 0;
     _alertTitle.textColor = [UIColor colorWithRed:50.0 / 255 green:50.0 / 255 blue:50.0 / 255 alpha:1];
 
-
     _lineBreak1.frame = CGRectMake(VIEW_X(_alertTitleImage), VIEW_Y_Bottom(_alertTitleImage) + 10 * displayScale, VIEW_WIDTH(_alertTitleImage) + VIEW_WIDTH(_alertTitle) + 20 * displayScale, 1);
 
 
@@ -589,7 +585,6 @@ CGFloat nativeScale(void) {
     self.cancelBtn.frame = CGRectMake(VIEW_CENTER_X(self) - 10 * displayScale,VIEW_Y_Bottom(_safeLightView) + 30 * displayScale, 40 * displayScale, 40 * displayScale);
     [self.cancelBtn addTarget:self action:@selector(cancelClick:) forControlEvents:UIControlEventTouchUpInside];
     [self.cancelBtn setBackgroundImage:[UIImage imageNamed:@"close.png"] forState:UIControlStateNormal];
-
 
 }
 
