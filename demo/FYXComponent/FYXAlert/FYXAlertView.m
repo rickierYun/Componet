@@ -183,6 +183,7 @@ CGFloat nativeScale(void) {
 //    _richTextView.lineBreakMode = NSLineBreakByCharWrapping;
     _richTextView.textAlignment = NSTextAlignmentLeft;
     _richTextView.textColor     = [UIColor blackColor];
+    _richTextView.editable = NO;
     [_msgAlertView addSubview:_richTextView];
     self.richTextView = _richTextView;
 
@@ -244,6 +245,7 @@ CGFloat nativeScale(void) {
     _richTextView.textColor = [UIColor blackColor];
     _richTextView.textAlignment = NSTextAlignmentLeft;
     _richTextView.backgroundColor = [UIColor whiteColor];
+    _richTextView.editable = NO;
     _richTextView.layer.cornerRadius = 8;
 
     [self addSubview:_richTextView];
