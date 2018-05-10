@@ -12,6 +12,7 @@
 
 @property(weak, nonatomic) UIView *sideMenuView;
 @property(weak, nonatomic) UIView *backgroundView;     // 灰色背景
+@property(assign, nonatomic) CGFloat sideMenY;
 /**
 * view添加滑动手势
 */

@@ -208,9 +208,15 @@
     topAlertView = [[FYXAlertView alloc]initWithFrame:CGRectMake(0, 0,[[UIScreen mainScreen] bounds].size.width , [[UIScreen mainScreen] bounds].size.height)];
     [self.view addSubview:topAlertView];
     topAlertView.hidden = YES;
-    [topAlertView setTopAlert:@"左滑卡片可取消预约！" titleFont:14];
+    NSString * str = @"左滑卡片可取消预约啊大大大大时代啊阿达撒撒大大大大是大啊大师大师达大师大师大师的啊大大大时啊的！";
+
+    [topAlertView setTopAlert: str titleFont:14];
     //    [topAlertView setOtherBtnframe:NSMakeRange(10, 7)];
-    topAlertView.msgLabel.textAlignment = NSTextAlignmentCenter;
+    if ([str length] > 10) {
+        topAlertView.msgLabel.textAlignment = NSTextAlignmentLeft;
+    }else {
+        topAlertView.msgLabel.textAlignment = NSTextAlignmentCenter;
+    }
     topAlertView.delegate = self;
     NSLog(@"这个弹窗的高度 %f", topAlertView.alertView.frame.size.height);
 
@@ -234,14 +240,14 @@
     [self.view addSubview:lightView];
 
     UIButton *lightBackgroundView = [[UIButton alloc]init];
-    lightBackgroundView.frame = CGRectMake(0, 0,24, 49);
+    lightBackgroundView.frame = CGRectMake(0, 100,24, 49);
     [lightBackgroundView setImage:[UIImage imageNamed:@"lightView.png"] forState:UIControlStateNormal];
     [lightBackgroundView addTarget:self action:@selector(sideMenuClick:) forControlEvents:UIControlEventTouchUpInside];
     [lightView addSubview:lightBackgroundView];
 
     UIImageView *imageView = [[UIImageView alloc]init];
     imageView.image = [UIImage imageNamed:@"light.png"];
-    imageView.frame = CGRectMake(8, 14, 20, 20);
+    imageView.frame = CGRectMake(8, 114, 20, 20);
     imageView.glowRadius = @(10.0f);
     imageView.glowOpacity = @(0.5f);
     imageView.glowColor = [UIColor  colorWithRed:20.0 / 255 green:206.0 / 255 blue:1 alpha:1];
@@ -260,7 +266,9 @@
     [sideMenu addgestureView:self.view hideView:lightView];
     sideMenu.backgroundView.hidden = YES;
     sideMenu.hidden = YES;
+    sideMenu.sideMenY = 100;
     [sideMenu setSideMenuViewWidth:self.view.frame.size.width / 4 * 3];
+    
     tableView = [[UITableView alloc]initWithFrame:CGRectMake(0, 0, sideMenu.sideMenuView.frame.size.width, self.view.frame.size.height)];
     tableView.delegate = self;
     tableView.dataSource = self;

@@ -216,68 +216,68 @@
 
     CGFloat offset = 18 / 3.6;
     rainShapLayer.path = nil;
-    pointA = CGPointMake(VIEW_X_Right(self.sideMenuView), 45);
-    pointF = CGPointMake(VIEW_X_Right(self.sideMenuView) + 8 , 48);
-    pointB = CGPointMake(VIEW_X_Right(self.sideMenuView) + 10, 50);
-    pointM = CGPointMake(VIEW_X_Right(self.sideMenuView) + 18 + offsetX, 55 + offsetX / 4);
-    pointH = CGPointMake(VIEW_X_Right(self.sideMenuView) + 20 + offsetX, 58);
-    pointC = CGPointMake(VIEW_X_Right(self.sideMenuView) + 27 + offsetX, 65);
-    pointI = CGPointMake(VIEW_X_Right(self.sideMenuView) + 20 + offsetX, 72);
-    pointN = CGPointMake(VIEW_X_Right(self.sideMenuView) + 18 + offsetX, 75 - offsetX / 4);
-    pointD = CGPointMake(VIEW_X_Right(self.sideMenuView) + 10 , 80);
-    pointG = CGPointMake(VIEW_X_Right(self.sideMenuView) + 8, 82);
-    pointE = CGPointMake(VIEW_X_Right(self.sideMenuView), 85);
+    pointA = CGPointMake(VIEW_X_Right(self.sideMenuView), 45 + self.sideMenY);
+    pointF = CGPointMake(VIEW_X_Right(self.sideMenuView) + 8 , 48 + self.sideMenY);
+    pointB = CGPointMake(VIEW_X_Right(self.sideMenuView) + 10, 50+ self.sideMenY);
+    pointM = CGPointMake(VIEW_X_Right(self.sideMenuView) + 18 + offsetX, 55 + offsetX / 4 + self.sideMenY);
+    pointH = CGPointMake(VIEW_X_Right(self.sideMenuView) + 20 + offsetX, 58 + self.sideMenY);
+    pointC = CGPointMake(VIEW_X_Right(self.sideMenuView) + 27 + offsetX, 65 + self.sideMenY);
+    pointI = CGPointMake(VIEW_X_Right(self.sideMenuView) + 20 + offsetX, 72 + self.sideMenY);
+    pointN = CGPointMake(VIEW_X_Right(self.sideMenuView) + 18 + offsetX, 75 - offsetX / 4 + self.sideMenY);
+    pointD = CGPointMake(VIEW_X_Right(self.sideMenuView) + 10 , 80 + self.sideMenY);
+    pointG = CGPointMake(VIEW_X_Right(self.sideMenuView) + 8, 82 + self.sideMenY);
+    pointE = CGPointMake(VIEW_X_Right(self.sideMenuView), 85 + self.sideMenY);
 
     lake = [UIBezierPath bezierPath];
     [lake moveToPoint:pointA];
 
     if (offsetX >0 && offsetX < 22) {           // 初始半圆
-        pointM = CGPointMake(VIEW_X_Right(self.sideMenuView) + 18 + offsetX / 2, 55 - offsetX / 5);
-        pointN = CGPointMake(VIEW_X_Right(self.sideMenuView) + 18 + offsetX / 2, 75 + offsetX / 5);
-        pointJ = CGPointMake(VIEW_X_Right(self.sideMenuView) + 13 + offsetX, 55 + offsetX );
-        pointK = CGPointMake(VIEW_X_Right(self.sideMenuView) + 13 + offsetX, 75 - offsetX );
-        pointC = CGPointMake(VIEW_X_Right(self.sideMenuView) + 27 + offsetX, 65);
+        pointM = CGPointMake(VIEW_X_Right(self.sideMenuView) + 18 + offsetX / 2, 55 - offsetX / 5 + self.sideMenY);
+        pointN = CGPointMake(VIEW_X_Right(self.sideMenuView) + 18 + offsetX / 2, 75 + offsetX / 5 + self.sideMenY);
+        pointJ = CGPointMake(VIEW_X_Right(self.sideMenuView) + 13 + offsetX, 55 + offsetX + self.sideMenY);
+        pointK = CGPointMake(VIEW_X_Right(self.sideMenuView) + 13 + offsetX, 75 - offsetX + self.sideMenY);
+        pointC = CGPointMake(VIEW_X_Right(self.sideMenuView) + 27 + offsetX, 65 + self.sideMenY);
 
 //        [lake addQuadCurveToPoint:pointB controlPoint:pointF];
         [lake addCurveToPoint:pointH controlPoint1:pointJ controlPoint2:pointM];
         [lake addQuadCurveToPoint:pointI controlPoint:pointC];
         [lake addCurveToPoint:pointE controlPoint1:pointN controlPoint2:pointK];
     }else if (offsetX >= 22 && offsetX < 30) {   // 水滴开始离开
-        pointM = CGPointMake(VIEW_X_Right(self.sideMenuView) + 18 + offsetX / 2, 55 - offsetX / 5);
-        pointN = CGPointMake(VIEW_X_Right(self.sideMenuView) + 18 + offsetX / 2, 75 + offsetX / 5);
-        pointJ = CGPointMake(VIEW_X_Right(self.sideMenuView) + 13 + offsetX, 65 + offsetX / 2);
-        pointK = CGPointMake(VIEW_X_Right(self.sideMenuView) + 13 + offsetX, 65 - offsetX / 2);
-        pointC = CGPointMake(VIEW_X_Right(self.sideMenuView) + 25 + offsetX + 2, 65);
+        pointM = CGPointMake(VIEW_X_Right(self.sideMenuView) + 18 + offsetX / 2, 55 - offsetX / 5 + self.sideMenY);
+        pointN = CGPointMake(VIEW_X_Right(self.sideMenuView) + 18 + offsetX / 2, 75 + offsetX / 5 + self.sideMenY);
+        pointJ = CGPointMake(VIEW_X_Right(self.sideMenuView) + 13 + offsetX, 65 + offsetX / 2 + self.sideMenY);
+        pointK = CGPointMake(VIEW_X_Right(self.sideMenuView) + 13 + offsetX, 65 - offsetX / 2 + self.sideMenY);
+        pointC = CGPointMake(VIEW_X_Right(self.sideMenuView) + 25 + offsetX + 2, 65 + self.sideMenY);
 
 //        [lake addQuadCurveToPoint:pointB controlPoint:pointF];
         [lake addCurveToPoint:pointH controlPoint1:pointJ controlPoint2:pointM];
         [lake addQuadCurveToPoint:pointI controlPoint:pointC];
         [lake addCurveToPoint:pointE controlPoint1:pointN controlPoint2:pointK];
     }else if (offsetX >= 30 && offsetX <= 40){     // 水滴形成，形成丝状
-        pointM = CGPointMake(VIEW_X_Right(self.sideMenuView) + 18 + 15, 55 - 6);
-        pointN = CGPointMake(VIEW_X_Right(self.sideMenuView) + 18 + 15, 75 + 6);
-        pointJ = CGPointMake(VIEW_X_Right(self.sideMenuView) + 13 + offsetX, 65 + offsetX / 2 );
-        pointK = CGPointMake(VIEW_X_Right(self.sideMenuView) + 13 + offsetX, 65 - offsetX / 2 );
-        pointC = CGPointMake(VIEW_X_Right(self.sideMenuView) + 25 + offsetX + 2, 65);
+        pointM = CGPointMake(VIEW_X_Right(self.sideMenuView) + 18 + 15, 55 - 6 + self.sideMenY);
+        pointN = CGPointMake(VIEW_X_Right(self.sideMenuView) + 18 + 15, 75 + 6 + self.sideMenY);
+        pointJ = CGPointMake(VIEW_X_Right(self.sideMenuView) + 13 + offsetX, 65 + offsetX / 2 + self.sideMenY);
+        pointK = CGPointMake(VIEW_X_Right(self.sideMenuView) + 13 + offsetX, 65 - offsetX / 2 + self.sideMenY);
+        pointC = CGPointMake(VIEW_X_Right(self.sideMenuView) + 25 + offsetX + 2, 65 + self.sideMenY);
 //        [lake addQuadCurveToPoint:pointB controlPoint:pointF];
         [lake addCurveToPoint:pointH controlPoint1:pointJ controlPoint2:pointM];
         [lake addQuadCurveToPoint:pointI controlPoint:pointC];
         [lake addCurveToPoint:pointE controlPoint1:pointN controlPoint2:pointK];
     }else if (offsetX > 40){    // 完全分离
-        pointJ = CGPointMake(VIEW_X_Right(self.sideMenuView) + 20 , 65);
-        pointC = CGPointMake(VIEW_X_Right(self.sideMenuView) + 29 + offsetX, 65);
-        pointK = CGPointMake(VIEW_X_Right(self.sideMenuView) + 11 + offsetX, 65);
-        pointH = CGPointMake(VIEW_X_Right(self.sideMenuView) + 20 + offsetX, 56);
-        pointI = CGPointMake(VIEW_X_Right(self.sideMenuView) + 20 + offsetX, 74);
-        pointM = CGPointMake(VIEW_X_Right(self.sideMenuView) + 20 + offsetX + offset , 56);
-        pointN = CGPointMake(VIEW_X_Right(self.sideMenuView) + 11 + offsetX , 65 + offset);
+        pointJ = CGPointMake(VIEW_X_Right(self.sideMenuView) + 20 , 65 + self.sideMenY);
+        pointC = CGPointMake(VIEW_X_Right(self.sideMenuView) + 29 + offsetX, 65 + self.sideMenY);
+        pointK = CGPointMake(VIEW_X_Right(self.sideMenuView) + 11 + offsetX, 65 + self.sideMenY);
+        pointH = CGPointMake(VIEW_X_Right(self.sideMenuView) + 20 + offsetX, 56 + self.sideMenY);
+        pointI = CGPointMake(VIEW_X_Right(self.sideMenuView) + 20 + offsetX, 74 + self.sideMenY);
+        pointM = CGPointMake(VIEW_X_Right(self.sideMenuView) + 20 + offsetX + offset , 56 + self.sideMenY);
+        pointN = CGPointMake(VIEW_X_Right(self.sideMenuView) + 11 + offsetX , 65 + offset + self.sideMenY);
 
-        CGPoint pointM2 = CGPointMake(VIEW_X_Right(self.sideMenuView) + 29 + offsetX, 65 - offset);
-        CGPoint pointM3 = CGPointMake(VIEW_X_Right(self.sideMenuView) + 11 + offsetX, 65 - offset);
-        CGPoint pointM4 = CGPointMake(VIEW_X_Right(self.sideMenuView) + 20 + offsetX - offset, 56);
-        CGPoint pointN2 = CGPointMake(VIEW_X_Right(self.sideMenuView) + 20 + offsetX + offset, 74);
-        CGPoint pointN3 = CGPointMake(VIEW_X_Right(self.sideMenuView) + 29 + offsetX , 65 + offset);
-        CGPoint pointN4 = CGPointMake(VIEW_X_Right(self.sideMenuView) + 20 + offsetX - offset, 74);
+        CGPoint pointM2 = CGPointMake(VIEW_X_Right(self.sideMenuView) + 29 + offsetX, 65 - offset + self.sideMenY);
+        CGPoint pointM3 = CGPointMake(VIEW_X_Right(self.sideMenuView) + 11 + offsetX, 65 - offset + self.sideMenY);
+        CGPoint pointM4 = CGPointMake(VIEW_X_Right(self.sideMenuView) + 20 + offsetX - offset, 56 + self.sideMenY);
+        CGPoint pointN2 = CGPointMake(VIEW_X_Right(self.sideMenuView) + 20 + offsetX + offset, 74 + self.sideMenY);
+        CGPoint pointN3 = CGPointMake(VIEW_X_Right(self.sideMenuView) + 29 + offsetX , 65 + offset + self.sideMenY);
+        CGPoint pointN4 = CGPointMake(VIEW_X_Right(self.sideMenuView) + 20 + offsetX - offset, 74 + self.sideMenY);
         [lake addQuadCurveToPoint:pointE controlPoint:pointJ];
         rain = [UIBezierPath bezierPath];
         [rain moveToPoint:pointH];
