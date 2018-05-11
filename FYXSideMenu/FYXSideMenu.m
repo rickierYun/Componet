@@ -58,6 +58,11 @@
         [self addSubview:backgroundView];
         self.backgroundView = backgroundView;
 
+        UIButton *backgroundBtn = [[UIButton alloc]init];
+        backgroundBtn.frame = self.bounds;
+        [backgroundBtn addTarget:self action:@selector(sideMenuHidden) forControlEvents:UIControlEventTouchUpInside];
+        [backgroundView addSubview:backgroundBtn];
+
         bezierView = [[UIView alloc]init];
         bezierView.frame = self.bounds;
         bezierView.backgroundColor = [UIColor clearColor];

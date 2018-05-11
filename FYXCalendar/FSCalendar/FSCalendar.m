@@ -1119,10 +1119,19 @@ typedef NS_ENUM(NSUInteger, FSCalendarOrientation) {
     }
 }
 
+- (void)selectDate:(NSDate *)date compareData: (NSDate *)minimumDate {
+    if ([self compareDate:date withDate:minimumDate] == 1) {
+        NSLog(@"默认日期小于最小日期");
+        return;
+    }
+    [self selectDate:date];
+}
 - (void)selectDate:(NSDate *)date
 {
-    if ([self compareDate:date withDate:_minimumDate] == -1) {
-        NSLog(@"默认日期小于最小日期");
+    NSLog(@"%@",self.minimumDate);
+    NSLog(@"%d",[self compareDate:date withDate:_minimumDate]);
+    if ([self compareDate:date withDate:_minimumDate] == 1) {
+
         return;
     }
     [self selectDate:date scrollToDate:YES];

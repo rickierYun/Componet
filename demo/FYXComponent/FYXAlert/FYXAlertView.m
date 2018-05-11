@@ -753,7 +753,7 @@ CGFloat nativeScale(void) {
             _msgAlertView.frame = CGRectMake(0, 0, VIEW_WIDTH(self), textSize.height + 10 * displayScale);
 
         }
-        if (textSize.height > 18 && textSize.height < 42) {
+        if (textSize.height > 16 && textSize.height < 42) {
             _alertTitle.frame = CGRectMake(8 * displayScale, 5 * displayScale, VIEW_WIDTH(self) - 50 * displayScale , textSize.height);
             _msgAlertView.frame = CGRectMake(0, 0, VIEW_WIDTH(self), textSize.height + 10 * displayScale);
         }else {
@@ -761,7 +761,7 @@ CGFloat nativeScale(void) {
             _msgAlertView.frame = CGRectMake(0, 0, VIEW_WIDTH(self), textSize.height + 22 * displayScale);
         }
     }else {
-        if (textSize.height > 18 && textSize.height < 42) {
+        if (textSize.height > 16 && textSize.height < 42) {
             _alertTitle.frame = CGRectMake(8 * displayScale, 5 * displayScale, VIEW_WIDTH(self) - 50 * displayScale , textSize.height);
             _msgAlertView.frame = CGRectMake(0, 0, VIEW_WIDTH(self), textSize.height + 10 * displayScale);
         }else {
@@ -777,6 +777,11 @@ CGFloat nativeScale(void) {
     _alertTitle.numberOfLines = 0;
     _alertTitle.autoresizingMask = UIViewAutoresizingFlexibleWidth;
     _alertTitle.textColor = [UIColor whiteColor];
+    if ([title length] > 20) {
+        _alertTitle.textAlignment = NSTextAlignmentLeft;
+    }else {
+        _alertTitle.textAlignment = NSTextAlignmentCenter;
+    }
     self.msgLabel = _alertTitle;
 
     _msgAlertView.backgroundColor = [UIColor blackColor];

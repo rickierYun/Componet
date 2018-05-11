@@ -432,6 +432,7 @@ IB_DESIGNABLE
 /**
  A date object identifying the section of the selected date. (read-only)
  */
+
 @property (nullable, readonly, nonatomic) NSDate *selectedDate;
 
 /**
@@ -457,6 +458,8 @@ IB_DESIGNABLE
  
  @param date A date in the calendar.
  */
+- (void)selectDate:(NSDate *)date compareData: (NSDate *)minimumDate;
+
 - (void)selectDate:(nullable NSDate *)date;
 
 /**

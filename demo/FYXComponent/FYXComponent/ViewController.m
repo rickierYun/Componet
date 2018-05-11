@@ -208,15 +208,15 @@
     topAlertView = [[FYXAlertView alloc]initWithFrame:CGRectMake(0, 0,[[UIScreen mainScreen] bounds].size.width , [[UIScreen mainScreen] bounds].size.height)];
     [self.view addSubview:topAlertView];
     topAlertView.hidden = YES;
-    NSString * str = @"左滑卡片可取消预约啊大大大大时代啊阿达撒撒大大大大是大啊大师大师达大师大师大师的啊大大大时啊的！";
+    NSString * str = @"左滑卡片可取消预约啊";
 
     [topAlertView setTopAlert: str titleFont:14];
     //    [topAlertView setOtherBtnframe:NSMakeRange(10, 7)];
-    if ([str length] > 10) {
-        topAlertView.msgLabel.textAlignment = NSTextAlignmentLeft;
-    }else {
-        topAlertView.msgLabel.textAlignment = NSTextAlignmentCenter;
-    }
+//    if ([str length] > 10) {
+//        topAlertView.msgLabel.textAlignment = NSTextAlignmentLeft;
+//    }else {
+//        topAlertView.msgLabel.textAlignment = NSTextAlignmentCenter;
+//    }
     topAlertView.delegate = self;
     NSLog(@"这个弹窗的高度 %f", topAlertView.alertView.frame.size.height);
 
