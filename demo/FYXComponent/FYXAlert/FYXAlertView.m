@@ -1,4 +1,4 @@
-//
+    //
 //  FYXAlertView.m
 //  FYXComponent
 //
@@ -213,8 +213,28 @@ CGFloat nativeScale(void) {
 
 }
 
+// 设置文本弹窗大小
+- (void)setMsgAlertFrame: (CGRect)frame {
+    _msgAlertView.frame = frame;
+    _alertTitle.frame   = CGRectMake(0, 12, VIEW_WIDTH(_msgAlertView), 23 * displayScale);
+
+    _richTextView.frame     = CGRectMake(13 * displayScale,
+                                         VIEW_HEIGHT(_alertTitle) + VIEW_Y(_alertTitle) + 5 * displayScale,
+                                         VIEW_WIDTH(_msgAlertView) - 26 * displayScale,
+                                         VIEW_HEIGHT(_msgAlertView) - VIEW_HEIGHT(_alertTitle) - 60 * displayScale);
+
+    _cancelBtn.frame    = CGRectMake(0,
+                                     VIEW_HEIGHT(_alertTitle) + VIEW_Y(_alertTitle) + VIEW_HEIGHT(_richTextView) + 12 * displayScale,
+                                     VIEW_WIDTH(_msgAlertView),
+                                     30 * displayScale);
+
+    _lineBreak1.frame   = CGRectMake(8 * displayScale, VIEW_Y(_cancelBtn), VIEW_WIDTH(_cancelBtn) - 16, 1);
+
+    [_msgAlertView addSubview:_lineBreak1];
+}
+
 // 设置文本弹窗的高度
-- (void)setMsgAlertFrame: (NSInteger)alertHeight AlertWidth:(NSInteger)alertWidth {
+- (void)setMsgAlertHeight: (NSInteger)alertHeight AlertWidth:(NSInteger)alertWidth {
     _msgAlertView.frame = CGRectMake(VIEW_CENTER_X(self) - alertWidth / 2 * displayScale,
                                      160 * displayScale,
                                      alertWidth * displayScale,
@@ -856,6 +876,55 @@ CGFloat nativeScale(void) {
     self.alertView = actionSheet;
 
 }
+
+#pragma -mark 取送车计费方法
+//- (void)createGetCarPriceAlert {
+//    _msgAlertView = [[UIView alloc]init];
+//
+//    _msgAlertView.frame = CGRectMake(VIEW_CENTER_X(self) - 100 * displayScale,
+//                                     160 * displayScale,
+//                                     200 * displayScale,
+//                                     300 * displayScale);
+//    _msgAlertView.layer.cornerRadius = 8;
+//    _msgAlertView.backgroundColor = [UIColor whiteColor];
+//    [self addSubview:_msgAlertView];
+//
+//    _alertTitle = [[UILabel alloc]init];
+//    _alertTitle.frame = CGRectMake(0, 5, VIEW_WIDTH(_msgAlertView), 23 * displayScale);
+//    _alertTitle.numberOfLines = 1;
+//    _alertTitle.textAlignment = NSTextAlignmentCenter;
+//    _alertTitle.textColor     = [UIColor blackColor];
+//    [_msgAlertView addSubview:_alertTitle];
+//
+//    UITextView *_richTextView = [[UITextView alloc]init];
+//    _richTextView.frame = CGRectMake(8 * displayScale,
+//                                     VIEW_Y_Bottom(_alertTitle) + 5 * displayScale,
+//                                     VIEW_WIDTH(_msgAlertView) - 16 * displayScale,
+//                                     VIEW_HEIGHT(_msgAlertView) - VIEW_HEIGHT(_alertTitle) - 40 * displayScale);
+//
+//    //    _richTextView.numberOfLines = 0;
+//    //    _richTextView.lineBreakMode = NSLineBreakByCharWrapping;
+//    _richTextView.textAlignment = NSTextAlignmentLeft;
+//    _richTextView.textColor     = [UIColor blackColor];
+//    _richTextView.editable = NO;
+//    [_msgAlertView addSubview:_richTextView];
+//    self.richTextView = _richTextView;
+//
+//
+//    UIButton *_cancelBtn = [[UIButton alloc]init];
+//    _cancelBtn.frame = CGRectMake(0,
+//                                  VIEW_HEIGHT(_alertTitle) + VIEW_Y(_alertTitle) + VIEW_HEIGHT(_richTextView),
+//                                  VIEW_WIDTH(_msgAlertView),
+//                                  35 * displayScale);
+//
+//    _cancelBtn.titleLabel.font = [UIFont systemFontOfSize:17 * displayScale];
+//    [_cancelBtn addTarget:self action:@selector(cancelClick:) forControlEvents:UIControlEventTouchUpInside];
+//    [_msgAlertView addSubview:_cancelBtn];
+//    self.cancelBtn = _cancelBtn;
+//    // 分割线
+//
+//}
+
 #pragma -mark action
 // 点击背景隐藏
 - (void)hiddenClick: (UIButton *)sender {

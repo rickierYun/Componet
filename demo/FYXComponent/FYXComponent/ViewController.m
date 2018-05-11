@@ -187,10 +187,10 @@
     [self.view addSubview:actionAlertView];
     actionAlertView.hidden = YES;
 
-//    alertMsgView = [[FYXAlertView alloc]initWithFrame:CGRectMake(0, 0,[[UIScreen mainScreen] bounds].size.width , [[UIScreen mainScreen] bounds].size.height)];
-//    [self.view addSubview:alertMsgView];
+    alertMsgView = [[FYXAlertView alloc]initWithFrame:CGRectMake(0, 0,[[UIScreen mainScreen] bounds].size.width , [[UIScreen mainScreen] bounds].size.height)];
+    [self.view addSubview:alertMsgView];
 //    alertMsgView.delegate = self;
-//    alertMsgView.hidden = YES;
+    alertMsgView.hidden = YES;
 
     alertRichView = [[FYXAlertView alloc]initWithFrame:CGRectMake(0, 0,[[UIScreen mainScreen] bounds].size.width , [[UIScreen mainScreen] bounds].size.height)];
     [self.view addSubview:alertRichView];
@@ -312,11 +312,15 @@
     alertView.hidden     = NO;
 
     // 文字弹窗
-    [alertView setMsgAlertView:@"提示" titleFont:19 alertMsg:@"机器学习是近年来渐趋热门的一个领域，同时Python 语言经过一段时间的发展也已逐渐成为主流的编程语言之一。本书结合了机器学习和Python 语言两个热门的领域，通过利用两种核心的机器学习算法来将Python 语言在数据分析方面的优势发挥到极 致。 全书共有10 章。第 1 章讲解了Python 机器学习的生态系统，剩余9 章介绍了众多与机器学习相关的算法，包括各类分类算法、数据可视化技术、推荐引擎等，主要包括机器学习在公寓、机票、IPO 市场、新闻源、内容推机器学习是近年来渐趋热门的一个领域，同时Python 语言经过一段时间的发展也已逐渐成为主流的编程语言之一。本书结合了机器学习和Python 语言两个热门的领域，通过利用两种核心的机器学习算法来将Python 语言在数据分析方面的优势发挥到极 致。 全书共有10 章。第 1 章讲解了Python 机器学习的生态系统，剩余9 章介绍了众多与机器学习相关的算法，包括各类分类算法、数据可视化技术、推荐引擎等，主要包括机器学习在公寓、机票、IPO 市场、新闻源、内容推" msgFont:11 msgColor: [UIColor colorWithRed:101.0 / 255 green:101.0 / 255 blue:101.0 / 255 alpha:1]];
+    NSString *str1 = @"1、服务时间07:00-20:59\n2、收费规则：起步价39元（10公里内），10公里后，每公里加收10元，不足5公里按5公里计算。";
+    NSString *str2 = @"*注：以上计费方法为“e代驾”制定的上门取车代驾计费方法";
+    [alertView setMsgAlertView:@"取送车计费方法" titleFont:19 alertMsg:@"" msgFont:11 msgColor: [UIColor colorWithRed:101.0 / 255 green:101.0 / 255 blue:101.0 / 255 alpha:1]];
     
     [alertView.cancelBtn setTitle:@"cancel" forState:UIControlStateNormal];
     [alertView.cancelBtn setTitleColor:[UIColor lightGrayColor] forState:UIControlStateNormal];
-    [alertView setMsgAlertFrame:200 AlertWidth: 295];
+
+    alertView.richTextView.text = [str1 stringByAppendingString:str2];
+    [alertView setMsgAlertHeight:200 AlertWidth: 295];
 }
 
 - (void)alertRichClick: (UIButton *)sender {
@@ -406,16 +410,19 @@
     // 文字弹窗
     [alertMsgView setMsgAlertView:@"取车计费方式" titleFont:19 alertMsg:@"" msgFont:11 msgColor: [UIColor colorWithRed:101.0 / 255 green:101.0 / 255 blue:101.0 / 255 alpha:1]];
 
-    [alertMsgView.cancelBtn setTitle:@"cancel" forState:UIControlStateNormal];
+    [alertMsgView.cancelBtn setTitle:@"知道了" forState:UIControlStateNormal];
     [alertMsgView.cancelBtn setTitleColor:[UIColor lightGrayColor] forState:UIControlStateNormal];
-    [alertMsgView setMsgAlertFrame:200 AlertWidth: 295];
-    NSMutableAttributedString *text = [[NSMutableAttributedString alloc]initWithString:@" 1、服务时间 07:00-20:59\n  \n 2、 收费规则:起步价39元（10公里内），10公里后，每公里加收10元，不足5公里按5公里计算。\n*注：以上计费方式"];
-    [text addAttribute:NSForegroundColorAttributeName value:[UIColor colorWithRed:50.0 / 255 green:50.0 / 255 blue:50.0 / 255 alpha:1] range:NSMakeRange(0, 68)];
-    [text addAttribute:NSForegroundColorAttributeName value:[UIColor colorWithRed:101.0 / 255 green:101.0 / 255 blue:101.0 / 255 alpha:1] range:NSMakeRange(68, 11)];
-    [text addAttribute:NSFontAttributeName value:[UIFont systemFontOfSize:5] range:NSMakeRange(68, 1)];
-    [text addAttribute:NSFontAttributeName value:[UIFont systemFontOfSize:16] range:NSMakeRange(0, 68)];
-    [text addAttribute:NSFontAttributeName value:[UIFont systemFontOfSize:12] range:NSMakeRange(69, 11)];
-    alertMsgView.msgLabel.attributedText = text;
+    [alertMsgView setMsgAlertHeight:200 AlertWidth: 310];
+    NSString *str1 = @"1、服务时间07:00-20:59\n2、收费规则：起步价39元（10公里内），10公里后，每公里加收10元，不足5公里按5公里计算。";
+    NSString *str2 = @"\n*注：以上计费方法为“e代驾”制定的上门取车代驾计费方法";
+
+    NSMutableAttributedString *text = [[NSMutableAttributedString alloc]initWithString:[str1 stringByAppendingString:str2]];
+    [text addAttribute:NSForegroundColorAttributeName value:[UIColor colorWithRed:50.0 / 255 green:50.0 / 255 blue:50.0 / 255 alpha:1] range:NSMakeRange(0, [str1 length])];
+    [text addAttribute:NSForegroundColorAttributeName value:[UIColor colorWithRed:101.0 / 255 green:101.0 / 255 blue:101.0 / 255 alpha:1] range:NSMakeRange([str1 length], [str2 length])];
+//    [text addAttribute:NSFontAttributeName value:[UIFont systemFontOfSize:5] range:NSMakeRange(68, 1)];
+    [text addAttribute:NSFontAttributeName value:[UIFont systemFontOfSize:16] range:NSMakeRange(0, [str1 length])];
+    [text addAttribute:NSFontAttributeName value:[UIFont systemFontOfSize:12] range:NSMakeRange([str1 length], [str2 length])];
+    alertMsgView.richTextView.attributedText = text;
     [alertMsgView.cancelBtn setTitleColor:[UIColor colorWithRed:20.0 / 255 green:206.0 / 255 blue:1 alpha:1.0f] forState:UIControlStateNormal];
 
 }

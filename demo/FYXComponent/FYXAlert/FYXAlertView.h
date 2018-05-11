@@ -61,7 +61,11 @@
 /**
  *设置文字弹窗大小
  */
-- (void)setMsgAlertFrame: (NSInteger)alertHeight AlertWidth:(NSInteger)alertWidth;  // 设置文字弹窗大小
+- (void)setMsgAlertFrame: (CGRect)frame;
+/**
+ *设置文字弹窗高度
+ */
+- (void)setMsgAlertHeight: (NSInteger)alertHeight AlertWidth:(NSInteger)alertWidth;  // 设置文字弹窗高度
 /**
  *设置富文本
  */
