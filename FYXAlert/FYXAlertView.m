@@ -172,6 +172,7 @@ CGFloat nativeScale(void) {
     _alertTitle.textAlignment = NSTextAlignmentCenter;
     _alertTitle.textColor     = [UIColor blackColor];
     [_msgAlertView addSubview:_alertTitle];
+    self.msgLabel = _alertTitle;
 
     UITextView *_richTextView = [[UITextView alloc]init];
     _richTextView.frame = CGRectMake(8 * displayScale,

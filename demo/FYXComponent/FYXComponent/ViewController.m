@@ -315,12 +315,14 @@
     NSString *str1 = @"1、服务时间07:00-20:59\n2、收费规则：起步价39元（10公里内），10公里后，每公里加收10元，不足5公里按5公里计算。";
     NSString *str2 = @"*注：以上计费方法为“e代驾”制定的上门取车代驾计费方法";
     [alertView setMsgAlertView:@"取送车计费方法" titleFont:19 alertMsg:@"" msgFont:11 msgColor: [UIColor colorWithRed:101.0 / 255 green:101.0 / 255 blue:101.0 / 255 alpha:1]];
-    
+
+    alertView.msgLabel.lineBreakMode = NSLineBreakByTruncatingHead;
     [alertView.cancelBtn setTitle:@"cancel" forState:UIControlStateNormal];
     [alertView.cancelBtn setTitleColor:[UIColor lightGrayColor] forState:UIControlStateNormal];
 
     alertView.richTextView.text = [str1 stringByAppendingString:str2];
     [alertView setMsgAlertHeight:200 AlertWidth: 295];
+
 }
 
 - (void)alertRichClick: (UIButton *)sender {
@@ -353,6 +355,7 @@
     bubbleView.hidden = NO;
     bubbleView.delegate = self;
     [bubbleView setBubbleView:@"已取消预约,请在此预约" font:20 textColor:[UIColor blackColor]];
+    [bubbleView setBubbleViewY:180 ];
 }
 
 - (void)toastBtnClick: (UIButton *)sender {
