@@ -20,21 +20,21 @@
 /**
  *只需添加文字
  */
-+ (void)showWithText:(NSString *)text_;                                                                 // 只需添加文字
++ (void)showWithText:(NSString *)text;                                                                 // 只需添加文字
 /**
  *可以添加文字和持续时间
  */
-+ (void)showWithText:(NSString *)text_ duration:(CGFloat)duration_;                                     // 可以添加文字和持续时间
++ (void)showWithText:(NSString *)text duration:(CGFloat)duration;                                     // 可以添加文字和持续时间
 /**
  *只需添加文字和图片名称
  */
-+ (void)showWithTextImage:(NSString *)text_ imageName:(NSString *)imageName;                            // 只需添加文字和图片名称
++ (void)showWithTextImage:(NSString *)text imageName:(NSString *)imageName;                            // 只需添加文字和图片名称
 /**
  *可以添加文字、图片名称和持续时间
  */
-+ (void)showwithTextImage:(NSString *)text_ imageName:(NSString *)imageName duration:(CGFloat)duration_;// 可以添加文字、图片名称和持续时间
++ (void)showwithTextImage:(NSString *)text imageName:(NSString *)imageName duration:(CGFloat)duration;// 可以添加文字、图片名称和持续时间
 
-+ (void)showWithFrame:(NSString *)text_ frame: (CGRect)frame;
++ (void)showWithFrame:(NSString *)text frame: (CGRect)frame;
 
-+ (void)showWithFrame:(NSString *)text_ frame: (CGRect)frame duration:(CGFloat)duration_;
++ (void)showWithFrame:(NSString *)text frame: (CGRect)frame duration:(CGFloat)duration;
 @end
