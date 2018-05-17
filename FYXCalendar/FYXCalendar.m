@@ -159,6 +159,17 @@ CGFloat nativScale(void) {
         lineView.backgroundColor = normalColor;
         [self addSubview:lineView];
 
+        UIButton *morningBtn = [UIButton buttonWithType:UIButtonTypeCustom];
+        morningBtn.frame = CGRectMake(VIEW_CENTER_X(_calendar) - 68, VIEW_Y_Bottom(_calendar) - 15, 68 , 30);
+        [morningBtn setTitle:@"上午" forState:UIControlStateNormal];
+        [morningBtn setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
+        morningBtn.backgroundColor = self.timeBtnSelectColor == nil ? normalColor : self.timeBtnSelectColor;
+        morningBtn.titleLabel.font = [UIFont systemFontOfSize:16];
+        morningBtn.layer.cornerRadius = 5;
+        [morningBtn addTarget:self action:@selector(morningClick:) forControlEvents:UIControlEventTouchUpInside];
+        [self addSubview:morningBtn];
+        self.morningBtn = morningBtn;
+
         UIButton *afternoonBtn = [UIButton buttonWithType:UIButtonTypeCustom];
         afternoonBtn.frame= CGRectMake(VIEW_CENTER_X(_calendar) - 8, VIEW_Y_Bottom(_calendar) - 15, 73 , 30);
         [afternoonBtn setTitle:@"下午" forState:UIControlStateNormal];
@@ -171,17 +182,6 @@ CGFloat nativScale(void) {
         [afternoonBtn addTarget:self action:@selector(afternoonClick:) forControlEvents:UIControlEventTouchUpInside];
         [self addSubview:afternoonBtn];
         self.afternoonBtn = afternoonBtn;
-
-        UIButton *morningBtn = [UIButton buttonWithType:UIButtonTypeCustom];
-        morningBtn.frame = CGRectMake(VIEW_CENTER_X(_calendar) - 68, VIEW_Y_Bottom(_calendar) - 15, 68 , 30);
-        [morningBtn setTitle:@"上午" forState:UIControlStateNormal];
-        [morningBtn setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
-        morningBtn.backgroundColor = self.timeBtnSelectColor == nil ? normalColor : self.timeBtnSelectColor;
-        morningBtn.titleLabel.font = [UIFont systemFontOfSize:16];
-        morningBtn.layer.cornerRadius = 5;
-        [morningBtn addTarget:self action:@selector(morningClick:) forControlEvents:UIControlEventTouchUpInside];
-        [self addSubview:morningBtn];
-        self.morningBtn = morningBtn;
 
         UILabel *timeTitleLb = [[UILabel alloc]init];
         timeTitleLb.frame = CGRectMake(0, VIEW_Y_Bottom(_calendar) - 50, VIEW_WIDTH(self), 23 );
