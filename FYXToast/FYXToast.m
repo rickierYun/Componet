@@ -24,6 +24,9 @@
         textLabel.backgroundColor = [UIColor clearColor];
         textLabel.textColor = [UIColor whiteColor];
         textLabel.textAlignment = NSTextAlignmentCenter;
+        if ([text length] > 20) {
+            textLabel.textAlignment = NSTextAlignmentLeft;
+        }
         textLabel.font = font;
         textLabel.text = text;
         textLabel.numberOfLines = 0;
@@ -39,16 +42,16 @@
             imageView.image = [UIImage imageNamed:imageName];
             [contentView addSubview:imageView];
         }else {
-            textLabel.frame = CGRectMake(15, 15, textSize.width + 12, textSize.height + 12);
-            contentView.frame = CGRectMake(0, 0, textLabel.frame.size.width + 30, textLabel.frame.size.height + 30);
+            textLabel.frame = CGRectMake(20, 15, textSize.width + 12, textSize.height + 12);
+            contentView.frame = CGRectMake(0, 0, textLabel.frame.size.width + 40, textLabel.frame.size.height + 30);
         }
         contentView.layer.cornerRadius = 5.0f;
         contentView.layer.borderWidth = 1.0f;
         contentView.layer.borderColor = [[UIColor grayColor] colorWithAlphaComponent:0.5].CGColor;
-        contentView.backgroundColor = [UIColor colorWithRed:0.2f
-                                                      green:0.2f
-                                                       blue:0.2f
-                                                      alpha:0.75f];
+        contentView.backgroundColor = [UIColor colorWithRed:0.0f
+                                                      green:0.0f
+                                                       blue:0.0f
+                                                      alpha:0.7f];
         [contentView addSubview:textLabel];
         contentView.autoresizingMask = UIViewAutoresizingFlexibleWidth;         // 自适应
         [contentView addTarget:self
