@@ -585,7 +585,7 @@ CGFloat nativeScale(void) {
 
     font = [UIFont boldSystemFontOfSize: 16 * displayScale];
     attrs = @{NSFontAttributeName : font};
-    textSize = [suggestTitle boundingRectWithSize:CGSizeMake(280, MAXFLOAT) options:NSStringDrawingUsesLineFragmentOrigin attributes:attrs context:nil].size;
+    textSize = [suggestTitle boundingRectWithSize:CGSizeMake(200, MAXFLOAT) options:NSStringDrawingUsesLineFragmentOrigin attributes:attrs context:nil].size;
     _suggestTitleLb.frame = CGRectMake(VIEW_X(_lineBreak1), VIEW_Y_Bottom(_instruteTextLb) + 30 * displayScale, VIEW_WIDTH(_lineBreak1), textSize.height);
     _suggestTitleLb.text = suggestTitle;
     _suggestTitleLb.font = font;
@@ -593,7 +593,7 @@ CGFloat nativeScale(void) {
 
     font = [UIFont systemFontOfSize: 14 * displayScale];
     attrs = @{NSFontAttributeName : font};
-    textSize = [suggestText boundingRectWithSize:CGSizeMake(280, MAXFLOAT) options:NSStringDrawingUsesLineFragmentOrigin attributes:attrs context:nil].size;
+    textSize = [suggestText boundingRectWithSize:CGSizeMake(200, MAXFLOAT) options:NSStringDrawingUsesLineFragmentOrigin attributes:attrs context:nil].size;
     _suggestLb.frame = CGRectMake(VIEW_X(_lineBreak1), VIEW_Y_Bottom(_suggestTitleLb) + 12 * displayScale, VIEW_WIDTH(_lineBreak1), textSize.height);
     _suggestLb.textColor = [UIColor colorWithRed:50.0 / 255 green:50.0 / 255 blue:50.0 / 255 alpha:0.5];
     _suggestLb.numberOfLines = 0;
