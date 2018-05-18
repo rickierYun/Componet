@@ -37,4 +37,12 @@
 + (void)showWithFrame:(NSString *)text frame: (CGRect)frame;
 
 + (void)showWithFrame:(NSString *)text frame: (CGRect)frame duration:(CGFloat)duration;
+/**
+ *可以添加文字、图片名称、更改大小
+ */
++ (void)showWithImageFrame: (NSString *)text imageName: (NSString *)imageName frame: (CGRect)frame;
+/**
+ *可以添加文字、图片名称、持续时间、更改大小
+ */
++ (void)showWithImageFrame: (NSString *)text imageName: (NSString *)imageName frame: (CGRect)frame duration: (CGFloat)duration;
 @end

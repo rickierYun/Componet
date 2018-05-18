@@ -365,6 +365,7 @@
 
 - (void)toastPicBtnClick: (UIButton *)sender {
     [FYXToast showWithTextImage:@"反馈成功" imageName:@"success.png"];
+//    [FYXToast showWithImageFrame:@"反馈成功" imageName:@"success.png" frame:CGRectMake(0, 200, [[UIScreen mainScreen] bounds].size.width , 200)];
 //    [FYXToast showWithFrame:@"您目前的取送车订单有绑" frame:CGRectMake(0, 200, [[UIScreen mainScreen] bounds].size.width , 100)];
 //    [FYXToast showWithText:@"您目前的取送车订单有绑定的保养预约服务，是否同时取消保养预约？"];
 }

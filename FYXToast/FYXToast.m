@@ -32,10 +32,10 @@
         contentView = [[UIButton alloc] init];
         if (imageName != nil) {
             // 设置图片
-            textLabel.frame = CGRectMake(25, 38, textSize.width + 12, textSize.height + 12);
-            contentView.frame = CGRectMake(0, 0, textLabel.frame.size.width + 50, textLabel.frame.size.height + 60);
+            textLabel.frame = CGRectMake(30, 50, textSize.width + 12, textSize.height + 12);
+            contentView.frame = CGRectMake(0, 0, textLabel.frame.size.width + 60, textLabel.frame.size.height + 70);
 
-            UIImageView *imageView = [[UIImageView alloc]initWithFrame:CGRectMake(contentView.center.x - 10, 15, 20, 20)];
+            UIImageView *imageView = [[UIImageView alloc]initWithFrame:CGRectMake(contentView.center.x - 13, 15, 26, 26)];
             imageView.image = [UIImage imageNamed:imageName];
             [contentView addSubview:imageView];
         }else {
@@ -128,6 +128,25 @@
     [window addSubview: v];
 
     NSLog(@"%@",NSStringFromCGPoint(v.center) );
+    contentView.frame = frame;         // 始终中间显示
+    [v addSubview:contentView];
+
+    if (window.subviews.count > 0) {
+        [window bringSubviewToFront:v];
+    }
+    window.userInteractionEnabled = NO;
+    [self showAnimation];
+    [self performSelector:@selector(hideAnimation) withObject:nil afterDelay:duration];
+
+}
+
+- (void)imageSepecialShow: (CGRect)frame {
+    UIWindow *window = [UIApplication sharedApplication].keyWindow;
+    UIView *v = [[UIView alloc]init];
+    v.frame = frame;
+    [window addSubview: v];
+
+    NSLog(@"%@",NSStringFromCGPoint(v.center) );
     contentView.frame = CGRectMake(v.center.x - contentView.frame.size.width / 2, 0, contentView.frame.size.width, contentView.frame.size.height);         // 始终中间显示
     [v addSubview:contentView];
     if (window.subviews.count > 0) {
@@ -136,8 +155,6 @@
     window.userInteractionEnabled = NO;
     [self showAnimation];
     [self performSelector:@selector(hideAnimation) withObject:nil afterDelay:duration];
-
-
 }
 
 -(void)dismissToast{
@@ -163,6 +180,16 @@
     FYXToast *toast = [[FYXToast alloc] initWithText:text imageName:imageName];
     [toast setDuration: duration];
     [toast show];
+}
+
++ (void)showWithImageFrame: (NSString *)text imageName: (NSString *)imageName frame: (CGRect)frame {
+    [FYXToast showWithImageFrame:text imageName:imageName frame:frame duration:DEFAULT_DISPLAY_DURATION];
+}
+
++ (void)showWithImageFrame: (NSString *)text imageName: (NSString *)imageName frame: (CGRect)frame duration: (CGFloat)duration {
+    FYXToast *toast = [[FYXToast alloc] initWithText:text imageName:imageName];
+    [toast setDuration:duration];
+    [toast sepecialShow:frame];
 }
 
 + (void)showWithFrame:(NSString *)text frame: (CGRect)frame {
