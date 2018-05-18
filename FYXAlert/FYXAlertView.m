@@ -50,7 +50,7 @@ CGFloat nativeScale(void) {
     UIImageView * _alertTitleImage;    // 提示图片
     UIView      * _lineBreak1;         // 分割线
     NSString    * _text;               // 文字载体
-    UIView      * _safeLightView;      // 安全提示灯
+    UIScrollView* _safeLightView;      // 安全提示灯
     UILabel     * _btnLabel1;
     UILabel     * _btnLabel2;
     UILabel     * _btnLabel3;
@@ -158,9 +158,9 @@ CGFloat nativeScale(void) {
 - (void)createMsgAlert {
     _msgAlertView = [[UIView alloc]init];
 
-    _msgAlertView.frame = CGRectMake(VIEW_CENTER_X(self) - 100 * displayScale,
+    _msgAlertView.frame = CGRectMake(40 * displayScale,
                                      160 * displayScale,
-                                     200 * displayScale,
+                                     295 * displayScale,
                                      300 * displayScale);
     _msgAlertView.layer.cornerRadius = 8;
     _msgAlertView.backgroundColor = [UIColor whiteColor];
@@ -168,7 +168,7 @@ CGFloat nativeScale(void) {
 
     _alertTitle = [[UILabel alloc]init];
     _alertTitle.frame = CGRectMake(0, 5, VIEW_WIDTH(_msgAlertView), 23 * displayScale);
-    _alertTitle.numberOfLines = 1;
+    _alertTitle.numberOfLines = 0;
     _alertTitle.textAlignment = NSTextAlignmentCenter;
     _alertTitle.textColor     = [UIColor blackColor];
     [_msgAlertView addSubview:_alertTitle];
@@ -178,7 +178,7 @@ CGFloat nativeScale(void) {
     _richTextView.frame = CGRectMake(8 * displayScale,
                                  VIEW_Y_Bottom(_alertTitle) + 5 * displayScale,
                                  VIEW_WIDTH(_msgAlertView) - 16 * displayScale,
-                                 VIEW_HEIGHT(_msgAlertView) - VIEW_HEIGHT(_alertTitle) - 40 * displayScale);
+                                 VIEW_HEIGHT(_msgAlertView) - VIEW_HEIGHT(_alertTitle) - 70 * displayScale);
      
 //    _richTextView.numberOfLines = 0;
 //    _richTextView.lineBreakMode = NSLineBreakByCharWrapping;
@@ -191,11 +191,11 @@ CGFloat nativeScale(void) {
 
     UIButton *_cancelBtn = [[UIButton alloc]init];
     _cancelBtn.frame = CGRectMake(0,
-                                  VIEW_HEIGHT(_alertTitle) + VIEW_Y(_alertTitle) + VIEW_HEIGHT(_richTextView),
+                                  VIEW_HEIGHT(_alertTitle) + VIEW_Y(_alertTitle) + VIEW_HEIGHT(_richTextView) + 12 * displayScale,
                                   VIEW_WIDTH(_msgAlertView),
-                                  35 * displayScale);
+                                  50 * displayScale);
 
-    _cancelBtn.titleLabel.font = [UIFont systemFontOfSize:17 * displayScale];
+    [_cancelBtn.titleLabel setFont:[UIFont fontWithName:@"Helvetica-Bold" size:18 * displayScale]];
     [_cancelBtn addTarget:self action:@selector(cancelClick:) forControlEvents:UIControlEventTouchUpInside];
     [_msgAlertView addSubview:_cancelBtn];
     self.cancelBtn = _cancelBtn;
@@ -210,6 +210,8 @@ CGFloat nativeScale(void) {
     _richTextView.text   = msg;
     _richTextView.textColor = msgColor;
     [_alertTitle setFont:[UIFont systemFontOfSize:titleFont * displayScale]];
+    _lineBreak1.frame   = CGRectMake(8 * displayScale, VIEW_Y(_cancelBtn) - 2 * displayScale, VIEW_WIDTH(_cancelBtn) - 16, 1);
+    [_msgAlertView addSubview:_lineBreak1];
     [_richTextView setFont:[UIFont systemFontOfSize:msgFont * displayScale]];
 
 }
@@ -219,17 +221,17 @@ CGFloat nativeScale(void) {
     _msgAlertView.frame = frame;
     _alertTitle.frame   = CGRectMake(0, 12, VIEW_WIDTH(_msgAlertView), 23 * displayScale);
 
-    _richTextView.frame     = CGRectMake(13 * displayScale,
+    _richTextView.frame  = CGRectMake(13 * displayScale,
                                          VIEW_HEIGHT(_alertTitle) + VIEW_Y(_alertTitle) + 5 * displayScale,
                                          VIEW_WIDTH(_msgAlertView) - 26 * displayScale,
-                                         VIEW_HEIGHT(_msgAlertView) - VIEW_HEIGHT(_alertTitle) - 60 * displayScale);
+                                         VIEW_HEIGHT(_msgAlertView) - VIEW_HEIGHT(_alertTitle) - 70 * displayScale);
 
     _cancelBtn.frame    = CGRectMake(0,
-                                     VIEW_HEIGHT(_alertTitle) + VIEW_Y(_alertTitle) + VIEW_HEIGHT(_richTextView) + 12 * displayScale,
+                                     VIEW_HEIGHT(_alertTitle) + VIEW_Y(_alertTitle) + VIEW_HEIGHT(_richTextView) + 2 * displayScale,
                                      VIEW_WIDTH(_msgAlertView),
-                                     30 * displayScale);
+                                     50 * displayScale);
 
-    _lineBreak1.frame   = CGRectMake(8 * displayScale, VIEW_Y(_cancelBtn), VIEW_WIDTH(_cancelBtn) - 16, 1);
+    _lineBreak1.frame   = CGRectMake(8 * displayScale, VIEW_Y(_cancelBtn) - 2 * displayScale, VIEW_WIDTH(_cancelBtn) - 16, 1);
 
     [_msgAlertView addSubview:_lineBreak1];
 }
@@ -246,14 +248,14 @@ CGFloat nativeScale(void) {
     _richTextView.frame     = CGRectMake(13 * displayScale,
                                      VIEW_HEIGHT(_alertTitle) + VIEW_Y(_alertTitle) + 5 * displayScale,
                                      VIEW_WIDTH(_msgAlertView) - 26 * displayScale,
-                                     VIEW_HEIGHT(_msgAlertView) - VIEW_HEIGHT(_alertTitle) - 60 * displayScale);
+                                     VIEW_HEIGHT(_msgAlertView) - VIEW_HEIGHT(_alertTitle) - 70 * displayScale);
 
     _cancelBtn.frame    = CGRectMake(0,
-                                     VIEW_HEIGHT(_alertTitle) + VIEW_Y(_alertTitle) + VIEW_HEIGHT(_richTextView) + 12 * displayScale,
+                                     VIEW_HEIGHT(_alertTitle) + VIEW_Y(_alertTitle) + VIEW_HEIGHT(_richTextView) + 2 * displayScale,
                                      VIEW_WIDTH(_msgAlertView),
-                                     30 * displayScale);
+                                     50 * displayScale);
 
-    _lineBreak1.frame   = CGRectMake(8 * displayScale, VIEW_Y(_cancelBtn), VIEW_WIDTH(_cancelBtn) - 16, 1);
+    _lineBreak1.frame   = CGRectMake(8 * displayScale, VIEW_Y(_cancelBtn) - 2 * displayScale, VIEW_WIDTH(_cancelBtn) - 16, 1);
 
     [_msgAlertView addSubview:_lineBreak1];
 }
@@ -506,7 +508,7 @@ CGFloat nativeScale(void) {
     _suggestTitleLb = [[UILabel alloc]init];
     font = [UIFont boldSystemFontOfSize: 16 * displayScale];
     attrs = @{NSFontAttributeName : font};
-    textSize = [suggestTitle boundingRectWithSize:CGSizeMake(280, MAXFLOAT) options:NSStringDrawingUsesLineFragmentOrigin attributes:attrs context:nil].size;
+    textSize = [suggestTitle boundingRectWithSize:CGSizeMake(200, MAXFLOAT) options:NSStringDrawingUsesLineFragmentOrigin attributes:attrs context:nil].size;
     _suggestTitleLb.frame = CGRectMake(VIEW_X(_lineBreak1), VIEW_Y_Bottom(_instruteTextLb) + 30 * displayScale, VIEW_WIDTH(_lineBreak1), textSize.height);
     _suggestTitleLb.text = suggestTitle;
     _suggestTitleLb.font = font;
@@ -515,14 +517,14 @@ CGFloat nativeScale(void) {
     _suggestLb = [[UILabel alloc]init];
     font = [UIFont systemFontOfSize: 14 * displayScale];
     attrs = @{NSFontAttributeName : font};
-    textSize = [suggestText boundingRectWithSize:CGSizeMake(280, MAXFLOAT) options:NSStringDrawingUsesLineFragmentOrigin attributes:attrs context:nil].size;
+    textSize = [suggestText boundingRectWithSize:CGSizeMake(200, MAXFLOAT) options:NSStringDrawingUsesLineFragmentOrigin attributes:attrs context:nil].size;
     _suggestLb.frame = CGRectMake(VIEW_X(_lineBreak1), VIEW_Y_Bottom(_suggestTitleLb) + 12 * displayScale, VIEW_WIDTH(_lineBreak1), textSize.height);
     _suggestLb.textColor = [UIColor colorWithRed:50.0 / 255 green:50.0 / 255 blue:50.0 / 255 alpha:0.5];
     _suggestLb.numberOfLines = 0;
     _suggestLb.font = font;
     _suggestLb.text = suggestText;
 
-    _safeLightView = [[UIView alloc]init];
+    _safeLightView = [[UIScrollView alloc]init];
     _safeLightView.frame = CGRectMake(40 * displayScale, 120 * displayScale, SCREEN_WIDTH - 80 * displayScale, VIEW_HEIGHT(_alertTitleImage) + VIEW_HEIGHT(_suggestTitleLb) + VIEW_HEIGHT(_suggestLb) + VIEW_HEIGHT(_instruteTitleLb) + VIEW_HEIGHT(_instruteTextLb) + 130 * displayScale);
     _safeLightView.backgroundColor = [UIColor whiteColor];
     _safeLightView.layer.cornerRadius = 8;
@@ -566,7 +568,7 @@ CGFloat nativeScale(void) {
     _lineBreak1.frame = CGRectMake(VIEW_X(_alertTitleImage), VIEW_Y_Bottom(_alertTitleImage) + 10 * displayScale, VIEW_WIDTH(_alertTitleImage) + VIEW_WIDTH(_alertTitle) + 20 * displayScale, 1);
 
 
-    textSize = [instruteTitle boundingRectWithSize:CGSizeMake(140, MAXFLOAT) options:NSStringDrawingUsesLineFragmentOrigin attributes:attrs context:nil].size;
+    textSize = [instruteTitle boundingRectWithSize:CGSizeMake(200, MAXFLOAT) options:NSStringDrawingUsesLineFragmentOrigin attributes:attrs context:nil].size;
     _instruteTitleLb.frame = CGRectMake(VIEW_X(_lineBreak1), VIEW_Y_Bottom(_lineBreak1) + 12 * displayScale, VIEW_WIDTH(_lineBreak1), textSize.height);
     _instruteTitleLb.textColor = [UIColor colorWithRed:50.0 / 255 green:50.0 / 255 blue:50.0 / 255 alpha:1];
     _instruteTitleLb.font = font;
@@ -575,7 +577,7 @@ CGFloat nativeScale(void) {
 
     font = [UIFont systemFontOfSize: 14 * displayScale];
     attrs = @{NSFontAttributeName : font};
-    textSize = [instructText boundingRectWithSize:CGSizeMake(140, MAXFLOAT) options:NSStringDrawingUsesLineFragmentOrigin attributes:attrs context:nil].size;
+    textSize = [instructText boundingRectWithSize:CGSizeMake(260, MAXFLOAT) options:NSStringDrawingUsesLineFragmentOrigin attributes:attrs context:nil].size;
     _instruteTextLb.textColor = [UIColor colorWithRed:50.0 / 255 green:50.0 / 255 blue:50.0 / 255 alpha:0.5];
     _instruteTextLb.numberOfLines = 0;
     _instruteTextLb.font = font;
@@ -585,7 +587,7 @@ CGFloat nativeScale(void) {
 
     font = [UIFont boldSystemFontOfSize: 16 * displayScale];
     attrs = @{NSFontAttributeName : font};
-    textSize = [suggestTitle boundingRectWithSize:CGSizeMake(200, MAXFLOAT) options:NSStringDrawingUsesLineFragmentOrigin attributes:attrs context:nil].size;
+    textSize = [suggestTitle boundingRectWithSize:CGSizeMake(260, MAXFLOAT) options:NSStringDrawingUsesLineFragmentOrigin attributes:attrs context:nil].size;
     _suggestTitleLb.frame = CGRectMake(VIEW_X(_lineBreak1), VIEW_Y_Bottom(_instruteTextLb) + 30 * displayScale, VIEW_WIDTH(_lineBreak1), textSize.height);
     _suggestTitleLb.text = suggestTitle;
     _suggestTitleLb.font = font;
@@ -593,14 +595,21 @@ CGFloat nativeScale(void) {
 
     font = [UIFont systemFontOfSize: 14 * displayScale];
     attrs = @{NSFontAttributeName : font};
-    textSize = [suggestText boundingRectWithSize:CGSizeMake(200, MAXFLOAT) options:NSStringDrawingUsesLineFragmentOrigin attributes:attrs context:nil].size;
+    textSize = [suggestText boundingRectWithSize:CGSizeMake(260, MAXFLOAT) options:NSStringDrawingUsesLineFragmentOrigin attributes:attrs context:nil].size;
     _suggestLb.frame = CGRectMake(VIEW_X(_lineBreak1), VIEW_Y_Bottom(_suggestTitleLb) + 12 * displayScale, VIEW_WIDTH(_lineBreak1), textSize.height);
     _suggestLb.textColor = [UIColor colorWithRed:50.0 / 255 green:50.0 / 255 blue:50.0 / 255 alpha:0.5];
     _suggestLb.numberOfLines = 0;
     _suggestLb.font = font;
     _suggestLb.text = suggestText;
 
+    if ( VIEW_HEIGHT(_alertTitleImage) + VIEW_HEIGHT(_suggestTitleLb) + VIEW_HEIGHT(_suggestLb) + VIEW_HEIGHT(_instruteTitleLb) + VIEW_HEIGHT(_instruteTextLb) + 130 * displayScale > [[UIScreen mainScreen] bounds].size.height  - 170 * displayScale ) {
+
+        _safeLightView.frame = CGRectMake(40 * displayScale, 120 * displayScale, SCREEN_WIDTH - 80 * displayScale, [[UIScreen mainScreen] bounds].size.height - 250 * displayScale);
+    }else {
     _safeLightView.frame = CGRectMake(40 * displayScale, 120 * displayScale, SCREEN_WIDTH - 80 * displayScale, VIEW_HEIGHT(_alertTitleImage) + VIEW_HEIGHT(_suggestTitleLb) + VIEW_HEIGHT(_suggestLb) + VIEW_HEIGHT(_instruteTitleLb) + VIEW_HEIGHT(_instruteTextLb) + 130 * displayScale);
+    }
+    _safeLightView.contentSize = CGSizeMake(SCREEN_WIDTH - 80 * displayScale, VIEW_HEIGHT(_alertTitleImage) + VIEW_HEIGHT(_suggestTitleLb) + VIEW_HEIGHT(_suggestLb) + VIEW_HEIGHT(_instruteTitleLb) + VIEW_HEIGHT(_instruteTextLb) + 130 * displayScale);
+
     _safeLightView.backgroundColor = [UIColor whiteColor];
     _safeLightView.layer.cornerRadius = 8;
     _safeLightView.autoresizingMask = UIViewAutoresizingFlexibleHeight;
