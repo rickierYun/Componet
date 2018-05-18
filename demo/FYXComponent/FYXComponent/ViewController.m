@@ -365,9 +365,9 @@
 
 - (void)toastPicBtnClick: (UIButton *)sender {
 //    [FYXToast showWithTextImage:@"反馈成功" imageName:@"success.png"];
-//    [FYXToast showWithImageFrame:@"反馈成功" imageName:@"success.png" frame:CGRectMake(0, 200, [[UIScreen mainScreen] bounds].size.width , 200)];
+    [FYXToast showWithImageFrame:@"反馈成功" imageName:@"success.png" frame:CGRectMake([[UIScreen mainScreen] bounds].size.width / 2 - 165 / 2, [[UIScreen mainScreen] bounds].size.height / 2  - 116 / 2, 165, 116)];
 //    [FYXToast showWithFrame:@"您目前的取送车订单有绑" frame:CGRectMake(0, 200, [[UIScreen mainScreen] bounds].size.width , 100)];
-    [FYXToast showWithText:@"您目前的取送车"];
+//    [FYXToast showWithText:@"您目前的取送车"];
 }
 
 - (void)pageFlowBtnClick: (UIButton *)sender {
@@ -397,7 +397,7 @@
     [safelightView createSafeLightView:@"点亮表示指示灯处于启动状态。" suggest:@"具体操作参考用户手册。" title:@"发动机停机装置&防盗系统指示灯" instruteTitle:@"指示灯说明：" suggestTitle:@"建议：" titleImage:@"safeLight.png"];
 
 
-    [safelightView setSafeLightView:@"点亮表示指示灯处于启动状态。" suggest:@"具体操作参考用户手册大撒打算啊大啊大撒打算的撒大的啊大大 大大大啊大啊大叔打啊师傅啊师傅的阿福啊师傅阿福啊师傅爱上大法啊师傅阿福阿福啊师傅的阿道夫啊师傅啊师傅 啊阿福吖吖发生 a s。" title:@"发动机停机装置&防盗系统指示灯" instruteTitle:@"指示灯说明：" suggestTitle:@"建议：我们可以设置了" titleImage:@"safeLight.png"];
+    [safelightView setSafeLightView:@"具体操作参考用户手册大撒打算啊大啊大撒打算的撒大的啊大大 大大大啊大啊大叔打啊师傅啊师傅的阿福啊师傅阿福啊师傅爱上大法啊师傅阿福阿福啊师傅的阿道夫啊师傅啊师傅 啊阿福吖吖发生 a s。" suggest:@"具体操作参考用户手册大撒打算啊大啊大撒打算的撒大的啊大大 大大大啊大啊大叔打啊师傅啊师傅的阿福啊师傅阿福啊师傅爱上大法啊师傅阿福阿福啊师傅的阿道夫啊师傅啊师傅 啊阿福吖吖发生 a s。" title:@"发动机停机装置&防盗系统指示灯" instruteTitle:@"指示灯说明：" suggestTitle:@"建议：我们可以设置了" titleImage:@"safeLight.png"];
 
 
     [safelightView.cancelBtn addTarget:self action:@selector(safeLightBtnClick:) forControlEvents:UIControlEventTouchUpInside];

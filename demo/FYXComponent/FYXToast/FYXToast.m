@@ -131,7 +131,7 @@
     [window addSubview: v];
 
     NSLog(@"%@",NSStringFromCGPoint(v.center) );
-    contentView.frame = frame;         // 始终中间显示
+    contentView.frame = CGRectMake(v.center.x - contentView.frame.size.width / 2, 0, contentView.frame.size.width, contentView.frame.size.height);         // 始终中间显示
     [v addSubview:contentView];
 
     if (window.subviews.count > 0) {
