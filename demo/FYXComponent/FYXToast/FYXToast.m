@@ -150,7 +150,8 @@
     [window addSubview: v];
 
     NSLog(@"%@",NSStringFromCGPoint(v.center) );
-    contentView.frame = CGRectMake(v.center.x - contentView.frame.size.width / 2, 0, contentView.frame.size.width, contentView.frame.size.height);         // 始终中间显示
+//    contentView.frame = CGRectMake(v.center.x - contentView.frame.size.width / 2, 0, contentView.frame.size.width, contentView.frame.size.height);         // 始终中间显示
+    contentView.frame = CGRectMake(0, 0, contentView.frame.size.width, contentView.frame.size.height);
     [v addSubview:contentView];
     if (window.subviews.count > 0) {
         [window bringSubviewToFront:v];
@@ -192,7 +193,7 @@
 + (void)showWithImageFrame: (NSString *)text imageName: (NSString *)imageName frame: (CGRect)frame duration: (CGFloat)duration {
     FYXToast *toast = [[FYXToast alloc] initWithText:text imageName:imageName];
     [toast setDuration:duration];
-    [toast sepecialShow:frame];
+    [toast imageSepecialShow:frame];
 }
 
 + (void)showWithFrame:(NSString *)text frame: (CGRect)frame {
