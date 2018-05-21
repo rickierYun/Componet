@@ -16,7 +16,7 @@
 /**
 * view添加滑动手势
 */
-- (void)addgestureView: (UIView *)gestureView hideView: (UIView *)hideView;
+//- (void)addgestureView: (UIView *)gestureView hideView: (UIView *)hideView;
 
 /**
 * 设置侧边栏view的宽度
@@ -28,6 +28,8 @@
  * 隐藏侧边栏
  */
 - (void)sideMenuHidden;
+
+- (void)startAnimation;
 @end
 
 

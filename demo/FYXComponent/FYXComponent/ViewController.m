@@ -240,14 +240,14 @@
     [self.view addSubview:lightView];
 
     UIButton *lightBackgroundView = [[UIButton alloc]init];
-    lightBackgroundView.frame = CGRectMake(0, 100,24, 49);
+    lightBackgroundView.frame = CGRectMake(0, 55,24, 49);
     [lightBackgroundView setImage:[UIImage imageNamed:@"lightView.png"] forState:UIControlStateNormal];
     [lightBackgroundView addTarget:self action:@selector(sideMenuClick:) forControlEvents:UIControlEventTouchUpInside];
-    [lightView addSubview:lightBackgroundView];
+
 
     UIImageView *imageView = [[UIImageView alloc]init];
     imageView.image = [UIImage imageNamed:@"light.png"];
-    imageView.frame = CGRectMake(8, 114, 20, 20);
+    imageView.frame = CGRectMake(8, 69, 20, 20);
     imageView.glowRadius = @(10.0f);
     imageView.glowOpacity = @(0.5f);
     imageView.glowColor = [UIColor  colorWithRed:20.0 / 255 green:206.0 / 255 blue:1 alpha:1];
@@ -259,11 +259,12 @@
     [imageView createGlowLayer];
     [imageView insertGlowLayer];
     [imageView startGlowLoop];
-    [lightView addSubview:imageView];
+    [self.view addSubview:imageView];
+    [self.view addSubview:lightBackgroundView];
 
     // 侧边栏
     sideMenu = [[FYXSideMenu alloc]initWithFrame:self.view.bounds];
-    [sideMenu addgestureView:self.view hideView:lightView];
+//    [sideMenu addgestureView:self.view hideView:lightView];
     sideMenu.backgroundView.hidden = YES;
     sideMenu.hidden = YES;
     sideMenu.sideMenY = 100;
@@ -461,7 +462,8 @@
 }
 - (void)sideMenuClick: (UIButton *)sender {
     
-    [sideMenu clickDraw];
+//    [sideMenu clickDraw];
+    [sideMenu startAnimation];
 }
 - (void)sureDidClick: (FYXAlertView *)alertView {
     NSLog(@"sure");

@@ -19,6 +19,7 @@
 #define VIEW_HEIGHT(aView)       ((aView).frame.size.height)
 #define VIEW_WIDTH(aView)        ((aView).frame.size.width)
 
+#define WEAK_SELF __weak typeof(self)weakSelf = self
 @implementation FYXSideMenu {
     UIView *bezierView;         // 画布view
     UIView *lightView;
@@ -45,6 +46,7 @@
     CGFloat offsetX;
     CGFloat translationX;
     CADisplayLink *_link;
+    UIImageView *animationImgV;
 }
 
 - (id)initWithFrame:(CGRect)frame {
@@ -81,37 +83,9 @@
         lakeShapLayer = [CAShapeLayer layer];
         rainShapLayer = [CAShapeLayer layer];
 
-//        lightView = [[UIView alloc]init];
-//        lightView.frame = CGRectMake(0, 45, 24, 49);
-//        lightView.layer.shouldRasterize = YES;
-//        lightView.layer.shadowOpacity = 0.5;
-//        lightView.layer.shadowOffset = CGSizeMake(0, 0);
-//        lightView.layer.shadowColor = [UIColor whiteColor].CGColor;
-//        lightView.hidden = NO;
-//
-//        [self addSubview:lightView];
-//
-//        UIImageView *lightBackgroundView = [[UIImageView alloc]init];
-//        lightBackgroundView.frame = CGRectMake(0, 0,24, 49);
-//        lightBackgroundView.image = [UIImage imageNamed:@"lightView.png"];
-//        [lightView addSubview:lightBackgroundView];
-//
-//        UIImageView *imageView = [[UIImageView alloc]init];
-//        imageView.image = [UIImage imageNamed:@"light.png"];
-//        imageView.frame = CGRectMake(8, 14, 20, 20);
-//        imageView.glowRadius = @(10.0f);
-//        imageView.glowOpacity = @(0.5f);
-//        imageView.glowColor = [UIColor  colorWithRed:20.0 / 255 green:206.0 / 255 blue:1 alpha:1];
-//
-//        imageView.glowDuration = @1.0;
-//        imageView.hideDuration = @0.5;
-//        imageView.glowAnimationDuration = @1.0;
-//
-//        [imageView createGlowLayer];
-//        [imageView insertGlowLayer];
-//        [imageView startGlowLoop];
-//        [lightView addSubview:imageView];
-
+        animationImgV = [[UIImageView alloc]init];
+        animationImgV.frame = CGRectMake(0, 20, 60, 121);
+        [self addSubview:animationImgV];
 
     }
     return self;
@@ -129,67 +103,73 @@
     lightView = hideView;
 }
 
+
 - (void)leftEdgeGusture: (UIScreenEdgePanGestureRecognizer *)gesture {
-    self.hidden = NO;
+//    self.hidden = NO;
+//
+//    self.backgroundView.hidden = NO;
+//
+//    [self startAnimation];
 
-    self.backgroundView.hidden = NO;
+//    CGPoint translation = [gesture translationInView:gesture.view];
 
-    CGPoint translation = [gesture translationInView:gesture.view];
+//    if (UIGestureRecognizerStateBegan == gesture.state || UIGestureRecognizerStateChanged == gesture.state) {
+//        if (translation.x <= self.sideMenuView.frame.size.width) {
+//            CGFloat x = translation.x - self.sideMenuView.frame.size.width;
+//            self.sideMenuView.frame = CGRectMake(x, 0, self.sideMenuView.frame.size.width, self.sideMenuView.frame.size.height);
+//            lightView.hidden = YES;
+//            offsetX = translation.x / 5 ;
+//            bezierView.hidden = NO;
+//            [self drawRect];
+//
+//        }else {
+//            self.sideMenuView.frame = CGRectMake(0, 0, self.sideMenuView.frame.size.width, self.sideMenuView.frame.size.height);
+//            bezierView.alpha = 0;
+//        }
 
-    if (UIGestureRecognizerStateBegan == gesture.state || UIGestureRecognizerStateChanged == gesture.state) {
-        if (translation.x <= self.sideMenuView.frame.size.width) {
-            CGFloat x = translation.x - self.sideMenuView.frame.size.width;
-            self.sideMenuView.frame = CGRectMake(x, 0, self.sideMenuView.frame.size.width, self.sideMenuView.frame.size.height);
-            lightView.hidden = YES;
-            offsetX = translation.x / 5 ;
-            bezierView.hidden = NO;
-            [self drawRect];
-
-        }else {
-            self.sideMenuView.frame = CGRectMake(0, 0, self.sideMenuView.frame.size.width, self.sideMenuView.frame.size.height);
-            bezierView.alpha = 0;
-        }
-    }else {
-        if (translation.x <= self.sideMenuView.frame.size.width) {
-            [UIView animateWithDuration:0.5 animations:^{
-                self.sideMenuView.frame = CGRectMake(0, 0, self.sideMenuView.frame.size.width, self.sideMenuView.frame.size.height);
-                bezierView.alpha = 0;
-            }];
-
-
-        }
-    }
+//    }else {
+//        if (translation.x <= self.sideMenuView.frame.size.width) {
+//            [UIView animateWithDuration:0.5 animations:^{
+//                self.sideMenuView.frame = CGRectMake(0, 0, self.sideMenuView.frame.size.width, self.sideMenuView.frame.size.height);
+//                bezierView.alpha = 0;
+//            }];
+//
+//
+//        }
+//    }
 
 }
 
 - (void)backEdgeGuseture: (UIPanGestureRecognizer *)gesture {
-    CGPoint translation = [gesture translationInView:gesture.view];
+//    CGPoint translation = [gesture translationInView:gesture.view];
 
 
-    if (UIGestureRecognizerStateBegan == gesture.state || UIGestureRecognizerStateChanged == gesture.state) {
-        if (translation.x >= -self.sideMenuView.frame.size.width && translation.x <=0) {
+//    if (UIGestureRecognizerStateBegan == gesture.state || UIGestureRecognizerStateChanged == gesture.state) {
+//        if (translation.x >= -self.sideMenuView.frame.size.width && translation.x <=0) {
+//
+//            self.sideMenuView.frame = CGRectMake(translation.x, 0, self.sideMenuView.frame.size.width, self.sideMenuView.frame.size.height);
+//
+//        }else {
+//            [UIView animateWithDuration:0.5 animations:^{
+//                self.sideMenuView.frame = CGRectMake(-self.sideMenuView.frame.size.width, 0, self.sideMenuView.frame.size.width, self.sideMenuView.frame.size.height);
+//            }completion:^(BOOL finished) {
+//                self .hidden = YES;
+//                bezierView.hidden = YES;
+//            }];
+//        }
 
-            self.sideMenuView.frame = CGRectMake(translation.x, 0, self.sideMenuView.frame.size.width, self.sideMenuView.frame.size.height);
-
-        }else {
-            [UIView animateWithDuration:0.5 animations:^{
-                self.sideMenuView.frame = CGRectMake(-self.sideMenuView.frame.size.width, 0, self.sideMenuView.frame.size.width, self.sideMenuView.frame.size.height);
-            }completion:^(BOOL finished) {
-                self .hidden = YES;
-                bezierView.hidden = YES;
-            }];
-        }
-    }else {
-        [UIView animateWithDuration:0.5 animations:^{
-            self.sideMenuView.frame = CGRectMake(-self.sideMenuView.frame.size.width, 0, self.sideMenuView.frame.size.width, self.sideMenuView.frame.size.height);
-
-        }completion:^(BOOL finished) {
-            bezierView.hidden = YES;
-            bezierView.alpha = 1;
-            self.hidden = YES;
-            lightView.hidden = NO;
-        } ];
-    }
+//    }else {
+    WEAK_SELF;
+    [UIView animateWithDuration:3 animations:^{
+        weakSelf.sideMenuView.frame = CGRectMake(-weakSelf.sideMenuView.frame.size.width, 0,    weakSelf.sideMenuView.frame.size.width, weakSelf.sideMenuView.frame.size.height);
+        animationImgV.frame =  CGRectMake(0, 20 + weakSelf.sideMenY, 60, 121);
+    }completion:^(BOOL finished) {
+        bezierView.hidden = YES;
+        bezierView.alpha = 1;
+        weakSelf.hidden = YES;
+        lightView.hidden = NO;
+    } ];
+//    }
 
 }
 
@@ -210,134 +190,174 @@
     translationX += 5; // 速度
     offsetX = (translationX + VIEW_WIDTH(self.sideMenuView)) / 5;
     self.sideMenuView.frame = CGRectMake(translationX, 0, self.sideMenuView.frame.size.width, self.sideMenuView.frame.size.height);
-    [self drawRect];
+//    [self drawRect];
     if (translationX >= 0) {
         self.sideMenuView.frame = CGRectMake(0, 0, self.sideMenuView.frame.size.width, self.sideMenuView.frame.size.height);
         _link.paused = YES;
     }
 }
 
-- (void)drawRect {
-
-    CGFloat offset = 18 / 3.6;
-    rainShapLayer.path = nil;
-    pointA = CGPointMake(VIEW_X_Right(self.sideMenuView), 45 + self.sideMenY);
-    pointF = CGPointMake(VIEW_X_Right(self.sideMenuView) + 8 , 48 + self.sideMenY);
-    pointB = CGPointMake(VIEW_X_Right(self.sideMenuView) + 10, 50+ self.sideMenY);
-    pointM = CGPointMake(VIEW_X_Right(self.sideMenuView) + 18 + offsetX, 55 + offsetX / 4 + self.sideMenY);
-    pointH = CGPointMake(VIEW_X_Right(self.sideMenuView) + 20 + offsetX, 58 + self.sideMenY);
-    pointC = CGPointMake(VIEW_X_Right(self.sideMenuView) + 27 + offsetX, 65 + self.sideMenY);
-    pointI = CGPointMake(VIEW_X_Right(self.sideMenuView) + 20 + offsetX, 72 + self.sideMenY);
-    pointN = CGPointMake(VIEW_X_Right(self.sideMenuView) + 18 + offsetX, 75 - offsetX / 4 + self.sideMenY);
-    pointD = CGPointMake(VIEW_X_Right(self.sideMenuView) + 10 , 80 + self.sideMenY);
-    pointG = CGPointMake(VIEW_X_Right(self.sideMenuView) + 8, 82 + self.sideMenY);
-    pointE = CGPointMake(VIEW_X_Right(self.sideMenuView), 85 + self.sideMenY);
-
-    lake = [UIBezierPath bezierPath];
-    [lake moveToPoint:pointA];
-
-    if (offsetX >0 && offsetX < 22) {           // 初始半圆
-        pointM = CGPointMake(VIEW_X_Right(self.sideMenuView) + 18 + offsetX / 2, 55 - offsetX / 5 + self.sideMenY);
-        pointN = CGPointMake(VIEW_X_Right(self.sideMenuView) + 18 + offsetX / 2, 75 + offsetX / 5 + self.sideMenY);
-        pointJ = CGPointMake(VIEW_X_Right(self.sideMenuView) + 13 + offsetX, 55 + offsetX + self.sideMenY);
-        pointK = CGPointMake(VIEW_X_Right(self.sideMenuView) + 13 + offsetX, 75 - offsetX + self.sideMenY);
-        pointC = CGPointMake(VIEW_X_Right(self.sideMenuView) + 27 + offsetX, 65 + self.sideMenY);
-
-//        [lake addQuadCurveToPoint:pointB controlPoint:pointF];
-        [lake addCurveToPoint:pointH controlPoint1:pointJ controlPoint2:pointM];
-        [lake addQuadCurveToPoint:pointI controlPoint:pointC];
-        [lake addCurveToPoint:pointE controlPoint1:pointN controlPoint2:pointK];
-    }else if (offsetX >= 22 && offsetX < 30) {   // 水滴开始离开
-        pointM = CGPointMake(VIEW_X_Right(self.sideMenuView) + 18 + offsetX / 2, 55 - offsetX / 5 + self.sideMenY);
-        pointN = CGPointMake(VIEW_X_Right(self.sideMenuView) + 18 + offsetX / 2, 75 + offsetX / 5 + self.sideMenY);
-        pointJ = CGPointMake(VIEW_X_Right(self.sideMenuView) + 13 + offsetX, 65 + offsetX / 2 + self.sideMenY);
-        pointK = CGPointMake(VIEW_X_Right(self.sideMenuView) + 13 + offsetX, 65 - offsetX / 2 + self.sideMenY);
-        pointC = CGPointMake(VIEW_X_Right(self.sideMenuView) + 25 + offsetX + 2, 65 + self.sideMenY);
-
-//        [lake addQuadCurveToPoint:pointB controlPoint:pointF];
-        [lake addCurveToPoint:pointH controlPoint1:pointJ controlPoint2:pointM];
-        [lake addQuadCurveToPoint:pointI controlPoint:pointC];
-        [lake addCurveToPoint:pointE controlPoint1:pointN controlPoint2:pointK];
-    }else if (offsetX >= 30 && offsetX <= 40){     // 水滴形成，形成丝状
-        pointM = CGPointMake(VIEW_X_Right(self.sideMenuView) + 18 + 15, 55 - 6 + self.sideMenY);
-        pointN = CGPointMake(VIEW_X_Right(self.sideMenuView) + 18 + 15, 75 + 6 + self.sideMenY);
-        pointJ = CGPointMake(VIEW_X_Right(self.sideMenuView) + 13 + offsetX, 65 + offsetX / 2 + self.sideMenY);
-        pointK = CGPointMake(VIEW_X_Right(self.sideMenuView) + 13 + offsetX, 65 - offsetX / 2 + self.sideMenY);
-        pointC = CGPointMake(VIEW_X_Right(self.sideMenuView) + 25 + offsetX + 2, 65 + self.sideMenY);
-//        [lake addQuadCurveToPoint:pointB controlPoint:pointF];
-        [lake addCurveToPoint:pointH controlPoint1:pointJ controlPoint2:pointM];
-        [lake addQuadCurveToPoint:pointI controlPoint:pointC];
-        [lake addCurveToPoint:pointE controlPoint1:pointN controlPoint2:pointK];
-    }else if (offsetX > 40){    // 完全分离
-        pointJ = CGPointMake(VIEW_X_Right(self.sideMenuView) + 20 , 65 + self.sideMenY);
-        pointC = CGPointMake(VIEW_X_Right(self.sideMenuView) + 29 + offsetX, 65 + self.sideMenY);
-        pointK = CGPointMake(VIEW_X_Right(self.sideMenuView) + 11 + offsetX, 65 + self.sideMenY);
-        pointH = CGPointMake(VIEW_X_Right(self.sideMenuView) + 20 + offsetX, 56 + self.sideMenY);
-        pointI = CGPointMake(VIEW_X_Right(self.sideMenuView) + 20 + offsetX, 74 + self.sideMenY);
-        pointM = CGPointMake(VIEW_X_Right(self.sideMenuView) + 20 + offsetX + offset , 56 + self.sideMenY);
-        pointN = CGPointMake(VIEW_X_Right(self.sideMenuView) + 11 + offsetX , 65 + offset + self.sideMenY);
-
-        CGPoint pointM2 = CGPointMake(VIEW_X_Right(self.sideMenuView) + 29 + offsetX, 65 - offset + self.sideMenY);
-        CGPoint pointM3 = CGPointMake(VIEW_X_Right(self.sideMenuView) + 11 + offsetX, 65 - offset + self.sideMenY);
-        CGPoint pointM4 = CGPointMake(VIEW_X_Right(self.sideMenuView) + 20 + offsetX - offset, 56 + self.sideMenY);
-        CGPoint pointN2 = CGPointMake(VIEW_X_Right(self.sideMenuView) + 20 + offsetX + offset, 74 + self.sideMenY);
-        CGPoint pointN3 = CGPointMake(VIEW_X_Right(self.sideMenuView) + 29 + offsetX , 65 + offset + self.sideMenY);
-        CGPoint pointN4 = CGPointMake(VIEW_X_Right(self.sideMenuView) + 20 + offsetX - offset, 74 + self.sideMenY);
-        [lake addQuadCurveToPoint:pointE controlPoint:pointJ];
-        rain = [UIBezierPath bezierPath];
-        [rain moveToPoint:pointH];
-        [rain addCurveToPoint:pointC controlPoint1:pointM controlPoint2:pointM2];
-        [rain addCurveToPoint:pointI controlPoint1:pointN3 controlPoint2: pointN2];
-        [rain addCurveToPoint:pointK controlPoint1:pointN4 controlPoint2:pointN];
-        [rain addCurveToPoint:pointH controlPoint1:pointM3 controlPoint2:pointM4];
-        if (offsetX >= 45) {
-            CGFloat alpha = 1 - (offsetX - 40) / 10;
-            if (alpha <=0) {
-                bezierView.alpha = 0;
-            }else {
-                bezierView.alpha = alpha;
-            }
-        }
-    }else {
-//        [lake addQuadCurveToPoint:pointB controlPoint:pointF];
-        [lake addQuadCurveToPoint:pointH controlPoint:pointM];
-        [lake addQuadCurveToPoint:pointI controlPoint:pointC];
-        [lake addQuadCurveToPoint:pointE controlPoint:pointN];
-    }
-
-    // 放置画布，避免error log
-    UIGraphicsBeginImageContext(self.bounds.size);
-    if (offsetX > 40) {
-        [rain stroke];
-
-        rainShapLayer.fillColor = [UIColor colorWithRed:20.0 / 255 green:206.0 / 255 blue:1 alpha:0.4].CGColor;;
-        rainShapLayer.path = rain.CGPath;
-        [bezierView.layer addSublayer:rainShapLayer];
-    }
-
-//    [lake addQuadCurveToPoint:pointE controlPoint:pointG];
-    [lake addLineToPoint:pointA];
-
-    [lake stroke];
-
-    lakeShapLayer.fillColor = [UIColor colorWithRed:20.0 / 255 green:206.0 / 255 blue:1 alpha:0.4].CGColor;
-    lakeShapLayer.path = lake.CGPath;
-    lakeShapLayer.lineWidth = 2;
-    UIGraphicsEndImageContext();
-    [bezierView.layer addSublayer:lakeShapLayer];
-
-}
+//- (void)drawRect {
+//
+//    CGFloat offset = 18 / 3.6;
+//    rainShapLayer.path = nil;
+//    pointA = CGPointMake(VIEW_X_Right(self.sideMenuView), 45 + self.sideMenY);
+//    pointF = CGPointMake(VIEW_X_Right(self.sideMenuView) + 8 , 48 + self.sideMenY);
+//    pointB = CGPointMake(VIEW_X_Right(self.sideMenuView) + 10, 50+ self.sideMenY);
+//    pointM = CGPointMake(VIEW_X_Right(self.sideMenuView) + 18 + offsetX, 55 + offsetX / 4 + self.sideMenY);
+//    pointH = CGPointMake(VIEW_X_Right(self.sideMenuView) + 20 + offsetX, 58 + self.sideMenY);
+//    pointC = CGPointMake(VIEW_X_Right(self.sideMenuView) + 27 + offsetX, 65 + self.sideMenY);
+//    pointI = CGPointMake(VIEW_X_Right(self.sideMenuView) + 20 + offsetX, 72 + self.sideMenY);
+//    pointN = CGPointMake(VIEW_X_Right(self.sideMenuView) + 18 + offsetX, 75 - offsetX / 4 + self.sideMenY);
+//    pointD = CGPointMake(VIEW_X_Right(self.sideMenuView) + 10 , 80 + self.sideMenY);
+//    pointG = CGPointMake(VIEW_X_Right(self.sideMenuView) + 8, 82 + self.sideMenY);
+//    pointE = CGPointMake(VIEW_X_Right(self.sideMenuView), 85 + self.sideMenY);
+//
+//    lake = [UIBezierPath bezierPath];
+//    [lake moveToPoint:pointA];
+//
+//    if (offsetX >0 && offsetX < 22) {           // 初始半圆
+//        pointM = CGPointMake(VIEW_X_Right(self.sideMenuView) + 18 + offsetX / 2, 55 - offsetX / 5 + self.sideMenY);
+//        pointN = CGPointMake(VIEW_X_Right(self.sideMenuView) + 18 + offsetX / 2, 75 + offsetX / 5 + self.sideMenY);
+//        pointJ = CGPointMake(VIEW_X_Right(self.sideMenuView) + 13 + offsetX, 55 + offsetX + self.sideMenY);
+//        pointK = CGPointMake(VIEW_X_Right(self.sideMenuView) + 13 + offsetX, 75 - offsetX + self.sideMenY);
+//        pointC = CGPointMake(VIEW_X_Right(self.sideMenuView) + 27 + offsetX, 65 + self.sideMenY);
+//
+////        [lake addQuadCurveToPoint:pointB controlPoint:pointF];
+//        [lake addCurveToPoint:pointH controlPoint1:pointJ controlPoint2:pointM];
+//        [lake addQuadCurveToPoint:pointI controlPoint:pointC];
+//        [lake addCurveToPoint:pointE controlPoint1:pointN controlPoint2:pointK];
+//    }else if (offsetX >= 22 && offsetX < 30) {   // 水滴开始离开
+//        pointM = CGPointMake(VIEW_X_Right(self.sideMenuView) + 18 + offsetX / 2, 55 - offsetX / 5 + self.sideMenY);
+//        pointN = CGPointMake(VIEW_X_Right(self.sideMenuView) + 18 + offsetX / 2, 75 + offsetX / 5 + self.sideMenY);
+//        pointJ = CGPointMake(VIEW_X_Right(self.sideMenuView) + 13 + offsetX, 65 + offsetX / 2 + self.sideMenY);
+//        pointK = CGPointMake(VIEW_X_Right(self.sideMenuView) + 13 + offsetX, 65 - offsetX / 2 + self.sideMenY);
+//        pointC = CGPointMake(VIEW_X_Right(self.sideMenuView) + 25 + offsetX + 2, 65 + self.sideMenY);
+//
+////        [lake addQuadCurveToPoint:pointB controlPoint:pointF];
+//        [lake addCurveToPoint:pointH controlPoint1:pointJ controlPoint2:pointM];
+//        [lake addQuadCurveToPoint:pointI controlPoint:pointC];
+//        [lake addCurveToPoint:pointE controlPoint1:pointN controlPoint2:pointK];
+//    }else if (offsetX >= 30 && offsetX <= 40){     // 水滴形成，形成丝状
+//        pointM = CGPointMake(VIEW_X_Right(self.sideMenuView) + 18 + 15, 55 - 6 + self.sideMenY);
+//        pointN = CGPointMake(VIEW_X_Right(self.sideMenuView) + 18 + 15, 75 + 6 + self.sideMenY);
+//        pointJ = CGPointMake(VIEW_X_Right(self.sideMenuView) + 13 + offsetX, 65 + offsetX / 2 + self.sideMenY);
+//        pointK = CGPointMake(VIEW_X_Right(self.sideMenuView) + 13 + offsetX, 65 - offsetX / 2 + self.sideMenY);
+//        pointC = CGPointMake(VIEW_X_Right(self.sideMenuView) + 25 + offsetX + 2, 65 + self.sideMenY);
+////        [lake addQuadCurveToPoint:pointB controlPoint:pointF];
+//        [lake addCurveToPoint:pointH controlPoint1:pointJ controlPoint2:pointM];
+//        [lake addQuadCurveToPoint:pointI controlPoint:pointC];
+//        [lake addCurveToPoint:pointE controlPoint1:pointN controlPoint2:pointK];
+//    }else if (offsetX > 40){    // 完全分离
+//        pointJ = CGPointMake(VIEW_X_Right(self.sideMenuView) + 20 , 65 + self.sideMenY);
+//        pointC = CGPointMake(VIEW_X_Right(self.sideMenuView) + 29 + offsetX, 65 + self.sideMenY);
+//        pointK = CGPointMake(VIEW_X_Right(self.sideMenuView) + 11 + offsetX, 65 + self.sideMenY);
+//        pointH = CGPointMake(VIEW_X_Right(self.sideMenuView) + 20 + offsetX, 56 + self.sideMenY);
+//        pointI = CGPointMake(VIEW_X_Right(self.sideMenuView) + 20 + offsetX, 74 + self.sideMenY);
+//        pointM = CGPointMake(VIEW_X_Right(self.sideMenuView) + 20 + offsetX + offset , 56 + self.sideMenY);
+//        pointN = CGPointMake(VIEW_X_Right(self.sideMenuView) + 11 + offsetX , 65 + offset + self.sideMenY);
+//
+//        CGPoint pointM2 = CGPointMake(VIEW_X_Right(self.sideMenuView) + 29 + offsetX, 65 - offset + self.sideMenY);
+//        CGPoint pointM3 = CGPointMake(VIEW_X_Right(self.sideMenuView) + 11 + offsetX, 65 - offset + self.sideMenY);
+//        CGPoint pointM4 = CGPointMake(VIEW_X_Right(self.sideMenuView) + 20 + offsetX - offset, 56 + self.sideMenY);
+//        CGPoint pointN2 = CGPointMake(VIEW_X_Right(self.sideMenuView) + 20 + offsetX + offset, 74 + self.sideMenY);
+//        CGPoint pointN3 = CGPointMake(VIEW_X_Right(self.sideMenuView) + 29 + offsetX , 65 + offset + self.sideMenY);
+//        CGPoint pointN4 = CGPointMake(VIEW_X_Right(self.sideMenuView) + 20 + offsetX - offset, 74 + self.sideMenY);
+//        [lake addQuadCurveToPoint:pointE controlPoint:pointJ];
+//        rain = [UIBezierPath bezierPath];
+//        [rain moveToPoint:pointH];
+//        [rain addCurveToPoint:pointC controlPoint1:pointM controlPoint2:pointM2];
+//        [rain addCurveToPoint:pointI controlPoint1:pointN3 controlPoint2: pointN2];
+//        [rain addCurveToPoint:pointK controlPoint1:pointN4 controlPoint2:pointN];
+//        [rain addCurveToPoint:pointH controlPoint1:pointM3 controlPoint2:pointM4];
+//        if (offsetX >= 45) {
+//            CGFloat alpha = 1 - (offsetX - 40) / 10;
+//            if (alpha <=0) {
+//                bezierView.alpha = 0;
+//            }else {
+//                bezierView.alpha = alpha;
+//            }
+//        }
+//    }else {
+////        [lake addQuadCurveToPoint:pointB controlPoint:pointF];
+//        [lake addQuadCurveToPoint:pointH controlPoint:pointM];
+//        [lake addQuadCurveToPoint:pointI controlPoint:pointC];
+//        [lake addQuadCurveToPoint:pointE controlPoint:pointN];
+//    }
+//
+//    // 放置画布，避免error log
+//    UIGraphicsBeginImageContext(self.bounds.size);
+//    if (offsetX > 40) {
+//        [rain stroke];
+//
+//        rainShapLayer.fillColor = [UIColor colorWithRed:20.0 / 255 green:206.0 / 255 blue:1 alpha:0.4].CGColor;;
+//        rainShapLayer.path = rain.CGPath;
+//        [bezierView.layer addSublayer:rainShapLayer];
+//    }
+//
+////    [lake addQuadCurveToPoint:pointE controlPoint:pointG];
+//    [lake addLineToPoint:pointA];
+//
+//    [lake stroke];
+//
+//    lakeShapLayer.fillColor = [UIColor colorWithRed:20.0 / 255 green:206.0 / 255 blue:1 alpha:0.4].CGColor;
+//    lakeShapLayer.path = lake.CGPath;
+//    lakeShapLayer.lineWidth = 2;
+//    UIGraphicsEndImageContext();
+//    [bezierView.layer addSublayer:lakeShapLayer];
+//
+//}
 
 // 隐藏侧边栏
 - (void)sideMenuHidden {
+    WEAK_SELF;
     [UIView animateWithDuration:0.5 animations:^{
-        self.sideMenuView.frame = CGRectMake(-self.sideMenuView.frame.size.width, 0, self.sideMenuView.frame.size.width, self.sideMenuView.frame.size.height);
-
+        weakSelf.sideMenuView.frame = CGRectMake(-weakSelf.sideMenuView.frame.size.width, 0, weakSelf.sideMenuView.frame.size.width, weakSelf.sideMenuView.frame.size.height);
+        animationImgV.frame =  CGRectMake(0, 20 + weakSelf.sideMenY, 60, 121);
     }completion:^(BOOL finished) {
         bezierView.hidden = YES;
         bezierView.alpha = 1;
-        self.hidden = YES;
+        weakSelf.hidden = YES;
         lightView.hidden = NO;
     } ];
+}
+
+// 帧动画
+- (void)startAnimation {
+    self.hidden = NO;
+    self.backgroundView.hidden = NO;
+    NSMutableArray<UIImage *> *imageArr = [NSMutableArray array];
+    for (int i=0; i<51; i++) {
+        // 获取图片的名称
+        NSString *imageName;
+        if (i < 10) {
+            imageName = [NSString stringWithFormat:@"td2__0000%d.png", i];
+        }else {
+            imageName = [NSString stringWithFormat:@"td2__000%d.png", i];
+        }
+        // 创建UIImage对象
+        UIImage *image = [UIImage imageNamed:imageName];
+        // 加入数组
+        [imageArr addObject:image];
+    }
+
+    animationImgV.animationImages = imageArr;
+    animationImgV.animationRepeatCount = 1;
+    animationImgV.animationDuration = 2;
+    [animationImgV startAnimating];
+    WEAK_SELF;
+    [UIView animateWithDuration:2 animations:^{
+        animationImgV.frame = CGRectMake(VIEW_WIDTH(weakSelf.sideMenuView), 20 + self.sideMenY,60, 121);
+        weakSelf.sideMenuView.frame = CGRectMake(0, 0, weakSelf.sideMenuView.frame.size.width, weakSelf.sideMenuView.frame.size.height);
+
+        bezierView.alpha = 0;
+
+    } completion:^(BOOL finished) {
+        [weakSelf stopAnimation];
+    }];
+}
+
+- (void)stopAnimation {
+    [animationImgV stopAnimating];
 }
 @end
