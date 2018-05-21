@@ -8,7 +8,7 @@
 
 #import "FYXCalendar.h"
 #import "FYXCalendarDataModel.h"
-
+#import "FYXButton.h"
 
 #define normalColor [UIColor colorWithRed:20.0 / 255 green:206.0 / 255 blue:1 alpha:1.0f]
 #define weekColor [UIColor colorWithRed:1 green:197.0 / 255 blue:20.0 / 255 alpha:1.0f]
@@ -78,7 +78,7 @@ CGFloat nativScale(void) {
         _calendar.appearance.titleWeekendColor = weekColor;             // 具体周末日期颜色
         _calendar.appearance.borderRadius = 1;                          // 选中的边角弧度
         _calendar.appearance.borderSelectionColor = normalColor;        // 选中的边角颜色
-        _calendar.appearance.selectionColor = normalColor;              // 选中的颜色
+        _calendar.appearance.selectionColor = [UIColor getMainGradientColor:CGRectMake(0, 0, 40, 40)];              // 选中的颜色
         _calendar.appearance.headerTitleColor = [UIColor blackColor];   // 年份时间
         _calendar.appearance.headerDateFormat = @"yyyy年MM月";           // 设置年份格式
         _calendar.appearance.caseOptions = FSCalendarCaseOptionsHeaderUsesUpperCase|FSCalendarCaseOptionsWeekdayUsesSingleUpperCase;            // 改变星期显示
