@@ -217,13 +217,13 @@ CGFloat nativScale(void) {
 
 #pragma -mark FSCalendarDelegate
 - (NSString *)calendar:(FSCalendar *)calendar titleForDate:(NSDate *)date {
-    EKEvent *event = [self eventsForDate:date].firstObject;
-    if (event) {
-        if ([event.title isEqualToString:@"清明节"]) {
-            return @"清明";
-        }
-        return event.title; // 春分、秋分、儿童节、植树节、国庆节、圣诞节...
-    }
+//    EKEvent *event = [self eventsForDate:date].firstObject;
+//    if (event) {
+//        if ([event.title isEqualToString:@"清明节"]) {
+//            return @"清明";
+//        }
+//        return event.title; // 春分、秋分、儿童节、植树节、国庆节、圣诞节...
+//    }
     if ([self.gregorianCalendar isDateInToday:date]) {
         return @"今天";
     }
@@ -244,13 +244,16 @@ CGFloat nativScale(void) {
     return _minimumDate;
 }
 
-//- (NSString *)calendar:(FSCalendar *)calendar subtitleForDate:(NSDate *)date {
-//    EKEvent *event = [self eventsForDate:date].firstObject;
-//    if (event) {
-//        return event.title; // 春分、秋分、儿童节、植树节、国庆节、圣诞节...
-//    }
-//    return nil;
-//}
+- (NSString *)calendar:(FSCalendar *)calendar subtitleForDate:(NSDate *)date {
+    EKEvent *event = [self eventsForDate:date].firstObject;
+    if (event) {
+        if ([event.title isEqualToString:@"清明节"]) {
+            return @"清明";
+        }
+        return event.title; // 春分、秋分、儿童节、植树节、国庆节、圣诞节...
+    }
+    return nil;
+}
 // 某个日期的所有事件
 - (NSArray<EKEvent *> *)eventsForDate:(NSDate *)date
 {
