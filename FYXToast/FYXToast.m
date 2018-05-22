@@ -103,7 +103,7 @@
 
 - (void)show{
     UIWindow *window = [UIApplication sharedApplication].keyWindow;
-    contentView.center = window.center;         // 始终中间显示
+    contentView.center = CGPointMake(window.center.x, window.frame.size.height * 453 / 667) ;         // 始终中间显示
     [window  addSubview:contentView];
     if (window.subviews.count > 0) {
         [window bringSubviewToFront:contentView];
@@ -122,6 +122,7 @@
         [window bringSubviewToFront:contentView];
     }
     [self showAnimation];
+    [self performSelector:@selector(hideAnimation) withObject:nil afterDelay:duration];
 }
 
 - (void)sepecialShow:  (CGRect)frame {
@@ -183,7 +184,7 @@
 + (void)showwithTextImage:(NSString *)text imageName:(NSString *)imageName duration:(CGFloat)duration{
     FYXToast *toast = [[FYXToast alloc] initWithText:text imageName:imageName];
     [toast setDuration: duration];
-    [toast show];
+    [toast showAct];
 }
 
 + (void)showWithImageFrame: (NSString *)text imageName: (NSString *)imageName frame: (CGRect)frame {

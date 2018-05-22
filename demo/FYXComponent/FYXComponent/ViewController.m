@@ -361,12 +361,12 @@
 
 - (void)toastBtnClick: (UIButton *)sender {
 //    [FYXToast showWithTextImage:@"您目前的取送车订单有绑" imageName:@"success.png"];
-//    [FYXToast showWithText:@"您目前的取送车订单有绑定的保养预约服务，是否同时取消保养预约？"];
+    [FYXToast showWithText:@"您目前的取送车订单有绑定的保养预约服务，是否同时取消保养预约？"];
 }
 
 - (void)toastPicBtnClick: (UIButton *)sender {
-//    [FYXToast showWithTextImage:@"反馈成功" imageName:@"success.png"];
-    [FYXToast showWithImageFrame:@"反馈成功" imageName:@"success.png" frame:CGRectMake([[UIScreen mainScreen] bounds].size.width / 2 - 165 / 2, [[UIScreen mainScreen] bounds].size.height / 2  - 116 / 2, 165, 116)];
+    [FYXToast showWithTextImage:@"反馈成功" imageName:@"success.png"];
+//    [FYXToast showWithImageFrame:@"反馈成功" imageName:@"success.png" frame:CGRectMake([[UIScreen mainScreen] bounds].size.width / 2 - 165 / 2, [[UIScreen mainScreen] bounds].size.height / 2  - 116 / 2, 165, 116)];
 //    [FYXToast showWithFrame:@"您目前的取送车订单有绑" frame:CGRectMake(0, 200, [[UIScreen mainScreen] bounds].size.width , 100)];
 //    [FYXToast showWithText:@"您目前的取送车"];
 }
@@ -395,10 +395,10 @@
 - (void)safeLightBtnClick: (UIButton *)sender {
     safelightView.hidden = NO;
 
-    [safelightView createSafeLightView:@"点亮表示指示灯处于启动状态。" suggest:@"具体操作参考用户手册。" title:@"发动机停机装置&防盗系统指示灯" instruteTitle:@"指示灯说明：" suggestTitle:@"建议：" titleImage:@"safeLight.png"];
+    [safelightView createSafeLightView:@"具体操作参考用户手册大撒打算啊大啊大撒打算的撒大的啊大大 大大大啊大啊大叔打啊师傅啊师傅的阿福啊师傅阿福啊师傅爱上大法啊师傅阿福阿福啊师傅的阿道夫啊师傅啊师傅 啊阿福吖吖发生 a s。具体操作参考用户手册大撒打算啊大啊大撒打算的撒大的啊大大 大大大啊大啊大叔打啊师傅啊师傅的阿福。" suggest:@"具体操作参考用户手册机器学习是近年来渐趋热门的一个领域，同时Python 语言经过一段时间的发展也已逐渐成为主流的编程语言之一。本书结合了机器学习和Python 语言两个热门的领域，通过利用两种核心的机器学习算法来将Python 语言在数据分析方面的优势发挥到极 致。" title:@"发动机停机装置&防盗系统指示灯" instruteTitle:@"指示灯说明：" suggestTitle:@"建议：" titleImage:@"safeLight.png"];
 
 
-    [safelightView setSafeLightView:@"具体操作参考用户手册大撒打算啊大啊大撒打算的撒大的啊大大 大大大啊大啊大叔打啊师傅啊师傅的阿福啊师傅阿福啊师傅爱上大法啊师傅阿福阿福啊师傅的阿道夫啊师傅啊师傅 啊阿福吖吖发生 a s。具体操作参考用户手册大撒打算啊大啊大撒打算的撒大的啊大大 大大大啊大啊大叔打啊师傅啊师傅的阿福" suggest:@"具体操作参考用户手册大撒打算啊大啊大撒打算的撒大的啊大大 大大大啊大啊大叔打啊师傅啊师傅的阿福啊师傅阿福啊师傅爱上大法啊师傅阿福阿福啊师傅的阿道夫啊师傅啊师傅 啊阿福吖吖发生 a s。机器学习是近年来渐趋热门的一个领域，同时Python 语言经过一段时间的发展也已逐渐成为主流的编程语言之一。本书结合了机器学习和Python 语言两个热门的领域，通过利用两种核心的机器学习算法来将Python 语言在数据分析方面的优势发挥到极 致。 全书共有10 章。第 1 章讲解了Python 机器学习的生态系统，剩余9 章介绍了众多与机器学" title:@"发动机停机装置&防盗系统指示" instruteTitle:@"指示灯说明：" suggestTitle:@"建议：我们可以设置了" titleImage:@"safeLight.png"];
+//    [safelightView setSafeLightView:@"具体操作参考用户手册大撒打算啊大啊大撒打算的撒大的啊大大 大大大啊大啊大叔打啊师傅啊师傅的阿福啊师傅阿福啊师傅爱上大法啊师傅阿福阿福啊师傅的阿道夫啊师傅啊师傅 啊阿福吖吖发生 a s。具体操作参考用户手册大撒打算啊大啊大撒打算的撒大的啊大大 大大大啊大啊大叔打啊师傅啊师傅的阿福" suggest:@"具体操作参考用户手册大撒打算啊大啊大撒打算的撒大的啊大大 大大大啊大啊大叔打啊师傅啊师傅的阿福啊师傅阿福啊师傅爱上大法啊师傅阿福阿福啊师傅的阿道夫啊师傅啊师傅 啊阿福吖吖发生 a s。机器学习是近年来渐趋热门的一个领域，同时Python 语言经过一段时间的发展也已逐渐成为主流的编程语言之一。本书结合了机器学习和Python 语言两个热门的领域，通过利用两种核心的机器学习算法来将Python 语言在数据分析方面的优势发挥到极 致。 全书共有10 章。第 1 章讲解了Python 机器学习的生态系统，剩余9 章介绍了众多与机器学" title:@"发动机停机装置&防盗系统指示" instruteTitle:@"指示灯说明：" suggestTitle:@"建议：我们可以设置了" titleImage:@"safeLight.png"];
 
 
     [safelightView.cancelBtn addTarget:self action:@selector(safeLightBtnClick:) forControlEvents:UIControlEventTouchUpInside];
