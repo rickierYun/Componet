@@ -77,8 +77,8 @@
         [self addSubview:sideMenuView];
         self.sideMenuView = sideMenuView;
 
-        UIPanGestureRecognizer *backGesture = [[UIPanGestureRecognizer alloc]initWithTarget:self action:@selector(backEdgeGuseture:)];
-        [backgroundView addGestureRecognizer:backGesture];
+//        UIPanGestureRecognizer *backGesture = [[UIPanGestureRecognizer alloc]initWithTarget:self action:@selector(backEdgeGuseture:)];
+//        [backgroundView addGestureRecognizer:backGesture];
 
         lakeShapLayer = [CAShapeLayer layer];
         rainShapLayer = [CAShapeLayer layer];
@@ -167,7 +167,7 @@
     WEAK_SELF;
     [UIView animateWithDuration:3 animations:^{
         weakSelf.sideMenuView.frame = CGRectMake(-weakSelf.sideMenuView.frame.size.width, 0,    weakSelf.sideMenuView.frame.size.width, weakSelf.sideMenuView.frame.size.height);
-        animationImgV.frame =  CGRectMake(0, 20 + weakSelf.sideMenY, 60, 121);
+        animationImgV.frame =  CGRectMake(0, VIEW_Y(animationImgV), 60, 121);
     }completion:^(BOOL finished) {
         bezierView.hidden = YES;
         bezierView.alpha = 1;
