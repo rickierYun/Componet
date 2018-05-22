@@ -82,7 +82,7 @@ CGFloat nativeScale(void) {
     _backGroundBtn = [UIButton buttonWithType:UIButtonTypeCustom];
     _backGroundBtn.frame = self.frame;
     [_backGroundBtn setTitle:@"" forState:UIControlStateNormal];
-    [_backGroundBtn setBackgroundColor:[UIColor colorWithDisplayP3Red:0 green:0 blue:0 alpha:0.3]];
+    [_backGroundBtn setBackgroundColor:[UIColor colorWithRed:0 green:0 blue:0 alpha:0.3]];
     [_backGroundBtn addTarget:self action:@selector(hiddenClick:) forControlEvents:UIControlEventTouchUpInside];
     [self addSubview: _backGroundBtn];
 

@@ -28,8 +28,11 @@
  * 隐藏侧边栏
  */
 - (void)sideMenuHidden;
-
+/**
+ *开始动画
+ */
 - (void)startAnimation;
+
 @end
 
 

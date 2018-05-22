@@ -91,6 +91,11 @@
     return self;
 }
 
+- (void) setSideMenY:(CGFloat)sideMenY {
+    animationImgV.frame = CGRectMake(0, 20 + sideMenY, 60, 121);
+//    self.sideMenY = sideMenY;
+}
+
 - (void)setSideMenuViewWidth: (CGFloat)width {
     self.sideMenuView.frame = CGRectMake(-width, 0, width, self.frame.size.height);
 }
@@ -313,7 +318,7 @@
     WEAK_SELF;
     [UIView animateWithDuration:0.5 animations:^{
         weakSelf.sideMenuView.frame = CGRectMake(-weakSelf.sideMenuView.frame.size.width, 0, weakSelf.sideMenuView.frame.size.width, weakSelf.sideMenuView.frame.size.height);
-        animationImgV.frame =  CGRectMake(0, 20 + weakSelf.sideMenY, 60, 121);
+        animationImgV.frame =  CGRectMake(0, VIEW_Y(animationImgV), 60, 121);
     }completion:^(BOOL finished) {
         bezierView.hidden = YES;
         bezierView.alpha = 1;
@@ -331,12 +336,15 @@
         // 获取图片的名称
         NSString *imageName;
         if (i < 10) {
-            imageName = [NSString stringWithFormat:@"td2__0000%d.png", i];
+            imageName = [NSString stringWithFormat:@"td2__0000%d", i];
         }else {
-            imageName = [NSString stringWithFormat:@"td2__000%d.png", i];
+            imageName = [NSString stringWithFormat:@"td2__000%d", i];
         }
         // 创建UIImage对象
-        UIImage *image = [UIImage imageNamed:imageName];
+        NSString *filePath = [[NSBundle mainBundle] pathForResource:imageName ofType:@"png"];
+        NSData *data = [NSData dataWithContentsOfFile:filePath];
+
+        UIImage *image = [UIImage imageWithData:data];
         // 加入数组
         [imageArr addObject:image];
     }
@@ -347,7 +355,7 @@
     [animationImgV startAnimating];
     WEAK_SELF;
     [UIView animateWithDuration:2 animations:^{
-        animationImgV.frame = CGRectMake(VIEW_WIDTH(weakSelf.sideMenuView), 20 + self.sideMenY,60, 121);
+        animationImgV.frame = CGRectMake(VIEW_WIDTH(weakSelf.sideMenuView), VIEW_Y(animationImgV),60, 121);
         weakSelf.sideMenuView.frame = CGRectMake(0, 0, weakSelf.sideMenuView.frame.size.width, weakSelf.sideMenuView.frame.size.height);
 
         bezierView.alpha = 0;
@@ -359,5 +367,6 @@
 
 - (void)stopAnimation {
     [animationImgV stopAnimating];
+    animationImgV.animationImages = nil;
 }
 @end
