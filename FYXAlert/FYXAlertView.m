@@ -472,7 +472,7 @@ CGFloat nativeScale(void) {
 
 #pragma -mark 安全提示灯
 - (void)createSafeLightView: (NSString *)instructText suggest: (NSString *)suggestText title: (NSString *)title instruteTitle: (NSString * ) instruteTitle suggestTitle: (NSString *)suggestTitle titleImage: (NSString *)titleImage{
-
+    _alertTitleImage = [[UIImageView alloc]init];
     _alertTitleImage.frame = CGRectMake(25 * displayScale, 25 * displayScale, 70 * displayScale, 70 * displayScale);
     _alertTitleImage.image = [UIImage imageNamed:titleImage];
 
@@ -480,6 +480,7 @@ CGFloat nativeScale(void) {
     NSDictionary *attrs = @{NSFontAttributeName : font};
     CGSize textSize = [title boundingRectWithSize:CGSizeMake(140, MAXFLOAT) options:NSStringDrawingUsesLineFragmentOrigin attributes:attrs context:nil].size;
 
+    _alertTitle = [[UILabel alloc]init];
     _alertTitle.frame = CGRectMake(VIEW_X_Right(_alertTitleImage) + 20 * displayScale, VIEW_CENTER_Y(_alertTitleImage) - textSize.height / 2, 147 * displayScale, textSize.height);
     _alertTitle.text = title;
     _alertTitle.font = font;
@@ -550,7 +551,7 @@ CGFloat nativeScale(void) {
 }
 
 - (void)setSafeLightView: (NSString *)instructText suggest: (NSString *)suggestText title: (NSString *)title instruteTitle: (NSString * ) instruteTitle suggestTitle: (NSString *)suggestTitle titleImage: (NSString *)titleImage{
-    _alertTitleImage = [[UIImageView alloc]init];
+
     _alertTitleImage.frame = CGRectMake(25 * displayScale, 25 * displayScale, 70 * displayScale, 70 * displayScale);
     _alertTitleImage.image = [UIImage imageNamed:titleImage];
 
@@ -558,7 +559,7 @@ CGFloat nativeScale(void) {
     NSDictionary *attrs = @{NSFontAttributeName : font};
     CGSize textSize = [title boundingRectWithSize:CGSizeMake(140, MAXFLOAT) options:NSStringDrawingUsesLineFragmentOrigin attributes:attrs context:nil].size;
 
-    _alertTitle = [[UILabel alloc]init];
+
     _alertTitle.frame = CGRectMake(VIEW_X_Right(_alertTitleImage) + 20 * displayScale, VIEW_CENTER_Y(_alertTitleImage) - textSize.height / 2, 147 * displayScale, textSize.height);
     _alertTitle.text = title;
     _alertTitle.font = font;
