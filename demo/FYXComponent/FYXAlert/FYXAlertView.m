@@ -542,7 +542,7 @@ CGFloat nativeScale(void) {
     [_safeLightView addSubview:_suggestLb];
 
     UIButton *_cancelBtn = [[UIButton alloc]init];
-    _cancelBtn.frame = CGRectMake(VIEW_CENTER_X(self) - 10 * displayScale,VIEW_Y_Bottom(_safeLightView) + 30 * displayScale, 40 * displayScale, 40 * displayScale);
+    _cancelBtn.frame = CGRectMake(VIEW_CENTER_X(self) - 20 * displayScale,VIEW_Y_Bottom(_safeLightView) + 30 * displayScale, 40 * displayScale, 40 * displayScale);
     [_cancelBtn addTarget:self action:@selector(cancelClick:) forControlEvents:UIControlEventTouchUpInside];
     [_cancelBtn setBackgroundImage:[UIImage imageNamed:@"close.png"] forState:UIControlStateNormal];
     [self addSubview:_cancelBtn];
