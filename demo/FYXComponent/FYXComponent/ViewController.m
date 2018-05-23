@@ -299,7 +299,7 @@
 - (void)alertClick: (UIButton *)sender {
     alertView.hidden        = NO;
     // 弹窗
-    [alertView setAlertTitle:@"生日保存后不能修改，是否确定保存 生日保存后不能修改，是否确定保存 生日保存后不能修改，是否确定保存 生日保存后不能修改，是否确定保存？" titleFont:17];
+    [alertView setAlertTitle:@"生日保存后不能修改，是否确定保存" titleFont:17];
     alertView.msgLabel.textAlignment = NSTextAlignmentLeft;
     [alertView.cancelBtn setTitle:@"cancel" forState:UIControlStateNormal];
     [alertView.sureBtn setTitle:@"sure" forState:UIControlStateNormal];
@@ -361,7 +361,9 @@
 
 - (void)toastBtnClick: (UIButton *)sender {
 //    [FYXToast showWithTextImage:@"您目前的取送车订单有绑" imageName:@"success.png"];
-    [FYXToast showWithText:@"您目前的取送车订单有绑定的保养预约服务，是否同时取消保养预约？"];
+//    [FYXToast showWithText:@"您目前的取送车订单有绑定的保养预约服务，是否同时取消保养预约？"];
+//    [FYXToast showWithText:@"密码输入错误超过5次，请通过忘记密码重置!"];
+    
 }
 
 - (void)toastPicBtnClick: (UIButton *)sender {

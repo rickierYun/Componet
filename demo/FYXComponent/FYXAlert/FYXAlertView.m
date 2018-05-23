@@ -104,9 +104,9 @@ CGFloat nativeScale(void) {
     self.alertView = _alertView;
 
     _alertTitle = [[UILabel alloc]init];
-    _alertTitle.frame = CGRectMake(20 * displayScale, 5, VIEW_WIDTH(_alertView) - 40 * displayScale, VIEW_HEIGHT(_alertView) * 2 / 3);
+    _alertTitle.frame = CGRectMake(19 * displayScale, 5, VIEW_WIDTH(_alertView) - 38 * displayScale, VIEW_HEIGHT(_alertView) * 2 / 3);
     _alertTitle.numberOfLines = 2;
-    _alertTitle.lineBreakMode = NSLineBreakByCharWrapping;
+    _alertTitle.lineBreakMode = NSLineBreakByClipping;
     _alertTitle.textAlignment = NSTextAlignmentCenter;
     _alertTitle.textColor     = [UIColor colorWithRed:50/255.0 green:50/255.0 blue:50/255.0 alpha:1.0];
     [_alertView addSubview:_alertTitle];
