@@ -16,7 +16,7 @@
         text = [text_ copy];
 
         // 文字部分
-        UIFont *font = [UIFont boldSystemFontOfSize:14];
+        UIFont *font = [UIFont systemFontOfSize:14];
         NSDictionary *attrs = @{NSFontAttributeName : font};
         CGSize textSize = [text boundingRectWithSize:CGSizeMake(280, MAXFLOAT) options:NSStringDrawingUsesLineFragmentOrigin attributes:attrs context:nil].size;                    // 随字数，字体扩展大小
         UILabel *textLabel = [[UILabel alloc]init];
@@ -35,17 +35,19 @@
         contentView = [[UIButton alloc] init];
         if (imageName != nil) {
             // 设置图片
-            textLabel.frame = CGRectMake(30, 50, textSize.width + 12, textSize.height + 12);
-            contentView.frame = CGRectMake(0, 0, textLabel.frame.size.width + 60, textLabel.frame.size.height + 70);
+            textLabel.frame = CGRectMake(30, 65, textSize.width + 12, textSize.height + 12);
+            contentView.frame = CGRectMake(0, 0, textLabel.frame.size.width + 60, textLabel.frame.size.height + 70+15);
 
-            UIImageView *imageView = [[UIImageView alloc]initWithFrame:CGRectMake(contentView.center.x - 13, 15, 26, 26)];
+            UIImageView *imageView = [[UIImageView alloc]initWithFrame:CGRectMake(contentView.center.x - 13, 30, 26, 26)];
             imageView.image = [UIImage imageNamed:imageName];
             [contentView addSubview:imageView];
+            contentView.layer.cornerRadius = 10.0f;
         }else {
-            textLabel.frame = CGRectMake(20, 15, textSize.width + 12, textSize.height + 12);
-            contentView.frame = CGRectMake(0, 0, textLabel.frame.size.width + 40, textLabel.frame.size.height + 30);
+            contentView.layer.cornerRadius = 5.0f;
+            textLabel.frame = CGRectMake(20, 5, textSize.width + 12, textSize.height + 12);
+            contentView.frame = CGRectMake(0, 0, textLabel.frame.size.width + 40, textLabel.frame.size.height + 10);
         }
-        contentView.layer.cornerRadius = 5.0f;
+        
         contentView.layer.borderWidth = 1.0f;
         contentView.layer.borderColor = [[UIColor grayColor] colorWithAlphaComponent:0.5].CGColor;
         contentView.backgroundColor = [UIColor colorWithRed:0.0f

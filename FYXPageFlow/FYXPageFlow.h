@@ -36,7 +36,7 @@
 /**
  * pageControl
  */
-@property (nonatomic, strong) UIPageControl *pageControl;
+@property (nonatomic, weak) UIPageControl *pageControl;
 /**
  * sectionCount
  */

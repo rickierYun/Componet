@@ -319,7 +319,7 @@
 
     alertView.msgLabel.lineBreakMode = NSLineBreakByTruncatingHead;
     [alertView.cancelBtn setTitle:@"知道了" forState:UIControlStateNormal];
-    [alertView.cancelBtn setTitleColor:[UIColor blueColor] forState:UIControlStateNormal];
+    [alertView.cancelBtn setTitleColor:[UIColor colorWithRed:11.0 / 255 green:171.0 / 254 blue:254.0 / 254 alpha:1.0] forState:UIControlStateNormal];
 
     alertView.richTextView.text = [str1 stringByAppendingString:str2];
 //    [alertView setMsgAlertHeight:250 AlertWidth: 320];
