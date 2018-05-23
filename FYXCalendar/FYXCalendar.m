@@ -83,6 +83,7 @@ CGFloat nativScale(void) {
         _calendar.appearance.headerDateFormat = @"yyyy年MM月";           // 设置年份格式
         _calendar.appearance.caseOptions = FSCalendarCaseOptionsHeaderUsesUpperCase|FSCalendarCaseOptionsWeekdayUsesSingleUpperCase;            // 改变星期显示
         _calendar.appearance.titleFont = [UIFont systemFontOfSize:11 * displayScale];
+//        _calendar.appearance.headerTitleFont
         [_calendar setFirstWeekday:2];
         [self addSubview:_calendar];
         self.calendar = _calendar;
@@ -236,7 +237,9 @@ CGFloat nativScale(void) {
     selectDay = [dateFormatter stringFromDate:date];
     if ([self eventsForDate:date].firstObject) {
         selectDay = [self eventsForDate:date].firstObject.title;
+
     }
+    [calendar.calendarHeaderView configureAppearance];
     [self.collectView reloadData];
 }
 

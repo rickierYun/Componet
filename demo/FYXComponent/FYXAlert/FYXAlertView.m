@@ -820,8 +820,8 @@ CGFloat nativeScale(void) {
     }
 
     _alertTitle.text = title;
-    NSMutableAttributedString *attributedString2 = [[NSMutableAttributedString alloc]initWithString:title];
-    _alertTitle.attributedText = attributedString2;
+//    NSMutableAttributedString *attributedString2 = [[NSMutableAttributedString alloc]initWithString:title];
+//    _alertTitle.attributedText = attributedString2;
     _alertTitle.numberOfLines = 0;
     _alertTitle.autoresizingMask = UIViewAutoresizingFlexibleWidth;
     _alertTitle.textColor = [UIColor whiteColor];
@@ -850,10 +850,11 @@ CGFloat nativeScale(void) {
     NSMutableAttributedString *content = [[NSMutableAttributedString alloc]initWithString:_alertTitle.text];
 
     NSString *str = [_alertTitle.text substringWithRange:range];
-    NSRange contentRange = range;
-    [content addAttribute:NSUnderlineStyleAttributeName value:[NSNumber numberWithInteger:NSUnderlineStyleSingle] range:contentRange];
 
-    [content addAttribute:NSFontAttributeName value:_alertTitle.font range:NSMakeRange(0, content.length)];
+    [content addAttribute:NSUnderlineStyleAttributeName value:[NSNumber numberWithInteger:NSUnderlineStyleSingle] range:range];
+
+    [content addAttribute:NSFontAttributeName value:_alertTitle.font range:NSMakeRange(0, [_alertTitle.text length])];
+    _alertTitle.attributedText = content;
     [_alertTitle yb_addAttributeTapActionWithStrings:@[str] tapClicked:^(NSString *string, NSRange range, NSInteger index) {
         NSString *message = [NSString stringWithFormat:@"点击了“%@”字符\nrange: %@\nindex: %ld",string,NSStringFromRange(range),index];
         NSLog(@"%@",message);
@@ -861,7 +862,7 @@ CGFloat nativeScale(void) {
             [self.delegate otherBtnDidClick:self];
         }
     }];
-    _alertTitle.attributedText = content;
+
     _alertTitle.enabledTapEffect = NO;
 
 }

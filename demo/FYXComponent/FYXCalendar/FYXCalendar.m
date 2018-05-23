@@ -237,7 +237,9 @@ CGFloat nativScale(void) {
     selectDay = [dateFormatter stringFromDate:date];
     if ([self eventsForDate:date].firstObject) {
         selectDay = [self eventsForDate:date].firstObject.title;
+
     }
+    [calendar.calendarHeaderView configureAppearance];
     [self.collectView reloadData];
 }
 

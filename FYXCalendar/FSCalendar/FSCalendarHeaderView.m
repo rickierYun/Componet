@@ -209,7 +209,15 @@
             } else {
                 NSDate *firstPage = [self.calendar.gregorian fs_middleDayOfWeek:self.calendar.minimumDate];
                 NSDate *date = [self.calendar.gregorian dateByAddingUnit:NSCalendarUnitWeekOfYear value:indexPath.item-1 toDate:firstPage options:0];
-                text = [_calendar.formatter stringFromDate:date];
+                NSLog(@"%@",self.calendar.selectedDate);
+                if (self.calendar.selectedDate != nil) {
+                    NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
+                    dateFormatter.dateFormat = @"yyyy年MM月";
+                    text = [dateFormatter stringFromDate:self.calendar.selectedDate];
+                }else {
+
+                    text = [_calendar.formatter stringFromDate:date];
+                }
             }
             break;
         }

@@ -211,7 +211,7 @@
     NSString * str = @"左滑卡片可取消预约啊";
 
     [topAlertView setTopAlert: str titleFont:14];
-    //    [topAlertView setOtherBtnframe:NSMakeRange(10, 7)];
+        [topAlertView setOtherBtnframe:NSMakeRange(1, 7)];
 //    if ([str length] > 10) {
 //        topAlertView.msgLabel.textAlignment = NSTextAlignmentLeft;
 //    }else {
