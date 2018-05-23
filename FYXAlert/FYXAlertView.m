@@ -494,7 +494,7 @@ CGFloat nativeScale(void) {
     _alertTitle.numberOfLines = 0;
     _alertTitle.textColor = [UIColor colorWithRed:50.0 / 255 green:50.0 / 255 blue:50.0 / 255 alpha:1];
 
-    _lineBreak1.frame = CGRectMake(VIEW_X(_alertTitleImage), VIEW_Y_Bottom(_alertTitleImage) + 10 * displayScale, VIEW_WIDTH(_alertTitleImage) + VIEW_WIDTH(_alertTitle) + 20 * displayScale, 1);
+    _lineBreak1.frame = CGRectMake(VIEW_X(_alertTitleImage), VIEW_Y_Bottom(_alertTitleImage) + 10 * displayScale, VIEW_WIDTH(_alertTitleImage) + VIEW_WIDTH(_alertTitle) + 38 * displayScale, 1);
 
     font = [UIFont boldSystemFontOfSize: 14 * displayScale];
     attrs = @{NSFontAttributeName : font};
