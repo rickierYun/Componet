@@ -152,6 +152,11 @@ CGFloat nativeScale(void) {
     [self createAlertView];
     _alertTitle.text = alertTitle;
 
+    if ([alertTitle length] > 13) {
+        _alertTitle.textAlignment = NSTextAlignmentLeft;
+    }else {
+        _alertTitle.textAlignment = NSTextAlignmentCenter;
+    }
     [_alertTitle setFont: [UIFont systemFontOfSize:( titleFont * displayScale)]];
 }
 
