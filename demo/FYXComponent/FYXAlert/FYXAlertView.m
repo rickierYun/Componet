@@ -179,9 +179,9 @@ CGFloat nativeScale(void) {
     self.msgLabel = _alertTitle;
 
     UITextView *_richTextView = [[UITextView alloc]init];
-    _richTextView.frame = CGRectMake(8 * displayScale,
+    _richTextView.frame = CGRectMake(24 * displayScale,
                                  VIEW_Y_Bottom(_alertTitle) + 16 * displayScale,
-                                 VIEW_WIDTH(_msgAlertView) - 16 * displayScale,
+                                 VIEW_WIDTH(_msgAlertView) - 48 * displayScale,
                                  VIEW_HEIGHT(_msgAlertView) - VIEW_HEIGHT(_alertTitle) - 70 * displayScale);
      
 //    _richTextView.numberOfLines = 0;
@@ -225,9 +225,9 @@ CGFloat nativeScale(void) {
     _msgAlertView.frame = frame;
     _alertTitle.frame   = CGRectMake(24 * displayScale,25 * displayScale , VIEW_WIDTH(_msgAlertView) - 48 * displayScale, 23 * displayScale);
 
-    _richTextView.frame  = CGRectMake(13 * displayScale,
+    _richTextView.frame  = CGRectMake(24 * displayScale,
                                          VIEW_HEIGHT(_alertTitle) + VIEW_Y(_alertTitle) + 16 * displayScale,
-                                         VIEW_WIDTH(_msgAlertView) - 26 * displayScale,
+                                         VIEW_WIDTH(_msgAlertView) - 48 * displayScale,
                                          VIEW_HEIGHT(_msgAlertView) - VIEW_HEIGHT(_alertTitle) - 70 * displayScale);
 
     _cancelBtn.frame    = CGRectMake(0,
@@ -249,9 +249,9 @@ CGFloat nativeScale(void) {
 
     _alertTitle.frame   = CGRectMake(24 * displayScale,25 * displayScale , VIEW_WIDTH(_msgAlertView) - 48 * displayScale, 23 * displayScale);
 
-    _richTextView.frame     = CGRectMake(13 * displayScale,
+    _richTextView.frame     = CGRectMake(24 * displayScale,
                                      VIEW_HEIGHT(_alertTitle) + VIEW_Y(_alertTitle) + 16 * displayScale,
-                                     VIEW_WIDTH(_msgAlertView) - 26 * displayScale,
+                                     VIEW_WIDTH(_msgAlertView) - 48 * displayScale,
                                      VIEW_HEIGHT(_msgAlertView) - VIEW_HEIGHT(_alertTitle) - 70 * displayScale);
 
     _cancelBtn.frame    = CGRectMake(0,
