@@ -107,7 +107,7 @@ CGFloat nativeScale(void) {
     _alertTitle.numberOfLines = 2;
     _alertTitle.lineBreakMode = NSLineBreakByCharWrapping;
     _alertTitle.textAlignment = NSTextAlignmentCenter;
-    _alertTitle.textColor     = [UIColor blackColor];
+    _alertTitle.textColor     = [UIColor colorWithRed:50/255.0 green:50/255.0 blue:50/255.0 alpha:1.0];
     [_alertView addSubview:_alertTitle];
     self.msgLabel = _alertTitle;
 
@@ -117,7 +117,10 @@ CGFloat nativeScale(void) {
 
     _sureBtn.frame   = CGRectMake(VIEW_WIDTH(_alertView) / 2, VIEW_HEIGHT(_alertTitle), VIEW_WIDTH(_alertView) / 2, VIEW_HEIGHT(_alertView) * 1 / 3);
     _cancelBtn.frame = CGRectMake(0,VIEW_HEIGHT(_alertTitle), VIEW_WIDTH(_alertView) / 2, VIEW_HEIGHT(_alertView) * 1 / 3);
-
+    
+    [_cancelBtn setTitleColor:[UIColor colorWithRed:50/255.0 green:50/255.0 blue:50/255.0 alpha:1.0] forState:UIControlStateNormal];
+    [_sureBtn setTitleColor:[UIColor colorWithRed:11/255.0 green:171/255.0 blue:254/255.0 alpha:1.0] forState:UIControlStateNormal];
+    
     _sureBtn.titleLabel.font   = [UIFont systemFontOfSize:17 * displayScale];
     _cancelBtn.titleLabel.font = [UIFont systemFontOfSize:17 * displayScale];
 
@@ -170,7 +173,6 @@ CGFloat nativeScale(void) {
     _alertTitle.frame = CGRectMake(0, 5, VIEW_WIDTH(_msgAlertView), 23 * displayScale);
     _alertTitle.numberOfLines = 0;
     _alertTitle.textAlignment = NSTextAlignmentCenter;
-    _alertTitle.textColor     = [UIColor blackColor];
     [_msgAlertView addSubview:_alertTitle];
     self.msgLabel = _alertTitle;
 
@@ -767,7 +769,7 @@ CGFloat nativeScale(void) {
 
 - (void)setTopAlert: (NSString *)title titleFont: (CGFloat )titleFont{
     _backGroundBtn.backgroundColor = [UIColor clearColor];
-    UIFont *font = [UIFont boldSystemFontOfSize: titleFont * displayScale];
+    UIFont *font = [UIFont systemFontOfSize: titleFont * displayScale];
     NSDictionary *attrs = @{NSFontAttributeName : font};
     CGSize maxSize;
     if (VIEW_WIDTH(self) == 320 ) {
@@ -823,7 +825,7 @@ CGFloat nativeScale(void) {
     self.msgLabel = _alertTitle;
 
     _msgAlertView.backgroundColor = [UIColor blackColor];
-    _msgAlertView.alpha = 0.4;
+    _msgAlertView.alpha = 0.5;
     [_msgAlertView addSubview:_alertTitle];
 
     UIButton *cancel = [[UIButton alloc]init];
