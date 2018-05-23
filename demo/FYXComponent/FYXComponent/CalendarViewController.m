@@ -65,8 +65,8 @@
 
     
     // 改变具体时间颜色
-        fyxCalendar.timeDetailSelectColor = [UIColor redColor];
-        fyxCalendar.timeDetailColor = [UIColor blackColor];
+        fyxCalendar.timeDetailSelectColor = [UIColor colorWithRed:11/255.0 green:171/255.0 blue:254/255.0 alpha:1.0];
+        fyxCalendar.timeDetailColor = [UIColor colorWithRed:101/255.0 green:101/255.0 blue:101/255.0 alpha:1.0];
 
     fyxCalendar.afternoonData = aftoonTime;
     fyxCalendar.morningData = morningTime;
