@@ -855,6 +855,7 @@ CGFloat nativeScale(void) {
 
     [content addAttribute:NSFontAttributeName value:_alertTitle.font range:NSMakeRange(0, [_alertTitle.text length])];
     _alertTitle.attributedText = content;
+
     [_alertTitle yb_addAttributeTapActionWithStrings:@[str] tapClicked:^(NSString *string, NSRange range, NSInteger index) {
         NSString *message = [NSString stringWithFormat:@"点击了“%@”字符\nrange: %@\nindex: %ld",string,NSStringFromRange(range),index];
         NSLog(@"%@",message);
