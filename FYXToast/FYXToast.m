@@ -35,7 +35,7 @@
         contentView = [[UIButton alloc] init];
         if (imageName != nil) {
             // 设置图片
-            textLabel.frame = CGRectMake(30, 65, textSize.width + 12, textSize.height + 12);
+            textLabel.frame = CGRectMake(30, 65, textSize.width, textSize.height + 12);
             contentView.frame = CGRectMake(0, 0, textLabel.frame.size.width + 60, textLabel.frame.size.height + 70+15);
 
             UIImageView *imageView = [[UIImageView alloc]initWithFrame:CGRectMake(contentView.center.x - 13, 30, 26, 26)];
@@ -44,7 +44,7 @@
             contentView.layer.cornerRadius = 10.0f;
         }else {
             contentView.layer.cornerRadius = 5.0f;
-            textLabel.frame = CGRectMake(20, 5, textSize.width + 12, textSize.height + 12);
+            textLabel.frame = CGRectMake(20, 5, textSize.width, textSize.height + 12);
             contentView.frame = CGRectMake(0, 0, textLabel.frame.size.width + 40, textLabel.frame.size.height + 10);
         }
         

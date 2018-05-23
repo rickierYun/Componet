@@ -793,7 +793,7 @@ CGFloat nativeScale(void) {
     _msgAlertView = [[UIView alloc]init];
     _alertTitle.font = font;
 
-
+    
     if (VIEW_WIDTH(self) == 320) {
 
         if (textSize.height > 42) {
@@ -820,8 +820,8 @@ CGFloat nativeScale(void) {
     }
 
     _alertTitle.text = title;
-//    NSMutableAttributedString *attributedString2 = [[NSMutableAttributedString alloc]initWithString:title];
-//    _alertTitle.attributedText = attributedString2;
+    NSMutableAttributedString *attributedString2 = [[NSMutableAttributedString alloc]initWithString:title];
+    _alertTitle.attributedText = attributedString2;
     _alertTitle.numberOfLines = 0;
     _alertTitle.autoresizingMask = UIViewAutoresizingFlexibleWidth;
     _alertTitle.textColor = [UIColor whiteColor];
@@ -849,25 +849,31 @@ CGFloat nativeScale(void) {
 - (void)setOtherBtnframe: (NSRange )range{
     NSMutableAttributedString *content = [[NSMutableAttributedString alloc]initWithString:_alertTitle.text];
 
-    NSString *str = [_alertTitle.text substringWithRange:range];
+//    NSString *str = [_alertTitle.text substringWithRange:range];
 
     [content addAttribute:NSUnderlineStyleAttributeName value:[NSNumber numberWithInteger:NSUnderlineStyleSingle] range:range];
 
-    [content addAttribute:NSFontAttributeName value:_alertTitle.font range:NSMakeRange(0, [_alertTitle.text length])];
+    [content addAttribute:NSFontAttributeName value:_alertTitle.font range:NSMakeRange(0, _alertTitle.text.length)];
     _alertTitle.attributedText = content;
 
-    [_alertTitle yb_addAttributeTapActionWithStrings:@[str] tapClicked:^(NSString *string, NSRange range, NSInteger index) {
-        NSString *message = [NSString stringWithFormat:@"点击了“%@”字符\nrange: %@\nindex: %ld",string,NSStringFromRange(range),index];
-        NSLog(@"%@",message);
-        if ([self.delegate respondsToSelector:@selector(otherBtnDidClick:)]) {
-            [self.delegate otherBtnDidClick:self];
-        }
-    }];
+    UIButton *btn     = [[UIButton alloc]init];
+    btn.frame = CGRectMake(0, 0, VIEW_WIDTH(self)- 40 * displayScale, VIEW_HEIGHT(_msgAlertView));
+//    btn.backgroundColor = [UIColor redColor];
+    [btn addTarget:self action:@selector(otherClick:) forControlEvents:UIControlEventTouchUpInside];
+    [_msgAlertView addSubview:btn];
 
-    _alertTitle.enabledTapEffect = NO;
+//    [_alertTitle yb_addAttributeTapActionWithStrings:@[str] tapClicked:^(NSString *string, NSRange range, NSInteger index) {
+//        NSString *message = [NSString stringWithFormat:@"点击了“%@”字符\nrange: %@\nindex: %ld",string,NSStringFromRange(range),index];
+//        NSLog(@"%@",message);
+//        if ([self.delegate respondsToSelector:@selector(otherBtnDidClick:)]) {
+//            [self.delegate otherBtnDidClick:self];
+//        }
+//    }];
+
+//    _alertTitle.enabledTapEffect = NO;
+
 
 }
-
 - (void)tTopAlertHight: (CGFloat)height{
      _msgAlertView.frame = CGRectMake(0, height *displayScale, VIEW_WIDTH(_msgAlertView), VIEW_HEIGHT(_msgAlertView));
 }

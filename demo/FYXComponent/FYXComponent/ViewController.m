@@ -457,6 +457,7 @@
 }
 
 - (void)topBtnClick: (UIButton *)sender {
+    [topAlertView tTopAlertHight:100];
     topAlertView.hidden = NO;
 
 }
