@@ -82,7 +82,7 @@ CGFloat nativScale(void) {
         _calendar.appearance.headerTitleColor = [UIColor blackColor];   // 年份时间
         _calendar.appearance.headerDateFormat = @"yyyy年MM月";           // 设置年份格式
         _calendar.appearance.caseOptions = FSCalendarCaseOptionsHeaderUsesUpperCase|FSCalendarCaseOptionsWeekdayUsesSingleUpperCase;            // 改变星期显示
-        _calendar.appearance.titleFont = [UIFont systemFontOfSize:11 * displayScale];
+        _calendar.appearance.titleFont = [UIFont systemFontOfSize:14 * displayScale];
 //        _calendar.appearance.headerTitleFont
         [_calendar setFirstWeekday:2];
         [self addSubview:_calendar];
@@ -249,12 +249,16 @@ CGFloat nativScale(void) {
 
 - (NSString *)calendar:(FSCalendar *)calendar subtitleForDate:(NSDate *)date {
     EKEvent *event = [self eventsForDate:date].firstObject;
+
     if (event) {
+        _calendar.appearance.titleFont = [UIFont systemFontOfSize:12 * displayScale];
         if ([event.title isEqualToString:@"清明节"]) {
             return @"清明";
         }
         return event.title; // 春分、秋分、儿童节、植树节、国庆节、圣诞节...
+
     }
+    _calendar.appearance.titleFont = [UIFont systemFontOfSize:14 * displayScale];
     return nil;
 }
 // 某个日期的所有事件
