@@ -180,7 +180,7 @@ CGFloat nativeScale(void) {
 
     UITextView *_richTextView = [[UITextView alloc]init];
     _richTextView.frame = CGRectMake(24 * displayScale,
-                                 VIEW_Y_Bottom(_alertTitle) + 16 * displayScale,
+                                 VIEW_Y_Bottom(_alertTitle) + 12 * displayScale,
                                  VIEW_WIDTH(_msgAlertView) - 48 * displayScale,
                                  VIEW_HEIGHT(_msgAlertView) - VIEW_HEIGHT(_alertTitle) - 70 * displayScale);
      
@@ -195,7 +195,7 @@ CGFloat nativeScale(void) {
 
     UIButton *_cancelBtn = [[UIButton alloc]init];
     _cancelBtn.frame = CGRectMake(0,
-                                  VIEW_HEIGHT(_alertTitle) + VIEW_Y(_alertTitle) + VIEW_HEIGHT(_richTextView) + 12 * displayScale,
+                                  VIEW_HEIGHT(_alertTitle) + VIEW_Y(_alertTitle) + VIEW_HEIGHT(_richTextView) + 0 * displayScale,
                                   VIEW_WIDTH(_msgAlertView),
                                   50 * displayScale);
 
@@ -226,7 +226,7 @@ CGFloat nativeScale(void) {
     _alertTitle.frame   = CGRectMake(24 * displayScale,25 * displayScale , VIEW_WIDTH(_msgAlertView) - 48 * displayScale, 23 * displayScale);
 
     _richTextView.frame  = CGRectMake(24 * displayScale,
-                                         VIEW_HEIGHT(_alertTitle) + VIEW_Y(_alertTitle) + 16 * displayScale,
+                                         VIEW_HEIGHT(_alertTitle) + VIEW_Y(_alertTitle) + 12 * displayScale,
                                          VIEW_WIDTH(_msgAlertView) - 48 * displayScale,
                                          VIEW_HEIGHT(_msgAlertView) - VIEW_HEIGHT(_alertTitle) - 70 * displayScale);
 
@@ -250,7 +250,7 @@ CGFloat nativeScale(void) {
     _alertTitle.frame   = CGRectMake(24 * displayScale,25 * displayScale , VIEW_WIDTH(_msgAlertView) - 48 * displayScale, 23 * displayScale);
 
     _richTextView.frame     = CGRectMake(24 * displayScale,
-                                     VIEW_HEIGHT(_alertTitle) + VIEW_Y(_alertTitle) + 16 * displayScale,
+                                     VIEW_HEIGHT(_alertTitle) + VIEW_Y(_alertTitle) + 12 * displayScale,
                                      VIEW_WIDTH(_msgAlertView) - 48 * displayScale,
                                      VIEW_HEIGHT(_msgAlertView) - VIEW_HEIGHT(_alertTitle) - 70 * displayScale);
 
@@ -496,7 +496,7 @@ CGFloat nativeScale(void) {
 
     _lineBreak1.frame = CGRectMake(VIEW_X(_alertTitleImage), VIEW_Y_Bottom(_alertTitleImage) + 10 * displayScale, VIEW_WIDTH(_alertTitleImage) + VIEW_WIDTH(_alertTitle) + 20 * displayScale, 1);
 
-    font = [UIFont systemFontOfSize: 14 * displayScale];
+    font = [UIFont boldSystemFontOfSize: 14 * displayScale];
     attrs = @{NSFontAttributeName : font};
     _instruteTitleLb = [[UILabel alloc]init];
     textSize = [instruteTitle boundingRectWithSize:CGSizeMake(140, MAXFLOAT) options:NSStringDrawingUsesLineFragmentOrigin attributes:attrs context:nil].size;
