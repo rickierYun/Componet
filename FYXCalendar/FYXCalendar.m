@@ -353,6 +353,7 @@ CGFloat nativScale(void) {
         if ([selectDay isEqual:@""]) {
             selectDay = @"no day select";
         }
+        selectDay = [selectDay substringWithRange:NSMakeRange(0, 10)];
         selectDay = [NSString stringWithFormat:@"%@ %@",selectDay,cell.timeBtn.titleLabel.text];
 
         if ([self.delegate respondsToSelector:@selector(calendar:selectTime: )]) {
