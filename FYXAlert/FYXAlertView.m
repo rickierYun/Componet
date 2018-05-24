@@ -122,8 +122,8 @@ CGFloat nativeScale(void) {
     [_cancelBtn setTitleColor:[UIColor colorWithRed:50/255.0 green:50/255.0 blue:50/255.0 alpha:1.0] forState:UIControlStateNormal];
     [_sureBtn setTitleColor:[UIColor colorWithRed:11/255.0 green:171/255.0 blue:254/255.0 alpha:1.0] forState:UIControlStateNormal];
     
-    _sureBtn.titleLabel.font   = [UIFont fontWithName:@"Helvetica-Bold" size:17 * displayScale];
-    _cancelBtn.titleLabel.font = [UIFont fontWithName:@"Helvetica-Bold" size:17 * displayScale];
+    _sureBtn.titleLabel.font   = [UIFont fontWithName:@"Helvetica-Bold" size:18 * displayScale];
+    _cancelBtn.titleLabel.font = [UIFont systemFontOfSize:18 * displayScale];
 
     [_sureBtn addTarget:self action:@selector(sureClick:) forControlEvents:UIControlEventTouchUpInside];
     [_cancelBtn addTarget:self action:@selector(cancelClick:) forControlEvents:UIControlEventTouchUpInside];
@@ -218,7 +218,7 @@ CGFloat nativeScale(void) {
     _alertTitle.text = alertTitle;
     _richTextView.text   = msg;
     _richTextView.textColor = msgColor;
-    [_alertTitle setFont:[UIFont systemFontOfSize:titleFont * displayScale]];
+    [_alertTitle setFont:[UIFont boldSystemFontOfSize:titleFont * displayScale]];
     _lineBreak1.frame   = CGRectMake(8 * displayScale, VIEW_Y(_cancelBtn) - 2 * displayScale, VIEW_WIDTH(_cancelBtn) - 16, 1);
     [_msgAlertView addSubview:_lineBreak1];
     [_richTextView setFont:[UIFont systemFontOfSize:msgFont * displayScale]];
@@ -351,7 +351,9 @@ CGFloat nativeScale(void) {
     [_cancelBtn addTarget:self action:@selector(cancelClick:) forControlEvents:UIControlEventTouchUpInside];
     [_cancelBtn setTitle:@"确定" forState:UIControlStateNormal];
     [_cancelBtn setTitleColor:[UIColor colorWithRed:11.0 / 255 green:171.0 / 255 blue:254.0/255 alpha:1] forState:UIControlStateNormal];
+    _cancelBtn.titleLabel.font = [UIFont boldSystemFontOfSize:18 * displayScale];
     [_alertView addSubview:_cancelBtn];
+
     self.cancelBtn = _cancelBtn;
     // 分割线
     _lineBreak1.frame = CGRectMake(8 * displayScale, VIEW_Y(_cancelBtn), VIEW_WIDTH(_cancelBtn) - 16, 1);
