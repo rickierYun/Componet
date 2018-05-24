@@ -347,9 +347,9 @@
 
 - (void)alertMoreBtnClick: (UIButton *)sender {
     alertMoreBtnView.hidden = NO;
-    [alertMoreBtnView setMoreBtnAlertView:@"您目前的取送车订单有绑定的保养预约服务，是否同时取消保养预约？" contentFont:15];
-    [alertMoreBtnView.sureBtn setTitleColor:[UIColor lightGrayColor] forState:UIControlStateNormal];
-    [alertMoreBtnView.cancelBtn setTitleColor:[UIColor colorWithRed:0 green:122.0 / 255 blue:255.0 / 255 alpha:1] forState:UIControlStateNormal];
+    [alertMoreBtnView setMoreBtnAlertView:@"您目前的取送车订单有绑定的保养预约服务，是否同时取消保养预约？" contentFont:18];
+//    [alertMoreBtnView.sureBtn setTitleColor:[UIColor lightGrayColor] forState:UIControlStateNormal];
+//    [alertMoreBtnView.cancelBtn setTitleColor:[UIColor colorWithRed:0 green:122.0 / 255 blue:255.0 / 255 alpha:1] forState:UIControlStateNormal];
 }
 
 - (void)bubbleBtnClick: (UIButton *)sender {
@@ -361,7 +361,7 @@
 
 - (void)toastBtnClick: (UIButton *)sender {
 //    [FYXToast showWithTextImage:@"您目前的取送车订单有绑" imageName:@"success.png"];
-//    [FYXToast showWithText:@"您目前的取送车订单有绑定的保养预约服务，是否同时取消保养预约？"];
+    [FYXToast showWithText:@"您目前的取送"];
 //    [FYXToast showWithText:@"密码输入错误超过5次，请通过忘记密码重置!"];
     
 }

@@ -41,7 +41,7 @@
             UIImageView *imageView = [[UIImageView alloc]initWithFrame:CGRectMake(contentView.center.x - 13, 30, 26, 26)];
             imageView.image = [UIImage imageNamed:imageName];
             [contentView addSubview:imageView];
-            contentView.layer.cornerRadius = 10.0f;
+            contentView.layer.cornerRadius = 5.0f;
         }else {
             contentView.layer.cornerRadius = 5.0f;
             textLabel.frame = CGRectMake(20, 5, textSize.width, textSize.height + 12);
