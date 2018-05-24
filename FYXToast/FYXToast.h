@@ -10,6 +10,7 @@
 #import <UIKit/UIKit.h>
 
 #define DEFAULT_DISPLAY_DURATION 1.5f
+#define displayScales    (nativeScaless() / 2)
 
 @interface FYXToast : NSObject {
     NSString *text;

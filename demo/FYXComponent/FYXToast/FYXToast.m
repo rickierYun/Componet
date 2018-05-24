@@ -8,6 +8,16 @@
 
 #import "FYXToast.h"
 
+#define SCREEN_WIDTH  [[UIScreen mainScreen] bounds].size.width
+CGFloat nativeScaless(void) {
+    static CGFloat scale = 0.0f;
+    if (scale == 0.0f) {
+        CGFloat width = SCREEN_WIDTH;
+        scale = width / 375.0f;
+    }
+    return scale * 2;
+}
+
 @implementation FYXToast
 
 - (id)initWithText:(NSString *)text_ imageName:(NSString *)imageName{
@@ -16,7 +26,7 @@
         text = [text_ copy];
 
         // 文字部分
-        UIFont *font = [UIFont systemFontOfSize:14];
+        UIFont *font = [UIFont systemFontOfSize:14 * displayScales];
         NSDictionary *attrs = @{NSFontAttributeName : font};
         CGSize textSize = [text boundingRectWithSize:CGSizeMake(280, MAXFLOAT) options:NSStringDrawingUsesLineFragmentOrigin attributes:attrs context:nil].size;                    // 随字数，字体扩展大小
         UILabel *textLabel = [[UILabel alloc]init];
