@@ -441,6 +441,10 @@ IB_DESIGNABLE
 @property (readonly, nonatomic) NSArray<NSDate *> *selectedDates;
 
 /**
+ *
+ */
+@property (assign, nonatomic) NSInteger prevOrNextClick;
+/**
  Reload the dates and appearance of the calendar.
  */
 - (void)reloadData;

@@ -239,9 +239,11 @@ CGFloat nativScale(void) {
         selectDay = [self eventsForDate:date].firstObject.title;
 
     }
+    self.calendar.prevOrNextClick = 0;
     [calendar.calendarHeaderView configureAppearance];
     [self.collectView reloadData];
 }
+
 
 - (NSDate *)minimumDateForCalendar:(FSCalendar *)calendar {
     return _minimumDate;
@@ -279,6 +281,7 @@ CGFloat nativScale(void) {
 - (void)previousClicked:(id)sender {
     NSDate *currentMonth = self.calendar.currentPage;
     NSDate *previousMonth = [self.gregorianCalendar dateByAddingUnit:NSCalendarUnitMonth value:-1 toDate:currentMonth options:0];
+    self.calendar.prevOrNextClick = 1;
     [_calendar setCurrentPage:previousMonth animated:YES];
 }
 
@@ -286,18 +289,21 @@ CGFloat nativScale(void) {
     NSDate *currentMonth = self.calendar.currentPage;
     NSDate *nextMonth = [self.gregorianCalendar dateByAddingUnit:NSCalendarUnitMonth value:1 toDate:currentMonth options:0];
     NSLog(@"%@",currentMonth);
+    self.calendar.prevOrNextClick = 1;
     [_calendar setCurrentPage:nextMonth animated:YES];
 }
 
 - (void)previousWeekClick: (id)sender {
     NSDate *currentWeek = self.calendar.currentPage;
     NSDate *previousWeek = [self.gregorianCalendar dateByAddingUnit:NSCalendarUnitWeekOfYear value:-1 toDate:currentWeek options:0];
+    self.calendar.prevOrNextClick = 1;
     [_calendar setCurrentPage:previousWeek animated:YES];
 }
 
 - (void)nextWeekClick: (id)sender {
     NSDate *currentWeek = self.calendar.currentPage;
     NSDate *nextWeek = [self.gregorianCalendar dateByAddingUnit:NSCalendarUnitWeekOfYear value:1 toDate:currentWeek options:0];
+    self.calendar.prevOrNextClick = 1;
     [_calendar setCurrentPage:nextWeek animated:YES];
 }
 

@@ -162,6 +162,7 @@ typedef NS_ENUM(NSUInteger, FSCalendarOrientation) {
     _locale = [NSLocale currentLocale];
     _timeZone = [NSTimeZone localTimeZone];
     _firstWeekday = 1;
+    _prevOrNextClick = 1;
     [self invalidateDateTools];
     
     _today = [self.gregorian dateBySettingHour:0 minute:0 second:0 ofDate:[NSDate date] options:0];

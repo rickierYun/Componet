@@ -211,14 +211,14 @@
                 NSDate *firstPage = [self.calendar.gregorian fs_middleDayOfWeek:self.calendar.minimumDate];
                 NSDate *date = [self.calendar.gregorian dateByAddingUnit:NSCalendarUnitWeekOfYear value:indexPath.item-1 toDate:firstPage options:0];
                 NSLog(@"%@",self.calendar.selectedDate);
-//                if (self.calendar.selectedDate != nil) {
-//                    NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
-//                    dateFormatter.dateFormat = @"yyyy年MM月";
-//                    text = [dateFormatter stringFromDate:self.calendar.selectedDate];
-//                }else {
+                if (self.calendar.prevOrNextClick == 0) {
+                    NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
+                    dateFormatter.dateFormat = @"yyyy年MM月";
+                    text = [dateFormatter stringFromDate:self.calendar.selectedDate];
+                }else {
 
                     text = [_calendar.formatter stringFromDate:date];
-//                }
+                }
 
             }
             break;
@@ -227,6 +227,7 @@
             break;
         }
     }
+//    self.calendar.prevOrNextClick = 0;
     text = usesUpperCase ? text.uppercaseString : text;
     cell.titleLabel.text = text;
     [cell setNeedsLayout];
