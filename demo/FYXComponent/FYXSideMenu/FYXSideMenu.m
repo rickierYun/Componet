@@ -351,10 +351,10 @@
 
     animationImgV.animationImages = imageArr;
     animationImgV.animationRepeatCount = 1;
-    animationImgV.animationDuration = 2;
+    animationImgV.animationDuration = 1;
     [animationImgV startAnimating];
     WEAK_SELF;
-    [UIView animateWithDuration:2 animations:^{
+    [UIView animateWithDuration:1 animations:^{
         animationImgV.frame = CGRectMake(VIEW_WIDTH(weakSelf.sideMenuView), VIEW_Y(animationImgV),60, 121);
         weakSelf.sideMenuView.frame = CGRectMake(0, 0, weakSelf.sideMenuView.frame.size.width, weakSelf.sideMenuView.frame.size.height);
 

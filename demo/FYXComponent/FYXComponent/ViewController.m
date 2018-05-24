@@ -361,9 +361,9 @@
 
 - (void)toastBtnClick: (UIButton *)sender {
 //    [FYXToast showWithTextImage:@"您目前的取送车订单有绑" imageName:@"success.png"];
-    [FYXToast showWithText:@"您目前的取送"];
-//    [FYXToast showWithText:@"密码输入错误超过5次，请通过忘记密码重置!"];
-    
+//    [FYXToast showWithText:@"您目前的取送"];
+    [FYXToast showWithText:@"密码输入错误超过5次，请通过忘记密码重置!"];
+
 }
 
 - (void)toastPicBtnClick: (UIButton *)sender {

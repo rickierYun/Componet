@@ -10,7 +10,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "FYXCalendar/FSCalendar/FSCalendar.m"
-            timestampString = "548838362.455441"
+            timestampString = "548844811.737534"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "1355"
@@ -122,7 +122,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "FYXAlert/FYXAlertView.m"
-            timestampString = "548838362.4558589"
+            timestampString = "548844811.738153"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "803"
@@ -138,7 +138,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "FYXAlert/FYXAlertView.m"
-            timestampString = "548838362.4560651"
+            timestampString = "548844811.738397"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "800"
@@ -154,7 +154,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "FYXSideMenu/FYXSideMenu.m"
-            timestampString = "548838362.45625"
+            timestampString = "548844811.738606"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "352"
@@ -170,7 +170,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "FYXAlert/FYXAlertView.m"
-            timestampString = "548838362.456363"
+            timestampString = "548844811.738718"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "991"
@@ -186,7 +186,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "FYXComponent/ViewController.m"
-            timestampString = "548838362.456488"
+            timestampString = "548844811.738853"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "477"
@@ -202,28 +202,12 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "FYXCalendar/FSCalendar/FSCalendarHeaderView.m"
-            timestampString = "548838362.456575"
+            timestampString = "548844811.738937"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "111"
             endingLineNumber = "111"
             landmarkName = "-collectionView:cellForItemAtIndexPath:"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "FYXCalendar/FSCalendar/FSCalendarHeaderView.m"
-            timestampString = "548838362.456653"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "214"
-            endingLineNumber = "214"
-            landmarkName = "-configureCell:atIndexPath:"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>

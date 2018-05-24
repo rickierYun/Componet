@@ -105,7 +105,7 @@ CGFloat nativeScale(void) {
 
     _alertTitle = [[UILabel alloc]init];
     _alertTitle.frame = CGRectMake(19 * displayScale, 5, VIEW_WIDTH(_alertView) - 38 * displayScale, VIEW_HEIGHT(_alertView) * 2 / 3);
-    _alertTitle.numberOfLines = 2;
+    _alertTitle.numberOfLines = 0;
     _alertTitle.lineBreakMode = NSLineBreakByClipping;
     _alertTitle.textAlignment = NSTextAlignmentCenter;
     _alertTitle.textColor     = [UIColor colorWithRed:50/255.0 green:50/255.0 blue:50/255.0 alpha:1.0];
@@ -122,7 +122,7 @@ CGFloat nativeScale(void) {
     [_cancelBtn setTitleColor:[UIColor colorWithRed:50/255.0 green:50/255.0 blue:50/255.0 alpha:1.0] forState:UIControlStateNormal];
     [_sureBtn setTitleColor:[UIColor colorWithRed:11/255.0 green:171/255.0 blue:254/255.0 alpha:1.0] forState:UIControlStateNormal];
     
-    _sureBtn.titleLabel.font   = [UIFont fontWithName:@"Helvetica-Bold" size:18 * displayScale];
+    _sureBtn.titleLabel.font   = [UIFont boldSystemFontOfSize:18 * displayScale];
     _cancelBtn.titleLabel.font = [UIFont systemFontOfSize:18 * displayScale];
 
     [_sureBtn addTarget:self action:@selector(sureClick:) forControlEvents:UIControlEventTouchUpInside];
@@ -204,7 +204,7 @@ CGFloat nativeScale(void) {
                                   VIEW_WIDTH(_msgAlertView),
                                   50 * displayScale);
 
-    [_cancelBtn.titleLabel setFont:[UIFont fontWithName:@"Helvetica-Bold" size:18 * displayScale]];
+    [_cancelBtn.titleLabel setFont:[UIFont boldSystemFontOfSize:18 * displayScale]];
     [_cancelBtn addTarget:self action:@selector(cancelClick:) forControlEvents:UIControlEventTouchUpInside];
     [_msgAlertView addSubview:_cancelBtn];
     self.cancelBtn = _cancelBtn;
@@ -219,7 +219,7 @@ CGFloat nativeScale(void) {
     _richTextView.text   = msg;
     _richTextView.textColor = msgColor;
     [_alertTitle setFont:[UIFont boldSystemFontOfSize:titleFont * displayScale]];
-    _lineBreak1.frame   = CGRectMake(8 * displayScale, VIEW_Y(_cancelBtn) - 2 * displayScale, VIEW_WIDTH(_cancelBtn) - 16, 1);
+    _lineBreak1.frame   = CGRectMake(0 * displayScale, VIEW_Y(_cancelBtn) - 2 * displayScale, VIEW_WIDTH(_cancelBtn), 1);
     [_msgAlertView addSubview:_lineBreak1];
     [_richTextView setFont:[UIFont systemFontOfSize:msgFont * displayScale]];
 
@@ -264,7 +264,7 @@ CGFloat nativeScale(void) {
                                      VIEW_WIDTH(_msgAlertView),
                                      50 * displayScale);
 
-    _lineBreak1.frame   = CGRectMake(8 * displayScale, VIEW_Y(_cancelBtn) - 2 * displayScale, VIEW_WIDTH(_cancelBtn) - 16, 1);
+    _lineBreak1.frame   = CGRectMake(0 * displayScale, VIEW_Y(_cancelBtn) - 2 * displayScale, VIEW_WIDTH(_cancelBtn), 1);
 
     [_msgAlertView addSubview:_lineBreak1];
 }
@@ -662,7 +662,7 @@ CGFloat nativeScale(void) {
     _subtitle.textAlignment= NSTextAlignmentCenter;
 
     UIView *msgBackView = [[UIView alloc]init];
-    msgBackView.frame = CGRectMake(26 * displayScale, VIEW_Y_Bottom(_subtitle) + 15 * displayScale, VIEW_WIDTH(self) - 122 *displayScale, 60 * displayScale);
+    msgBackView.frame = CGRectMake(26 * displayScale, VIEW_Y_Bottom(_subtitle) + 15 * displayScale, VIEW_WIDTH(self) - 132 *displayScale, 60 * displayScale);
     msgBackView.backgroundColor = [UIColor colorWithRed:216.0 / 255 green:216.0 / 255 blue:216.0 / 255 alpha:1];
 
     _cardNumb = [[UILabel alloc]init];
