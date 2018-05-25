@@ -83,6 +83,9 @@ CGFloat nativScale(void) {
         _calendar.appearance.headerDateFormat = @"yyyy年MM月";           // 设置年份格式
         _calendar.appearance.caseOptions = FSCalendarCaseOptionsHeaderUsesUpperCase|FSCalendarCaseOptionsWeekdayUsesSingleUpperCase;            // 改变星期显示
         _calendar.appearance.titleFont = [UIFont systemFontOfSize:14 * displayScale];
+        _calendar.appearance.subtitleWeekendColor = weekColor;
+        _calendar.appearance.titleDefaultColor = [UIColor colorWithRed:50 / 255.0 green:50 / 255.0 blue:50 / 255.0 alpha:1];
+        _calendar.appearance.subtitleDefaultColor = [UIColor colorWithRed:50 / 255.0 green:50 / 255.0 blue:50 / 255.0 alpha:1];
 //        _calendar.appearance.headerTitleFont
         [_calendar setFirstWeekday:2];
         [self addSubview:_calendar];
@@ -128,7 +131,7 @@ CGFloat nativScale(void) {
         UIButton *previousWeekBtn = [UIButton buttonWithType:UIButtonTypeCustom];
         previousWeekBtn.frame = CGRectMake(0, 45, 36, 60);
         [previousWeekBtn setTitle:@"上\n一\n周 " forState:UIControlStateNormal];
-        [previousWeekBtn setTitleColor:[UIColor lightGrayColor] forState:UIControlStateNormal];
+        [previousWeekBtn setTitleColor:[UIColor colorWithRed:101 / 255.0 green:101 / 255.0 blue:101 / 255.0 alpha:1] forState:UIControlStateNormal];
         previousWeekBtn.titleLabel.font = [UIFont systemFontOfSize:14];
         previousWeekBtn.titleLabel.numberOfLines = 0;
         previousWeekBtn.backgroundColor = [UIColor whiteColor];
@@ -143,7 +146,7 @@ CGFloat nativScale(void) {
         UIButton *nextWeekBtn = [UIButton buttonWithType:UIButtonTypeCustom];
         nextWeekBtn.frame = CGRectMake(_calendar.frame.size.width + 36, 45, 36, 60);
         [nextWeekBtn setTitle:@"下\n一\n周 " forState:UIControlStateNormal];
-        [nextWeekBtn setTitleColor:[UIColor lightGrayColor] forState:UIControlStateNormal];
+        [nextWeekBtn setTitleColor:[UIColor colorWithRed:101 / 255.0 green:101 / 255.0 blue:101 / 255.0 alpha:1] forState:UIControlStateNormal];
         nextWeekBtn.titleLabel.font = [UIFont systemFontOfSize:14];
         nextWeekBtn.titleLabel.numberOfLines = 0;
         nextWeekBtn.backgroundColor = [UIColor whiteColor];
@@ -235,10 +238,10 @@ CGFloat nativScale(void) {
     NSDateFormatter *dateFormatter = [[NSDateFormatter alloc]init];
     dateFormatter.dateFormat = @"yyyy-MM-dd";
     selectDay = [dateFormatter stringFromDate:date];
-    if ([self eventsForDate:date].firstObject) {
-        selectDay = [self eventsForDate:date].firstObject.title;
-
-    }
+//    if ([self eventsForDate:date].firstObject) {
+//        selectDay = [self eventsForDate:date].firstObject.title;
+//
+//    }
     self.calendar.prevOrNextClick = 0;
     [calendar.calendarHeaderView configureAppearance];
     [self.collectView reloadData];
@@ -253,14 +256,14 @@ CGFloat nativScale(void) {
     EKEvent *event = [self eventsForDate:date].firstObject;
 
     if (event) {
-        _calendar.appearance.titleFont = [UIFont systemFontOfSize:12 * displayScale];
+//        _calendar.appearance.titleFont = [UIFont systemFontOfSize:12 * displayScale];
         if ([event.title isEqualToString:@"清明节"]) {
             return @"清明";
         }
         return event.title; // 春分、秋分、儿童节、植树节、国庆节、圣诞节...
 
     }
-    _calendar.appearance.titleFont = [UIFont systemFontOfSize:14 * displayScale];
+//    _calendar.appearance.titleFont = [UIFont systemFontOfSize:14 * displayScale];
     return nil;
 }
 // 某个日期的所有事件
