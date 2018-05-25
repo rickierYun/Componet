@@ -259,6 +259,8 @@ CGFloat nativScale(void) {
 //        _calendar.appearance.titleFont = [UIFont systemFontOfSize:12 * displayScale];
         if ([event.title isEqualToString:@"清明节"]) {
             return @"清明";
+        }else if ([event.title isEqualToString:@"正月初二"]) {
+            return nil;
         }
         return event.title; // 春分、秋分、儿童节、植树节、国庆节、圣诞节...
 
