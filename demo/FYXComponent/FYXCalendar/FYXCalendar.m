@@ -63,7 +63,7 @@ CGFloat nativScale(void) {
         self.timeDetailColor = [UIColor lightGrayColor];
         self.timeDetailSelectColor = normalColor;
 
-        FSCalendar *_calendar = [[FSCalendar alloc]initWithFrame:CGRectMake(36, 0, self.frame.size.width - 72, 180)];
+        FSCalendar *_calendar = [[FSCalendar alloc]initWithFrame:CGRectMake(46, 0, self.frame.size.width - 92, 180)];
         _calendar.dataSource = self;
         _calendar.delegate   = self;
         _calendar.scope      = FSCalendarScopeWeek;
@@ -129,7 +129,7 @@ CGFloat nativScale(void) {
         self.nextButton = nextButton;
 
         UIButton *previousWeekBtn = [UIButton buttonWithType:UIButtonTypeCustom];
-        previousWeekBtn.frame = CGRectMake(0, 45, 36, 60);
+        previousWeekBtn.frame = CGRectMake(0, 50, 36, 60);
         [previousWeekBtn setTitle:@"上\n一\n周 " forState:UIControlStateNormal];
         [previousWeekBtn setTitleColor:[UIColor colorWithRed:101 / 255.0 green:101 / 255.0 blue:101 / 255.0 alpha:1] forState:UIControlStateNormal];
         previousWeekBtn.titleLabel.font = [UIFont systemFontOfSize:14];
@@ -144,7 +144,7 @@ CGFloat nativScale(void) {
         self.previousWeekBtn = previousWeekBtn;
 
         UIButton *nextWeekBtn = [UIButton buttonWithType:UIButtonTypeCustom];
-        nextWeekBtn.frame = CGRectMake(_calendar.frame.size.width + 36, 45, 36, 60);
+        nextWeekBtn.frame = CGRectMake(SCREEN_WIDTH - 36, 50, 36, 60);
         [nextWeekBtn setTitle:@"下\n一\n周 " forState:UIControlStateNormal];
         [nextWeekBtn setTitleColor:[UIColor colorWithRed:101 / 255.0 green:101 / 255.0 blue:101 / 255.0 alpha:1] forState:UIControlStateNormal];
         nextWeekBtn.titleLabel.font = [UIFont systemFontOfSize:14];
@@ -157,6 +157,11 @@ CGFloat nativScale(void) {
         [nextWeekBtn addTarget:self action:@selector(nextWeekClick:) forControlEvents:UIControlEventTouchUpInside];
         [self addSubview:nextWeekBtn];
         self.nextWeekBtn = nextWeekBtn;
+
+        UIView *lineBreak = [[UIView alloc]init];
+        lineBreak.frame = CGRectMake(15, 35, SCREEN_WIDTH - 30, 1);
+        lineBreak.backgroundColor = [UIColor groupTableViewBackgroundColor];
+        [self addSubview:lineBreak];
 
         UIView *lineView = [[UIView alloc]init];
         lineView.frame = CGRectMake(VIEW_X(_calendar), VIEW_Y_Bottom(_calendar), VIEW_WIDTH(_calendar), 1);
@@ -210,6 +215,7 @@ CGFloat nativScale(void) {
         collectView.dataSource = self;
         collectView.delegate = self;
         collectView.backgroundColor = [UIColor whiteColor];
+        collectView.showsVerticalScrollIndicator = NO;
         [collectView registerClass:[CollectionCell class] forCellWithReuseIdentifier:@"cell"];
         [self addSubview:collectView];
         self.collectView = collectView;

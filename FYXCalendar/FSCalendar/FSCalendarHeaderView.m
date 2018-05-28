@@ -133,6 +133,7 @@
 - (void)setScrollOffset:(CGFloat)scrollOffset
 {
     [self setScrollOffset:scrollOffset animated:NO];
+    self.calendar.prevOrNextClick = 1;
 }
 
 - (void)setScrollOffset:(CGFloat)scrollOffset animated:(BOOL)animated

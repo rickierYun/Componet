@@ -71,7 +71,7 @@
     fyxCalendar.afternoonData = aftoonTime;
     fyxCalendar.morningData = morningTime;
 
-    NSString *string = @"2017-7-16 09:33:22";
+    NSString *string = @"2018-5-28 09:33:22";
     NSDateFormatter *format = [[NSDateFormatter alloc] init];
     format.dateFormat = @"yyyy-MM-dd HH:mm:ss";
     NSDate *data = [format dateFromString:string];

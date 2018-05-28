@@ -28,7 +28,7 @@ CGFloat nativeScaless(void) {
         // 文字部分
         UIFont *font = [UIFont systemFontOfSize:14 * displayScales];
         NSDictionary *attrs = @{NSFontAttributeName : font};
-        CGSize textSize = [text boundingRectWithSize:CGSizeMake(280, MAXFLOAT) options:NSStringDrawingUsesLineFragmentOrigin attributes:attrs context:nil].size;                    // 随字数，字体扩展大小
+        CGSize textSize = [text boundingRectWithSize:CGSizeMake(260, MAXFLOAT) options:NSStringDrawingUsesLineFragmentOrigin attributes:attrs context:nil].size;                    // 随字数，字体扩展大小
         UILabel *textLabel = [[UILabel alloc]init];
 
         textLabel.backgroundColor = [UIColor clearColor];

@@ -208,7 +208,7 @@
     topAlertView = [[FYXAlertView alloc]initWithFrame:CGRectMake(0, 0,[[UIScreen mainScreen] bounds].size.width , [[UIScreen mainScreen] bounds].size.height)];
     [self.view addSubview:topAlertView];
     topAlertView.hidden = YES;
-    NSString * str = @"左滑卡片可取消预约啊";
+    NSString * str = @"左滑卡片可取消预约啊呜呜哇哇啊哇撒打算打算打算打撒上大事";
 
     [topAlertView setTopAlert: str titleFont:14];
         [topAlertView setOtherBtnframe:NSMakeRange(1, 7)];
@@ -315,7 +315,7 @@
     // 文字弹窗
     NSString *str1 = @"1、服务时间07:00-20:59\n2、收费规则：起步价39元（10公里内），10公里后，每公里加收10元，不足5公里按5公里计算。";
     NSString *str2 = @"*注：以上计费方法为“e代驾”制定的上门取车代驾计费方法";
-    [alertView setMsgAlertView:@"取送车计费方法" titleFont:19 alertMsg:@"" msgFont:14 msgColor: [UIColor colorWithRed:101.0 / 255 green:101.0 / 255 blue:101.0 / 255 alpha:1]];
+    [alertView setMsgAlertView:@"取送车计费方法我" titleFont:18 alertMsg:@"" msgFont:14 msgColor: [UIColor colorWithRed:101.0 / 255 green:101.0 / 255 blue:101.0 / 255 alpha:1]];
 
     alertView.msgLabel.lineBreakMode = NSLineBreakByTruncatingHead;
     [alertView.cancelBtn setTitle:@"知道了" forState:UIControlStateNormal];
@@ -367,10 +367,11 @@
 }
 
 - (void)toastPicBtnClick: (UIButton *)sender {
-    [FYXToast showWithTextImage:@"反馈成功" imageName:@"success.png"];
+    [FYXToast showWithTextImage:@"注册成功，请继续完善资料" imageName:@"success.png"];
 //    [FYXToast showWithImageFrame:@"反馈成功" imageName:@"success.png" frame:CGRectMake([[UIScreen mainScreen] bounds].size.width / 2 - 165 / 2, [[UIScreen mainScreen] bounds].size.height / 2  - 116 / 2, 165, 116)];
 //    [FYXToast showWithFrame:@"您目前的取送车订单有绑" frame:CGRectMake(0, 200, [[UIScreen mainScreen] bounds].size.width , 100)];
 //    [FYXToast showWithText:@"您目前的取送车"];
+//    [FYXToast showWithText:@"密码输入超过5次，请通过忘记密码重之"];
 }
 
 - (void)pageFlowBtnClick: (UIButton *)sender {
