@@ -58,8 +58,6 @@
 		2F011F4D20B2B0A600A4801C /* td2__00027.png in Resources */ = {isa = PBXBuildFile; fileRef = 2F011F1A20B2B0A500A4801C /* td2__00027.png */; };
 		2F011F4E20B2B0A600A4801C /* td2__00024.png in Resources */ = {isa = PBXBuildFile; fileRef = 2F011F1B20B2B0A500A4801C /* td2__00024.png */; };
 		2F011F4F20B2B0A600A4801C /* td2__00005.png in Resources */ = {isa = PBXBuildFile; fileRef = 2F011F1C20B2B0A600A4801C /* td2__00005.png */; };
-		2F011F6720B7A2EB00A4801C /* next.png in Resources */ = {isa = PBXBuildFile; fileRef = 2F011F6620B7A2EB00A4801C /* next.png */; };
-		2F011F6920B7A3EE00A4801C /* prev.png in Resources */ = {isa = PBXBuildFile; fileRef = 2F011F6820B7A3EE00A4801C /* prev.png */; };
 		2F17563B205B981900FAD966 /* safeLight.png in Resources */ = {isa = PBXBuildFile; fileRef = 2F17563A205B981900FAD966 /* safeLight.png */; };
 		2F17563F205B9ECE00FAD966 /* full.png in Resources */ = {isa = PBXBuildFile; fileRef = 2F17563E205B9ECE00FAD966 /* full.png */; };
 		2F2B233C205A64A9005A9C33 /* checkView.png in Resources */ = {isa = PBXBuildFile; fileRef = 2F2B233B205A64A9005A9C33 /* checkView.png */; };
@@ -121,6 +119,10 @@
 		2FB27525204139DD00E985F9 /* FYXCalendar.m in Sources */ = {isa = PBXBuildFile; fileRef = 2FB27524204139DD00E985F9 /* FYXCalendar.m */; };
 		2FB2752C2044EE1F00E985F9 /* FYXCalendarDataModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 2FB2752B2044EE1F00E985F9 /* FYXCalendarDataModel.m */; };
 		2FC02EE62051305A00EA5F11 /* FYXPageFlowLayout.m in Sources */ = {isa = PBXBuildFile; fileRef = 2FC02EE52051305A00EA5F11 /* FYXPageFlowLayout.m */; };
+		2FDB9B7820BBF4AC00A6956E /* prev.png in Resources */ = {isa = PBXBuildFile; fileRef = 2FDB9B7720BBF4AC00A6956E /* prev.png */; };
+		2FDB9B7A20BBF4CF00A6956E /* next.png in Resources */ = {isa = PBXBuildFile; fileRef = 2FDB9B7920BBF4CF00A6956E /* next.png */; };
+		2FDB9B7C20BBF50000A6956E /* prev@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 2FDB9B7B20BBF50000A6956E /* prev@2x.png */; };
+		2FDB9B7E20BBF51800A6956E /* next@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 2FDB9B7D20BBF51800A6956E /* next@2x.png */; };
 		2FE6FDCE2066212500FAA267 /* EventKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2FE6FDCC2066212500FAA267 /* EventKit.framework */; };
 		2FE6FDCF2066212500FAA267 /* EventKitUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2FE6FDCD2066212500FAA267 /* EventKitUI.framework */; };
 /* End PBXBuildFile section */
@@ -194,8 +196,6 @@
 		2F011F1A20B2B0A500A4801C /* td2__00027.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = td2__00027.png; sourceTree = "<group>"; };
 		2F011F1B20B2B0A500A4801C /* td2__00024.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = td2__00024.png; sourceTree = "<group>"; };
 		2F011F1C20B2B0A600A4801C /* td2__00005.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = td2__00005.png; sourceTree = "<group>"; };
-		2F011F6620B7A2EB00A4801C /* next.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = next.png; sourceTree = "<group>"; };
-		2F011F6820B7A3EE00A4801C /* prev.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = prev.png; sourceTree = "<group>"; };
 		2F17563A205B981900FAD966 /* safeLight.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = safeLight.png; sourceTree = "<group>"; };
 		2F17563E205B9ECE00FAD966 /* full.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = full.png; sourceTree = "<group>"; };
 		2F2B233B205A64A9005A9C33 /* checkView.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = checkView.png; sourceTree = "<group>"; };
@@ -301,6 +301,10 @@
 		2FB2752B2044EE1F00E985F9 /* FYXCalendarDataModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FYXCalendarDataModel.m; sourceTree = "<group>"; };
 		2FC02EE42051305A00EA5F11 /* FYXPageFlowLayout.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FYXPageFlowLayout.h; sourceTree = "<group>"; };
 		2FC02EE52051305A00EA5F11 /* FYXPageFlowLayout.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FYXPageFlowLayout.m; sourceTree = "<group>"; };
+		2FDB9B7720BBF4AC00A6956E /* prev.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = prev.png; sourceTree = "<group>"; };
+		2FDB9B7920BBF4CF00A6956E /* next.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = next.png; sourceTree = "<group>"; };
+		2FDB9B7B20BBF50000A6956E /* prev@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "prev@2x.png"; sourceTree = "<group>"; };
+		2FDB9B7D20BBF51800A6956E /* next@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "next@2x.png"; sourceTree = "<group>"; };
 		2FE6FDCC2066212500FAA267 /* EventKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = EventKit.framework; path = System/Library/Frameworks/EventKit.framework; sourceTree = SDKROOT; };
 		2FE6FDCD2066212500FAA267 /* EventKitUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = EventKitUI.framework; path = System/Library/Frameworks/EventKitUI.framework; sourceTree = SDKROOT; };
 /* End PBXFileReference section */
@@ -577,8 +581,10 @@
 				2FB274F0204139BF00E985F9 /* FSCalendar */,
 				2FB27523204139DD00E985F9 /* FYXCalendar.h */,
 				2FB27524204139DD00E985F9 /* FYXCalendar.m */,
-				2F011F6820B7A3EE00A4801C /* prev.png */,
-				2F011F6620B7A2EB00A4801C /* next.png */,
+				2FDB9B7720BBF4AC00A6956E /* prev.png */,
+				2FDB9B7B20BBF50000A6956E /* prev@2x.png */,
+				2FDB9B7920BBF4CF00A6956E /* next.png */,
+				2FDB9B7D20BBF51800A6956E /* next@2x.png */,
 				2FB2752A2044EE1F00E985F9 /* FYXCalendarDataModel.h */,
 				2FB2752B2044EE1F00E985F9 /* FYXCalendarDataModel.m */,
 			);
@@ -743,19 +749,21 @@
 				2F011F3B20B2B0A600A4801C /* td2__00036.png in Resources */,
 				2F011F3420B2B0A600A4801C /* td2__00025.png in Resources */,
 				2F89B4A8202D29A700DC6105 /* LaunchScreen.storyboard in Resources */,
+				2FDB9B7820BBF4AC00A6956E /* prev.png in Resources */,
 				2F39573F2064B86200D6137F /* idle.png in Resources */,
 				2F011F4D20B2B0A600A4801C /* td2__00027.png in Resources */,
 				2F011F3120B2B0A600A4801C /* td2__00002.png in Resources */,
 				2F011F2E20B2B0A600A4801C /* td2__00045.png in Resources */,
+				2FDB9B7E20BBF51800A6956E /* next@2x.png in Resources */,
 				2F011F3620B2B0A600A4801C /* td2__00039.png in Resources */,
 				2F011F2220B2B0A600A4801C /* td2__00032.png in Resources */,
 				2F011F4B20B2B0A600A4801C /* td2__00033.png in Resources */,
 				2F39573D2064AC9500D6137F /* card.png in Resources */,
 				2F011F1D20B2B0A600A4801C /* td2__00008.png in Resources */,
+				2FDB9B7C20BBF50000A6956E /* prev@2x.png in Resources */,
 				2F011F2120B2B0A600A4801C /* td2__00007.png in Resources */,
 				2F011F2320B2B0A600A4801C /* td2__00041.png in Resources */,
 				2F011F4520B2B0A600A4801C /* td2__00016.png in Resources */,
-				2F011F6720B7A2EB00A4801C /* next.png in Resources */,
 				2F011F2B20B2B0A600A4801C /* td2__00011.png in Resources */,
 				2F86FE79203E6BA600994707 /* sure.png in Resources */,
 				2F2B233C205A64A9005A9C33 /* checkView.png in Resources */,
@@ -791,6 +799,7 @@
 				2F011F1F20B2B0A600A4801C /* td2__00012.png in Resources */,
 				2F011F2A20B2B0A600A4801C /* td2__00004.png in Resources */,
 				2F3957452064E40000D6137F /* call.png in Resources */,
+				2FDB9B7A20BBF4CF00A6956E /* next.png in Resources */,
 				2F89B4A3202D29A700DC6105 /* Main.storyboard in Resources */,
 				2F2B234C205B5E03005A9C33 /* light.png in Resources */,
 				2F2B234A205B599E005A9C33 /* lightView.png in Resources */,
@@ -808,7 +817,6 @@
 				2F011F3920B2B0A600A4801C /* td2__00042.png in Resources */,
 				2F011F2820B2B0A600A4801C /* td2__00000.png in Resources */,
 				2F011F3820B2B0A600A4801C /* td2__00015.png in Resources */,
-				2F011F6920B7A3EE00A4801C /* prev.png in Resources */,
 				2F011F4620B2B0A600A4801C /* td2__00021.png in Resources */,
 				2F011F4120B2B0A600A4801C /* td2__00014.png in Resources */,
 				2F011F2C20B2B0A600A4801C /* td2__00028.png in Resources */,
