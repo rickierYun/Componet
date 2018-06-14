@@ -13,7 +13,7 @@
     self = [super initWithFrame:frame];
     if (self) {
 
-        self.backgroundColor = [UIColor colorWithRed:20.0 / 255 green:206.0 / 255 blue:1 alpha:1.0f];
+        self.backgroundColor = [UIColor colorWithRed:11.0 / 255 green:171.0 / 255 blue:254/ 255.0 alpha:1.0f];
         self.layer.cornerRadius = self.frame.size.width / 2;
 
         [self startAnimation];
@@ -45,7 +45,7 @@
     checkLayer.path = path.CGPath;
     checkLayer.fillColor = [UIColor clearColor].CGColor;
     checkLayer.strokeColor = [UIColor whiteColor].CGColor;
-    checkLayer.lineWidth = 5.0;
+    checkLayer.lineWidth = 2.0;
     checkLayer.lineCap = kCALineCapRound;       // 起始弧线的线帽
     checkLayer.lineJoin = kCALineJoinRound;     // 转折角度的弧度
     [self.layer addSublayer:checkLayer];

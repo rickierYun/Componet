@@ -160,4 +160,12 @@
  *actionSheetAlert
  **/
 - (void)setActionSheetAlert;
+/**
+ *弹窗文字可点击
+ **/
+- (void)setMsgClickAlertTitle: (NSString *)alertTitle titleFont:(NSInteger) titleFont msg:(NSString *)msg msgFont: (NSInteger) msgFont  clickMsgRange: (NSRange )range clickMsgFont: (NSInteger)clickMsgFont;
+/**
+ *设置弹窗文字可点击高度
+ **/
+- (void)setMsgClickAlertTitleFrame : (CGRect)frame;
 @end

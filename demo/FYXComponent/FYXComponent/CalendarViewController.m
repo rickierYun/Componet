@@ -23,7 +23,8 @@
 
 
 
-    FYXCalendar *fyxCalendar = [[FYXCalendar alloc]initWithFrame:CGRectMake(0, 60, self.view.frame.size.width, self.view.frame.size.height )];
+    FYXCalendar *fyxCalendar = [[FYXCalendar alloc]initWithFrame:CGRectMake(0, 80, self.view.frame.size.width, self.view.frame.size.height )];
+    
     fyxCalendar.delegate = self;
     //    fyxCalendar.calendar.appearance.borderRadius = 1;
     //    [fyxCalendar.nextWeekBtn setTitle:@"AAA" forState:UIControlStateNormal];
@@ -70,18 +71,20 @@
 
     fyxCalendar.afternoonData = aftoonTime;
     fyxCalendar.morningData = morningTime;
+    
 
-    NSString *string = @"2018-5-28 09:33:22";
+    NSString *string = @"2018-5-18 09:33:22";
     NSDateFormatter *format = [[NSDateFormatter alloc] init];
     format.dateFormat = @"yyyy-MM-dd HH:mm:ss";
     NSDate *data = [format dateFromString:string];
-    fyxCalendar.minimumDate = data;
+    fyxCalendar.minimumDate = [NSDate date];
 //    [fyxCalendar.calendar selectDate:[NSDate date] compareData: data];
     [fyxCalendar.calendar selectDate:[NSDate date]];
 
 
     fyxCalendar.timeBtnSelectColor = [UIColor getMainGradientColor:fyxCalendar.afternoonBtn.frame];
     [fyxCalendar setCalendarData];
+    fyxCalendar.calendar.appearance.titleDefaultColor = [UIColor blueColor];
     [fyxCalendar.calendar reloadData];
 
     [self.view addSubview:fyxCalendar];

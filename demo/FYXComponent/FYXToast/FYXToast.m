@@ -45,13 +45,13 @@ CGFloat nativeScaless(void) {
         contentView = [[UIButton alloc] init];
         if (imageName != nil) {
             // 设置图片
-            textLabel.frame = CGRectMake(30, 59, textSize.width, textSize.height + 12);
-            contentView.frame = CGRectMake(0, 0, textLabel.frame.size.width + 60, textLabel.frame.size.height + 70+9);
-
-            UIImageView *imageView = [[UIImageView alloc]initWithFrame:CGRectMake(contentView.center.x - 13, 24, 26, 26)];
+            textLabel.frame = CGRectMake(0, 6, 208 * displayScales, textSize.height + 12);
+            contentView.frame = CGRectMake(0, 0, 208 * displayScales, 116 * displayScales);
+            textLabel.textAlignment = NSTextAlignmentCenter;
+            UIImageView *imageView = [[UIImageView alloc]initWithFrame:CGRectMake(contentView.center.x - 13, 24, 30, 30)];
             imageView.image = [UIImage imageNamed:imageName];
             [contentView addSubview:imageView];
-            contentView.layer.cornerRadius = 5.0f;
+            contentView.layer.cornerRadius = 10.0f;
         }else {
             contentView.layer.cornerRadius = 5.0f;
             textLabel.frame = CGRectMake(20, 5, textSize.width, textSize.height + 12);

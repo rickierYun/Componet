@@ -57,4 +57,5 @@
 
 @interface CollectionCell : UICollectionViewCell
 @property (nonatomic, strong) UIButton *timeBtn;
+@property (nonatomic, weak) UIImageView *bgImg;
 @end

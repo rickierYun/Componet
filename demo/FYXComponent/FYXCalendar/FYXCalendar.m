@@ -210,7 +210,7 @@ CGFloat nativScale(void) {
         }else {
             collectionHeigt = VIEW_HEIGHT(self) - VIEW_HEIGHT(_calendar) -30 * displayScale;
         }
-        UICollectionView *collectView = [[UICollectionView alloc]initWithFrame:CGRectMake(VIEW_X(_calendar), VIEW_Y_Bottom(morningBtn) + 18, VIEW_WIDTH(_calendar), collectionHeigt)collectionViewLayout:flowLayout];
+        UICollectionView *collectView = [[UICollectionView alloc]initWithFrame:CGRectMake(15 * displayScale, VIEW_Y_Bottom(morningBtn) + 18, SCREEN_WIDTH - 30 * displayScale, collectionHeigt)collectionViewLayout:flowLayout];
 
         collectView.dataSource = self;
         collectView.delegate = self;
@@ -334,7 +334,8 @@ CGFloat nativScale(void) {
     [cell.timeBtn setTitleColor:self.timeDetailColor forState:UIControlStateNormal];
     FYXCalendarDataModel *model = timeData[indexPath.row];
     [cell.timeBtn setTitle:model.timeStr forState:UIControlStateNormal];
-    cell.timeBtn.enabled = model.timeStatus;
+    cell.timeBtn.enabled =NO;
+//    [cell.timeBtn addTarget:self action:@selector(timeBtnClick:) forControlEvents:UIControlEventTouchUpInside];
     if ([self.delegate respondsToSelector:@selector(calendar:collectionView:willDisplayCell:cellForItemAtIndexPath:)]) {
         [self.delegate calendar:self collectionView:collectionView willDisplayCell:cell cellForItemAtIndexPath:indexPath];
     }
@@ -350,18 +351,19 @@ CGFloat nativScale(void) {
 
 
     }
-    [cell.timeBtn setBackgroundImage:[UIImage imageNamed:model.timeUnenabledPic] forState:UIControlStateNormal];
+//    [cell.timeBtn setBackgroundImage:[UIImage imageNamed:model.timeUnenabledPic] forState:UIControlStateNormal];
+    cell.bgImg.image = [UIImage imageNamed:model.timeUnenabledPic];
 
     return cell;
 }
 
 - (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout sizeForItemAtIndexPath:(NSIndexPath *)indexPath {
     if (VIEW_HEIGHT(self.collectView) < 128) {
-        return CGSizeMake((VIEW_WIDTH(_calendar) - 12 * 3) / 4, 0);
+        return CGSizeMake((VIEW_WIDTH(self.collectView) - 12 * 3 ) / 4, 0);
     }if (VIEW_HEIGHT(self.collectView) >= 224 * displayScale) {
-        return CGSizeMake((VIEW_WIDTH(_calendar) - 12 * 3) / 4, ((224 * displayScale) - 12 * 3) / 4);
+        return CGSizeMake((VIEW_WIDTH(self.collectView) - 12 * 3) / 4, ((224 * displayScale) - 12 * 3) / 4);
     }
-    return CGSizeMake((VIEW_WIDTH(_calendar) - 12 * 3) / 4, (VIEW_HEIGHT(self.collectView) - 12 * 3) / 4);
+    return CGSizeMake((VIEW_WIDTH(self.collectView) - 12 * 3) / 4, (VIEW_HEIGHT(self.collectView) - 12 * 3) / 4);
 }
 
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
@@ -386,6 +388,29 @@ CGFloat nativScale(void) {
     }
     
 }
+
+//- (void)timeBtnClick: (UIButton *)sender {
+////    if (sender.tag != selectTimeIndex.row) {
+//
+//        sender.layer.borderColor = self.timeDetailSelectColor.CGColor;
+//        [sender setTitleColor:self.timeDetailSelectColor forState:UIControlStateNormal];
+//
+////        CollectionCell *lastcell = (CollectionCell *)[collectionView cellForItemAtIndexPath:selectTimeIndex];
+////        lastcell.timeBtn.layer.borderColor = self.timeDetailColor.CGColor;
+////        [lastcell.timeBtn setTitleColor:self.timeDetailColor forState:UIControlStateNormal];
+////        selectTimeIndex = indexPath;
+//        if ([selectDay isEqual:@""]) {
+//            selectDay = @"no day select";
+//        }
+//        selectDay = [selectDay substringWithRange:NSMakeRange(0, 10)];
+//        selectDay = [NSString stringWithFormat:@"%@ %@",selectDay,sender.titleLabel.text];
+//
+//        if ([self.delegate respondsToSelector:@selector(calendar:selectTime: )]) {
+//            [self.delegate calendar:self selectTime:selectDay];
+//        }
+////    }
+//
+//}
 
 - (BOOL)collectionView:(UICollectionView *)collectionView shouldSelectItemAtIndexPath:(NSIndexPath *)indexPath {
     return YES;
@@ -428,15 +453,23 @@ CGFloat nativScale(void) {
 - (id)initWithFrame:(CGRect)frame {
     self = [super initWithFrame:frame];
     if (self) {
+        UIImageView *bgImg = [[UIImageView alloc]init];
+        [self addSubview:bgImg];
+        self.bgImg = bgImg;
         _timeBtn = [[UIButton alloc]init];
         _timeBtn.layer.borderColor = [UIColor lightGrayColor].CGColor;
         _timeBtn.layer.borderWidth = 1;
         _timeBtn.layer.cornerRadius = 5;
+        _timeBtn.titleLabel.font = [UIFont systemFontOfSize: 16 * displayScale];
         [_timeBtn setTitle:@"8:00" forState:UIControlStateNormal];
         [_timeBtn setTitleColor:[UIColor lightGrayColor] forState:UIControlStateNormal];
         _timeBtn.frame = CGRectMake(0, 0, frame.size.width, frame.size.height);
         _timeBtn.enabled = NO;
         [self addSubview:_timeBtn];
+
+
+        bgImg.frame = _timeBtn.bounds;
+
     }
     return self;
 }

@@ -8,6 +8,7 @@
 
 #import "FYXAlertView.h"
 #import "UILabel+YBAttributeTextTapAction.h"
+#import <CoreText/CoreText.h>
 
 #define SCREEN_WIDTH  [[UIScreen mainScreen] bounds].size.width
 #define SCREEN_HEIGHT [[UIScreen mainScreen] bounds].size.height
@@ -59,6 +60,7 @@ CGFloat nativeScale(void) {
     UILabel     * _instruteTextLb;
     UILabel     * _suggestTitleLb;
     UILabel     * _suggestLb;
+    UIView      * lineBreak2;
 }
 
 - (id)initWithFrame: (CGRect)frame {
@@ -106,7 +108,7 @@ CGFloat nativeScale(void) {
     _alertTitle = [[UILabel alloc]init];
     _alertTitle.frame = CGRectMake(19 * displayScale, 5, VIEW_WIDTH(_alertView) - 38 * displayScale, VIEW_HEIGHT(_alertView) * 2 / 3);
     _alertTitle.numberOfLines = 0;
-    _alertTitle.lineBreakMode = NSLineBreakByClipping;
+    _alertTitle.lineBreakMode = NSLineBreakByCharWrapping;
     _alertTitle.textAlignment = NSTextAlignmentCenter;
     _alertTitle.textColor     = [UIColor colorWithRed:50/255.0 green:50/255.0 blue:50/255.0 alpha:1.0];
     [_alertView addSubview:_alertTitle];
@@ -116,8 +118,8 @@ CGFloat nativeScale(void) {
     UIButton *_sureBtn   = [[UIButton alloc]init];
     UIButton *_cancelBtn = [[UIButton alloc]init];
 
-    _sureBtn.frame   = CGRectMake(VIEW_WIDTH(_alertView) / 2, VIEW_HEIGHT(_alertTitle), VIEW_WIDTH(_alertView) / 2, VIEW_HEIGHT(_alertView) * 1 / 3);
-    _cancelBtn.frame = CGRectMake(0,VIEW_HEIGHT(_alertTitle), VIEW_WIDTH(_alertView) / 2, VIEW_HEIGHT(_alertView) * 1 / 3);
+    _sureBtn.frame   = CGRectMake(VIEW_WIDTH(_alertView) / 2, VIEW_HEIGHT(_alertTitle) + 5 * displayScale, VIEW_WIDTH(_alertView) / 2, 50 * displayScale);
+    _cancelBtn.frame = CGRectMake(0,VIEW_HEIGHT(_alertTitle) + 5 * displayScale, VIEW_WIDTH(_alertView) / 2, 50 * displayScale);
     
     [_cancelBtn setTitleColor:[UIColor colorWithRed:50/255.0 green:50/255.0 blue:50/255.0 alpha:1.0] forState:UIControlStateNormal];
     [_sureBtn setTitleColor:[UIColor colorWithRed:11/255.0 green:171/255.0 blue:254/255.0 alpha:1.0] forState:UIControlStateNormal];
@@ -135,7 +137,7 @@ CGFloat nativeScale(void) {
 
     // 分割线
 
-    UIView *lineBreak2 = [[UIView alloc]init];
+    lineBreak2 = [[UIView alloc]init];
 
     _lineBreak1.frame = CGRectMake(VIEW_X(_cancelBtn), VIEW_Y(_cancelBtn), VIEW_WIDTH(_alertView), 1);
     lineBreak2.frame  = CGRectMake(VIEW_WIDTH(_alertView) / 2, VIEW_Y(_cancelBtn), 1, VIEW_HEIGHT(_cancelBtn));
@@ -152,12 +154,32 @@ CGFloat nativeScale(void) {
     [self createAlertView];
     _alertTitle.text = alertTitle;
 
-    if ([alertTitle length] > 13) {
+    [_alertTitle setFont: [UIFont systemFontOfSize:( titleFont * displayScale)]];
+
+
+    UIFont *font = [UIFont boldSystemFontOfSize: 17 * displayScale];
+    NSDictionary *attrs = @{NSFontAttributeName : font};
+    CGSize textSize = [alertTitle boundingRectWithSize:CGSizeMake(220, MAXFLOAT) options:NSStringDrawingUsesLineFragmentOrigin attributes:attrs context:nil].size;
+
+    if ([self isABC:alertTitle]) {
+        _alertTitle.frame = CGRectMake(19 * displayScale, 40 * displayScale, VIEW_WIDTH(_alertView) - 38 * displayScale, textSize.height);
+    }
+    else {
+        _alertTitle.frame = CGRectMake(25 * displayScale, 40 * displayScale, VIEW_WIDTH(_alertView) -50 * displayScale, textSize.height);
+    }
+
+
+    self.alertView.frame = CGRectMake(55 * displayScale, 200 * displayScale, VIEW_WIDTH(self)  - 110 *displayScale, VIEW_Y_Bottom(_alertTitle) +  75 * displayScale);
+    _sureBtn.frame   = CGRectMake(VIEW_WIDTH(_alertView) / 2, VIEW_Y_Bottom(_alertTitle) + 24 * displayScale, VIEW_WIDTH(_alertView) / 2, 50 * displayScale);
+    _cancelBtn.frame = CGRectMake(0,VIEW_Y_Bottom(_alertTitle) + 24 * displayScale, VIEW_WIDTH(_alertView) / 2, 50 * displayScale);
+    lineBreak2.frame  = CGRectMake(VIEW_WIDTH(_alertView) / 2, VIEW_Y(_cancelBtn), 1, VIEW_HEIGHT(_cancelBtn));
+    _lineBreak1.frame = CGRectMake(VIEW_X(_cancelBtn), VIEW_Y(_cancelBtn), VIEW_WIDTH(_alertView), 1);
+
+    if ([[self getLinesArrayOfStringInLabel:_alertTitle] count] > 1) {
         _alertTitle.textAlignment = NSTextAlignmentLeft;
     }else {
         _alertTitle.textAlignment = NSTextAlignmentCenter;
     }
-    [_alertTitle setFont: [UIFont systemFontOfSize:( titleFont * displayScale)]];
 }
 
 - (void)setAlertTitleFrame : (CGRect)frame {
@@ -188,7 +210,7 @@ CGFloat nativeScale(void) {
     _richTextView.frame = CGRectMake(24 * displayScale,
                                  VIEW_Y_Bottom(_alertTitle) + 12 * displayScale,
                                  VIEW_WIDTH(_msgAlertView) - 48 * displayScale,
-                                 VIEW_HEIGHT(_msgAlertView) - VIEW_HEIGHT(_alertTitle) - 90 * displayScale);
+                                 VIEW_HEIGHT(_msgAlertView) - VIEW_HEIGHT(_alertTitle) - 116 * displayScale);
      
 //    _richTextView.numberOfLines = 0;
 //    _richTextView.lineBreakMode = NSLineBreakByCharWrapping;
@@ -201,7 +223,7 @@ CGFloat nativeScale(void) {
 
     UIButton *_cancelBtn = [[UIButton alloc]init];
     _cancelBtn.frame = CGRectMake(0,
-                                  VIEW_HEIGHT(_alertTitle) + VIEW_Y(_alertTitle) + VIEW_HEIGHT(_richTextView) + 16 * displayScale,
+                                  VIEW_Y_Bottom(_richTextView) +26 * displayScale,
                                   VIEW_WIDTH(_msgAlertView),
                                   50 * displayScale);
 
@@ -216,23 +238,62 @@ CGFloat nativeScale(void) {
 // 设置弹窗内容
 - (void)setMsgAlertView: (NSString *)alertTitle titleFont:(NSInteger) titleFont alertMsg:(NSString *)msg msgFont:(NSInteger)msgFont  msgColor: (UIColor *)msgColor{
     [self createMsgAlert];
+    _richTextView.editable = NO;
     _alertTitle.text = alertTitle;
     _richTextView.text   = msg;
     _richTextView.textColor = msgColor;
     [_alertTitle setFont:[UIFont boldSystemFontOfSize:titleFont * displayScale]];
     if ([alertTitle length] > 12) {
         _alertTitle.frame = CGRectMake(24 * displayScale,25 * displayScale , VIEW_WIDTH(_msgAlertView) - 48 * displayScale, 60 * displayScale);
+
+    }
+
+    UIFont *font = [UIFont boldSystemFontOfSize: 16];
+    NSDictionary *attrs = @{NSFontAttributeName : font};
+    CGSize textSize = [msg boundingRectWithSize:CGSizeMake(240, MAXFLOAT) options:NSStringDrawingUsesLineFragmentOrigin attributes:attrs context:nil].size;
+    if (( textSize.height + VIEW_Y_Bottom(_alertTitle) + 92 * displayScale) < 300 *displayScale ) {
+        NSLog(@"%f",VIEW_Y_Bottom(_alertTitle));
+        if (SCREEN_WIDTH == 320) {
+            _msgAlertView.frame = CGRectMake(40 * displayScale,
+                                             160 * displayScale,
+                                             295 * displayScale,
+                                             textSize.height + VIEW_Y_Bottom(_alertTitle) + 92 * displayScale);
+            _richTextView.frame  = CGRectMake(24 * displayScale,
+                                              VIEW_Y_Bottom(_alertTitle) + 12* displayScale,
+                                              VIEW_WIDTH(_msgAlertView) - 48 * displayScale,
+                                              textSize.height + 20 * displayScale );
+
+            _cancelBtn.frame    = CGRectMake(0,
+                                             VIEW_Y_Bottom(_richTextView) +6 * displayScale,
+                                             VIEW_WIDTH(_msgAlertView),
+                                             50 * displayScale);
+        }else {
+            _msgAlertView.frame = CGRectMake(40 * displayScale,
+                                             160 * displayScale,
+                                             295 * displayScale,
+                                             textSize.height + VIEW_Y_Bottom(_alertTitle) + 102 * displayScale);
+            _richTextView.frame  = CGRectMake(24 * displayScale,
+                                              VIEW_Y_Bottom(_alertTitle) + 12 * displayScale,
+                                              VIEW_WIDTH(_msgAlertView) - 48 * displayScale,
+                                              textSize.height + 20 * displayScale );
+
+            _cancelBtn.frame    = CGRectMake(0,
+                                             VIEW_Y_Bottom(_richTextView) +16 * displayScale,
+                                             VIEW_WIDTH(_msgAlertView),
+                                             50 * displayScale);
+        }
+
+    }else {
         _msgAlertView.frame = CGRectMake(40 * displayScale,
                                          160 * displayScale,
                                          295 * displayScale,
-                                         350 * displayScale);
-        _richTextView.frame  = CGRectMake(24 * displayScale,
-                                          VIEW_HEIGHT(_alertTitle) + VIEW_Y(_alertTitle) + 12 * displayScale,
-                                          VIEW_WIDTH(_msgAlertView) - 48 * displayScale,
-                                          VIEW_HEIGHT(_msgAlertView) - VIEW_HEIGHT(_alertTitle) - 90 * displayScale);
-
+                                         300 * displayScale);
+        _richTextView.frame = CGRectMake(24 * displayScale,
+                                         VIEW_Y_Bottom(_alertTitle) + 12 * displayScale,
+                                         VIEW_WIDTH(_msgAlertView) - 48 * displayScale,
+                                         VIEW_HEIGHT(_msgAlertView) - VIEW_HEIGHT(_alertTitle) - 116 * displayScale);
         _cancelBtn.frame    = CGRectMake(0,
-                                         VIEW_HEIGHT(_alertTitle) + VIEW_Y(_alertTitle) + VIEW_HEIGHT(_richTextView) + 16 * displayScale,
+                                         VIEW_Y_Bottom(_richTextView) +26 * displayScale,
                                          VIEW_WIDTH(_msgAlertView),
                                          50 * displayScale);
     }
@@ -250,10 +311,10 @@ CGFloat nativeScale(void) {
     _richTextView.frame  = CGRectMake(24 * displayScale,
                                          VIEW_HEIGHT(_alertTitle) + VIEW_Y(_alertTitle) + 12 * displayScale,
                                          VIEW_WIDTH(_msgAlertView) - 48 * displayScale,
-                                         VIEW_HEIGHT(_msgAlertView) - VIEW_HEIGHT(_alertTitle) - 90 * displayScale);
+                                         VIEW_HEIGHT(_msgAlertView) - VIEW_HEIGHT(_alertTitle) - 116 * displayScale);
 
     _cancelBtn.frame    = CGRectMake(0,
-                                     VIEW_HEIGHT(_alertTitle) + VIEW_Y(_alertTitle) + VIEW_HEIGHT(_richTextView) + 16 * displayScale,
+                                     VIEW_Y_Bottom(_richTextView) +26 * displayScale,
                                      VIEW_WIDTH(_msgAlertView),
                                      50 * displayScale);
 
@@ -274,10 +335,10 @@ CGFloat nativeScale(void) {
     _richTextView.frame     = CGRectMake(24 * displayScale,
                                      VIEW_HEIGHT(_alertTitle) + VIEW_Y(_alertTitle) + 12 * displayScale,
                                      VIEW_WIDTH(_msgAlertView) - 48 * displayScale,
-                                     VIEW_HEIGHT(_msgAlertView) - VIEW_HEIGHT(_alertTitle) - 90 * displayScale);
+                                     VIEW_HEIGHT(_msgAlertView) - VIEW_HEIGHT(_alertTitle) - 116 * displayScale);
 
     _cancelBtn.frame    = CGRectMake(0,
-                                     VIEW_HEIGHT(_alertTitle) + VIEW_Y(_alertTitle) + VIEW_HEIGHT(_richTextView) + 16 * displayScale,
+                                     VIEW_Y_Bottom(_richTextView) + 26,
                                      VIEW_WIDTH(_msgAlertView),
                                      50 * displayScale);
 
@@ -386,6 +447,23 @@ CGFloat nativeScale(void) {
 
     if (imageName != nil) {
         _alertTitleImage.image = [UIImage imageNamed:imageName];
+    }
+
+    UIFont *font = [UIFont boldSystemFontOfSize: contentFont];
+    NSDictionary *attrs = @{NSFontAttributeName : font};
+    CGSize textSize = [content boundingRectWithSize:CGSizeMake(240, MAXFLOAT) options:NSStringDrawingUsesLineFragmentOrigin attributes:attrs context:nil].size;
+    if (textSize.height > 70 * displayScale) {
+        _alertView.frame = CGRectMake(40 * displayScale, 160 * displayScale, VIEW_WIDTH(self) - 80 * displayScale, 200 * displayScale + textSize.height - 70 * displayScale);
+        _msgLabel.frame = CGRectMake(15,
+                                     VIEW_Y(_alertTitleImage) + VIEW_HEIGHT(_alertTitleImage),
+                                     VIEW_WIDTH(_alertView) - 30 * displayScale,
+                                     textSize.height);
+        _cancelBtn.frame = CGRectMake(0,
+                                      VIEW_HEIGHT(_msgLabel) + 10 * displayScale + VIEW_Y(_msgLabel),
+                                      VIEW_WIDTH(_alertView),
+                                      50 * displayScale);
+        _lineBreak1.frame = CGRectMake(0 * displayScale, VIEW_Y(_cancelBtn), VIEW_WIDTH(_cancelBtn), 1);
+
     }
 
 }
@@ -806,16 +884,7 @@ CGFloat nativeScale(void) {
     _msgAlertView = [[UIView alloc]init];
     _alertTitle.font = font;
 
-    if ([title length] < 22) {
-        _alertTitle.frame = CGRectMake(8 * displayScale, 11 * displayScale, VIEW_WIDTH(self) - 50 * displayScale , 12 * displayScale);
-        _msgAlertView.frame = CGRectMake(0, 0, VIEW_WIDTH(self), 36 * displayScale);
-    }else if ([title length] > 22 && [title length] < 44) {
-        _alertTitle.frame = CGRectMake(8 * displayScale, 11 * displayScale, VIEW_WIDTH(self) - 50 * displayScale , 40 * displayScale);
-        _msgAlertView.frame = CGRectMake(0, 0, VIEW_WIDTH(self), 61 * displayScale);
-    }else {
-        _alertTitle.frame = CGRectMake(8 * displayScale, 11 * displayScale, VIEW_WIDTH(self) - 50 * displayScale , 53 * displayScale);
-        _msgAlertView.frame = CGRectMake(0, 0, VIEW_WIDTH(self), 61 * displayScale);
-    }
+
 
     _alertTitle.text = title;
     NSMutableAttributedString *attributedString2 = [[NSMutableAttributedString alloc]initWithString:title];
@@ -827,6 +896,17 @@ CGFloat nativeScale(void) {
         _alertTitle.textAlignment = NSTextAlignmentLeft;
     }else {
         _alertTitle.textAlignment = NSTextAlignmentCenter;
+    }
+
+    if ([title length] < 22) {
+        _alertTitle.frame = CGRectMake(8 * displayScale, 7 * displayScale, VIEW_WIDTH(self) - 50 * displayScale , 12 * displayScale);
+        _msgAlertView.frame = CGRectMake(0, 0, VIEW_WIDTH(self), 26 * displayScale);
+    }else if ([title length] > 22 && [title length] < 44) {
+        _alertTitle.frame = CGRectMake(8 * displayScale, 7 * displayScale, VIEW_WIDTH(self) - 50 * displayScale , 40 * displayScale);
+        _msgAlertView.frame = CGRectMake(0, 0, VIEW_WIDTH(self), 54 * displayScale);
+    }else {
+        _alertTitle.frame = CGRectMake(8 * displayScale, 7 * displayScale, VIEW_WIDTH(self) - 50 * displayScale , 53 * displayScale);
+        _msgAlertView.frame = CGRectMake(0, 0, VIEW_WIDTH(self), 67 * displayScale);
     }
     self.msgLabel = _alertTitle;
 
@@ -842,6 +922,9 @@ CGFloat nativeScale(void) {
 
     [self addSubview:_msgAlertView];
     self.alertView = _msgAlertView;
+
+
+
 
 
     //    NSDictionary *attrs = @{NSFontAttributeName : font};
@@ -948,53 +1031,99 @@ CGFloat nativeScale(void) {
 
 }
 
-#pragma -mark 取送车计费方法
-//- (void)createGetCarPriceAlert {
-//    _msgAlertView = [[UIView alloc]init];
-//
-//    _msgAlertView.frame = CGRectMake(VIEW_CENTER_X(self) - 100 * displayScale,
-//                                     160 * displayScale,
-//                                     200 * displayScale,
-//                                     300 * displayScale);
-//    _msgAlertView.layer.cornerRadius = 8;
-//    _msgAlertView.backgroundColor = [UIColor whiteColor];
-//    [self addSubview:_msgAlertView];
-//
-//    _alertTitle = [[UILabel alloc]init];
-//    _alertTitle.frame = CGRectMake(0, 5, VIEW_WIDTH(_msgAlertView), 23 * displayScale);
-//    _alertTitle.numberOfLines = 1;
-//    _alertTitle.textAlignment = NSTextAlignmentCenter;
-//    _alertTitle.textColor     = [UIColor blackColor];
-//    [_msgAlertView addSubview:_alertTitle];
-//
-//    UITextView *_richTextView = [[UITextView alloc]init];
-//    _richTextView.frame = CGRectMake(8 * displayScale,
-//                                     VIEW_Y_Bottom(_alertTitle) + 5 * displayScale,
-//                                     VIEW_WIDTH(_msgAlertView) - 16 * displayScale,
-//                                     VIEW_HEIGHT(_msgAlertView) - VIEW_HEIGHT(_alertTitle) - 40 * displayScale);
-//
-//    //    _richTextView.numberOfLines = 0;
-//    //    _richTextView.lineBreakMode = NSLineBreakByCharWrapping;
-//    _richTextView.textAlignment = NSTextAlignmentLeft;
-//    _richTextView.textColor     = [UIColor blackColor];
-//    _richTextView.editable = NO;
-//    [_msgAlertView addSubview:_richTextView];
-//    self.richTextView = _richTextView;
-//
-//
-//    UIButton *_cancelBtn = [[UIButton alloc]init];
-//    _cancelBtn.frame = CGRectMake(0,
-//                                  VIEW_HEIGHT(_alertTitle) + VIEW_Y(_alertTitle) + VIEW_HEIGHT(_richTextView),
-//                                  VIEW_WIDTH(_msgAlertView),
-//                                  35 * displayScale);
-//
-//    _cancelBtn.titleLabel.font = [UIFont systemFontOfSize:17 * displayScale];
-//    [_cancelBtn addTarget:self action:@selector(cancelClick:) forControlEvents:UIControlEventTouchUpInside];
-//    [_msgAlertView addSubview:_cancelBtn];
-//    self.cancelBtn = _cancelBtn;
-//    // 分割线
-//
-//}
+#pragma -mark 基本弹窗文字可点击
+// 创建弹窗
+- (void)createMsgClickAlertView {
+    UIView *_alertView = [[UIView alloc]init];
+    _alertView.frame = CGRectMake(40 * displayScale, 200 * displayScale, VIEW_WIDTH(self)  - 80 *displayScale, 177 * displayScale);
+    _alertView.backgroundColor = [UIColor whiteColor];
+    _alertView.alpha = 0.96;
+    _alertView.layer.cornerRadius = 8;
+    [self addSubview:_alertView];
+    self.alertView = _alertView;
+
+    _alertTitle = [[UILabel alloc]init];
+    _alertTitle.frame = CGRectMake(19 * displayScale, 24 * displayScale, VIEW_WIDTH(_alertView) - 38 * displayScale, 18 * displayScale);
+    _alertTitle.numberOfLines = 0;
+    _alertTitle.lineBreakMode = NSLineBreakByClipping;
+    _alertTitle.textAlignment = NSTextAlignmentCenter;
+    _alertTitle.textColor     = [UIColor colorWithRed:50/255.0 green:50/255.0 blue:50/255.0 alpha:1.0];
+    _alertTitle.font          = [UIFont fontWithName:@"PingFangSC-Medium" size:18];
+    [_alertView addSubview:_alertTitle];
+
+    UILabel *msgLable = [[UILabel alloc]init];
+    msgLable.frame = CGRectMake(19 * displayScale, VIEW_Y_Bottom(_alertTitle) + 16 * displayScale, VIEW_WIDTH(_alertView) - 38 * displayScale, 40 * displayScale);
+    msgLable.textColor = [UIColor colorWithRed:50/255.0 green:50/255.0 blue:50/255.0 alpha:1.0];
+    msgLable.textAlignment = NSTextAlignmentCenter;
+    msgLable.numberOfLines = 0;
+    [_alertView addSubview:msgLable];
+
+    self.msgLabel = msgLable;
+
+    UIButton *msgBtn = [[UIButton alloc]init];
+    msgBtn.frame = msgLable.frame;
+    [msgBtn addTarget:self action:@selector(otherClick:) forControlEvents:UIControlEventTouchUpInside];
+    [_alertView addSubview:msgBtn];
+    // 取消、确定按钮
+    UIButton *cancelBtn   = [[UIButton alloc]init];
+
+    cancelBtn.frame   = CGRectMake(0, VIEW_Y_Bottom(msgLable) + 27 * displayScale, VIEW_WIDTH(_alertView), 50 * displayScale);
+
+    [cancelBtn setTitleColor:[UIColor colorWithRed:11/255.0 green:171/255.0 blue:254/255.0 alpha:1.0] forState:UIControlStateNormal];
+
+    cancelBtn.titleLabel.font   = [UIFont boldSystemFontOfSize:18 * displayScale];
+
+    [cancelBtn setTitle:@"知道了" forState:UIControlStateNormal];
+
+    [cancelBtn addTarget:self action:@selector(cancelClick:) forControlEvents:UIControlEventTouchUpInside];
+
+    [_alertView addSubview:cancelBtn];
+
+    self.cancelBtn = cancelBtn;
+
+    // 分割线
+
+    _lineBreak1.frame = CGRectMake(VIEW_X(cancelBtn), VIEW_Y(cancelBtn), VIEW_WIDTH(_alertView), 1);
+
+    [_alertView addSubview:_lineBreak1];
+
+
+}
+
+// 弹窗文字可点击
+- (void)setMsgClickAlertTitle: (NSString *)alertTitle titleFont:(NSInteger) titleFont msg:(NSString *)msg msgFont: (NSInteger) msgFont  clickMsgRange: (NSRange )range clickMsgFont: (NSInteger)clickMsgFont{
+    [self createMsgClickAlertView];
+
+    [_alertTitle setFont: [UIFont fontWithName:@"PingFangSC-Medium" size: titleFont * displayScale]];
+    _alertTitle.text = alertTitle;
+    self.msgLabel.font = [UIFont systemFontOfSize:msgFont * displayScale];
+    NSMutableAttributedString *text = [[NSMutableAttributedString alloc]initWithString:msg];
+
+    [text addAttribute:NSFontAttributeName value:[UIFont systemFontOfSize:clickMsgFont * displayScale] range:range];
+    [text addAttribute:NSForegroundColorAttributeName value:[UIColor colorWithRed:11/255.0 green:171/255.0 blue:254/255.0 alpha:1/1.0] range:range];
+    self.msgLabel.attributedText = text;
+
+    if ([alertTitle length] > 15) {
+        _alertTitle.textAlignment = NSTextAlignmentLeft;
+        _alertView.frame = CGRectMake(40 * displayScale, 200 * displayScale, VIEW_WIDTH(self)  - 80 *displayScale, 199 * displayScale);
+        _alertTitle.frame = CGRectMake(19 * displayScale, 24 * displayScale, VIEW_WIDTH(_alertView) - 38 * displayScale, 40 * displayScale);
+    }else {
+        _alertTitle.textAlignment = NSTextAlignmentCenter;
+    }
+
+    if ([msg length] > 15) {
+        self.msgLabel.textAlignment = NSTextAlignmentLeft;
+
+    }else {
+        self.msgLabel.textAlignment = NSTextAlignmentCenter;
+    }
+
+
+}
+
+- (void)setMsgClickAlertTitleFrame : (CGRect)frame {
+    self.alertView.frame = frame;
+}
 
 #pragma -mark action
 // 点击背景隐藏
@@ -1030,5 +1159,60 @@ CGFloat nativeScale(void) {
     if ([self.delegate respondsToSelector:@selector(cancelBtnDidClick:)]) {
         [self.delegate cancelBtnDidClick:self];
     }
+}
+
+
+- (NSArray *)getLinesArrayOfStringInLabel:(UILabel *)label{
+    NSString *text = [label text];
+    UIFont *font = [label font];
+    CGRect rect = [label frame];
+
+    CTFontRef myFont = CTFontCreateWithName(( CFStringRef)([font fontName]), [font pointSize], NULL);
+    NSMutableAttributedString *attStr = [[NSMutableAttributedString alloc] initWithString:text];
+    [attStr addAttribute:(NSString *)kCTFontAttributeName value:(__bridge  id)myFont range:NSMakeRange(0, attStr.length)];
+    CFRelease(myFont);
+    CTFramesetterRef frameSetter = CTFramesetterCreateWithAttributedString(( CFAttributedStringRef)attStr);
+    CGMutablePathRef path = CGPathCreateMutable();
+    CGPathAddRect(path, NULL, CGRectMake(0,0,rect.size.width,100000));
+    CTFrameRef frame = CTFramesetterCreateFrame(frameSetter, CFRangeMake(0, 0), path, NULL);
+    NSArray *lines = ( NSArray *)CTFrameGetLines(frame);
+    NSMutableArray *linesArray = [[NSMutableArray alloc]init];
+    for (id line in lines) {
+        CTLineRef lineRef = (__bridge  CTLineRef )line;
+        CFRange lineRange = CTLineGetStringRange(lineRef);
+        NSRange range = NSMakeRange(lineRange.location, lineRange.length);
+        NSString *lineString = [text substringWithRange:range];
+        CFAttributedStringSetAttribute((CFMutableAttributedStringRef)attStr, lineRange, kCTKernAttributeName, (CFTypeRef)([NSNumber numberWithFloat:0.0]));
+        CFAttributedStringSetAttribute((CFMutableAttributedStringRef)attStr, lineRange, kCTKernAttributeName, (CFTypeRef)([NSNumber numberWithInt:0.0]));
+        //NSLog(@"''''''''''''''''''%@",lineString);
+        [linesArray addObject:lineString];
+    }
+
+    CGPathRelease(path);
+    CFRelease( frame );
+    CFRelease(frameSetter);
+    return (NSArray *)linesArray;
+}
+
+-(BOOL)isABC:(NSString *)str{
+
+    NSRegularExpression *tLetterRegularExpression = [NSRegularExpression regularExpressionWithPattern:@"[A-Za-z]" options:NSRegularExpressionCaseInsensitive error:nil];
+
+
+
+    NSUInteger tLetterMatchCount = [tLetterRegularExpression numberOfMatchesInString:str options:NSMatchingReportProgress range:NSMakeRange(0, str.length)];
+
+
+
+    if(tLetterMatchCount>=1){
+
+        return YES;
+
+    }else{
+
+        return NO;
+
+    }
+
 }
 @end

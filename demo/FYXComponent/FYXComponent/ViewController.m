@@ -20,6 +20,7 @@
 #import "VinViewController.h"
 #import <EventKit/EventKit.h>
 
+
 @interface ViewController ()<FYXAlertViewDelegate>
 {
     FYXAlertView *alertView;
@@ -208,7 +209,7 @@
     topAlertView = [[FYXAlertView alloc]initWithFrame:CGRectMake(0, 0,[[UIScreen mainScreen] bounds].size.width , [[UIScreen mainScreen] bounds].size.height)];
     [self.view addSubview:topAlertView];
     topAlertView.hidden = YES;
-    NSString * str = @"左滑卡片可取消预约啊呜呜哇哇啊哇撒打算打算打算打撒上大事";
+    NSString * str = @"以下的计划由系统自动估算，仅供参考";
 
     [topAlertView setTopAlert: str titleFont:14];
         [topAlertView setOtherBtnframe:NSMakeRange(1, 7)];
@@ -299,30 +300,38 @@
 - (void)alertClick: (UIButton *)sender {
     alertView.hidden        = NO;
     // 弹窗
-    [alertView setAlertTitle:@"生日保存后不能修改，是否确定保存" titleFont:17];
-    alertView.msgLabel.textAlignment = NSTextAlignmentLeft;
+//    [alertView setMsgClickAlertTitle:@"提示" titleFont:18 msg:@"当前设备或系统版本不在苹果AR技术支持范围内。查看支持设备>>" msgFont:16 clickMsgRange:NSMakeRange(23, 8) clickMsgFont:14];
+
+    [alertView setAlertTitle:@"您当前处于非wifi环境下。继续下载将会产生手机流量，确定继续？" titleFont:17];
+//    [alertView setAlertTitle:@"当前是移动网络，是否继续播放？" titleFont:17];
+
+////    alertView.msgLabel.textAlignment = NSTextAlignmentLeft;
     [alertView.cancelBtn setTitle:@"cancel" forState:UIControlStateNormal];
     [alertView.sureBtn setTitle:@"sure" forState:UIControlStateNormal];
-    //[alertView.sureBtn setTitleColor:[UIColor colorWithRed:0 green:122.0 / 255 blue:255.0 / 255 alpha:1] forState:UIControlStateNormal];
-//    [alertView.cancelBtn setTitleColor:[UIColor lightGrayColor] forState:UIControlStateNormal];
-    [alertView.cancelBtn addTarget:self action:@selector(otherBtnDidClick:) forControlEvents:UIControlEventTouchUpInside];
+//    //[alertView.sureBtn setTitleColor:[UIColor colorWithRed:0 green:122.0 / 255 blue:255.0 / 255 alpha:1] forState:UIControlStateNormal];
+////    [alertView.cancelBtn setTitleColor:[UIColor lightGrayColor] forState:UIControlStateNormal];
+//    [alertView.cancelBtn addTarget:self action:@selector(otherBtnDidClick:) forControlEvents:UIControlEventTouchUpInside];
 }
+
+
+
+
 
 - (void)alertMsgClick: (UIButton *)sender {
 
     alertView.hidden     = NO;
 
     // 文字弹窗
-    NSString *str1 = @"1、服务时间07:00-20:59\n2、收费规则：起步价39元（10公里内），10公里后，每公里加收10元，不足5公里按5公里计算。";
-    NSString *str2 = @"*注：以上计费方法为“e代驾”制定的上门取车代驾计费方法";
-    [alertView setMsgAlertView:@"取送车计费方法我" titleFont:18 alertMsg:@"" msgFont:14 msgColor: [UIColor colorWithRed:101.0 / 255 green:101.0 / 255 blue:101.0 / 255 alpha:1]];
+//    NSString *str1 = @"1、服务时间07:00-20:59\n2、收费规则：起步价39元（10公里内），10公里后，每公里加收10元，不足5公里按5公里计算。";
+//    NSString *str2 = @"*注：以上计费方法为“e代驾”制定的上门取车代驾计费方法";
+    [alertView setMsgAlertView:@"取送车计费方法我我方法为“e代驾”制定上门取车代驾计" titleFont:18 alertMsg:@"如果您的爱车无法绑定，请确定是否属于以下情况：\n\n1.可能由于订单车辆信息没有录入，请联系您的购车销售店确认。\n\n2.如果您的爱车是丰田进口车或者非广汽丰田品牌车辆，非常抱歉丰云行暂时只能绑定广汽丰田生产车辆，未来我们将支持更多车型，敬请期待。" msgFont:18 msgColor: [UIColor colorWithRed:101.0 / 255 green:101.0 / 255 blue:101.0 / 255 alpha:1]];
 
-    alertView.msgLabel.lineBreakMode = NSLineBreakByTruncatingHead;
+//    alertView.msgLabel.lineBreakMode = NSLineBreakByTruncatingHead;
     [alertView.cancelBtn setTitle:@"知道了" forState:UIControlStateNormal];
     [alertView.cancelBtn setTitleColor:[UIColor colorWithRed:11.0 / 255 green:171.0 / 254 blue:254.0 / 254 alpha:1.0] forState:UIControlStateNormal];
 
-    alertView.richTextView.text = [str1 stringByAppendingString:str2];
-//    [alertView setMsgAlertHeight:250 AlertWidth: 320];
+//    alertView.richTextView.text = [str1 stringByAppendingString:str2];
+//    [alertView setMsgAlertHeight:200 AlertWidth:295];
 
 }
 
@@ -335,7 +344,7 @@
 
 - (void)alertImageClick: (UIButton *)sender {
     alertImageView.hidden   = NO;
-    [alertImageView setImageAlertView:@"机器学习是近年来\n渐趋热门的一个领域" contentFont:17 contentColor:[UIColor blackColor] imageName:@"checkView.png"];
+    [alertImageView setImageAlertView:@"预约已取消成功" contentFont:17 contentColor:[UIColor blackColor] imageName:@"checkView.png"];
 //    [alertImageView.cancelBtn setTitleColor:[UIColor colorWithRed:20.0 / 255 green:206.0 / 255 blue:1 alpha:1.0f] forState:UIControlStateNormal];
 }
 

@@ -25,6 +25,8 @@
     FYXCheckView *checkView = [[FYXCheckView alloc]initWithFrame:CGRectMake([[UIScreen mainScreen] bounds].size.width / 2, [[UIScreen mainScreen] bounds].size.height / 2, 80, 80)];
     [self.view addSubview:checkView];
 
+    UIAlertController *alertView = [UIAlertController alertControllerWithTitle:@"" message:@"当前是移动网络，是否继续播放？" preferredStyle:UIAlertControllerStyleAlert];
+    [self presentViewController:alertView animated:YES completion:nil];
     
 }
 
