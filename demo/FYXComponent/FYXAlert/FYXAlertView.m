@@ -156,11 +156,14 @@ CGFloat nativeScale(void) {
 
     [_alertTitle setFont: [UIFont systemFontOfSize:( titleFont * displayScale)]];
 
-
+    //根据字数和字体自适应大小。
+    //如有不适应的地方，可以调节
+    //[UIFont boldSystemFontOfSize: 17 * displayScale] 和 [alertTitle boundingRectWithSize:CGSizeMake(220 * displayScale, MAXFLOAT) options:NSStringDrawingUsesLineFragmentOrigin attributes:attrs context:nil].size 中的数字来适配
     UIFont *font = [UIFont boldSystemFontOfSize: 17 * displayScale];
     NSDictionary *attrs = @{NSFontAttributeName : font};
-    CGSize textSize = [alertTitle boundingRectWithSize:CGSizeMake(220, MAXFLOAT) options:NSStringDrawingUsesLineFragmentOrigin attributes:attrs context:nil].size;
+    CGSize textSize = [alertTitle boundingRectWithSize:CGSizeMake(220 * displayScale, MAXFLOAT) options:NSStringDrawingUsesLineFragmentOrigin attributes:attrs context:nil].size;
 
+    //判断是否有字母，特殊处理排版的问题
     if ([self isABC:alertTitle]) {
         _alertTitle.frame = CGRectMake(19 * displayScale, 40 * displayScale, VIEW_WIDTH(_alertView) - 38 * displayScale, textSize.height);
     }
@@ -175,9 +178,10 @@ CGFloat nativeScale(void) {
     lineBreak2.frame  = CGRectMake(VIEW_WIDTH(_alertView) / 2, VIEW_Y(_cancelBtn), 1, VIEW_HEIGHT(_cancelBtn));
     _lineBreak1.frame = CGRectMake(VIEW_X(_cancelBtn), VIEW_Y(_cancelBtn), VIEW_WIDTH(_alertView), 1);
 
+    //第一很居中对齐
     if ([[self getLinesArrayOfStringInLabel:_alertTitle] count] > 1) {
         _alertTitle.textAlignment = NSTextAlignmentLeft;
-    }else {
+    }else { // 其他行居左对齐
         _alertTitle.textAlignment = NSTextAlignmentCenter;
     }
 }
@@ -211,9 +215,7 @@ CGFloat nativeScale(void) {
                                  VIEW_Y_Bottom(_alertTitle) + 12 * displayScale,
                                  VIEW_WIDTH(_msgAlertView) - 48 * displayScale,
                                  VIEW_HEIGHT(_msgAlertView) - VIEW_HEIGHT(_alertTitle) - 116 * displayScale);
-     
-//    _richTextView.numberOfLines = 0;
-//    _richTextView.lineBreakMode = NSLineBreakByCharWrapping;
+
     _richTextView.textAlignment = NSTextAlignmentLeft;
     _richTextView.textColor     = [UIColor blackColor];
     _richTextView.editable = NO;
@@ -231,7 +233,7 @@ CGFloat nativeScale(void) {
     [_cancelBtn addTarget:self action:@selector(cancelClick:) forControlEvents:UIControlEventTouchUpInside];
     [_msgAlertView addSubview:_cancelBtn];
     self.cancelBtn = _cancelBtn;
-    // 分割线
+
 
 }
 
@@ -248,9 +250,14 @@ CGFloat nativeScale(void) {
 
     }
 
+    //根据字数和字体自适应大小。
+    //如有不适应的地方，可以调节
+    //[UIFont boldSystemFontOfSize: 16 ] 和 [alertTitle boundingRectWithSize:CGSizeMake(240, MAXFLOAT) options:NSStringDrawingUsesLineFragmentOrigin attributes:attrs context:nil].size 中的数字来适配
     UIFont *font = [UIFont boldSystemFontOfSize: 16];
     NSDictionary *attrs = @{NSFontAttributeName : font};
     CGSize textSize = [msg boundingRectWithSize:CGSizeMake(240, MAXFLOAT) options:NSStringDrawingUsesLineFragmentOrigin attributes:attrs context:nil].size;
+
+    //判断是否大于300的高度
     if (( textSize.height + VIEW_Y_Bottom(_alertTitle) + 92 * displayScale) < 300 *displayScale ) {
         NSLog(@"%f",VIEW_Y_Bottom(_alertTitle));
         if (SCREEN_WIDTH == 320) {
@@ -283,7 +290,7 @@ CGFloat nativeScale(void) {
                                              50 * displayScale);
         }
 
-    }else {
+    }else { // 大于300的固定高度并允许滑动
         _msgAlertView.frame = CGRectMake(40 * displayScale,
                                          160 * displayScale,
                                          295 * displayScale,
@@ -297,6 +304,8 @@ CGFloat nativeScale(void) {
                                          VIEW_WIDTH(_msgAlertView),
                                          50 * displayScale);
     }
+
+    // 分割线
     _lineBreak1.frame   = CGRectMake(0 * displayScale, VIEW_Y(_cancelBtn) - 2 * displayScale, VIEW_WIDTH(_cancelBtn), 1);
     [_msgAlertView addSubview:_lineBreak1];
     [_richTextView setFont:[UIFont systemFontOfSize:msgFont * displayScale]];
@@ -449,6 +458,9 @@ CGFloat nativeScale(void) {
         _alertTitleImage.image = [UIImage imageNamed:imageName];
     }
 
+    //根据字数和字体自适应大小。
+    //如有不适应的地方，可以调节
+    //[UIFont boldSystemFontOfSize: 16 ] 和 [alertTitle boundingRectWithSize:CGSizeMake(240, MAXFLOAT) options:NSStringDrawingUsesLineFragmentOrigin attributes:attrs context:nil].size 中的数字来适配
     UIFont *font = [UIFont boldSystemFontOfSize: contentFont];
     NSDictionary *attrs = @{NSFontAttributeName : font};
     CGSize textSize = [content boundingRectWithSize:CGSizeMake(240, MAXFLOAT) options:NSStringDrawingUsesLineFragmentOrigin attributes:attrs context:nil].size;
@@ -547,6 +559,9 @@ CGFloat nativeScale(void) {
     _alertTitle = [[UILabel alloc]init];
     _msgAlertView = [[UIView alloc]init];
 
+    //根据字数和字体自适应大小。
+    //如有不适应的地方，可以调节
+    //[UIFont boldSystemFontOfSize: 16 ] 和 [alertTitle boundingRectWithSize:CGSizeMake(240, MAXFLOAT) options:NSStringDrawingUsesLineFragmentOrigin attributes:attrs context:nil].size 中的数字来适配
     UIFont *font = [UIFont systemFontOfSize: textFont * displayScale];
     NSDictionary *attrs = @{NSFontAttributeName : font};
     CGSize textSize = [text boundingRectWithSize:CGSizeMake(280, MAXFLOAT) options:NSStringDrawingUsesLineFragmentOrigin attributes:attrs context:nil].size;                    // 随字数，字体扩展大小
@@ -557,6 +572,7 @@ CGFloat nativeScale(void) {
     _alertTitle.frame = CGRectMake(8, 18, textSize.width, textSize.height);
     _alertTitle.textAlignment = NSTextAlignmentCenter;
 
+    // 气泡背景图
     UIImageView *bubbleImageView = [[UIImageView alloc]init];
     bubbleImageView.image = [UIImage imageNamed:@"bubble.png"];
     bubbleImageView.frame = CGRectMake(0, 0, textSize.width + 16 * displayScale, textSize.height + 26 * displayScale);
@@ -599,9 +615,9 @@ CGFloat nativeScale(void) {
 
     _lineBreak1.frame = CGRectMake(VIEW_X(_alertTitleImage), VIEW_Y_Bottom(_alertTitleImage) + 10 * displayScale, SCREEN_WIDTH - 130 * displayScale, 1);
 
+    _instruteTitleLb = [[UILabel alloc]init];
     font = [UIFont boldSystemFontOfSize: 14 * displayScale];
     attrs = @{NSFontAttributeName : font};
-    _instruteTitleLb = [[UILabel alloc]init];
     textSize = [instruteTitle boundingRectWithSize:CGSizeMake(140, MAXFLOAT) options:NSStringDrawingUsesLineFragmentOrigin attributes:attrs context:nil].size;
     _instruteTitleLb.frame = CGRectMake(VIEW_X(_lineBreak1), VIEW_Y_Bottom(_lineBreak1) + 12 * displayScale, VIEW_WIDTH(_lineBreak1), textSize.height);
     _instruteTitleLb.textColor = [UIColor colorWithRed:50.0 / 255 green:50.0 / 255 blue:50.0 / 255 alpha:1];
@@ -639,10 +655,12 @@ CGFloat nativeScale(void) {
 
     _safeLightView = [[UIScrollView alloc]init];
 
+    // 判断根据字数自适应的大小
     if ( VIEW_HEIGHT(_alertTitleImage) + VIEW_HEIGHT(_suggestTitleLb) + VIEW_HEIGHT(_suggestLb) + VIEW_HEIGHT(_instruteTitleLb) + VIEW_HEIGHT(_instruteTextLb) + 130 * displayScale > [[UIScreen mainScreen] bounds].size.height  - 170 * displayScale ) {
 
         _safeLightView.frame = CGRectMake(40 * displayScale, 120 * displayScale, SCREEN_WIDTH - 80 * displayScale, [[UIScreen mainScreen] bounds].size.height - 250 * displayScale);
     }else {
+        // 超出范围固定大小并开始滑动
         _safeLightView.frame = CGRectMake(40 * displayScale, 120 * displayScale, SCREEN_WIDTH - 80 * displayScale, VIEW_HEIGHT(_alertTitleImage) + VIEW_HEIGHT(_suggestTitleLb) + VIEW_HEIGHT(_suggestLb) + VIEW_HEIGHT(_instruteTitleLb) + VIEW_HEIGHT(_instruteTextLb) + 130 * displayScale);
     }
     _safeLightView.contentSize = CGSizeMake(SCREEN_WIDTH - 80 * displayScale, VIEW_HEIGHT(_alertTitleImage) + VIEW_HEIGHT(_suggestTitleLb) + VIEW_HEIGHT(_suggestLb) + VIEW_HEIGHT(_instruteTitleLb) + VIEW_HEIGHT(_instruteTextLb) + 130 * displayScale);
@@ -661,6 +679,7 @@ CGFloat nativeScale(void) {
     [_safeLightView addSubview:_suggestTitleLb];
     [_safeLightView addSubview:_suggestLb];
 
+    // 底部取消按钮
     UIButton *_cancelBtn = [[UIButton alloc]init];
     _cancelBtn.frame = CGRectMake(VIEW_CENTER_X(self) - 20 * displayScale,VIEW_Y_Bottom(_safeLightView) + 30 * displayScale, 40 * displayScale, 40 * displayScale);
     [_cancelBtn addTarget:self action:@selector(cancelClick:) forControlEvents:UIControlEventTouchUpInside];
@@ -670,6 +689,7 @@ CGFloat nativeScale(void) {
 
 }
 
+// 设置安全指示灯
 - (void)setSafeLightView: (NSString *)instructText suggest: (NSString *)suggestText title: (NSString *)title instruteTitle: (NSString * ) instruteTitle suggestTitle: (NSString *)suggestTitle titleImage: (NSString *)titleImage{
 
     _alertTitleImage.frame = CGRectMake(25 * displayScale, 25 * displayScale, 70 * displayScale, 70 * displayScale);
@@ -679,7 +699,6 @@ CGFloat nativeScale(void) {
     NSDictionary *attrs = @{NSFontAttributeName : font};
     CGSize textSize = [title boundingRectWithSize:CGSizeMake(140, MAXFLOAT) options:NSStringDrawingUsesLineFragmentOrigin attributes:attrs context:nil].size;
 
-
     _alertTitle.frame = CGRectMake(VIEW_X_Right(_alertTitleImage) + 20 * displayScale, VIEW_CENTER_Y(_alertTitleImage) - textSize.height / 2, 147 * displayScale, textSize.height);
     _alertTitle.text = title;
     _alertTitle.font = font;
@@ -687,7 +706,6 @@ CGFloat nativeScale(void) {
     _alertTitle.textColor = [UIColor colorWithRed:50.0 / 255 green:50.0 / 255 blue:50.0 / 255 alpha:1];
 
     _lineBreak1.frame = CGRectMake(VIEW_X(_alertTitleImage), VIEW_Y_Bottom(_alertTitleImage) + 10 * displayScale,SCREEN_WIDTH - 130 * displayScale , 1);
-
 
     textSize = [instruteTitle boundingRectWithSize:CGSizeMake(200, MAXFLOAT) options:NSStringDrawingUsesLineFragmentOrigin attributes:attrs context:nil].size;
     _instruteTitleLb.frame = CGRectMake(VIEW_X(_lineBreak1), VIEW_Y_Bottom(_lineBreak1) + 12 * displayScale, VIEW_WIDTH(_lineBreak1), textSize.height);
@@ -877,16 +895,15 @@ CGFloat nativeScale(void) {
 
 }
 
+#pragma -mark 顶部弹窗
 - (void)setTopAlert: (NSString *)title titleFont: (CGFloat )titleFont{
     UIFont *font = [UIFont systemFontOfSize: titleFont * displayScale];
     _backGroundBtn.backgroundColor = [UIColor clearColor];
     _alertTitle = [[UILabel alloc]init];
     _msgAlertView = [[UIView alloc]init];
     _alertTitle.font = font;
-
-
-
     _alertTitle.text = title;
+
     NSMutableAttributedString *attributedString2 = [[NSMutableAttributedString alloc]initWithString:title];
     _alertTitle.attributedText = attributedString2;
     _alertTitle.numberOfLines = 0;
@@ -898,6 +915,7 @@ CGFloat nativeScale(void) {
         _alertTitle.textAlignment = NSTextAlignmentCenter;
     }
 
+    // 根据字数来确定frame的大小
     if ([title length] < 22) {
         _alertTitle.frame = CGRectMake(8 * displayScale, 7 * displayScale, VIEW_WIDTH(self) - 50 * displayScale , 12 * displayScale);
         _msgAlertView.frame = CGRectMake(0, 0, VIEW_WIDTH(self), 26 * displayScale);
@@ -923,47 +941,9 @@ CGFloat nativeScale(void) {
     [self addSubview:_msgAlertView];
     self.alertView = _msgAlertView;
 
-
-
-
-
-    //    NSDictionary *attrs = @{NSFontAttributeName : font};
-    //    CGSize maxSize;
-    //    if (VIEW_WIDTH(self) == 320 ) {
-    //        maxSize = CGSizeMake(240, MAXFLOAT);
-    //
-    //    }else {
-    //        maxSize = CGSizeMake(240, MAXFLOAT);
-    //    }
-    //    CGSize textSize = [title boundingRectWithSize:maxSize options:NSStringDrawingUsesLineFragmentOrigin attributes:attrs context:nil].size;
-    //    NSLog(@"高度%f",textSize.height);
-    //    NSLog(@"宽度%f",VIEW_WIDTH(self));
-    //    if (VIEW_WIDTH(self) == 320) {
-    //
-    //        if (textSize.height > 42) {
-    //            _alertTitle.frame = CGRectMake(8 * displayScale, 5 * displayScale, VIEW_WIDTH(self) - 50 * displayScale , textSize.height);
-    //            _msgAlertView.frame = CGRectMake(0, 0, VIEW_WIDTH(self), textSize.height + 10 * displayScale);
-    //
-    //        }
-    //        if (textSize.height > 16 && textSize.height < 56) {
-    //            _alertTitle.frame = CGRectMake(8 * displayScale, 5 * displayScale, VIEW_WIDTH(self) - 50 * displayScale , textSize.height);
-    //            _msgAlertView.frame = CGRectMake(0, 0, VIEW_WIDTH(self), textSize.height + 10 * displayScale);
-    //        }else {
-    //            _alertTitle.frame = CGRectMake(8 * displayScale, 10 * displayScale, VIEW_WIDTH(self) - 50 * displayScale , textSize.height);
-    //            _msgAlertView.frame = CGRectMake(0, 0, VIEW_WIDTH(self), textSize.height + 22 * displayScale);
-    //        }
-    //    }else {
-    //        if ([title length] < 21) {
-    //            _alertTitle.frame = CGRectMake(8 * displayScale, 5 * displayScale, VIEW_WIDTH(self) - 50 * displayScale , textSize.height);
-    //            _msgAlertView.frame = CGRectMake(0, 0, VIEW_WIDTH(self), textSize.height + 10 * displayScale);
-    //        }else {
-    //            _alertTitle.frame = CGRectMake(8 * displayScale, 0 * displayScale, VIEW_WIDTH(self) - 50 * displayScale , textSize.height);
-    //            _msgAlertView.frame = CGRectMake(0, 0, VIEW_WIDTH(self), textSize.height + 0 * displayScale);
-    //        }
-    //
-    //    }
 }
 
+//将整个点击顶部弹窗变成可以点击 注释掉的部分为设置下划线部分字体可以点击
 - (void)setOtherBtnframe: (NSRange )range{
     NSMutableAttributedString *content = [[NSMutableAttributedString alloc]initWithString:_alertTitle.text];
 
@@ -992,9 +972,12 @@ CGFloat nativeScale(void) {
 
 
 }
+
+// 设置顶部弹窗的高度
 - (void)tTopAlertHight: (CGFloat)height{
      _msgAlertView.frame = CGRectMake(0, height *displayScale, VIEW_WIDTH(_msgAlertView), VIEW_HEIGHT(_msgAlertView));
 }
+
 #pragma -mark actionsheetAlert
 // actionsheet
 - (void)setActionSheetAlert {
@@ -1125,7 +1108,7 @@ CGFloat nativeScale(void) {
     self.alertView.frame = frame;
 }
 
-#pragma -mark action
+#pragma -mark action （外部回调协议，也可以直接设置按钮的点击事件，不做回调）
 // 点击背景隐藏
 - (void)hiddenClick: (UIButton *)sender {
     if ([self.delegate respondsToSelector:@selector(hiddenClick:)]) {
@@ -1161,7 +1144,7 @@ CGFloat nativeScale(void) {
     }
 }
 
-
+#pragma -mark 判断label文字行数
 - (NSArray *)getLinesArrayOfStringInLabel:(UILabel *)label{
     NSString *text = [label text];
     UIFont *font = [label font];
@@ -1184,7 +1167,7 @@ CGFloat nativeScale(void) {
         NSString *lineString = [text substringWithRange:range];
         CFAttributedStringSetAttribute((CFMutableAttributedStringRef)attStr, lineRange, kCTKernAttributeName, (CFTypeRef)([NSNumber numberWithFloat:0.0]));
         CFAttributedStringSetAttribute((CFMutableAttributedStringRef)attStr, lineRange, kCTKernAttributeName, (CFTypeRef)([NSNumber numberWithInt:0.0]));
-        //NSLog(@"''''''''''''''''''%@",lineString);
+
         [linesArray addObject:lineString];
     }
 
@@ -1194,24 +1177,17 @@ CGFloat nativeScale(void) {
     return (NSArray *)linesArray;
 }
 
+#pragma -mark 判断文字是否存在字母
 -(BOOL)isABC:(NSString *)str{
 
     NSRegularExpression *tLetterRegularExpression = [NSRegularExpression regularExpressionWithPattern:@"[A-Za-z]" options:NSRegularExpressionCaseInsensitive error:nil];
 
-
-
     NSUInteger tLetterMatchCount = [tLetterRegularExpression numberOfMatchesInString:str options:NSMatchingReportProgress range:NSMakeRange(0, str.length)];
 
-
-
     if(tLetterMatchCount>=1){
-
         return YES;
-
     }else{
-
         return NO;
-
     }
 
 }

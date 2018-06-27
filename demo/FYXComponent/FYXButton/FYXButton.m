@@ -24,6 +24,7 @@
 
 @end
 
+#pragma -mark 扩展颜色（渐变色）
 @implementation UIColor (BtnBGColor)
 + (UIColor *)getMainGradientColor:(CGRect)frame{
     return [UIColor colorWithPatternImage:[UIColor BgImageFromColorswithFrame:frame]];

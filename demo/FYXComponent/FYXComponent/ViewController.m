@@ -303,7 +303,7 @@
 //    [alertView setMsgClickAlertTitle:@"提示" titleFont:18 msg:@"当前设备或系统版本不在苹果AR技术支持范围内。查看支持设备>>" msgFont:16 clickMsgRange:NSMakeRange(23, 8) clickMsgFont:14];
 
 //    [alertView setAlertTitle:@"您当前处于非wifi环境下。继续下载将会产生手机流量，确定继续？" titleFont:17];
-    [alertView setAlertTitle:@"当前是移动网络，是否继续播放？挂个大概的空间哈会计核算的\n丁磺氨酸和大数据和大数据，好还是大家好噶第八十三的好噶时间吧哈睡觉可好北方大厦，结过婚还风景好噶舒服改哈说不乏世界级会发神经韩国发技术 把建良卡上头发衣服居家环境很高也同样天方夜谭返回同样非常认同出一个非常" titleFont:17];
+    [alertView setAlertTitle:@"亲爱的客户测试呀，您获得了1张由广汽丰田第一店发行的优惠券，请在优惠券过期之前到相关门店使用。\n联系电话：020-85541388\n销售地址：广东省广州市天河区黄埔大道中243号" titleFont:17];
 
 ////    alertView.msgLabel.textAlignment = NSTextAlignmentLeft;
     [alertView.cancelBtn setTitle:@"cancel" forState:UIControlStateNormal];

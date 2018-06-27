@@ -418,6 +418,7 @@ CGFloat nativScale(void) {
 
 #pragma -mark 时间选择按钮点击事件
 - (void)afternoonClick: (UIButton *)sender {
+    selectTimeIndex = nil;
     [self bringSubviewToFront:self.afternoonBtn];
     self.morningBtn.layer.borderColor = self.timeBtnSelectColor == nil ? normalColor.CGColor : self.timeBtnSelectColor.CGColor;
     self.morningBtn.layer.borderWidth = 1;
@@ -431,6 +432,7 @@ CGFloat nativScale(void) {
 }
 
 - (void)morningClick: (UIButton *)sender {
+    selectTimeIndex = nil;
     [self bringSubviewToFront:self.morningBtn];
     self.afternoonBtn.layer.borderColor = self.timeBtnSelectColor == nil ? normalColor.CGColor : self.timeBtnSelectColor.CGColor;
     self.afternoonBtn.backgroundColor = [UIColor whiteColor];

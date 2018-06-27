@@ -1,7 +1,7 @@
 # 使用说明
 下载源码。将源码导入工程。
-## 弹窗
-
+## 弹窗控件
+所有弹窗控件都基于FYXAlertView类，这是个视图类。在使用时必须要定义整个view的frame，并将这个view添加到所需要展示的view中。各种弹窗的实现，是在这个父类上添加子视图，所以在一个页面上，如果要使用两个弹框，最好隐藏一个展示一个。
 导入头文件
 
 ```objective-c
@@ -24,33 +24,51 @@
 ![<img width="270" height="480" src="https://github.com/rickierYun/Componet/blob/master/image/alert.png>](https://github.com/rickierYun/Componet/blob/master/image/alert.png)
 
 ```objective-c
-[alertView setAlertTitle:@"this create success" titleFont:17];
-[alertView.cancelBtn setTitle:@"cancel" forState:UIControlStateNormal];
-[alertView.sureBtn setTitle:@"sure" forState:UIControlStateNormal];
-[alertView.sureBtn setTitleColor:[UIColor redColor] forState:UIControlStateNormal];
-[alertView.cancelBtn setTitleColor:[UIColor lightGrayColor] forState:UIControlStateNormal];
+/**
+ *普通弹框
+ */
+- (void)setAlertTitle: (NSString *)alertTitle titleFont:(NSInteger) titleFont;      // 普通弹框
+/**
+ *设置普通弹框大小
+ */
+- (void)setAlertTitleFrame : (CGRect)frame;
 ```
-
-普通弹窗可以修改提示文字。
+普通弹窗提供cancelBtn和sureBtn的属性设置，可以修改弹窗按钮的属性。
 ### 文字弹窗使用 
 
 <img width="270" height="480" src="https://github.com/rickierYun/Componet/blob/master/image/alertMsg.png"/>
 
 ```objective-c
-[alertView setMsgAlertView:@"提示" titleFont:19 alertMsg:@"机器学习是近年来渐趋热门的一个领域，同时Python 语言经过一段时间的发展也已逐渐成为主流的编程语言之一。本书结合了机器学习和Python 语言两个热门的领域，通过利用两种核心的机器学习算法来将Python 语言在数据分析方面的优势发挥到极 致。 全书共有10 章。第 1 章讲解了Python 机器学习的生态系统，剩余9 章介绍了众多与机器学习相关的算法，包括各类分类算法、数据可视化技术、推荐引擎等，主要包括机器学习在公寓、机票、IPO 市场、新闻源、内容推机器学习是近年来渐趋热门的一个领域，同时Python 语言经过一段时间的发展也已逐渐成为主流的编程语言之一。本书结合了机器学习和Python 语言两个热门的领域，通过利用两种核心的机器学习算法来将Python 语言在数据分析方面的优势发挥到极 致。 全书共有10 章。第 1 章讲解了Python 机器学习的生态系统，剩余9 章介绍了众多与机器学习相关的算法，包括各类分类算法、数据可视化技术、推荐引擎等，主要包括机器学习在公寓、机票、IPO 市场、新闻源、内容推" msgFont:11];
-[alertView.cancelBtn setTitle:@"cancel" forState:UIControlStateNormal];
-[alertView.cancelBtn setTitleColor:[UIColor lightGrayColor] forState:UIControlStateNormal];
-[alertView setMsgAlertFrame:200 AlertWidth:200];
+/**
+ *文字弹框
+ */
+- (void)setMsgAlertView: (NSString *)alertTitle 
+              titleFont: (NSInteger) titleFont
+               alertMsg: (NSString *)msg
+                msgFont: (NSInteger)msgFont
+               msgColor: (UIColor *)msgColor;                                         // 文字弹框
+/**
+ *设置文字弹窗大小
+ */
+- (void)setMsgAlertFrame: (CGRect)frame;
+/**
+ *设置文字弹窗高度
+ */
+- (void)setMsgAlertHeight: (NSInteger)alertHeight AlertWidth:(NSInteger)alertWidth;  // 设置文字弹窗高度
+/**
 ```
 
-文字弹窗提供提示文字修改函数和修改弹窗大小函数。
+文字弹窗提供提示文字修改函数和修改弹窗大小函数。文字弹窗属于文字自适应，到弹窗高度到特定大小时，文字可以滑动。
+文字弹窗提供cancelBtn的属性设置。
 ### 富文本弹窗
 
 <img width="270" height="480" src="https://github.com/rickierYun/Componet/blob/master/image/alertRich.png"/>
 
 ```objective-c
-[alertView setRichTextView:@"机器学习是近年来渐趋热门的一个领域，同时Python 语言经过一段时间的发展也已逐渐成为主流的编程语言之一。本书结合了机器学习和Python 语言两个热门的领域，通过利用两种核心的机器学习算法来将Python 语言在数据分析方面的优势发挥到极 致。 全书共有10 章。第 1 章讲解了Python 机器学习的生态系统，剩余9 章介绍了众多与机器学习相关的算法，包括各类分类算法、数据可视化技术、推荐引擎等，主要包括机器学习在公寓、机票、IPO 市场、新闻源、内容推机器学习是近年来渐趋热门的一个领域，同时Python 语言经过一段时间的发展也已逐渐成为主流的编程语言之一。本书结合了机器学习和Python 语言两个热门的领域，通过利用两种核心的机器学习算法来将Python 语言在数据分析方面的优势发挥到极 致。 全书共有10 章。第 1 章讲解了Python 机器学习的生态系统，剩余9 章介绍了众多与机器学习相关的算法，包括各类分类算法、数据可视化技术、推荐引擎等，主要包括机器学习在公寓、机票、IPO 市场、新闻源、内容推" textFont:11];
-[alertView setRichTextViewFrame:200 height:300];
+/**
+ *设置富文本大小
+ */
+- (void)setRichTextViewFrame: (NSInteger)width height:(NSInteger)height;            // 设置富文本大小
 ```
 富文本弹窗提供文字修改函数和修改弹窗大小函数。
 
@@ -59,19 +77,37 @@
 <img width="270" height="480" src="https://github.com/rickierYun/Componet/blob/master/image/alertImage.png"/>
 
 ```objective-c
-[alertImageView setImageAlertView:@"机器学习是近年来\n渐趋热门的一个领域" contentFont:17 contentColor:[UIColor blackColor] imageName:nil];
+/**
+ *图片提示框
+ */
+- (void)setImageAlertView: (NSString *)content
+              contentFont: (NSInteger)contentFont
+             contentColor: (UIColor *)contentColor
+                imageName: (NSString *)imageName;                                    // 图片提示框
+/**
+ *图片弹窗大小
+ */
+- (void)setImageAlertViewFrame: (CGRect)frame;
 ```
 
-图片弹窗提供修改图片、文字函数。
+图片弹窗提供修改图片、文字函数。图片弹窗提供cancelBtn的属性设置。
 ### 多按钮弹窗
 
 <img width="270" height="480" src="https://github.com/rickierYun/Componet/blob/master/image/alertMore.png"/>
 
 ```objective-c
-[alertMoreBtnView setMoreBtnAlertView:@"您目前的取送车订单有绑定的保养预约服务，是否同时取消保养预约？" contentFont:15];
+/**
+ *设置多个按钮提示
+ */
+- (void)setMoreBtnAlertView: (NSString *)content contentFont: (NSInteger)contentFont;// 设置多个按钮提示
+/**
+ *设置多按钮大小
+ */
+- (void)setMoreBtnAlertViewFrame: (CGRect)frame;
 ```
 
 多按钮弹窗提供文字修改弹窗。
+多按钮弹窗提供三个按钮属性设置。从上到下分别是sureBtn、middleBtn、cancelBtn。
 
 
 ### 气泡弹窗
@@ -79,17 +115,63 @@
 <img width="270" height="480" src="https://github.com/rickierYun/Componet/blob/master/image/bublle.png"/>
 
 ```objective-c
-[bubbleView setBubbleView:@"已取消预约" font:16 textColor: [UIColor blackColor]];
+/**
+ *气泡弹窗
+ */
+- (void)setBubbleView: (NSString *)text font: (CGFloat)textFont textColor: (UIColor *)textColor;
+/**
+ *设置气泡弹窗高度
+ */
+- (void)setBubbleViewY: (CGFloat)ViewY;
 ```
-
+气泡弹窗是特定位置弹窗，只限更改Y轴高度，如果要修改参数，请参照源码，复制一份，自行修改。
 ### 安全指示灯
 
 <img width="270" height="480" src="https://github.com/rickierYun/Componet/blob/master/image/safeLight.png"/>
 
 ```objective-c
-[safelightView setSafeLightView:@"点亮表示指示灯处于启动状态。" suggest:@"具体操作参考用户手册。" title:@"安全指示灯" instruteTitle:@"指示灯说明：" suggestTitle:@"建议：" titleImage:@"safeLight.png"];
+// 构造故障灯
+- (void)createSafeLightView: (NSString *)instructText
+                    suggest: (NSString *)suggestText
+                      title: (NSString *)title
+              instruteTitle: (NSString * ) instruteTitle
+               suggestTitle: (NSString *)suggestTitle
+                 titleImage: (NSString *)titleImage;
+// 设置故障灯
+- (void)setSafeLightView: (NSString *)instructText
+                 suggest: (NSString *)suggestText
+                   title: (NSString *)title
+           instruteTitle: (NSString * )instruteTitle
+            suggestTitle: (NSString *)suggestTitle
+              titleImage: (NSString *)titleImage;
 ```
+故障弹窗是特定样式弹窗。在同一个VC中利用创建方法后，可以利用设置方法，更改相应的属性，而不必再创建相同的view。
 
+### 顶部提示弹窗
+```objective-c
+/**
+ *顶部弹窗
+ */
+- (void)setTopAlert: (NSString *)title titleFont: (CGFloat )titleFont;
+/**
+ *设置顶部弹窗高度
+ */
+- (void)tTopAlertHight: (CGFloat)height;
+```
+顶部弹窗是特定弹窗。构建的顶部弹窗自动适应文字，最多适应3行。同时可以设置高度，来达到自定义大小。
+
+### 基本弹窗（文字可以点击）
+```objective-c
+/**
+ *弹窗文字可点击
+ **/
+- (void)setMsgClickAlertTitle: (NSString *)alertTitle titleFont:(NSInteger) titleFont msg:(NSString *)msg msgFont: (NSInteger) msgFont  clickMsgRange: (NSRange )range clickMsgFont: (NSInteger)clickMsgFont;
+/**
+ *设置弹窗文字可点击高度
+ **/
+- (void)setMsgClickAlertTitleFrame : (CGRect)frame;
+```
+这个属于基本弹窗的扩展，相关设置和基本弹窗相同。
 
 ## TOAST
 
@@ -98,10 +180,39 @@
 导入头文件 
 
 ```objective-c
-#import "FYXToast.h"
+/**
+ *只需添加文字
+ */
++ (void)showWithText:(NSString *)text;                                                                 // 只需添加文字
+/**
+ *可以添加文字和持续时间
+ */
++ (void)showWithText:(NSString *)text duration:(CGFloat)duration;                                     // 可以添加文字和持续时间
+/**
+ *只需添加文字和图片名称
+ */
++ (void)showWithTextImage:(NSString *)text imageName:(NSString *)imageName;                            // 只需添加文字和图片名称
+/**
+ *可以添加文字、图片名称和持续时间
+ */
++ (void)showwithTextImage:(NSString *)text imageName:(NSString *)imageName duration:(CGFloat)duration;// 可以添加文字、图片名称和持续时间
+
++ (void)showWithFrame:(NSString *)text frame: (CGRect)frame;
+
++ (void)showWithFrame:(NSString *)text frame: (CGRect)frame duration:(CGFloat)duration;
+/**
+ *可以添加文字、图片名称、更改大小
+ */
++ (void)showWithImageFrame: (NSString *)text imageName: (NSString *)imageName frame: (CGRect)frame;
+/**
+ *可以添加文字、图片名称、持续时间、更改大小
+ */
++ (void)showWithImageFrame: (NSString *)text imageName: (NSString *)imageName frame: (CGRect)frame duration: (CGFloat)duration;
 ```
 
 toast 有两种格式：带图片、不带图片。
+toast的view加载keywindow上。大小随文字的多少而变化。带图的toast有一个固定的大小。
+同时提供持续时间参数。
 
 ### 带图片运用
 
@@ -159,6 +270,9 @@ toast 有两种格式：带图片、不带图片。
 
 本日历采用FSCalendar制作，关于相关FSCalendar的设置可以参见
 [GitHub]:https://github.com/WenchaoD/FSCalendar
+
+源码有所改动。
+
 
 ### 使用方法
 导入头文件
@@ -251,8 +365,15 @@ FYXCalendar *fyxCalendar = [[FYXCalendar alloc]initWithFrame:CGRectMake(0, 30, s
 ```
 
 tips：如果只选中一项会得到no day select提示。
+更改按钮显示可以遵循以下协议：
+```objective-c
+/**
+*按钮显示
+*/
+- (void)calendar: (FYXCalendar *)calendar collectionView: (UICollectionView *)collectionView willDisplayCell: (UICollectionViewCell *)cell cellForItemAtIndexPath: (NSIndexPath *)indexPath;
+```
 
-## checkView
+## 打勾动效（checkView）
 
 <img width="270" height="480" src="https://github.com/rickierYun/Componet/blob/master/image/checkView.gif"/>
 
@@ -274,7 +395,7 @@ tips：如果只选中一项会得到no day select提示。
 #### 2:直接导入复制动画代码到vc上使用
 
 
-## LoadingHUD
+## 加载动效（LoadingHUD）
 
 <img width="270" height="480" src="https://github.com/rickierYun/Componet/blob/master/image/Hud.gif"/>
 
@@ -292,7 +413,7 @@ tips：如果只选中一项会得到no day select提示。
 ```
 
 
-## PageFlow
+## 卡片控件及动效（PageFlow）
 
 <img width="270" height="480" src="https://github.com/rickierYun/Componet/blob/master/image/pageFlow.gif"/>
 
@@ -330,8 +451,12 @@ pageFlow.dataSource = self;
 }
 ```
 
+tips：卡片的cell放在collection中的section。如果不习惯，可以改动源码将其放在cell中。
+
 ## 侧边栏
 <img width="270" height="480" src="https://github.com/rickierYun/Componet/blob/master/image/SideMenu.gif"/>
+
+侧边的提供corAanimation方法和帧动画方法。注释掉的为coreAnimation方法。
 
 ### 使用方法
 
@@ -351,6 +476,23 @@ pageFlow.dataSource = self;
     [self.view addSubview:sideMenu];
 ```
 
+侧边栏提供相应方法
+```objective-c
+/**
+* 设置侧边栏view的宽度
+*/
+- (void)setSideMenuViewWidth: (CGFloat)width;
+
+- (void)clickDraw;
+/**
+ * 隐藏侧边栏
+ */
+- (void)sideMenuHidden;
+/**
+ *开始动画
+ */
+- (void)startAnimation;
+```
 要往侧边栏上加载子 view，只需要在父view sideMenuView 上添加即可。
 
 ### 车架号
