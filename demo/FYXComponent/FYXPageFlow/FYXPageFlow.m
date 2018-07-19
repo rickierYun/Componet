@@ -50,8 +50,9 @@ CGFloat nativScales(void) {
         _sectionCount = 5;
         addCell = NO;
 
+        // colletion显示设置
         _flowLayout = [[FYXPageFlowLayout alloc] init];
-        [_flowLayout setScrollDirection:UICollectionViewScrollDirectionHorizontal];
+        [_flowLayout setScrollDirection:UICollectionViewScrollDirectionHorizontal]; // 滑动方向
         _flowLayout.pageCardWidth = VIEW_WIDTH(self) - 60 * displayScale * 2;
         _flowLayout.pageCardHeight = VIEW_HEIGHT(self) - 10 * displayScale;
         _flowLayout.lineSpace = 30 * displayScale;
@@ -70,6 +71,7 @@ CGFloat nativScales(void) {
         [self addSubview:colletionView];
         self.collectionView = colletionView;
 
+        // 页数
         UIPageControl *_pageControl = [[UIPageControl alloc]init];
         _pageControl.frame = CGRectMake(0, VIEW_HEIGHT(self) - 60 * displayScale, VIEW_WIDTH(self), 30 * displayScale);
         _pageControl.currentPage = 0;
