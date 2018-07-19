@@ -273,6 +273,9 @@ toast的view加载keywindow上。大小随文字的多少而变化。带图的to
 
 源码有所改动。
 
+### 实现思路
+上部份日历控件是用FSCalendar构建。利用FSCalendar的星期显示方式组成日历控件的具体日期部分。添加了系统的日历事件，来获取日历中的节气。上下星期的按钮为自己构建，并调用了FSCalendar提供的方法，从而实现星期的滑动。下部分为自定义样式。分别由上下午按钮，colletionView构建而成。CollectionView中的数据由FYXCalendarDataModel的控制。CollectionView为4列均分显示。
+
 
 ### 使用方法
 导入头文件

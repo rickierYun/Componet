@@ -36,7 +36,7 @@
     pageFlow.pageControl.currentPage = 1;
     [self.view addSubview:pageFlow];
     UILabel *lb = [[UILabel alloc]initWithFrame:CGRectMake(60,92, self.view.frame.size.width, 23)];
-    lb.text = @"拉伸的字体";
+//    lb.text = @"拉伸的字体";
     lb.textColor = [UIColor blueColor];
     lb.font = [UIFont systemFontOfSize:26];
     [self.view addSubview:lb];

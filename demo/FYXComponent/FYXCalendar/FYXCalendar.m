@@ -253,11 +253,12 @@ CGFloat nativScale(void) {
     [self.collectView reloadData];
 }
 
-
+#pragma -mark 最小日期设置
 - (NSDate *)minimumDateForCalendar:(FSCalendar *)calendar {
     return _minimumDate;
 }
 
+#pragma -mark 副标题
 - (NSString *)calendar:(FSCalendar *)calendar subtitleForDate:(NSDate *)date {
     EKEvent *event = [self eventsForDate:date].firstObject;
 
@@ -451,6 +452,7 @@ CGFloat nativScale(void) {
 
 @end
 
+#pragma -mark 具体日期cell
 @implementation CollectionCell
 - (id)initWithFrame:(CGRect)frame {
     self = [super initWithFrame:frame];
